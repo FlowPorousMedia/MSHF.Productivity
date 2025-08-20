@@ -14,7 +14,7 @@
 
 This software tool enables petroleum engineers to rapidly forecast production rates for multistage fractured horizontal wells. It utilizes analytical modeling to perform steady-state flow analysis, providing a quick and efficient solution for well performance evaluation.
 
-<!-- [Онлайн версия программы](#) -->
+[Онлайн версия программы (Online Tool)](https://mshfproductivity.up.railway.app/)
 
 ---
 
