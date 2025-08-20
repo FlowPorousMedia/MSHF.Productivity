@@ -3,7 +3,7 @@
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python)](https://www.python.org/)
 [![Dash](https://img.shields.io/badge/Dash-2.0%2B-010101?logo=plotly)](https://dash.plotly.com/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-[![Docs](https://img.shields.io/badge/User_Guide-Wiki-blue?logo=github)](https://github.com/your_username/FlowPM.SimpleProdMSHF/wiki)
+[![Docs](https://img.shields.io/badge/User_Guide-Wiki-blue?logo=github)](https://github.com/FlowPorousMedia/MSHF.Productivity/wiki)
 [![Status](https://img.shields.io/badge/Status-Stable-brightgreen)]()
 
 **Программа для оценки продуктивности горизонтальных скважин с многозонным гидроразрывом пласта (МГРП)**
@@ -16,15 +16,15 @@
 
 ## Содержание
 
-* [О проекте](#about-project)
-* [Ключевые возможности](#main-adventures)
-* [Установка и запуск](#build-and-run)
-* [Документация](#docs)
-* [Релизы](#releases)
-* [Автор](#authors)
-* [Лицензия](#license)
+* [О проекте](#о-проекте)
+* [Ключевые возможности](#ключевые-возможности)
+* [Установка и запуск](#установка-и-запуск)
+* [Документация](#документация)
+* [Релизы](#релизы)
+* [Авторы](#авторы)
+* [Лицензия](#лицензия)
 
-## О проекте {#about-project}
+## О проекте
 
 **MSHF.Productivity** — это программа для оценки продуктивности (дебита) горизонтальных скважин (ГС) с многозонным гидроразрывом пласта (МГРП).
 
@@ -90,16 +90,18 @@ python -m dash run
 ## Документация 
 Полное руководство пользователя, включающее теоретическое обоснование методов расчета, подробное описание интерфейса, инструкцию по работе с программой и примеры типовых расчетов, доступно в **Wiki** данного репозитория.
 
-**[➡️ Руководству пользователя](https://github.com/FlowPorousMedia/MSHF.Productivity/wiki)**
+➡️ **[Руководству пользователя](https://github.com/FlowPorousMedia/MSHF.Productivity/wiki)**
 
 ## Релизы
 
 Актуальные версии программы можно найти на странице [Releases](https://github.com/FlowPorousMedia/MSHF.Productivity/releases).
 
 ## Авторы
+<!-- *   [Марсель Хамидуллин](https://github.com/erythrocyte) - Разработка, теория, тестирование -->
+*   [FlowPorousMedia](https://github.com/FlowPorousMedia) - Координация проекта
 
 ## Лицензия
 
-2025 (c) FlowPorousMedia. Все права защищены
+© FlowPorousMedia, 2025. Все права защищены
 
 Этот проект распространяется под лицензией [MIT](LICENSE.txt)
