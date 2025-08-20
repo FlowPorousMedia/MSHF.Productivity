@@ -1,2 +1,105 @@
 # MSHF.Productivity
-A software tool for rapid estimation of productivity in multistage hydraulically fractured horizontal wells. Designed for petroleum engineers to optimize fracture design and forecast production.
+
+[![Python](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python)](https://www.python.org/)
+[![Dash](https://img.shields.io/badge/Dash-2.0%2B-010101?logo=plotly)](https://dash.plotly.com/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![Docs](https://img.shields.io/badge/User_Guide-Wiki-blue?logo=github)](https://github.com/your_username/FlowPM.SimpleProdMSHF/wiki)
+[![Status](https://img.shields.io/badge/Status-Stable-brightgreen)]()
+
+**Программа для оценки продуктивности горизонтальных скважин с многозонным гидроразрывом пласта (МГРП)**
+
+Программа предоставляет инженерам-нефтяникам удобный инструмент для быстрой оценки дебита скважин с МГРП при стационарной фильтрации с помощью аналитических моделей
+
+[Онлайн версия программы]()
+
+---
+
+## Содержание
+
+* [О проекте](#about-project)
+* [Ключевые возможности](#main-adventures)
+* [Установка и запуск](#build-and-run)
+* [Документация](#docs)
+* [Релизы](#releases)
+* [Автор](#authors)
+* [Лицензия](#license)
+
+## О проекте {#about-project}
+
+**MSHF.Productivity** — это программа для оценки продуктивности (дебита) горизонтальных скважин (ГС) с многозонным гидроразрывом пласта (МГРП).
+
+Проектирование и анализ эксплуатации таких скважин требуют сложных расчетов. Данное приложение предоставляет пользователям гибкий инструмент для:
+-   **Сравнительного анализа** различных конфигураций трещин ГРП.
+-   **Оптимизации параметров** гидроразрыва (длина, проводимость, количество трещин, расстояние между ними).
+-   **Быстрой оценки** потенциальной продуктивности скважины на этапе проектирования.
+
+В программе используются проверенные аналитические формулы для обеспечения достоверных результатов.
+
+## Установка и запуск
+
+Следуйте этим инструкциям, чтобы получить копию проекта и запустить его на вашей локальной машине.
+
+#### Предварительные требования
+
+*   Python 3.8 или новее
+
+#### Клонирование репозитория
+
+```bash
+# Клонируйте репозиторий
+git clone https://github.com/FlowPorousMedia/MSHF.Productivity.git
+
+# Перейдите в директорию проекта
+cd MSHF.Productivity
+```
+
+#### Создание виртуального окружения (рекомендуется)
+
+```bash
+# Для Linux/macOS
+python3 -m venv venv
+source venv/bin/activate
+
+# Для Windows
+python -m venv venv
+.\venv\Scripts\activate
+```
+
+#### Установка зависимостей
+
+```bash
+pip install -r requirements.txt
+```
+
+#### Запуск приложения
+
+После успешной установки зависимостей запустите приложение.
+
+```bash
+python app.py
+```
+
+или
+
+```bash
+python -m dash run
+```
+
+Сервер разработки запустится локально. Откройте ваш веб-браузер и перейдите по адресу http://127.0.0.1:8050/.
+
+## Документация 
+Полное руководство пользователя, включающее теоретическое обоснование методов расчета, подробное описание интерфейса, инструкцию по работе с программой и примеры типовых расчетов, доступно в **Wiki** данного репозитория.
+
+**[➡️ Руководству пользователя](https://github.com/FlowPorousMedia/MSHF.Productivity/wiki)**
+
+## Релизы
+
+Актуальные версии программы можно найти на странице [Releases](https://github.com/FlowPorousMedia/MSHF.Productivity/releases).
+
+## Авторы
+
+## Лицензия
+
+2025 (c) FlowPorousMedia. Все права защищены
+
+Этот проект распространяется под лицензией [MIT](LICENSE.txt)
