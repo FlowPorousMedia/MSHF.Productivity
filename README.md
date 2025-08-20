@@ -10,7 +10,7 @@
 
 Программа предоставляет инженерам-нефтяникам удобный инструмент для быстрой оценки дебита скважин с МГРП при стационарной фильтрации с помощью аналитических моделей
 
-**Productivity Evaluation Tool for Multistage Fractured Horizontal Wells**
+**Productivity Evaluation Tool for Multistage Fractured Horizontal Wells (MSHF)**
 
 This software tool enables petroleum engineers to rapidly forecast production rates for multistage fractured horizontal wells. It utilizes analytical modeling to perform steady-state flow analysis, providing a quick and efficient solution for well performance evaluation.
 
