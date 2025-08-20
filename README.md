@@ -1,7 +1,7 @@
 # MSHF.Productivity
 
-[![Python](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python)](https://www.python.org/)
-[![Dash](https://img.shields.io/badge/Dash-2.0%2B-010101?logo=plotly)](https://dash.plotly.com/)
+[![Python](https://img.shields.io/badge/Python-3.11%2B-blue?logo=python)](https://www.python.org/)
+[![Dash](https://img.shields.io/badge/Dash-3.2%2B-010101?logo=plotly)](https://dash.plotly.com/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Docs](https://img.shields.io/badge/User_Guide-Wiki-blue?logo=github)](https://github.com/FlowPorousMedia/MSHF.Productivity/wiki)
 [![Status](https://img.shields.io/badge/Status-Stable-brightgreen)]()
@@ -10,7 +10,11 @@
 
 Программа предоставляет инженерам-нефтяникам удобный инструмент для быстрой оценки дебита скважин с МГРП при стационарной фильтрации с помощью аналитических моделей
 
-[Онлайн версия программы](#)
+**Productivity Evaluation Tool for Multistage Fractured Horizontal Wells**
+
+This software tool enables petroleum engineers to rapidly forecast production rates for multistage fractured horizontal wells. It utilizes analytical modeling to perform steady-state flow analysis, providing a quick and efficient solution for well performance evaluation.
+
+<!-- [Онлайн версия программы](#) -->
 
 ---
 
@@ -33,7 +37,14 @@
 -   **Оптимизации параметров** гидроразрыва (длина, проводимость, количество трещин, расстояние между ними).
 -   **Быстрой оценки** потенциальной продуктивности скважины на этапе проектирования.
 
-В программе используются проверенные аналитические формулы для обеспечения достоверных результатов.
+В программе используются проверенные аналитические формулы для обеспечения достоверных результатов:
+1. Li H., Jia Zh., Wei Zh. (1996). A New Method to Predict Performance of Fractured Horizontal Wells. International Conference on Horizontal Well Technology, Calgary, Alberta, Canada. https://doi.org/10.2118/37051-MS
+2. Guo B. Schechter D. (1997). A Simple and Rigorous Mathematical Model for Estimating Inflow Performance of Wells Intersecting Long Fractures. Paper SPE 38104 presented at the SPE Asia Pacific Oil and Gas Conference and Exhibition, Kuala Lumpur. https://doi.org/10.2118/38104-MS
+3. Guo B., Yu X., Khoshgahdam M. (2009). Simple Analytical Model for Predicting Productivity of Multifractured Horizontal Wells. SPE Reservoir Evaluation & Engineering 12 (06), pp. 879–885. https://doi.org/10.2118/114452-PA
+4. Елкин С.В., Алероев А.А., Веремко Н.А., Чертенков М.В. (2016). Учет влияния безразмерной проводимости на экспресс-расчет дебита жидкости после многозонного гидроразрыва пласта. Нефтяное хозяйство, 12, с. 110–113.
+5. Potashev K., Mazo A., Mukhina M., Uraimov A., Maklakov D., Khamidullin M. (2024). High-speed algorithm for computing the inflow to multiple-fractured horizontal wells using stream tubes. Comput Geosci, 28, pp. 1389–1411. https://doi.org/10.1007/s10596-024-10322-w
+
+
 
 ## Установка и запуск
 
@@ -41,7 +52,7 @@
 
 #### Предварительные требования
 
-*   Python 3.8 или новее
+*   Python 3.11 или новее
 
 #### Клонирование репозитория
 
@@ -76,7 +87,7 @@ pip install -r requirements.txt
 После успешной установки зависимостей запустите приложение.
 
 ```bash
-python app.py
+python main.py
 ```
 
 или
@@ -85,7 +96,7 @@ python app.py
 python -m dash run
 ```
 
-Сервер разработки запустится локально. Откройте ваш веб-браузер и перейдите по адресу http://127.0.0.1:8050/.
+Сервер разработки запустится локально. Откройте ваш веб-браузер и перейдите по адресу `http://127.0.0.1:8050/`.
 
 ## Документация 
 Полное руководство пользователя, включающее теоретическое обоснование методов расчета, подробное описание интерфейса, инструкцию по работе с программой и примеры типовых расчетов, доступно в **Wiki** данного репозитория.
@@ -97,8 +108,8 @@ python -m dash run
 Актуальные версии программы можно найти на странице [Releases](https://github.com/FlowPorousMedia/MSHF.Productivity/releases).
 
 ## Авторы
-<!-- *   [Марсель Хамидуллин](https://github.com/erythrocyte) - Разработка, теория, тестирование -->
-*   [FlowPorousMedia](https://github.com/FlowPorousMedia) - Координация проекта
+*   [Марсель Хамидуллин](https://www.researchgate.net/profile/Marsel-Khamidullin)
+*   [Константин Поташев](https://www.researchgate.net/profile/Konstantin-Potashev)
 
 ## Лицензия
 
