@@ -1,0 +1,64 @@
+/* assets/style.css */
+
+.form-check-input:checked {
+  background-color: #0d6efd;
+  /* Keep default checked color */
+}
+
+.btn-circle {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Стили для библиографии */
+.H5 {
+  font-family: "Times New Roman", serif;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  text-align: justify;
+  font-size: large;
+}
+
+.citation {
+  font-family: "Times New Roman", serif;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  text-align: justify;
+}
+
+.doi-link {
+  color: #0066cc;
+  text-decoration: none;
+}
+
+.doi-link:hover {
+  text-decoration: underline;
+}
+
+.model-description {
+  text-align: justify;
+  white-space: pre-line;
+}
+
+/* Стили для характеристик */
+dl {
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+}
+
+dt {
+  font-weight: bold;
+  color: #495057;
+}
+
+dd {
+  margin-left: 0;
+  margin-bottom: 10px;
+  color: #212529;
+}
