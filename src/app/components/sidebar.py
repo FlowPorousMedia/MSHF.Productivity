@@ -102,16 +102,16 @@ def create_sidebar():
                                         title="Semi-analytical",
                                         item_id="semianalytical-model-panel",
                                     ),
-                                    dbc.AccordionItem(
-                                        [
-                                            html.Div(
-                                                "Additional models will go here",
-                                                className="p-2",
-                                            )
-                                        ],
-                                        title="Numerical",
-                                        item_id="numerical-model-panel",
-                                    ),
+                                    # dbc.AccordionItem(
+                                    #     [
+                                    #         html.Div(
+                                    #             "Additional models will go here",
+                                    #             className="p-2",
+                                    #         )
+                                    #     ],
+                                    #     title="Numerical",
+                                    #     item_id="numerical-model-panel",
+                                    # ),
                                 ],
                                 flush=True,
                                 start_collapsed=True,  # Start with all subpanels collapsed
