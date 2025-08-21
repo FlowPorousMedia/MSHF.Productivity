@@ -4,7 +4,8 @@
 [![Dash](https://img.shields.io/badge/Dash-3.2%2B-010101?logo=plotly)](https://dash.plotly.com/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Docs](https://img.shields.io/badge/User_Guide-Wiki-blue?logo=github)](https://github.com/FlowPorousMedia/MSHF.Productivity/wiki)
-[![Status](https://img.shields.io/badge/Status-Stable-brightgreen)]()
+[![Open Issues](https://img.shields.io/github/issues-raw/FlowPorousMedia/MSHF.Productivity?color=0088ff)](https://github.com/FlowPorousMedia/MSHF.Productivity/issues)
+[![Status](https://img.shields.io/badge/Status-Beta-brightgreen)]()
 
 **Программа для оценки продуктивности горизонтальных скважин с многозонным гидроразрывом пласта (МГРП)**
 
