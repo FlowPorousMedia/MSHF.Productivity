@@ -9,13 +9,18 @@
 
 **Программа для оценки продуктивности горизонтальных скважин с многозонным гидроразрывом пласта (МГРП)**
 
-Программа предоставляет инженерам-нефтяникам удобный инструмент для быстрой оценки дебита скважин с МГРП при стационарной фильтрации с помощью аналитических моделей
+Программа предоставляет инженерам-нефтяникам удобный инструмент для быстрой оценки дебита скважин 
+с МГРП при стационарной фильтрации с помощью аналитических моделей
 
 **Productivity Evaluation Tool for Multistage Fractured Horizontal Wells (MSHF)**
 
-This software tool enables petroleum engineers to rapidly forecast production rates for multistage fractured horizontal wells. It utilizes analytical modeling to perform steady-state flow analysis, providing a quick and efficient solution for well performance evaluation.
+This software tool enables petroleum engineers to rapidly forecast production rates for multistage 
+fractured horizontal wells. It utilizes analytical modeling to perform steady-state flow analysis, 
+providing a quick and efficient solution for well performance evaluation.
 
 [Онлайн версия программы (Online Tool)](https://mshfproductivity.up.railway.app/)
+
+[Руководство пользователя (User Guide)](https://github.com/FlowPorousMedia/MSHF.Productivity/wiki)
 
 ---
 
@@ -101,7 +106,8 @@ python -m dash run
 Сервер разработки запустится локально. Откройте ваш веб-браузер и перейдите по адресу `http://127.0.0.1:8050/`.
 
 ## Документация 
-Полное руководство пользователя, включающее теоретическое обоснование методов расчета, подробное описание интерфейса, инструкцию по работе с программой и примеры типовых расчетов, доступно в **Wiki** данного репозитория.
+Полное руководство пользователя, включающее теоретическое обоснование методов расчета, подробное описание интерфейса, 
+инструкцию по работе с программой и примеры типовых расчетов, доступно в **Wiki** данного репозитория.
 
 ➡️ **[Руководство пользователя](https://github.com/FlowPorousMedia/MSHF.Productivity/wiki)**
 
