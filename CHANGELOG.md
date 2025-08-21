@@ -8,7 +8,7 @@
 ### Fixed
 
 
-## [0.1.0] - 2024-08-15
+## [0.1.0]  -  20.08.2025
 ### Added
 - First beta version of the program.
     - Basic graphics.
