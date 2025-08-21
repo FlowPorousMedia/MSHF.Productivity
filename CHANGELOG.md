@@ -4,6 +4,7 @@
 ### Added
 - Version control
 - Change log
+- Wiki created
 
 ### Fixed
 
