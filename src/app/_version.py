@@ -1,1 +1,1 @@
-USER_VERSION = "0.1.0"
+USER_VERSION = "0.2"
