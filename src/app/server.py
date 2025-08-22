@@ -31,18 +31,28 @@ app = Dash(
 
 # Define the app layout
 app.layout = html.Div(
-    style={"height": "100vh", "display": "flex"},
+    style={"height": "100vh", "display": "flex", "flexDirection": "column"},
+    # style={"height": "100vh", "display": "flex"},
     children=[
+        dcc.Location(id='url', refresh=False),  # Add this to handle URL routing
+        # Navbar at the top
+        create_navbar(),
+        # dbc.Tooltip("GitHub", target="github-icon", placement="bottom"),
+        # Content area with sidebar and main content
+        html.Div(
+            style={"display": "flex", "flex": 1, "overflow": "hidden"},
+            children=[
+                create_sidebar(),
+                create_main_content(),
+            ],
+        ),
+        create_about_modal(),
+        create_model_details_modal(),
+        # Hidden elements for future functionality
         dcc.Store(id="analytical-models-store", data=get_analytic_models()),
         dcc.Store(id="semianalytical-models-store", data=get_semianalytic_models()),
         # dcc.Store(id="numerical-models-store", data=get_numerical_models()),
         dcc.Store(id="solver-result-store", data=None),
-        create_navbar(),
-        create_about_modal(),
-        create_sidebar(),
-        create_main_content(),
-        create_model_details_modal(),
-        # Hidden elements for future functionality
         dcc.Store(id="sidebar-width-store", data=400),
         dcc.Store(id="resize-state-store", data={"resizing": False}),
         html.Div(id="resize-mousemove", style={"display": "none"}),
@@ -51,6 +61,7 @@ app.layout = html.Div(
         dcc.Store(id="well-params-store", data={}),
         dcc.Store(id="reservoir-params-store", data={}),
         dcc.Store(id="fluid-params-store", data={}),
+        dcc.Store(id='language-store', data='en'),
     ],
 )
 

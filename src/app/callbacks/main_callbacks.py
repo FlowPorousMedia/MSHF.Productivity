@@ -9,6 +9,7 @@ from src.app.callbacks import (
     graph_content_callbacks,
     table_content_callbacks,
     navbar_callbacks,
+    sidebar_callbacks
 )
 
 
@@ -23,3 +24,4 @@ def register_all_callbacks(app):
     graph_content_callbacks.register(app)
     table_content_callbacks.register(app)
     navbar_callbacks.register(app)
+    sidebar_callbacks.register(app)

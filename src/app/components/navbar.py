@@ -9,8 +9,8 @@ def create_navbar():
             html.A(
                 dbc.Row(
                     [
-                        dbc.Col(html.Img(src="/assets/logo.png", height="30px")),
-                        dbc.Col(dbc.NavbarBrand("Analytics Pro", className="ml-2")),
+                        # dbc.Col(html.Img(src="/assets/logo.png", height="30px")),
+                        dbc.Col(dbc.NavbarBrand("MSHF.Productivity", className="ml-2")),
                     ],
                     align="center",
                     className="g-0",
@@ -19,50 +19,75 @@ def create_navbar():
                 style={"textDecoration": "none"},
             ),
             # Right side navigation items
-            dbc.NavbarToggler(id="navbar-toggler"),
-            dbc.Collapse(
-                dbc.Nav(
-                    [
-                        # GitHub link
-                        dbc.NavItem(
-                            dbc.NavLink(
-                                html.Span(
-                                    [html.I(className="fab fa-github mr-1"), "GitHub"]
-                                ),
-                                href="https://github.com/yourusername/your-repo",
-                                target="_blank",
-                            )
-                        ),
-                        # About modal (will be implemented with callback)
-                        dbc.NavItem(dbc.NavLink("About", id="about-link")),
-                        # Language dropdown
-                        dbc.DropdownMenu(
+            html.Div(
+                [
+                    dbc.NavbarToggler(id="navbar-toggler"),
+                    dbc.Collapse(
+                        dbc.Nav(
                             [
-                                dbc.DropdownMenuItem("Русский", id="lang-ru"),
-                                dbc.DropdownMenuItem("English", id="lang-en"),
-                            ],
-                            label="Language",
-                            nav=True,
-                        ),
-                        # User Guide/Wiki link
-                        dbc.NavItem(
-                            dbc.NavLink(
-                                html.Span(
-                                    [html.I(className="fas fa-book mr-1"), "User Guide"]
+                                # GitHub link
+                                dbc.NavItem(
+                                    html.Div(
+                                        [
+                                            dbc.NavLink(
+                                                html.I(
+                                                    className="fab fa-github mr-1",
+                                                    id="github-icon",
+                                                ),
+                                                href="https://github.com/yourusername/your-repo",
+                                                target="_blank",
+                                                style={"fontSize": "1.2rem"},
+                                            ),
+                                            dbc.Tooltip(
+                                                id="github-tooltip",
+                                                target="github-icon",
+                                                placement="left",
+                                            ),
+                                        ]
+                                    )
                                 ),
-                                href="https://github.com/yourusername/your-repo/wiki",
-                                target="_blank",
-                            )
+                                # Language dropdown with flag
+                                dbc.DropdownMenu(
+                                    [
+                                        dbc.DropdownMenuItem("Русский", id="lang-ru"),
+                                        dbc.DropdownMenuItem("English", id="lang-en"),
+                                    ],
+                                    label=html.I(
+                                        className="fas fa-flag"
+                                    ),  # Default flag icon
+                                    nav=True,
+                                    id="language-dropdown",
+                                    align_end=True,
+                                ),
+                                # User Guide/Wiki link (icon only)
+                                dbc.NavItem(
+                                    dbc.NavLink(
+                                        html.I(className="fas fa-book"),
+                                        href="https://github.com/yourusername/your-repo/wiki",
+                                        target="_blank",
+                                        style={"fontSize": "1.2rem"},
+                                    )
+                                ),
+                                # About modal (icon only)
+                                dbc.NavItem(
+                                    dbc.NavLink(
+                                        html.I(className="fas fa-info-circle"),
+                                        id="about-link",
+                                        style={"fontSize": "1.2rem"},
+                                    )
+                                ),
+                            ],
+                            className="d-flex align-items-center",
+                            navbar=True,
                         ),
-                    ],
-                    className="ml-auto",
-                    navbar=True,
-                ),
-                id="navbar-collapse",
-                navbar=True,
+                        id="navbar-collapse",
+                        navbar=True,
+                    ),
+                ],
+                className="ms-auto d-flex align-items-center",  # This pushes content to the right
             ),
         ],
         color="primary",
         dark=True,
-        # sticky="top",
+        sticky="top",
     )

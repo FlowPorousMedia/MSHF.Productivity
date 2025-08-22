@@ -1,5 +1,7 @@
 /* assets/style.css */
 
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
 .form-check-input:checked {
   background-color: #0d6efd;
   /* Keep default checked color */
@@ -61,4 +63,46 @@ dd {
   margin-left: 0;
   margin-bottom: 10px;
   color: #212529;
+}
+
+.sidebar {
+  transition: width 0.3s ease;
+  background-color: #f8f9fa;
+  border-right: 1px solid #dee2e6;
+}
+
+.main-content {
+  transition: margin-left 0.3s ease;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+      position: absolute;
+      z-index: 1000;
+      height: 100%;
+      left: -400px;
+  }
+  
+  .sidebar.show {
+      left: 0;
+  }
+  
+  .main-content {
+      width: 100%;
+  }
+}
+
+.navbar-nav .nav-link {
+  padding: 0.5rem 0.8rem !important;
+}
+
+.navbar-brand {
+  margin-right: 1rem;
+}
+
+.dropdown-menu {
+  right: 0;
+  left: auto;
 }
