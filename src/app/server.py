@@ -9,7 +9,9 @@ import dash_bootstrap_components as dbc
 
 
 from src.app.callbacks.main_callbacks import register_all_callbacks
-from src.app.components.modal import create_modal
+from src.app.components.about_modal import create_about_modal
+from src.app.components.model_details import create_model_details_modal
+from src.app.components.navbar import create_navbar
 from src.app.components.sidebar import create_sidebar
 from src.app.components.main_content import create_main_content
 
@@ -35,11 +37,11 @@ app.layout = html.Div(
         dcc.Store(id="semianalytical-models-store", data=get_semianalytic_models()),
         # dcc.Store(id="numerical-models-store", data=get_numerical_models()),
         dcc.Store(id="solver-result-store", data=None),
-        # Sidebar
+        create_navbar(),
+        create_about_modal(),
         create_sidebar(),
-        # Main content
         create_main_content(),
-        create_modal(),
+        create_model_details_modal(),
         # Hidden elements for future functionality
         dcc.Store(id="sidebar-width-store", data=400),
         dcc.Store(id="resize-state-store", data={"resizing": False}),
@@ -56,4 +58,3 @@ register_all_callbacks(app)
 
 #  Это важно для развертывания
 server = app.server
-

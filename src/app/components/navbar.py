@@ -2,7 +2,7 @@ from dash import html
 import dash_bootstrap_components as dbc
 
 
-def create_nav_bar():
+def create_navbar():
     return dbc.Navbar(
         [
             # Left side: Software name
@@ -13,9 +13,10 @@ def create_nav_bar():
                         dbc.Col(dbc.NavbarBrand("Analytics Pro", className="ml-2")),
                     ],
                     align="center",
-                    no_gutters=True,
+                    className="g-0",
                 ),
                 href="/",
+                style={"textDecoration": "none"},
             ),
             # Right side navigation items
             dbc.NavbarToggler(id="navbar-toggler"),
@@ -37,10 +38,8 @@ def create_nav_bar():
                         # Language dropdown
                         dbc.DropdownMenu(
                             [
+                                dbc.DropdownMenuItem("Русский", id="lang-ru"),
                                 dbc.DropdownMenuItem("English", id="lang-en"),
-                                dbc.DropdownMenuItem("Español", id="lang-es"),
-                                dbc.DropdownMenuItem("Français", id="lang-fr"),
-                                dbc.DropdownMenuItem("Deutsch", id="lang-de"),
                             ],
                             label="Language",
                             nav=True,
@@ -65,5 +64,5 @@ def create_nav_bar():
         ],
         color="primary",
         dark=True,
-        sticky="top",
+        # sticky="top",
     )
