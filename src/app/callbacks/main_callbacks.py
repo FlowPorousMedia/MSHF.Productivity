@@ -8,6 +8,7 @@ from src.app.callbacks import (
     fluid_params_component_callbacks,
     graph_content_callbacks,
     table_content_callbacks,
+    navbar_callbacks,
 )
 
 
@@ -21,3 +22,4 @@ def register_all_callbacks(app):
     calculate_button_callbacks.register(app)
     graph_content_callbacks.register(app)
     table_content_callbacks.register(app)
+    navbar_callbacks.register(app)
