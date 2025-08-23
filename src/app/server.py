@@ -37,7 +37,6 @@ app.layout = html.Div(
         dcc.Location(id='url', refresh=False),  # Add this to handle URL routing
         # Navbar at the top
         create_navbar(),
-        # dbc.Tooltip("GitHub", target="github-icon", placement="bottom"),
         # Content area with sidebar and main content
         html.Div(
             style={"display": "flex", "flex": 1, "overflow": "hidden"},

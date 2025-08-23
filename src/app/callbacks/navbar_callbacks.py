@@ -14,14 +14,14 @@ def register(app):
     def update_language(ru_clicks, en_clicks, current_lang):
         ctx = callback_context
         if not ctx.triggered:
-            return html.I(className="fas fa-flag"), current_lang
+            return html.I(className="fas fa-language", id="language-icon"), current_lang
 
         button_id = ctx.triggered[0]["prop_id"].split(".")[0]
 
         if button_id == "lang-ru":
-            return html.I(className="fas fa-flag"), "ru"
+            return html.I(className="fas fa-language", id="language-icon"), "ru"
         elif button_id == "lang-en":
-            return html.I(className="fas fa-flag-usa"), "en"
+            return html.I(className="fas fa-language", id="language-icon"), "en"
 
         return html.I(className="fas fa-flag"), current_lang
 
@@ -49,13 +49,20 @@ def register(app):
 
     @app.callback(
         Output("github-tooltip", "children"),
-        # Output("about-tooltip", "children"),
-        # Output("language-tooltip", "children"),
-        # Output("guide-tooltip", "children"),
+        Output("language-tooltip", "children"),
+        Output("guide-tooltip", "children"),
+        Output("about-tooltip", "children"),
         Input("language-store", "data"),
     )
     def update_tooltips(language):
         if language == "ru":
-            return "GitHub", "О программе", "Язык", "Руководство пользователя"
+            return "GitHub", "Язык", "Руководство пользователя", "О программе"
         else:
-            return "GitHub" #, "About", "Language", "User Guide"
+            return "GitHub", "Language", "User Guide", "About"
+
+    @app.callback(Output("guide-navlink", "href"), Input("language-store", "data"))
+    def update_guide_link(language):
+        if language == "ru":
+            return "https://github.com/FlowPorousMedia/MSHF.Productivity/wiki/Home-RU"
+        else:
+            return "https://github.com/FlowPorousMedia/MSHF.Productivity/wiki/Home-EN"

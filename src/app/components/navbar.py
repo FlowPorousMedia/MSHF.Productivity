@@ -34,7 +34,7 @@ def create_navbar():
                                                     className="fab fa-github mr-1",
                                                     id="github-icon",
                                                 ),
-                                                href="https://github.com/yourusername/your-repo",
+                                                href="https://github.com/FlowPorousMedia/MSHF.Productivity",
                                                 target="_blank",
                                                 style={"fontSize": "1.2rem"},
                                             ),
@@ -47,33 +47,74 @@ def create_navbar():
                                     )
                                 ),
                                 # Language dropdown with flag
-                                dbc.DropdownMenu(
-                                    [
-                                        dbc.DropdownMenuItem("Русский", id="lang-ru"),
-                                        dbc.DropdownMenuItem("English", id="lang-en"),
-                                    ],
-                                    label=html.I(
-                                        className="fas fa-flag"
-                                    ),  # Default flag icon
-                                    nav=True,
-                                    id="language-dropdown",
-                                    align_end=True,
+                                dbc.NavItem(
+                                    html.Div(
+                                        [
+                                            dbc.DropdownMenu(
+                                                [
+                                                    dbc.DropdownMenuItem(
+                                                        "Русский", id="lang-ru"
+                                                    ),
+                                                    dbc.DropdownMenuItem(
+                                                        "English", id="lang-en"
+                                                    ),
+                                                ],
+                                                label=html.I(
+                                                    className="fas fa-language",
+                                                    id="language-icon",
+                                                ),  # Default flag icon
+                                                nav=True,
+                                                id="language-dropdown",
+                                                align_end=True,
+                                            ),
+                                            dbc.Tooltip(
+                                                id="language-tooltip",
+                                                target="language-icon",
+                                                placement="left",
+                                            ),
+                                        ]
+                                    )
                                 ),
                                 # User Guide/Wiki link (icon only)
                                 dbc.NavItem(
-                                    dbc.NavLink(
-                                        html.I(className="fas fa-book"),
-                                        href="https://github.com/yourusername/your-repo/wiki",
-                                        target="_blank",
-                                        style={"fontSize": "1.2rem"},
+                                    html.Div(
+                                        [
+                                            dbc.NavLink(
+                                                html.I(
+                                                    className="fas fa-book",
+                                                    id="guide-icon",
+                                                ),
+                                                href="https://github.com/FlowPorousMedia/MSHF.Productivity/wiki/Home-EN",
+                                                target="_blank",
+                                                style={"fontSize": "1.2rem"},
+                                                id="guide-navlink",
+                                            ),
+                                            dbc.Tooltip(
+                                                id="guide-tooltip",
+                                                target="guide-icon",
+                                                placement="left",
+                                            ),
+                                        ]
                                     )
                                 ),
                                 # About modal (icon only)
                                 dbc.NavItem(
-                                    dbc.NavLink(
-                                        html.I(className="fas fa-info-circle"),
-                                        id="about-link",
-                                        style={"fontSize": "1.2rem"},
+                                    html.Div(
+                                        [
+                                            dbc.NavLink(
+                                                html.I(
+                                                    className="fas fa-info-circle",
+                                                    id="about-icon",
+                                                ),
+                                                id="about-link",
+                                                style={"fontSize": "1.2rem"},
+                                            ),
+                                            dbc.Tooltip(
+                                                id="about-tooltip",
+                                                target="about-icon",
+                                                placement="left",
+                                            ),
+                                        ]
                                     )
                                 ),
                             ],
