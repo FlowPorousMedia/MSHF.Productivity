@@ -9,7 +9,9 @@ import dash_bootstrap_components as dbc
 
 
 from src.app.callbacks.main_callbacks import register_all_callbacks
-from src.app.components.modal import create_modal
+from src.app.components.about_modal import create_about_modal
+from src.app.components.model_details import create_model_details_modal
+from src.app.components.navbar import create_navbar
 from src.app.components.sidebar import create_sidebar
 from src.app.components.main_content import create_main_content
 
@@ -29,18 +31,27 @@ app = Dash(
 
 # Define the app layout
 app.layout = html.Div(
-    style={"height": "100vh", "display": "flex"},
+    style={"height": "100vh", "display": "flex", "flexDirection": "column"},
+    # style={"height": "100vh", "display": "flex"},
     children=[
+        dcc.Location(id='url', refresh=False),  # Add this to handle URL routing
+        # Navbar at the top
+        create_navbar(),
+        # Content area with sidebar and main content
+        html.Div(
+            style={"display": "flex", "flex": 1, "overflow": "hidden"},
+            children=[
+                create_sidebar(),
+                create_main_content(),
+            ],
+        ),
+        create_about_modal(),
+        create_model_details_modal(),
+        # Hidden elements for future functionality
         dcc.Store(id="analytical-models-store", data=get_analytic_models()),
         dcc.Store(id="semianalytical-models-store", data=get_semianalytic_models()),
         # dcc.Store(id="numerical-models-store", data=get_numerical_models()),
         dcc.Store(id="solver-result-store", data=None),
-        # Sidebar
-        create_sidebar(),
-        # Main content
-        create_main_content(),
-        create_modal(),
-        # Hidden elements for future functionality
         dcc.Store(id="sidebar-width-store", data=400),
         dcc.Store(id="resize-state-store", data={"resizing": False}),
         html.Div(id="resize-mousemove", style={"display": "none"}),
@@ -49,6 +60,7 @@ app.layout = html.Div(
         dcc.Store(id="well-params-store", data={}),
         dcc.Store(id="reservoir-params-store", data={}),
         dcc.Store(id="fluid-params-store", data={}),
+        dcc.Store(id='language-store', data='en'),
     ],
 )
 
@@ -56,4 +68,3 @@ register_all_callbacks(app)
 
 #  Это важно для развертывания
 server = app.server
-

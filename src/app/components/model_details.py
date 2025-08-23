@@ -1,6 +1,6 @@
 import dash_bootstrap_components as dbc
 
-def create_modal():
+def create_model_details_modal():
     return dbc.Modal(
         [
             dbc.ModalHeader(dbc.ModalTitle("Model Details")),
