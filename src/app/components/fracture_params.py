@@ -73,7 +73,7 @@ def create_fracture_params():
                         "length_minus": 100,
                         "width": 40,
                         "permeability": 10000,
-                        "well_cross": i * 300,
+                        "well_cross": i * 400,
                     }
                     for i in range(3)
                 ],

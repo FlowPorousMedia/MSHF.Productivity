@@ -26,7 +26,7 @@ def create(models: List, ag_grid_id: str):
         },
     ]
 
-    selected_ids = [models[0]]
+    selected_ids = models
 
     return dag.AgGrid(
         id=ag_grid_id,
