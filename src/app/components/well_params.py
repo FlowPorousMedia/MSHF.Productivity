@@ -14,7 +14,7 @@ def create_well_params():
                         dcc.Input(
                             id={"type": "well-params", "name": "length"},
                             type="number",
-                            value=400,
+                            value=900,
                             min=100,
                             step=10,
                             className="form-control",
