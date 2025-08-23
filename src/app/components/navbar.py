@@ -1,23 +1,14 @@
 from dash import html
 import dash_bootstrap_components as dbc
 
+from src.app._version import SOFTWARE_TITLE
+
 
 def create_navbar():
     return dbc.Navbar(
         [
             # Left side: Software name
-            html.A(
-                dbc.Row(
-                    [
-                        # dbc.Col(html.Img(src="/assets/logo.png", height="30px")),
-                        dbc.Col(dbc.NavbarBrand("MSHF.Productivity", className="ml-2")),
-                    ],
-                    align="center",
-                    className="g-0",
-                ),
-                href="/",
-                style={"textDecoration": "none"},
-            ),
+            dbc.Col(dbc.NavbarBrand(SOFTWARE_TITLE, className="ms-3")),
             # Right side navigation items
             html.Div(
                 [
