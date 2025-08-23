@@ -187,11 +187,17 @@ def register(app):
             # Ячейки со значениями Q для каждой модели
             for model in models:
                 q_value = model["q_values"][i]
-                row_cells.append(
-                    html.Td(
-                        f"{q_value:.4f}" if isinstance(q_value, float) else str(q_value)
+                if q_value is None:
+                    # Создаем пустую ячейку для None
+                    row_cells.append(html.Td(""))
+                else:
+                    row_cells.append(
+                        html.Td(
+                            f"{q_value:.4f}"
+                            if isinstance(q_value, float)
+                            else str(q_value)
+                        )
                     )
-                )
 
             rows.append(html.Tr(row_cells, className="border-top"))
 

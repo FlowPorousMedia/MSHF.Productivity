@@ -97,5 +97,7 @@ class MainSolver:
                 Exception("calc model rate with unknown model type")
 
         q_dim_m3_sec = calculator.calc_q(self.__result.initial_data)
-        q_dim_m3_day = q_dim_m3_sec * 60 * 60 * 24
+        q_dim_m3_day = None
+        if q_dim_m3_sec is not None:
+            q_dim_m3_day = q_dim_m3_sec * 60 * 60 * 24
         return q_dim_m3_day
