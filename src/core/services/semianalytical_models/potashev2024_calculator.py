@@ -291,12 +291,16 @@ class Potashev2024Calculator:
             for sector_index in fracture_sectors:
                 sector_rate = sectors_q[sector_index]
                 if sector_rate is None:
-                    fract_rate = 0.0
+                    fract_rate = None
                     break
                 else:
                     fract_rate += sector_rate
 
-            total_rate += fract_rate
+            if fract_rate is None:
+                total_rate = None
+                break
+            else:
+                total_rate += fract_rate
 
         return total_rate
 
