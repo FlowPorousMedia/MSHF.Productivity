@@ -9,11 +9,17 @@ from src.app.models.message_type import MessageType
 def get_message_dialog(
     dialog_id, title, message, type: MessageType.INFO, buttons=["OK"]
 ):
-    icons = {MessageType.INFO: "ℹ️", MessageType.WARNING: "⚠️", MessageType.ERROR: "❌"}
+    icons = {
+        MessageType.INFO: html.I(className="fa-solid fa-circle-info"),
+        MessageType.WARNING: html.I(className="fa-solid fa-triangle-exclamation"),
+        MessageType.ERROR: html.I(
+            className="fas fa-circle-xmark", style={"color": "red", "margin-right": "8px"}
+        ),
+    }
     return dbc.Modal(
         [
             dbc.ModalHeader(
-                dbc.ModalTitle(f"{icons.get(type, '')} {title}"),
+                dbc.ModalTitle([icons.get(type, ""), title]),
                 close_button=False,  # disable the "X"
             ),
             dbc.ModalBody(message),
@@ -27,6 +33,6 @@ def get_message_dialog(
         id=dialog_id,
         is_open=False,
         backdrop="static",  # user must click a button
-        keyboard=False,      # cannot close with ESC
+        keyboard=False,  # cannot close with ESC
         centered=True,
     )
