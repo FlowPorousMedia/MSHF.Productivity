@@ -1,6 +1,9 @@
 from typing import Any, Dict, List
 
+from src.app.models.message_type import MessageType
 from src.app.models.parametric_settings import ParametricSettings
+from src.app.models.result import Result
+from src.app.models.result_details import ResultDetails
 from src.core.models.init_data.calc_over_param import CalcOverParam
 from src.core.models.init_data.calc_settings import CalcSettings
 from src.core.models.init_data.init_settings import InitialSettings
@@ -16,29 +19,43 @@ from src.core.models.result_data.result_type_enum import ResultTypeEnum
 from src.core.services.measurement_converter import MeasurementConverter
 
 
-def make_input_data(
+def make_init_data(
     fracture_data: List[Dict[str, Any]],
     well_data: Dict[str, Any],
     reservoir_data: Dict[str, Any],
     fluid_data: Dict[str, Any],
     calc_models,
     setts: ParametricSettings,
-) -> InitialData:
-    result = InitialData()
+) -> Result:
+    result = Result()
+
+    data = InitialData()
 
     # Populate fractures
     if fracture_data:
-        for frac in fracture_data:
+        for i, frac in enumerate(fracture_data):
             # Handle potential missing values
             fracture = FractInitialData()
-            fracture.len_p = frac.get("length_plus", 0)
+            fracture.len_p = frac.get("length_plus")
+            if fracture.len_p is None:
+                details = ResultDetails()
+                details.tp = MessageType.ERROR
+                details.title = "Incorrect fracture lenght"
+                details.message = (
+                    f"Please, set correct value for fracture {i+1} Length Plus (m)"
+                )
+                result.success = False
+                result.data = None
+                result.details = details
+                return result
+
             fracture.len_m = frac.get("length_minus", 0)
             fracture.width = MeasurementConverter.convert_mm_to_m(frac.get("width", 0))
             fracture.perm = MeasurementConverter.convert_D_to_m2(
                 frac.get("permeability", 0)
             )
             fracture.well_cross_coord = frac.get("well_cross", 0)
-            result.fractures.append(fracture)
+            data.fractures.append(fracture)
 
     # well data
     well = WellInitialData()
@@ -46,7 +63,7 @@ def make_input_data(
     well.rw = MeasurementConverter.convert_cm_to_m(well_data.get("radius", 0))
     well.pw = MeasurementConverter.convert_atm_to_Pa(well_data.get("pressure", 0))
     well.is_perforated = bool(well_data.get("perforated", False))
-    result.well = well
+    data.well = well
 
     # reservoir data
     reservoir = ReservoirInitialData()
@@ -58,17 +75,20 @@ def make_input_data(
         reservoir_data.get("pressure", 0)
     )
     reservoir.rc = reservoir_data.get("radius", 0)
-    result.reservoir = reservoir
+    data.reservoir = reservoir
 
     # fluid data
     fluid = FluidInitialData()
     fluid.mu = MeasurementConverter.convert_from_cP_to_PaSec(
         fluid_data.get("viscosity", 0)
     )
-    result.fluid = fluid
+    data.fluid = fluid
 
     # settings
-    result.settings = __make_settings(calc_models, setts)
+    data.settings = __make_settings(calc_models, setts)
+
+    result.success = True
+    result.data = data
 
     return result
 

@@ -14,11 +14,13 @@ from src.app.components.model_details import create_model_details_modal
 from src.app.components.navbar import create_navbar
 from src.app.components.sidebar import create_sidebar
 from src.app.components.main_content import create_main_content
-
+from src.app.components.message_dialog import get_message_dialog
 from src.app.models.analyt_models import get_analytic_models
+from src.app.models.message_type import MessageType
 from src.app.models.numerical_models import get_numerical_models
 from src.app.models.semianalyt_models import get_semianalytic_models
 from src.app._version import USER_VERSION
+
 
 # Initialize the app
 app = Dash(
@@ -34,7 +36,7 @@ app.layout = html.Div(
     style={"height": "100vh", "display": "flex", "flexDirection": "column"},
     # style={"height": "100vh", "display": "flex"},
     children=[
-        dcc.Location(id='url', refresh=False),  # Add this to handle URL routing
+        dcc.Location(id="url", refresh=False),  # Add this to handle URL routing
         # Navbar at the top
         create_navbar(),
         # Content area with sidebar and main content
@@ -47,6 +49,9 @@ app.layout = html.Div(
         ),
         create_about_modal(),
         create_model_details_modal(),
+        get_message_dialog(
+            "msg-dialog", "Message", "Default", MessageType.INFO, ["OK"]
+        ),
         # Hidden elements for future functionality
         dcc.Store(id="analytical-models-store", data=get_analytic_models()),
         dcc.Store(id="semianalytical-models-store", data=get_semianalytic_models()),
@@ -60,7 +65,9 @@ app.layout = html.Div(
         dcc.Store(id="well-params-store", data={}),
         dcc.Store(id="reservoir-params-store", data={}),
         dcc.Store(id="fluid-params-store", data={}),
-        dcc.Store(id='language-store', data='en'),
+        dcc.Store(id="language-store", data="en"),
+        # 🔑 Hidden store used to trigger/open dialog
+        dcc.Store(id="open-msg-dialog"),
     ],
 )
 
