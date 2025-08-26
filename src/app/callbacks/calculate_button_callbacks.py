@@ -1,7 +1,9 @@
 from dash import Input, Output, State, no_update
 
 from src.app.models.parametric_settings import ParametricSettings
-from src.app.services import input_data_reader
+from src.app.models.result import Result
+from src.app.models.result_details import ResultDetails
+from src.app.services import init_data_reader
 from src.core.models.init_data.calc_over_param_enum import CalcParamTypeEnum
 from src.core.models.init_data.initial_data import InitialData
 from src.core.models.main_data import MainData
@@ -13,6 +15,7 @@ def register(app):
     # Callback for calculation - returns only solver result
     @app.callback(
         Output("solver-result-store", "data"),
+        Output("open-msg-dialog", "data"),
         Input("calculate-button", "n_clicks"),
         State("analytical-models-gridtable", "selectedRows"),
         State("semianalytical-models-gridtable", "selectedRows"),
@@ -75,9 +78,20 @@ def register(app):
 
         calc_models = analytical_selected_models + semianalytical_selected_models
 
-        init_data: InitialData = input_data_reader.make_input_data(
+        result_init_data: Result = init_data_reader.make_init_data(
             fracture_data, well_data, reservoir_data, fluid_data, calc_models, setts
         )
+
+        if not result_init_data.success:
+            details: ResultDetails = result_init_data.details
+            return no_update, {
+                "title": details.title,
+                "message": details.message,
+                "type": details.tp.name if hasattr(details.tp, "name") else str(details.tp),
+                "buttons": ["OK"],
+            }
+
+        init_data: InitialData = result_init_data.data
 
         M0 = init_data.get_M(0)
         print(f"M = {M0}")
@@ -85,4 +99,4 @@ def register(app):
         solver = MainSolver()
         result: MainData = solver.calc(init_data)
 
-        return result.to_dict()
+        return result.to_dict(), no_update

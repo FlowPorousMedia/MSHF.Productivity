@@ -1,5 +1,9 @@
 from dash import html, dash_table, dcc
 
+from src.core.models.init_data.field_names.fract_initial_field_names import (
+    FracInitFieldNames,
+)
+
 
 def create_fracture_params():
     """Create fracture parameters component with dynamic table"""
@@ -36,31 +40,31 @@ def create_fracture_params():
                 columns=[
                     {"name": "Fracture", "id": "fracture_id", "editable": False},
                     {
-                        "name": "Length Plus (m)",
+                        "name": FracInitFieldNames.LENGTH_PLUS.value,
                         "id": "length_plus",
                         "editable": True,
                         "type": "numeric",
                     },
                     {
-                        "name": "Length Minus (m)",
+                        "name": FracInitFieldNames.LENGTH_MINUS.value,
                         "id": "length_minus",
                         "editable": True,
                         "type": "numeric",
                     },
                     {
-                        "name": "Width (mm)",
+                        "name": FracInitFieldNames.WIDTH.value,
                         "id": "width",
                         "editable": True,
                         "type": "numeric",
                     },
                     {
-                        "name": "Permeability (D)",
+                        "name": FracInitFieldNames.PERMEABILITY.value,
                         "id": "permeability",
                         "editable": True,
                         "type": "numeric",
                     },
                     {
-                        "name": "Well cross depth (m)",
+                        "name": FracInitFieldNames.WELL_CROSS.value,
                         "id": "well_cross",
                         "editable": True,
                         "type": "numeric",
