@@ -1,5 +1,10 @@
 from typing import List, Tuple
 
+from src.core.models.init_data.field_names.fract_initial_field_names import (
+    FracInitFieldNames,
+)
+from src.core.services.data_validation_helper import DataValidationHelper
+
 
 class FractInitialData:
     def __init__(self):
@@ -10,12 +15,15 @@ class FractInitialData:
         self.well_cross_coord: float = None
 
     def validate_and_raise(
-        self, well_len: float = None, reservoir_perm: float = None
+        self,
+        well_len: float = None,
+        reservoir_perm: float = None,
+        reservoir_rad: float = None,
     ) -> List[str]:
         """
         Validate and raise exception for errors, return warnings
         """
-        errors, warnings = self.__validate_data(well_len, reservoir_perm)
+        errors, warnings = self.__validate_data(well_len, reservoir_perm, reservoir_rad)
 
         if errors:
             numbered_errors = [f"{i+1}. {error}" for i, error in enumerate(errors)]
@@ -37,40 +45,56 @@ class FractInitialData:
         }
 
     def __validate_data(
-        self, well_len: float = None, reservoir_perm: float = None
+        self,
+        well_len: float,
+        reservoir_perm: float,
+        reservoir_rad: float,
     ) -> Tuple[List[str], List[str]]:
         """Validate all fields and raise ValueError if any validation fails"""
         errors = []
         warnings = []
 
-        if self.len_p is None:
-            errors.append(f"Length Plus (m) is required")
-        elif self.len_p <= 0:
-            errors.append("Length Plus (m) should be positive number")
+        DataValidationHelper.validate_field(
+            self.len_p,
+            FracInitFieldNames.LENGTH_PLUS.value,
+            0.0,
+            reservoir_rad,
+            errors,
+            False,
+            False,
+        )
+        DataValidationHelper.validate_field(
+            self.len_m,
+            FracInitFieldNames.LENGTH_MINUS.value,
+            0.0,
+            reservoir_rad,
+            errors,
+            False,
+            False,
+        )
+        DataValidationHelper.validate_field(
+            self.width, FracInitFieldNames.WIDTH, 0.0, 200, errors, False, True
+        )
+        DataValidationHelper.validate_field(
+            self.perm,
+            FracInitFieldNames.PERMEABILITY.value,
+            0.0,
+            None,
+            errors,
+            False,
+            True,
+        )
+        DataValidationHelper.validate_field(
+            self.well_cross_coord,
+            FracInitFieldNames.WELL_CROSS.value,
+            0.0,
+            well_len,
+            errors,
+            True,
+            True,
+        )
 
-        if self.len_m is None:
-            errors.append("Length Minus (m) is required")
-        elif self.len_m <= 0:
-            errors.append("Length Minus (m) should be positive number")
-
-        if self.width is None:
-            errors.append("Width (mm) is required")
-        elif self.width <= 0:
-            errors.append("Width (mm) should be positive number")
-
-        if self.perm is None:
-            errors.append("Permeability (D) is required")
-        elif self.perm <= 0:
-            errors.append("Permeability (D) should be positive number")
-
-        if self.well_cross_coord is None:
-            errors.append("Well cross depth (m) is required")
-        elif self.well_cross_coord < 0:
-            errors.append("Well cross depth (m) should be non-negative number")
-        elif well_len is not None and self.well_cross_coord > well_len:
-            errors.append(f"Well cross depth (m) should be inside well [0, {well_len}]")
-
-        # New warning: fracture perm < reservoir perm
+        # warnings
         if (
             reservoir_perm is not None
             and self.perm is not None

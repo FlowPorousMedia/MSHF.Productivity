@@ -1,8 +1,8 @@
 from typing import List
 import numpy as np
 
+from src.core.models.init_data.fract_initial_data import FractInitialData
 from src.core.models.init_data.initial_data import InitialData
-from src.core.models.input_data.fract_input_data import FractInputData
 from src.core.services.fracture_worker import calc_lm_lp
 
 
@@ -58,7 +58,7 @@ class Guo2009Calculator:
     def __calc_j_big_l(self) -> float:
         p = self.__ip
 
-        def calc_ci(fr: FractInputData, ze) -> float:
+        def calc_ci(fr: FractInitialData, ze) -> float:
             return (24 * self.__ip.reservoir.perm) / (ze * fr.width * fr.perm)
 
         result = 0.0

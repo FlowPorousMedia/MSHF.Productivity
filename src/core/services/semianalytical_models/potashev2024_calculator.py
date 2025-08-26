@@ -9,7 +9,6 @@ import time
 
 from src.core.models.characteristic_data import CharacteristicData
 from src.core.models.init_data.initial_data import InitialData
-from src.core.models.input_data.input_data import InputData
 from src.core.services.dimless_converter import DimlessConverter
 from src.core.services.fracture_worker import calc_lm_lp
 
