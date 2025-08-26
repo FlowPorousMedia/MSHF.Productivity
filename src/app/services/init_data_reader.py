@@ -1,7 +1,5 @@
 from typing import Any, Dict, List
 
-from pydantic import ValidationError
-
 from src.app.models.message_type import MessageType
 from src.app.models.parametric_settings import ParametricSettings
 from src.app.models.result import Result
