@@ -3,6 +3,7 @@
 ## [Unreleased]
 ### Added
 ### Fixed
+- remove Russian from available languages (no translation)
 
 ## [0.2]  -  26.08.2025
 ### Added
