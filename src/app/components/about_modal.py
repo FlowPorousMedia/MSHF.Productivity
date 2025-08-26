@@ -91,20 +91,6 @@ def create_about_modal():
                             ".",
                         ]
                     ),
-                    html.Small(
-                        "Мы отвечаем на вопросы и учитываем предложения по улучшению",
-                        style={"font-style": "italic", "color": "gray"},
-                    ),
-                    # html.P("Features include:"),
-                    # html.Ul(
-                    #     [
-                    #         html.Li("Interactive data exploration"),
-                    #         html.Li("Advanced visualization capabilities"),
-                    #         html.Li("Real-time collaboration"),
-                    #         html.Li("Export to multiple formats"),
-                    #     ]
-                    # ),
-                    # html.P("For support, please contact: support@analyticspro.com"),
                 ]
             ),
             dbc.ModalFooter(dbc.Button("Close", id="close-about", className="ms-auto")),
