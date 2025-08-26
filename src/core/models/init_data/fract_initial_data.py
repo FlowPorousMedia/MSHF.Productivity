@@ -3,6 +3,9 @@ from typing import List, Tuple
 from src.core.models.init_data.field_names.fract_initial_field_names import (
     FracInitFieldNames,
 )
+from src.core.models.init_data.field_names.well_initial_field_names import (
+    WellInitFieldNames,
+)
 from src.core.services.data_validation_helper import DataValidationHelper
 
 
@@ -92,15 +95,15 @@ class FractInitialData:
             errors,
             True,
             True,
+            f" Well {WellInitFieldNames.L.value}",
         )
 
         # warnings
-        if (
-            reservoir_perm is not None
-            and self.perm is not None
-            and self.perm > 0
-            and self.perm < reservoir_perm
-        ):
+        _, max_warn = DataValidationHelper.warn_field(
+            self.perm, None, reservoir_perm, min_inclusive=True, max_inclusive=True
+        )
+
+        if max_warn:
             warnings.append(
                 f"Fracture permeability ({self.perm} D) is less than reservoir permeability ({reservoir_perm} D)"
             )

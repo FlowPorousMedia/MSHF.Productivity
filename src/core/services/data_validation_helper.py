@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import List, Optional, Tuple
 
 
 class DataValidationHelper:
@@ -11,6 +11,8 @@ class DataValidationHelper:
         messages: List[str],
         min_inclusive: bool = True,
         max_inclusive: bool = True,
+        description: str = None,
+        required: bool = True,
     ) -> None:
         """
         Validate that a value is within specified range with configurable inclusivity.
@@ -25,23 +27,70 @@ class DataValidationHelper:
             max_inclusive: Whether upper bound is inclusive ] or exclusive )
         """
         if value is None:
-            messages.append(f"{field_name} is required")
+            if required:
+                messages.append(f"{field_name} is required")
             return
+
+        str_descrp = f" ({description})" if description else ""
 
         # Validate lower bound if provided
         if min_val is not None:
             if min_inclusive:
                 if value < min_val:
-                    messages.append(f"{field_name} should be at least {min_val}")
+                    messages.append(
+                        f"{field_name} should be at least {min_val}{str_descrp}"
+                    )
             else:
                 if value <= min_val:
-                    messages.append(f"{field_name} should be greater than {min_val}")
+                    messages.append(
+                        f"{field_name} should be greater than {min_val}{str_descrp}"
+                    )
 
         # Validate upper bound if provided
         if max_val is not None:
             if max_inclusive:
                 if value > max_val:
-                    messages.append(f"{field_name} should be at most {max_val}")
+                    messages.append(
+                        f"{field_name} should be at most {max_val}{str_descrp}"
+                    )
             else:
                 if value >= max_val:
-                    messages.append(f"{field_name} should be less than {max_val}")
+                    messages.append(
+                        f"{field_name} should be less than {max_val}{str_descrp}"
+                    )
+
+    @staticmethod
+    def warn_field(
+        value: Optional[float],
+        min_val: Optional[float],
+        max_val: Optional[float],
+        min_inclusive: bool = True,
+        max_inclusive: bool = True,
+    ) -> Tuple[bool, bool]:
+        """
+        Check if value is outside recommended bounds and return warning flags.
+
+        Returns:
+            Tuple[bool, bool]: (is_below_min, is_above_max) warning flags
+        """
+        if value is None:
+            return (False, False)
+
+        min_warning = False
+        max_warning = False
+
+        # Check lower bound warning
+        if min_val is not None:
+            if min_inclusive:
+                min_warning = value < min_val
+            else:
+                min_warning = value <= min_val
+
+        # Check upper bound warning
+        if max_val is not None:
+            if max_inclusive:
+                max_warning = value > max_val
+            else:
+                max_warning = value >= max_val
+
+        return (min_warning, max_warning)

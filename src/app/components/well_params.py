@@ -1,6 +1,10 @@
 from dash import html, dcc
 import dash_bootstrap_components as dbc
 
+from src.core.models.init_data.field_names.well_initial_field_names import (
+    WellInitFieldNames,
+)
+
 
 def create_well_params():
     """Create well parameters component"""
@@ -9,7 +13,10 @@ def create_well_params():
             # Length input
             dbc.Row(
                 [
-                    dbc.Col(html.Label("Length (m):", className="fw-bold"), width=6),
+                    dbc.Col(
+                        html.Label(WellInitFieldNames.L.value, className="fw-bold"),
+                        width=6,
+                    ),
                     dbc.Col(
                         dcc.Input(
                             id={"type": "well-params", "name": "length"},
@@ -27,7 +34,10 @@ def create_well_params():
             # Radius input
             dbc.Row(
                 [
-                    dbc.Col(html.Label("Radius (cm):", className="fw-bold"), width=6),
+                    dbc.Col(
+                        html.Label(WellInitFieldNames.RW.value, className="fw-bold"),
+                        width=6,
+                    ),
                     dbc.Col(
                         dcc.Input(
                             id={"type": "well-params", "name": "radius"},
@@ -46,7 +56,8 @@ def create_well_params():
             dbc.Row(
                 [
                     dbc.Col(
-                        html.Label("Pressure (atm):", className="fw-bold"), width=6
+                        html.Label(WellInitFieldNames.PW.value, className="fw-bold"),
+                        width=6,
                     ),
                     dbc.Col(
                         dcc.Input(
@@ -65,7 +76,12 @@ def create_well_params():
             # Perforation status
             dbc.Row(
                 [
-                    dbc.Col(html.Label("Perforated:", className="fw-bold"), width=6),
+                    dbc.Col(
+                        html.Label(
+                            WellInitFieldNames.IS_PERFORATED.value, className="fw-bold"
+                        ),
+                        width=6,
+                    ),
                     dbc.Col(
                         dcc.Checklist(
                             id={"type": "well-params", "name": "perforated"},

@@ -33,32 +33,6 @@ def make_init_data(
 
     data = InitialData()
 
-    if fracture_data:
-        for i, frac in enumerate(fracture_data):
-            # Handle potential missing values
-            try:
-                fracture = FractInitialData()
-                fracture.len_p = frac.get("length_plus")
-                fracture.len_m = frac.get("length_minus")
-                fracture.width = MeasurementConverter.convert_mm_to_m(frac.get("width"))
-                fracture.perm = MeasurementConverter.convert_D_to_m2(
-                    frac.get("permeability")
-                )
-                fracture.well_cross_coord = frac.get("well_cross")
-                # Validate the fracture data
-                fracture.validate_and_raise()
-                data.fractures.append(fracture)
-            except ValueError as e:
-                result.success = False
-                result.data = None
-                result.details = ResultDetails()
-                result.details.tp = MessageType.ERROR
-                result.details.title = "Invalid fracture data"
-                result.details.message = (
-                    f"Please, set correct value for fracture {i+1}:\n {str(e)}"
-                )
-                return result
-
     # well data
     well = WellInitialData()
     well.L = well_data.get("length", 0)
@@ -78,6 +52,32 @@ def make_init_data(
     )
     reservoir.rc = reservoir_data.get("radius", 0)
     data.reservoir = reservoir
+
+    if fracture_data:
+        for i, frac in enumerate(fracture_data):
+            # Handle potential missing values
+            try:
+                fracture = FractInitialData()
+                fracture.len_p = frac.get("length_plus")
+                fracture.len_m = frac.get("length_minus")
+                fracture.width = MeasurementConverter.convert_mm_to_m(frac.get("width"))
+                fracture.perm = MeasurementConverter.convert_D_to_m2(
+                    frac.get("permeability")
+                )
+                fracture.well_cross_coord = frac.get("well_cross")
+                # Validate the fracture data
+                fracture.validate_and_raise(well.L, reservoir.perm, reservoir.rc)
+                data.fractures.append(fracture)
+            except ValueError as e:
+                result.success = False
+                result.data = None
+                result.details = ResultDetails()
+                result.details.tp = MessageType.ERROR
+                result.details.title = "Invalid fracture data"
+                result.details.message = (
+                    f"Please, set correct value for fracture {i+1}:\n {str(e)}"
+                )
+                return result
 
     # fluid data
     fluid = FluidInitialData()
