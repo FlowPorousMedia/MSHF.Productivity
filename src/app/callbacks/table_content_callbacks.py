@@ -153,7 +153,7 @@ def register(app):
         ):
             return html.Div(
                 [
-                    html.H4("Parametric Results", className="mb-3"),
+                    html.H4("Parametric Results Table", className="mb-3"),
                     html.Div(
                         "No parametric data available for display.",
                         className="alert alert-warning",
@@ -237,7 +237,7 @@ def register(app):
 
         return html.Div(
             [
-                html.H4("Parametric Results", className="mb-3"),
+                html.H4("Parametric Results Table", className="mb-3"),
                 html.Div("Q, m³/day", className="mt-2 text-end fw-light"),
                 table,
                 download_button,
