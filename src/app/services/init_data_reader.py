@@ -1,5 +1,7 @@
 from typing import Any, Dict, List
 
+from pydantic import ValidationError
+
 from src.app.models.message_type import MessageType
 from src.app.models.parametric_settings import ParametricSettings
 from src.app.models.result import Result
@@ -31,31 +33,31 @@ def make_init_data(
 
     data = InitialData()
 
-    # Populate fractures
     if fracture_data:
         for i, frac in enumerate(fracture_data):
             # Handle potential missing values
-            fracture = FractInitialData()
-            fracture.len_p = frac.get("length_plus")
-            if fracture.len_p is None:
-                details = ResultDetails()
-                details.tp = MessageType.ERROR
-                details.title = "Incorrect fracture lenght"
-                details.message = (
-                    f"Please, set correct value for fracture {i+1} Length Plus (m)"
+            try:
+                fracture = FractInitialData()
+                fracture.len_p = frac.get("length_plus")
+                fracture.len_m = frac.get("length_minus")
+                fracture.width = MeasurementConverter.convert_mm_to_m(frac.get("width"))
+                fracture.perm = MeasurementConverter.convert_D_to_m2(
+                    frac.get("permeability")
                 )
+                fracture.well_cross_coord = frac.get("well_cross")
+                # Validate the fracture data
+                fracture.validate_and_raise()
+                data.fractures.append(fracture)
+            except ValueError as e:
                 result.success = False
                 result.data = None
-                result.details = details
+                result.details = ResultDetails()
+                result.details.tp = MessageType.ERROR
+                result.details.title = "Invalid fracture data"
+                result.details.message = (
+                    f"Please, set correct value for fracture {i+1}:\n {str(e)}"
+                )
                 return result
-
-            fracture.len_m = frac.get("length_minus", 0)
-            fracture.width = MeasurementConverter.convert_mm_to_m(frac.get("width", 0))
-            fracture.perm = MeasurementConverter.convert_D_to_m2(
-                frac.get("permeability", 0)
-            )
-            fracture.well_cross_coord = frac.get("well_cross", 0)
-            data.fractures.append(fracture)
 
     # well data
     well = WellInitialData()

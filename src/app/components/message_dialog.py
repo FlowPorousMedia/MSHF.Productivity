@@ -43,7 +43,8 @@ def get_message_dialog(
                 ),
                 close_button=False,  # disable the "X"
             ),
-            dbc.ModalBody(message),
+            __create_modal_body_with_newlines(message),
+            # dbc.ModalBody(message),
             dbc.ModalFooter(
                 [
                     dbc.Button(b, id={"type": "msg-btn", "index": b}, className="me-2")
@@ -56,4 +57,18 @@ def get_message_dialog(
         backdrop="static",  # user must click a button
         keyboard=False,  # cannot close with ESC
         centered=True,
+    )
+
+
+
+def __create_modal_body_with_newlines(message: str, style: dict = None) -> dbc.ModalBody:
+    """
+    Create a ModalBody that properly handles newline characters
+    """
+    default_style = {"whiteSpace": "pre-line", "padding": "10px"}
+    if style:
+        default_style.update(style)
+    
+    return dbc.ModalBody(
+        html.Div(message, style=default_style)
     )

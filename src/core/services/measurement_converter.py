@@ -9,10 +9,14 @@ class MeasurementConverter:
 
     @staticmethod
     def convert_mm_to_m(val: float) -> float:
+        if val is None:
+            return None
         return val * 0.001
 
     @staticmethod
     def convert_D_to_m2(val: float) -> float:
+        if val is None:
+            return None
         return val * 9.869233e-13
 
     @staticmethod
