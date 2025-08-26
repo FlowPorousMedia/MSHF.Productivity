@@ -43,9 +43,9 @@ def create_navbar():
                                         [
                                             dbc.DropdownMenu(
                                                 [
-                                                    dbc.DropdownMenuItem(
-                                                        "Русский", id="lang-ru"
-                                                    ),
+                                                    # dbc.DropdownMenuItem(
+                                                    #     "Русский", id="lang-ru"
+                                                    # ),
                                                     dbc.DropdownMenuItem(
                                                         "English", id="lang-en"
                                                     ),

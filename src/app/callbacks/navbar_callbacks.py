@@ -6,12 +6,13 @@ def register(app):
     @app.callback(
         Output("language-dropdown", "label"),
         Output("language-store", "data"),
-        Input("lang-ru", "n_clicks"),
+        # Input("lang-ru", "n_clicks"),
         Input("lang-en", "n_clicks"),
         State("language-store", "data"),
         prevent_initial_call=True,
     )
-    def update_language(ru_clicks, en_clicks, current_lang):
+    # def update_language(ru_clicks, en_clicks, current_lang):
+    def update_language(en_clicks, current_lang):
         ctx = callback_context
         if not ctx.triggered:
             return html.I(className="fas fa-language", id="language-icon"), current_lang
