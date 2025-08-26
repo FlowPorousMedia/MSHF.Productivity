@@ -1,2 +1,2 @@
 SOFTWARE_TITLE = "MSHF.Productivity"
-USER_VERSION = "0.2"
+USER_VERSION = "0.3"

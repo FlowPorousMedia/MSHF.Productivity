@@ -36,7 +36,7 @@ def create_main_content():
                             id="graph-container",
                             className="bg-white p-3 border rounded",
                             children=[
-                                html.H4("Results Visualization", className="mb-3"),
+                                html.H4("Results Plot", className="mb-3"),
                                 html.Div(
                                     [
                                         html.I(className="bi bi-graph-up me-2"),

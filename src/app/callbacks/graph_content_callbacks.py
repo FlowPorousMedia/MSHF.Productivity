@@ -94,7 +94,7 @@ def register(app):
         )
 
         return html.Div(
-            [html.H4("Flow Rate Graph", className="mb-3"), dcc.Graph(figure=fig)]
+            [html.H4("Flow Rate Plot", className="mb-3"), dcc.Graph(figure=fig)]
         )
 
     def __render_parametric_graph(models: list) -> html.Div:
@@ -104,7 +104,7 @@ def register(app):
         if not models:
             return html.Div(
                 [
-                    html.H4("Parametric Results", className="mb-3"),
+                    html.H4("Parametric Results Plot", className="mb-3"),
                     html.Div(
                         "No data available for parametric visualization.",
                         className="alert alert-warning",
@@ -145,7 +145,7 @@ def register(app):
         if valid_models_count == 0:
             return html.Div(
                 [
-                    html.H4("Parametric Results", className="mb-3"),
+                    html.H4("Parametric Results Plot", className="mb-3"),
                     html.Div(
                         "No valid data available for parametric visualization.",
                         className="alert alert-warning",
@@ -173,7 +173,7 @@ def register(app):
 
         return html.Div(
             [
-                html.H4("Parametric Results", className="mb-3"),
+                html.H4("Parametric Results Plot", className="mb-3"),
                 dcc.Graph(
                     figure=fig,
                     config={"displayModeBar": True},
