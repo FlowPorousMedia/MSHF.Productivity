@@ -10,9 +10,14 @@ def create_about_modal():
             dbc.ModalHeader(f"About {SOFTWARE_TITLE}"),
             dbc.ModalBody(
                 [
-                    # html.P(
-                    #     "Analytics Pro is a powerful data analysis and visualization tool designed for professionals."
-                    # ),
+                    html.H4(
+                        [
+                            html.Span(
+                                "MSHF.Productivity", style={"font-weight": "bold"}
+                            ),
+                            " is a powerful Productivity Evaluation Tool for Multistage Fractured Horizontal Wells (MSHF)",
+                        ]
+                    ),
                     html.P(f"Version {USER_VERSION}"),
                     # html.P(
                     #     "Analytics Pro is a powerful data analysis and visualization tool designed for professionals."
