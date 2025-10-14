@@ -19,12 +19,13 @@ from src.app.models.analyt_models import get_analytic_models
 from src.app.models.message_type import MessageType
 from src.app.models.numerical_models import get_numerical_models
 from src.app.models.semianalyt_models import get_semianalytic_models
-from src.app._version import USER_VERSION
+from src.app._version import SOFTWARE_TITLE
 
 
 # Initialize the app
 app = Dash(
     __name__,
+    title=SOFTWARE_TITLE,
     external_stylesheets=[
         dbc.themes.BOOTSTRAP,
     ],

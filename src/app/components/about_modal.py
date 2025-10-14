@@ -25,14 +25,14 @@ def create_about_modal():
                     ),
                     # Authors section
                     html.H5(
-                        "Авторы", style={"margin-top": "20px", "margin-bottom": "10px"}
+                        "Authors", style={"margin-top": "20px", "margin-bottom": "10px"}
                     ),
                     html.Ul(
                         [
                             html.Li(
                                 [
                                     html.A(
-                                        "Марсель Хамидуллин",
+                                        "Marsel Khamidullin",
                                         href="https://www.researchgate.net/profile/Marsel-Khamidullin",
                                         target="_blank",
                                     )
@@ -41,7 +41,7 @@ def create_about_modal():
                             html.Li(
                                 [
                                     html.A(
-                                        "Константин Поташев",
+                                        "Constantin Potashev",
                                         href="https://www.researchgate.net/profile/Konstantin-Potashev",
                                         target="_blank",
                                     )
@@ -51,7 +51,7 @@ def create_about_modal():
                     ),
                     # License section
                     html.H5(
-                        "Лицензия",
+                        "License",
                         style={"margin-top": "20px", "margin-bottom": "10px"},
                     ),
                     html.P(
@@ -62,12 +62,12 @@ def create_about_modal():
                                 href="https://github.com/FlowPorousMedia/",
                                 target="_blank",
                             ),
-                            ", 2025. Все права защищены",
+                            ", 2025. All rights reserved",
                         ]
                     ),
                     html.P(
                         [
-                            "Этот проект распространяется под лицензией ",
+                            "This project is distributed under the ",
                             html.A(
                                 "MIT",
                                 href="https://github.com/FlowPorousMedia/MSHF.Productivity/blob/main/LICENSE",
@@ -77,12 +77,12 @@ def create_about_modal():
                     ),
                     # Support section with GitHub Issues link
                     html.H5(
-                        "Поддержка",
+                         "Support",
                         style={"margin-top": "20px", "margin-bottom": "10px"},
                     ),
                     html.P(
                         [
-                            "Для получения поддержки, пожалуйста, создайте запрос в ",
+                            "For support, please open an issue on ",
                             html.A(
                                 "GitHub Issues",
                                 href="https://github.com/FlowPorousMedia/MSHF.Productivity/issues",

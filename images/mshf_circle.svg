@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title { font: 700 360px 'Inter', 'Segoe UI', Arial, sans-serif; fill: #FFFFFF; letter-spacing: 8px; }
+    </style>
+  </defs>
+  <rect width="1024" height="1024" fill="none"/>
+  <circle cx="512" cy="512" r="420" fill="#0B3A66"/>
+  <text x="50%" y="56%" text-anchor="middle" class="title">MSHF</text>
+</svg>
