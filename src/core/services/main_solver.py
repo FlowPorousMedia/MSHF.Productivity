@@ -3,6 +3,7 @@ import numpy as np
 import copy
 
 
+from src.core.models.calculator_settings import CalculatorSettings
 from src.core.models.init_data.initial_data import InitialData
 from src.core.models.init_data.models_enum import ModelsEnum
 from src.core.models.main_data import MainData
@@ -81,6 +82,8 @@ class MainSolver:
             self.__result.result.models.append(model)
 
     def __calc_model_q(self, model_type: ModelsEnum) -> float:
+        setts = CalculatorSettings()
+        setts.Li96_account_rc = True
         calculator = None
         match model_type:
             case ModelsEnum.LI_1996:
@@ -96,7 +99,7 @@ class MainSolver:
             case _:
                 Exception("calc model rate with unknown model type")
 
-        q_dim_m3_sec = calculator.calc_q(self.__result.initial_data)
+        q_dim_m3_sec = calculator.calc_q(self.__result.initial_data, setts)
         q_dim_m3_day = None
         if q_dim_m3_sec is not None:
             q_dim_m3_day = q_dim_m3_sec * 60 * 60 * 24

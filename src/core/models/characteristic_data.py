@@ -16,7 +16,7 @@ class CharacteristicData:
             "x0": self.x0,
             "pw": self.pw,
             "pr": self.pr,
-        }
+        }    
 
     def get_sigma0(self) -> float:
         return self.perm / self.mu

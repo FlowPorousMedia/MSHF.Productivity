@@ -1,19 +1,21 @@
 import numpy as np
 
+from src.core.models.calculator_settings import CalculatorSettings
 from src.core.models.init_data.initial_data import InitialData
-from src.core.services.fracture_worker import calc_lm_lp
 
 
 class Elkin2016Calculator:
     def __init__(self) -> None:
         self.__ip: InitialData = None
+        self.__setts: CalculatorSettings = None
         self.__xf: float = None
         self.__alpha: float = None
 
-    def calc_q(self, init_data: InitialData) -> float:
+    def calc_q(self, init_data: InitialData, setts: CalculatorSettings) -> float:
         self.__ip = init_data
         self.__xf = self.__ip.fractures[0].len_p
         self.__alpha = 0.0
+        self.__setts = setts
 
         q = self.__calc_q_inner()
         qd = self.__calc_q_outer()

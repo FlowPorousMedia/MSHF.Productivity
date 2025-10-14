@@ -1,5 +1,6 @@
 import numpy as np
 
+from src.core.models.calculator_settings import CalculatorSettings
 from src.core.models.init_data.initial_data import InitialData
 from src.core.services.fracture_worker import calc_lm_lp
 
@@ -7,8 +8,9 @@ from src.core.services.fracture_worker import calc_lm_lp
 class Guo1997Calculator:
     def __init__(self) -> None:
         self.__ip: InitialData = None
+        self.__setts: CalculatorSettings = None
 
-    def calc_q(self, init_data: InitialData) -> float:
+    def calc_q(self, init_data: InitialData, setts: CalculatorSettings) -> float:
         self.__ip = init_data
 
         result = 0.0

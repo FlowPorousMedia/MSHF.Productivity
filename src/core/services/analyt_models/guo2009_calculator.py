@@ -1,6 +1,7 @@
 from typing import List
 import numpy as np
 
+from src.core.models.calculator_settings import CalculatorSettings
 from src.core.models.init_data.fract_initial_data import FractInitialData
 from src.core.models.init_data.initial_data import InitialData
 from src.core.services.fracture_worker import calc_lm_lp
@@ -9,10 +10,11 @@ from src.core.services.fracture_worker import calc_lm_lp
 class Guo2009Calculator:
     def __init__(self) -> None:
         self.__ip: InitialData = None
+        self.__setts: CalculatorSettings = None
         self.__zei: List[float] = []
 
-    def calc_q(self, input_data: InitialData) -> float:
-        self.__ip = input_data
+    def calc_q(self, init_data: InitialData, setts: CalculatorSettings) -> float:
+        self.__ip = init_data
         self.__update_ze()
         result = 0.0
         j_big_r = self.__calc_j_big_r()

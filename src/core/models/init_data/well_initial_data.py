@@ -7,6 +7,7 @@ class WellInitialData:
         self.rw: float = None
         self.pw: float = None
         self.is_perforated: float = False
+        self.Ld: float = None    # well pefr ratio [0, 1]
 
     def to_dict(self) -> dict:
         return {
@@ -14,6 +15,7 @@ class WellInitialData:
             "rw": self.rw,
             "pw": self.pw,
             "is_perforated": self.is_perforated,
+            "Ld": self.Ld
         }
 
     def validate_and_raise(self, reservoir_press: float) -> List[str]:
