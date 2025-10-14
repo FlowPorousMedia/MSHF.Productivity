@@ -1,4 +1,5 @@
 import numpy as np
+from src.core.models.calculator_settings import CalculatorSettings
 from src.core.models.init_data.initial_data import InitialData
 from src.core.services.fracture_worker import calc_lm_lp
 
@@ -7,15 +8,16 @@ class Li1996Calculator:
 
     def __init__(self) -> None:
         self.__init_data: InitialData = None
+        self.__setts: CalculatorSettings = None
 
-    def calc_q(self, input_data: InitialData) -> float:
+    def calc_q(self, init_data: InitialData, setts: CalculatorSettings) -> float:
         """ """
-        self.__init_data = input_data
+        self.__init_data = init_data
+        self.__setts = setts
         return self.__calc_total_rate()
 
     def __calc_total_rate(self) -> float:
         """ """
-
         result = 0.0
         for i in range(len(self.__init_data.fractures)):
             qf = self.__calc_fract_q(i)
@@ -55,7 +57,7 @@ class Li1996Calculator:
         w = fract.width
         rw = well.rw
 
-        lf1, lf2 = calc_lm_lp(self.__init_data, fract_index, True)
+        lf1, lf2 = calc_lm_lp(self.__init_data, fract_index, self.__setts.Li96_account_rc)
         a1 = (rc - xf) / (k * h * (lf1 + lf2))
         a2 = 1.0 / (k * h * xf * (1.0 / lf1 + 1.0 / lf2))
         a3 = xf / (kf * h * w)
@@ -72,9 +74,9 @@ class Li1996Calculator:
         res = self.__init_data.reservoir
         well = self.__init_data.well
 
-        lf1, lf2 = calc_lm_lp(self.__init_data, fract_index, True)
+        lf1, lf2 = calc_lm_lp(self.__init_data, fract_index, self.__setts.Li96_account_rc)
         rc = res.rc
-        Ld = 1.0  # well pefr ratio. consider total well perforated
+        Ld = well.Ld
         xf = fract.len_p
         h = res.H
         k = res.perm

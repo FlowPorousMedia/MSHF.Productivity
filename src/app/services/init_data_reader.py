@@ -37,6 +37,7 @@ def make_init_data(
     well.rw = MeasurementConverter.convert_cm_to_m(well_data.get("radius", 0))
     well.pw = MeasurementConverter.convert_atm_to_Pa(well_data.get("pressure", 0))
     well.is_perforated = bool(well_data.get("perforated", False))
+    well.Ld = 1.0 # TODO: always fully perforated
     data.well = well
 
     # reservoir data

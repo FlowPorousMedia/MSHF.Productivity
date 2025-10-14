@@ -7,6 +7,7 @@ from mpmath import ellipe, ellipf
 import cmath
 import time
 
+from src.core.models.calculator_settings import CalculatorSettings
 from src.core.models.characteristic_data import CharacteristicData
 from src.core.models.init_data.initial_data import InitialData
 from src.core.services.dimless_converter import DimlessConverter
@@ -270,9 +271,12 @@ class Potashev2024Calculator:
     def __init__(self) -> None:
         self.__inner_calculator = Potashev2024Calculator.InnerSectorCalculator()
         self.__outer_calculator = Potashev2024Calculator.OuterSectorCalculator()
+        self.__setts: CalculatorSettings = None
 
-    def calc_q(self, init_data: InitialData) -> float:
+    def calc_q(self, init_data: InitialData, setts: CalculatorSettings) -> float:
         """ """
+        self.__setts = setts
+
         sectors_worker = Potashev2024Calculator.SectorsWorker()
         # Получаем:
         #   fracture_indices - список из 4 индексов секторов для каждой трещины
