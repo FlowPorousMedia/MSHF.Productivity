@@ -1,0 +1,45 @@
+name: 🐞 Bug Report
+description: Сообщить об ошибке
+title: "[BUG] "
+labels: [bug]
+
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Описание бага
+      description: Опиши проблему в 2–3 предложениях
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Шаги для воспроизведения
+      description: Опиши шаги, которые приводят к багу
+      placeholder: |
+        1. ...
+        2. ...
+        3. ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Ожидаемое поведение
+      description: Что должно было произойти?
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Версия проекта
+      description: Укажи версию/commit/branch
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: Дополнительная информация
+      description: Любая дополнительная информация
