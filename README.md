@@ -126,7 +126,7 @@ python -m dash run
     *   Версию проекта/ОС/браузера.
     *   Четкие шаги для воспроизведения.
     *   Ожидаемое и фактическое поведение.
-3.  Для [новых идей](https://github.com/FlowPorousMedia/MSHF.Productivity/issues/new): опишите проблему, которую она решает, и предложите реализацию.
+3.  Для новых идей: используйте [шаблон для фич](https://github.com/FlowPorousMedia/MSHF.Productivity/issues/new?template=feature_request.yml), опишите проблему, которую она решает, и предложите реализацию.
 
 
 ## Авторы
