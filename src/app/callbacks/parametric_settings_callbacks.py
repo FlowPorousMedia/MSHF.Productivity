@@ -36,19 +36,19 @@ def register(app):
     )
     def update_start_end(param_value):
         if param_value == CalcParamTypeEnum.FRACT_COUNT.value:
-            return 2, 2, 20, 1, False, 10, 2, 100, 1, False
+            return 2, 2, 20, 1, 10, 2, 100, 1
         elif param_value == CalcParamTypeEnum.RES_RAD.value:
-            return 100, 10, 1000, 10, False, 500, 10, 5000, 10, False
+            return 100, 10, 1000, 10, 500, 10, 5000, 10
         elif param_value == CalcParamTypeEnum.WELL_LEN.value:
-            return 50, 10, 200, 1, False, 100, 20, 500, 5, False
+            return 500, 200, 10000, 50, 1000, 200, 10000, 50
         elif param_value == CalcParamTypeEnum.FRACT_PERM.value:
-            return 1, 0.1, 100, 0.1, False, 10, 0.1, 1000, 0.1, False
+            return 1, 0.01, 1e6, 10, 1e4, 1, 1e6, 10
         elif param_value == CalcParamTypeEnum.FRACT_LEN.value:
-            return 10, 5, 200, 1, False, 50, 5, 500, 1, False
+            return 10, 5, 190, 1, 150, 10, 190, 1
         elif param_value == CalcParamTypeEnum.FRACT_WIDTH.value:
-            return 0.001, 0.0001, 0.01, 0.0001, False, 0.005, 0.0001, 0.1, 0.0001, False
+            return 1, 0.1, 20, 1, 5, 0.1, 20, 1
         elif param_value == CalcParamTypeEnum.RES_HEIGTH.value:
-            return 10, 1, 100, 1, False, 50, 1, 500, 1, False
+            return 10, 1, 100, 10, 50, 1, 1000, 10
 
         # fallback: выключить инпуты
         return 0, 0, 0, 1, True, 0, 0, 0, 1, True
