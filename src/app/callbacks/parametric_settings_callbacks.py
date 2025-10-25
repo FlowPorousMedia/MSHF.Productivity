@@ -40,7 +40,7 @@ def register(app):
         elif param_value == CalcParamTypeEnum.RES_RAD.value:
             return 100, 10, 1000, 10, 500, 10, 5000, 10
         elif param_value == CalcParamTypeEnum.WELL_LEN.value:
-            return 500, 200, 10000, 50, 1000, 200, 10000, 50
+            return 1000, 200, 10000, 50, 2000, 200, 10000, 50
         elif param_value == CalcParamTypeEnum.FRACT_PERM.value:
             return 1, 0.01, 1e6, 10, 1e4, 1, 1e6, 10
         elif param_value == CalcParamTypeEnum.FRACT_LEN.value:

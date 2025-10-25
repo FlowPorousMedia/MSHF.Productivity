@@ -18,6 +18,7 @@ from src.core.services.param_data_worker import ParamDataWorker
 from src.core.services.semianalytical_models.potashev2024_calculator import (
     Potashev2024Calculator,
 )
+from src.core.models.init_data.calc_over_param_enum import CalcParamTypeEnum
 
 
 class MainSolver:
@@ -57,13 +58,23 @@ class MainSolver:
         original_init_data = copy.deepcopy(self.__result.initial_data)
 
         p1 = original_init_data.settings.calc_settings.calc_over_param1
-        values = np.linspace(p1.start_value, p1.end_value, p1.point_count)
+        param_type = p1.param_type
+
+        if param_type == CalcParamTypeEnum.FRACT_PERM:
+            start_log = np.log10(p1.start_value)
+            end_log = np.log10(p1.end_value)
+            orig_values = np.logspace(start_log, end_log, num=p1.point_count)
+        else:
+            orig_values = np.linspace(p1.start_value, p1.end_value, p1.point_count)
+
         worker = ParamDataWorker()
         init_datas: List[InitialData] = []
-        for value in values:
+
+        for user_value in orig_values:
+            si_value = param_type.to_si(user_value)
             init_d = worker.create_initial_data(
                 original_init_data,
-                value,
+                si_value,
                 p1.param_type,
             )
             init_datas.append(init_d)
@@ -73,8 +84,8 @@ class MainSolver:
             model = ModelResultData()
             model.name = calc_model.name
             model.q_values = []
-            model.param1_capt = p1.param_type.display_name
-            model.param1_values = values
+            model.param1_type = p1.param_type
+            model.param1_values = orig_values
             for init_d in init_datas:
                 self.__result.initial_data = init_d
                 q = self.__calc_model_q(model_type)

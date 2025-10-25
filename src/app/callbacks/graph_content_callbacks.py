@@ -1,5 +1,6 @@
 from dash import Input, Output, no_update, dcc, html
 import plotly.graph_objects as go
+from src.core.models.init_data.calc_over_param_enum import CalcParamTypeEnum
 from src.core.models.result_data.result_type_enum import ResultTypeEnum
 
 
@@ -118,11 +119,26 @@ def register(app):
         # Счетчик валидных моделей
         valid_models_count = 0
 
+        first_model = models[0]
+        param1_type_value = first_model.get("param1_type_value")
+        if param1_type_value is not None:
+            try:
+                param_type = CalcParamTypeEnum(param1_type_value)
+                x_title = param_type.display_name
+                print(f"x title = {x_title}")
+                is_log_x = param_type == CalcParamTypeEnum.FRACT_PERM
+            except ValueError:
+                x_title = "Parameter"
+                is_log_x = False
+        else:
+            x_title = "Parameter"
+            is_log_x = False
+
         for model in models:
             qs = model.get("q_values")
             ps1 = model.get("param1_values")
             model_name = model.get("name")
-            param_capt = model.get("param1_capt")
+
             # Проверяем наличие необходимых данных
             if qs is None or ps1 is None or len(qs) == 0 or len(ps1) == 0:
                 continue
@@ -134,9 +150,11 @@ def register(app):
                     mode="lines+markers",
                     name=model_name or "Unnamed Model",
                     hoverinfo="x+y+name",
-                    hovertemplate=f"<b>{model_name or ''}</b><br>"
-                    + f"{param_capt or 'Param1'}: %{{x}}<br>"
-                    + "Q: %{y}<extra></extra>",
+                    hovertemplate=(
+                        f"<b>{model_name or ''}</b><br>"
+                        f"{x_title}: %{{x}}<br>"
+                        "Q: %{y}<extra></extra>"
+                    ),
                 )
             )
             valid_models_count += 1
@@ -153,9 +171,6 @@ def register(app):
                 ]
             )
 
-        # Настраиваем оформление графика
-        x_title = models[0].get("param1_capt")
-
         fig.update_layout(
             title="Parametric Analysis",
             xaxis_title=x_title,
@@ -165,11 +180,14 @@ def register(app):
             template="plotly_white",
             height=600,
             margin={"t": 60, "b": 60, "l": 60, "r": 30},
-            showlegend=True
+            showlegend=True,
         )
 
-        fig.update_xaxes(gridcolor="#f0f0f0")
-        fig.update_yaxes(gridcolor="#f0f0f0")
+        if is_log_x:
+            fig.update_xaxes(type="log", gridcolor="#f0f0f0", tickformat=".0f")
+        else:
+            fig.update_xaxes(gridcolor="#f0f0f0", tickformat=".0f")
+        fig.update_yaxes(gridcolor="#f0f0f0", tickformat=".0f")
 
         return html.Div(
             [
