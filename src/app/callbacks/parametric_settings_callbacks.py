@@ -27,12 +27,10 @@ def register(app):
             Output("start-input", "min"),
             Output("start-input", "max"),
             Output("start-input", "step"),
-            Output("start-input", "disabled"),
             Output("end-input", "value"),
             Output("end-input", "min"),
             Output("end-input", "max"),
             Output("end-input", "step"),
-            Output("end-input", "disabled"),
         ],
         Input("parameter-dropdown", "value"),
     )
@@ -53,4 +51,4 @@ def register(app):
             return 10, 1, 100, 1, False, 50, 1, 500, 1, False
 
         # fallback: выключить инпуты
-        return None, None, None, None, True, None, None, None, None, True
+        return 0, 0, 0, 1, True, 0, 0, 0, 1, True

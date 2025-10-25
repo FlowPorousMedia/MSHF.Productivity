@@ -77,6 +77,7 @@ def create_parametric_settings_panel():
                             value=2,
                             min=2,
                             step=1,
+                            max=20,
                             disabled=True,
                         ),
                         className="g-0",
