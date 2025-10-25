@@ -29,6 +29,30 @@ def create_parametric_settings_panel():
                                     "label": CalcParamTypeEnum.FRACT_COUNT.display_name,
                                     "value": CalcParamTypeEnum.FRACT_COUNT.value,
                                 },
+                                {
+                                    "label": CalcParamTypeEnum.FRACT_LEN.display_name,
+                                    "value": CalcParamTypeEnum.FRACT_LEN.value,
+                                },
+                                {
+                                    "label": CalcParamTypeEnum.FRACT_PERM.display_name,
+                                    "value": CalcParamTypeEnum.FRACT_PERM.value,
+                                },
+                                {
+                                    "label": CalcParamTypeEnum.FRACT_WIDTH.display_name,
+                                    "value": CalcParamTypeEnum.FRACT_WIDTH.value,
+                                },
+                                {
+                                    "label": CalcParamTypeEnum.WELL_LEN.display_name,
+                                    "value": CalcParamTypeEnum.WELL_LEN.value,
+                                },
+                                {
+                                    "label": CalcParamTypeEnum.RES_RAD.display_name,
+                                    "value": CalcParamTypeEnum.RES_RAD.value,
+                                },
+                                {
+                                    "label": CalcParamTypeEnum.RES_HEIGTH.display_name,
+                                    "value": CalcParamTypeEnum.RES_HEIGTH.value,
+                                },
                             ],
                             value=CalcParamTypeEnum.FRACT_COUNT.value,
                             disabled=True,

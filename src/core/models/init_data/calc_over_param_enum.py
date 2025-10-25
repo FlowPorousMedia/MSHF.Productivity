@@ -13,12 +13,12 @@ class CalcParamTypeEnum(Enum):
     @property
     def display_name(self):
         name_map = {
-            self.FRACT_COUNT: "Fracture Count",
-            self.RES_RAD: "Drainage Radius",
-            self.RES_HEIGTH: "Reservior height",
-            self.WELL_LEN: "Well Length",
-            self.FRACT_LEN: "Fracture Half Length",
-            self.FRACT_PERM: "Fracture Permeability",
-            self.FRACT_WIDTH: "Fracture Width",
+            self.FRACT_COUNT: "N",
+            self.RES_RAD: "R",
+            self.RES_HEIGTH: "H",
+            self.WELL_LEN: "L",
+            self.FRACT_LEN: "Xf",
+            self.FRACT_PERM: "Kf",
+            self.FRACT_WIDTH: "Wf",
         }
         return name_map.get(self, self.value)
