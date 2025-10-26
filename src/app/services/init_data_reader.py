@@ -57,7 +57,7 @@ def make_init_data(
             # Handle potential missing values
             try:
                 fracture = FractInitialData()
-                fracture.len_p = frac.get("length_plus1")
+                fracture.len_p = frac.get("length_plus")
                 fracture.len_m = frac.get("length_minus")
                 fracture.width = MeasurementConverter.convert_mm_to_m(frac.get("width"))
                 fracture.perm = MeasurementConverter.convert_D_to_m2(
