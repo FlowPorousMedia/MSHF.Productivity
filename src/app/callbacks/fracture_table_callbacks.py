@@ -5,6 +5,8 @@ from dash import (
     State,
 )
 
+from src.app.models.message_type import MessageType
+
 
 def register(app):
     @app.callback(
@@ -53,3 +55,27 @@ def register(app):
             return dash.no_update, new_data
 
         return dash.no_update, dash.no_update
+
+    @app.callback(
+        Output("open-msg-dialog", "data", allow_duplicate=True),
+        Input("show-fcd-button", "n_clicks"),
+        prevent_initial_call=True,
+    )
+    def show_fcd_modal(n_clicks):
+        if n_clicks is None:
+            return dash.no_update
+    
+        # Здесь подставьте реальные значения Fcd (пока заглушка)
+        fcd_message = (
+            "Fcd = 1.23\n"
+            "Fcd (min) = 0.90\n"
+            "Fcd (max) = 1.80\n"
+            "Calculated based on current fracture parameters."
+        )
+    
+        return {
+            "title": "Fcd Values",
+            "message": fcd_message,
+            "type": MessageType.INFO.name,  # → "INFO"
+            "buttons": ["Close"],
+        }

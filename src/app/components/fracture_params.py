@@ -34,6 +34,17 @@ def create_fracture_params():
                 ],
                 className="d-flex align-items-center mb-3",
             ),
+            html.Div(
+                [
+                    html.Button(
+                        "Show Fcd",
+                        id="show-fcd-button",
+                        className="btn btn-secondary ms-2",
+                        title="Show Fcd values",
+                    ),
+                ],
+                className="d-flex align-items-center mb-3",
+            ),
             # Fracture parameters table
             dash_table.DataTable(
                 id="fracture-table",

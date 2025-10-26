@@ -57,7 +57,7 @@ def make_init_data(
             # Handle potential missing values
             try:
                 fracture = FractInitialData()
-                fracture.len_p = frac.get("length_plus")
+                fracture.len_p = frac.get("length_plus1")
                 fracture.len_m = frac.get("length_minus")
                 fracture.width = MeasurementConverter.convert_mm_to_m(frac.get("width"))
                 fracture.perm = MeasurementConverter.convert_D_to_m2(
@@ -66,7 +66,7 @@ def make_init_data(
                 fracture.well_cross_coord = frac.get("well_cross")
                 # Validate the fracture data
                 fracture.validate_and_raise(well.L, reservoir.perm, reservoir.rc)
-                data.fractures.append(fracture)
+                data.fractures.append(fracture)                
             except ValueError as e:
                 result.success = False
                 result.data = None
