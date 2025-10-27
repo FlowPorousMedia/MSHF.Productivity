@@ -13,9 +13,9 @@ def create_main_content():
         style={"flex": "1", "overflow": "auto", "padding": "20px", "minWidth": 0},
         children=[
             # Toggle button for sidebar (mobile view)
-            html.Button(
-                "☰", id="sidebar-toggle", className="btn btn-secondary d-md-none mb-3"
-            ),
+            # html.Button(
+            #     "☰", id="sidebar-toggle", className="btn btn-secondary d-md-none mb-3"
+            # ),
             # Main content title
             html.H2("Fracture Analysis Dashboard", className="mb-4"),
             # Action bar with Calculate button

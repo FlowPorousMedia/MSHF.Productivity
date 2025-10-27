@@ -1,4 +1,4 @@
-from dash import Input, Output, State, no_update, callback_context
+from dash import Input, Output, State
 
 
 def register(app):
@@ -10,9 +10,18 @@ def register(app):
         prevent_initial_call=True,
     )
     def toggle_sidebar(n_clicks, current_class):
-        if n_clicks:
-            if "show" in current_class:
-                return current_class.replace("show", "").strip()
-            else:
-                return current_class + " show"
-        return current_class
+        print(
+            f"Callback triggered! n_clicks: {n_clicks}, current_class: '{current_class}'"
+        )
+
+        if n_clicks is None:
+            return current_class
+
+        if "collapsed" in current_class:
+            new_class = current_class.replace("collapsed", "").strip()
+            print(f"Removing collapsed. New class: '{new_class}'")
+            return new_class
+        else:
+            new_class = current_class + " collapsed" if current_class else "collapsed"
+            print(f"Adding collapsed. New class: '{new_class}'")
+            return new_class

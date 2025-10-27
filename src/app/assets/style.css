@@ -79,18 +79,18 @@ dd {
 
 @media (max-width: 768px) {
   .sidebar {
-      position: absolute;
-      z-index: 1000;
-      height: 100%;
-      left: -400px;
+    position: absolute;
+    z-index: 1000;
+    height: 100%;
+    left: -400px;
   }
-  
+
   .sidebar.show {
-      left: 0;
+    left: 0;
   }
-  
+
   .main-content {
-      width: 100%;
+    width: 100%;
   }
 }
 
@@ -110,25 +110,31 @@ dd {
 
 /* Sidebar collapse animation */
 .sidebar {
-    transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
+/* Sidebar collapse */
 .sidebar.collapsed {
-    width: 60px !important;
-    min-width: 60px !important;
+  width: 60px !important;
+  min-width: 60px !important;
 }
 
+/* Hide content and resize handle */
 .sidebar.collapsed .sidebar-content {
-    display: none !important;
+  display: none !important;
 }
 
 .sidebar.collapsed #sidebar-resize-handle {
-    display: none !important;
+  display: none !important;
 }
 
-/* Optional: change button icon when collapsed */
-.sidebar.collapsed #sidebar-toggle::before {
-    content: "›";
-    transform: rotate(90deg);
-    display: inline-block;
+/* In header: hide ONLY the Parameters text but keep button */
+.sidebar.collapsed h5 {
+  display: none !important;
+}
+
+/* Ensure button takes full width in collapsed state */
+.sidebar.collapsed>div:first-child {
+  justify-content: center !important;
+  padding: 10px 5px !important;
 }
