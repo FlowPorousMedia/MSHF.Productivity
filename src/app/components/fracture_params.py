@@ -38,7 +38,11 @@ def create_fracture_params():
             dash_table.DataTable(
                 id="fracture-table",
                 columns=[
-                    {"name": "Fracture", "id": "fracture_id", "editable": False},
+                    {
+                        "name": "Fract",
+                        "id": "fracture_id",
+                        "editable": False,
+                    },
                     {
                         "name": FracInitFieldNames.LENGTH_PLUS.value,
                         "id": "length_plus",
@@ -85,7 +89,9 @@ def create_fracture_params():
                 row_deletable=False,
                 style_table={
                     "overflowX": "auto",
-                    "minWidth": "100%",  # Гарантирует, что таблица займет всю ширину контейнера
+                    "maxHeight": "200px",
+                    "overflowY": "scroll",
+                    "minWidth": "100%",
                 },
                 style_cell={
                     "minWidth": "80px",  # Минимальная ширина
@@ -102,6 +108,8 @@ def create_fracture_params():
                     "whiteSpace": "normal",  # Перенос слов в заголовках
                     "height": "auto",  # Автоматическая высота
                     "lineHeight": "15px",  # Межстрочный интервал
+                    "position": "sticky",
+                    "top": 0,
                 },
                 style_data_conditional=[
                     {
@@ -109,6 +117,12 @@ def create_fracture_params():
                         "backgroundColor": "rgb(248, 248, 248)",
                     }
                 ],
+            ),
+            html.Button(
+                "Show Fcd",
+                id="show-fcd-button",
+                className="btn btn-secondary ms-2",
+                title="Show Fcd values",
             ),
         ]
     )

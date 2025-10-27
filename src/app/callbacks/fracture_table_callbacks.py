@@ -5,6 +5,8 @@ from dash import (
     State,
 )
 
+from src.app.models.message_type import MessageType
+
 
 def register(app):
     @app.callback(
@@ -53,3 +55,85 @@ def register(app):
             return dash.no_update, new_data
 
         return dash.no_update, dash.no_update
+
+    @app.callback(
+        Output("open-msg-dialog", "data", allow_duplicate=True),
+        Input("show-fcd-button", "n_clicks"),
+        State("fracture-table", "data"),
+        State("reservoir-params-store", "data"),
+        prevent_initial_call=True,
+    )
+    def show_fcd_modal(n_clicks, fracture_data, reservoir_data):
+        if n_clicks is None:
+            return dash.no_update
+
+        if not fracture_data or not reservoir_data:
+            return {
+                "title": "Missing Data",
+                "message": "Fracture or reservoir data not available.",
+                "type": "WARNING",
+                "buttons": ["OK"],
+            }
+
+        try:
+            res_perm = float(reservoir_data.get("permeability", 0.1))
+            if res_perm <= 0:
+                raise ValueError("Reservoir permeability must be > 0")
+        except (TypeError, ValueError):
+            return {
+                "title": "Invalid Reservoir Data",
+                "message": "Reservoir permeability is missing or invalid.",
+                "type": "ERROR",
+                "buttons": ["OK"],
+            }
+
+        fcd_lines = []
+        for row in fracture_data:
+            try:
+                frac_id = row["fracture_id"]
+                k_f = float(row["permeability"])  # проницаемость трещины
+                w_f = float(row["width"])  # ширина трещины
+                l_plus = float(row["length_plus"])
+                l_minus = float(row["length_minus"])
+                l_f = l_plus + l_minus  # общая длина трещины
+
+                if l_f <= 0:
+                    return {
+                        "title": "Invalid Fracture Data",
+                        "message": f"Fracture {frac_id} length is negative",
+                        "type": "ERROR",
+                        "buttons": ["OK"],
+                    }
+                if w_f <= 0:
+                    return {
+                        "title": "Invalid Fracture Data",
+                        "message": f"Fracture {frac_id} width is negative",
+                        "type": "ERROR",
+                        "buttons": ["OK"],
+                    }
+                if k_f <= 0:
+                    return {
+                        "title": "Invalid Fracture Data",
+                        "message": f"Fracture {frac_id} permeability is negative",
+                        "type": "ERROR",
+                        "buttons": ["OK"],
+                    }
+                fcd_val = (k_f * w_f) / (res_perm * l_f)
+                fcd_val = round(fcd_val, 1)
+            except (TypeError, ValueError, KeyError) as e:
+                return {
+                    "title": "Invalid Fracture Data",
+                    "message": f"Fracture {frac_id} {str(e)} is incorrect",
+                    "type": "ERROR",
+                    "buttons": ["OK"],
+                }
+
+            fcd_lines.append(f"Fracture {frac_id}: Fcd = {fcd_val}")
+
+        message = "\n".join(fcd_lines)
+        return {
+            "title": "Dimensionless Fracture Conductivity (Fcd)",
+            "message": message,
+            "type": MessageType.INFO.name,
+            "buttons": ["Close"],
+        }

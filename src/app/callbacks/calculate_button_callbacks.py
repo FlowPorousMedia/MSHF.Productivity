@@ -15,7 +15,7 @@ def register(app):
     # Callback for calculation - returns only solver result
     @app.callback(
         Output("solver-result-store", "data"),
-        Output("open-msg-dialog", "data"),
+        Output("open-msg-dialog", "data", allow_duplicate=True),
         Input("calculate-button", "n_clicks"),
         State("analytical-models-gridtable", "selectedRows"),
         State("semianalytical-models-gridtable", "selectedRows"),
@@ -87,7 +87,9 @@ def register(app):
             return no_update, {
                 "title": details.title,
                 "message": details.message,
-                "type": details.tp.name if hasattr(details.tp, "name") else str(details.tp),
+                "type": (
+                    details.tp.name if hasattr(details.tp, "name") else str(details.tp)
+                ),
                 "buttons": ["OK"],
             }
 
