@@ -106,3 +106,29 @@ dd {
   right: 0;
   left: auto;
 }
+
+
+/* Sidebar collapse animation */
+.sidebar {
+    transition: all 0.3s ease;
+}
+
+.sidebar.collapsed {
+    width: 60px !important;
+    min-width: 60px !important;
+}
+
+.sidebar.collapsed .sidebar-content {
+    display: none !important;
+}
+
+.sidebar.collapsed #sidebar-resize-handle {
+    display: none !important;
+}
+
+/* Optional: change button icon when collapsed */
+.sidebar.collapsed #sidebar-toggle::before {
+    content: "›";
+    transform: rotate(90deg);
+    display: inline-block;
+}
