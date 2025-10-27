@@ -97,14 +97,36 @@ def register(app):
                 l_minus = float(row["length_minus"])
                 l_f = l_plus + l_minus  # общая длина трещины
 
-                if l_f <= 0 or w_f <= 0 or k_f <= 0:
-                    fcd_val = "invalid (non-positive dims)"
-                else:
-                    # Fcd = (k_f * w_f) / (k_m * L_f)
-                    fcd_val = (k_f * w_f) / (res_perm * l_f)
-                    fcd_val = round(fcd_val, 2)
+                if l_f <= 0:
+                    return {
+                        "title": "Invalid Fracture Data",
+                        "message": f"Fracture {frac_id} length is negative",
+                        "type": "ERROR",
+                        "buttons": ["OK"],
+                    }
+                if w_f <= 0:
+                    return {
+                        "title": "Invalid Fracture Data",
+                        "message": f"Fracture {frac_id} width is negative",
+                        "type": "ERROR",
+                        "buttons": ["OK"],
+                    }
+                if k_f <= 0:
+                    return {
+                        "title": "Invalid Fracture Data",
+                        "message": f"Fracture {frac_id} permeability is negative",
+                        "type": "ERROR",
+                        "buttons": ["OK"],
+                    }
+                fcd_val = (k_f * w_f) / (res_perm * l_f)
+                fcd_val = round(fcd_val, 1)
             except (TypeError, ValueError, KeyError) as e:
-                fcd_val = f"error: {str(e)}"
+                return {
+                    "title": "Invalid Fracture Data",
+                    "message": f"Fracture {frac_id} {str(e)} is incorrect",
+                    "type": "ERROR",
+                    "buttons": ["OK"],
+                }
 
             fcd_lines.append(f"Fracture {frac_id}: Fcd = {fcd_val}")
 
