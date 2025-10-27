@@ -37,6 +37,32 @@ def create_sidebar():
                     "overflow": "hidden",
                 },
                 children=[
+                    html.Div(
+                        style={
+                            "display": "flex",
+                            "justifyContent": "space-between",
+                            "alignItems": "center",
+                            "padding": "10px 15px",
+                            "borderBottom": "1px solid #dee2e6",
+                            "backgroundColor": "#f8f9fa",
+                        },
+                        children=[
+                            html.H5("Parameters", style={"margin": "0"}),
+                            html.Button(
+                                id="sidebar-toggle",
+                                children="☰",  # Hamburger icon
+                                style={
+                                    "background": "none",
+                                    "border": "none",
+                                    "fontSize": "20px",
+                                    "cursor": "pointer",
+                                    "padding": "5px 10px",
+                                    "borderRadius": "3px",
+                                },
+                                title="Collapse/Expand sidebar",
+                            ),
+                        ],
+                    ),
                     # Content wrapper
                     html.Div(
                         style={
@@ -157,7 +183,7 @@ def create_sidebar():
                     "height": "100%",
                     "backgroundColor": "rgba(0,0,0,0.1)",
                     "cursor": "col-resize",
-                    "zIndex": 1000,
+                    "zIndex": 1001,
                     "transition": "background-color 0.2s",
                 },
             ),
