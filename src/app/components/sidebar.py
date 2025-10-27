@@ -18,136 +18,148 @@ def create_sidebar():
     semianalytical_models = get_semianalytic_models()
     """Create sidebar with foldable panels"""
     return html.Div(
-        id="sidebar",
-        className="sidebar bg-light",
+        id="sidebar-container",
         style={
-            "width": "400px",
+            "display": "flex",
             "height": "100vh",
-            "overflowY": "auto",
-            "position": "relative",
         },
         children=[
-            # Resize handle (optional)
+            # Sidebar
             html.Div(
-                id="sidebar-resize-handle",
+                id="sidebar",
+                className="sidebar bg-light",
                 style={
-                    "position": "absolute",
-                    "top": 0,
-                    "right": 0,
-                    "width": "6px",
+                    "width": "400px",
+                    "minWidth": "260px",
+                    "maxWidth": "75vw",
                     "height": "100%",
-                    "background": "#ddd",
-                    "cursor": "col-resize",
-                    "zIndex": 1000,
+                    "position": "relative",
+                    "overflow": "hidden",
                 },
-            ),
-            # Accordion with foldable panels
-            dbc.Accordion(
-                [
-                    dbc.AccordionItem(
-                        [
-                            # Nested accordion for parameters
-                            dbc.Accordion(
-                                [
-                                    # Fracture Parameters Subpanel
-                                    dbc.AccordionItem(
-                                        create_fracture_params(),
-                                        title="Fracture Parameters",
-                                        item_id="fracture-panel",
-                                    ),
-                                    # Well Parameters Subpanel
-                                    dbc.AccordionItem(
-                                        create_well_params(),
-                                        title="Well Parameters",
-                                        item_id="well-panel",
-                                    ),
-                                    # Reservoir Parameters Subpanel
-                                    dbc.AccordionItem(
-                                        create_reservoir_params(),
-                                        title="Reservoir Parameters",
-                                        item_id="reservoir-panel",
-                                    ),
-                                    # Fluid Properties Subpanel
-                                    dbc.AccordionItem(
-                                        create_fluid_params(),
-                                        title="Fluid Properties",
-                                        item_id="fluid-panel",
-                                    ),
-                                ],
-                                flush=True,
-                                start_collapsed=True,  # Start with all subpanels collapsed
-                            )
-                        ],
-                        title="Input Data",
-                        item_id="input-data-panel",
-                        className="mt-3",
-                    ),
-                    dbc.AccordionItem(
-                        [
+                children=[
+                    # Content wrapper
+                    html.Div(
+                        style={
+                            "width": "100%",
+                            "height": "100%",
+                            "overflowY": "auto",
+                            "overflowX": "hidden",
+                            "paddingRight": "8px",
+                        },
+                        children=[
+                            # Accordion with foldable panels
                             dbc.Accordion(
                                 [
                                     dbc.AccordionItem(
-                                        models_grid_creator.create(
-                                            analytical_models,
-                                            ag_grid_id="analytical-models-gridtable",
-                                        ),
-                                        title="Analytical",
-                                        item_id="analytical-model-panel",
+                                        [
+                                            # Nested accordion for parameters
+                                            dbc.Accordion(
+                                                [
+                                                    # Fracture Parameters Subpanel
+                                                    dbc.AccordionItem(
+                                                        create_fracture_params(),
+                                                        title="Fracture Parameters",
+                                                        item_id="fracture-panel",
+                                                    ),
+                                                    # Well Parameters Subpanel
+                                                    dbc.AccordionItem(
+                                                        create_well_params(),
+                                                        title="Well Parameters",
+                                                        item_id="well-panel",
+                                                    ),
+                                                    # Reservoir Parameters Subpanel
+                                                    dbc.AccordionItem(
+                                                        create_reservoir_params(),
+                                                        title="Reservoir Parameters",
+                                                        item_id="reservoir-panel",
+                                                    ),
+                                                    # Fluid Properties Subpanel
+                                                    dbc.AccordionItem(
+                                                        create_fluid_params(),
+                                                        title="Fluid Properties",
+                                                        item_id="fluid-panel",
+                                                    ),
+                                                ],
+                                                flush=True,
+                                                start_collapsed=True,
+                                            )
+                                        ],
+                                        title="Input Data",
+                                        item_id="input-data-panel",
+                                        className="mt-3",
                                     ),
                                     dbc.AccordionItem(
-                                        models_grid_creator.create(
-                                            semianalytical_models,
-                                            ag_grid_id="semianalytical-models-gridtable",
-                                        ),  # Use our new component
-                                        title="Semi-analytical",
-                                        item_id="semianalytical-model-panel",
+                                        [
+                                            dbc.Accordion(
+                                                [
+                                                    dbc.AccordionItem(
+                                                        models_grid_creator.create(
+                                                            analytical_models,
+                                                            ag_grid_id="analytical-models-gridtable",
+                                                        ),
+                                                        title="Analytical",
+                                                        item_id="analytical-model-panel",
+                                                    ),
+                                                    dbc.AccordionItem(
+                                                        models_grid_creator.create(
+                                                            semianalytical_models,
+                                                            ag_grid_id="semianalytical-models-gridtable",
+                                                        ),
+                                                        title="Semi-analytical",
+                                                        item_id="semianalytical-model-panel",
+                                                    ),
+                                                ],
+                                                flush=True,
+                                                start_collapsed=True,
+                                            )
+                                        ],
+                                        title="Models",
+                                        item_id="models-panel",
+                                        className="mt-3",
                                     ),
-                                    # dbc.AccordionItem(
-                                    #     [
-                                    #         html.Div(
-                                    #             "Additional models will go here",
-                                    #             className="p-2",
-                                    #         )
-                                    #     ],
-                                    #     title="Numerical",
-                                    #     item_id="numerical-model-panel",
-                                    # ),
-                                ],
-                                flush=True,
-                                start_collapsed=True,  # Start with all subpanels collapsed
-                            )
-                        ],
-                        title="Models",
-                        item_id="models-panel",
-                        className="mt-3",
-                    ),
-                    dbc.AccordionItem(
-                        [
-                            dbc.Accordion(
-                                [
-                                    # Other Settings Panel
                                     dbc.AccordionItem(
-                                        [create_parametric_settings_panel()],
-                                        title="Parametric Calc Settings",
-                                        item_id="parametric-settings-panel",
+                                        [
+                                            dbc.Accordion(
+                                                [
+                                                    dbc.AccordionItem(
+                                                        [
+                                                            create_parametric_settings_panel()
+                                                        ],
+                                                        title="Parametric Calc Settings",
+                                                        item_id="parametric-settings-panel",
+                                                        className="mt-3",
+                                                    ),
+                                                ],
+                                                flush=True,
+                                                start_collapsed=True,
+                                            )
+                                        ],
+                                        title="Settings",
+                                        item_id="settings-panel",
                                         className="mt-3",
                                     ),
                                 ],
+                                active_item=[],
                                 flush=True,
-                                start_collapsed=True,  # Start with all subpanels collapsed
-                            )
+                                className="mt-3",
+                            ),
+                            # Hidden store for fracture data
+                            dcc.Store(id="fracture-data-store"),
                         ],
-                        title="Settings",
-                        item_id="settings-panel",
-                        className="mt-3",
                     ),
                 ],
-                # Start with all panels closed
-                active_item=[],
-                flush=True,
-                className="mt-3",
             ),
-            # Hidden store for fracture data
-            dcc.Store(id="fracture-data-store"),
+            # Resize handle as separate component
+            html.Div(
+                id="sidebar-resize-handle",
+                style={
+                    "width": "8px",
+                    "height": "100%",
+                    "backgroundColor": "rgba(0,0,0,0.1)",
+                    "cursor": "col-resize",
+                    "zIndex": 1000,
+                    "transition": "background-color 0.2s",
+                },
+            ),
         ],
     )
