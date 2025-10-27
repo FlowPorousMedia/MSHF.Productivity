@@ -2,7 +2,7 @@ from dash import Input, Output, State, no_update, callback_context
 
 
 def register(app):
-    # Add this callback to your app
+    # Toggle sidebar visibility
     @app.callback(
         Output("sidebar", "className"),
         Input("sidebar-toggle", "n_clicks"),
