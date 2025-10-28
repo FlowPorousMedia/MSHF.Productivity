@@ -50,7 +50,7 @@ def create_sidebar():
                             html.H5("Parameters", style={"margin": "0"}),
                             html.Button(
                                 id="sidebar-toggle",
-                                children="☰",  # Hamburger icon
+                                children=html.I(className="fas fa-chevron-left"),
                                 style={
                                     "background": "none",
                                     "border": "none",
