@@ -14,7 +14,7 @@ class ModelsEnum(Enum):
             ModelsEnum.LI_1996: "Li (1996)",
             ModelsEnum.GUO_1997: "Guo (1997)",
             ModelsEnum.GUO_2009: "Guo (2009)",
-            ModelsEnum.ELKIN_2016_12: "Elkin (2016, v12)",
+            ModelsEnum.ELKIN_2016_12: "Elkin (2016)",
             ModelsEnum.POTASHEV_2024: "Potashev (2024)",
         }
         return name_map.get(self, self.value)

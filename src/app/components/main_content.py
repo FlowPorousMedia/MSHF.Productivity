@@ -19,17 +19,6 @@ def create_main_content():
             # Main content title
             html.H2("Fracture Analysis Dashboard", className="mb-4"),
             # Action bar with Calculate button
-            # dbc.Row(
-            #     dbc.Col(
-            #         dbc.Button(
-            #             "Calculate",
-            #             id="calculate-button",
-            #             color="primary",
-            #             size="lg",
-            #             className="w-100 mb-4",
-            #         ),
-            #     )
-            # ),
             create_action_panel(),
             # Graph and table container
             dbc.Row(
@@ -77,49 +66,6 @@ def create_main_content():
             ),
         ],
     )
-
-
-# def create_action_panel():
-#     return html.Div(
-#         dbc.Row(
-#             [
-#                 dbc.Col(
-#                     dbc.Button(
-#                         html.I(className="fas fa-play"),  # Иконка запуска
-#                         id="calculate-button",
-#                         color="primary",
-#                         className="d-flex align-items-center justify-content-center",
-#                         style={"width": "32px", "height": "32px", "padding": 0},
-#                     ),
-#                     width="auto",
-#                 ),
-#                 dbc.Col(
-#                     dbc.Button(
-#                         html.I(className="fas fa-save"),  # Иконка сохранить
-#                         id="save-button",
-#                         color="secondary",
-#                         className="d-flex align-items-center justify-content-center",
-#                         style={"width": "32px", "height": "32px", "padding": 0},
-#                     ),
-#                     width="auto",
-#                 ),
-#                 dbc.Col(
-#                     dbc.Button(
-#                         html.I(className="fas fa-cog"),  # Иконка настройки
-#                         id="settings-button",
-#                         color="info",
-#                         className="d-flex align-items-center justify-content-center",
-#                         style={"width": "32px", "height": "32px", "padding": 0},
-#                     ),
-#                     width="auto",
-#                 ),
-#             ],
-#             className="mb-4 g-2",  # отступ снизу и между кнопками
-#             justify="start",
-#         ),
-#         className="border rounded p-2 bg-light mb-4",  # рамка, скругления, фон
-#         style={"display": "inline-block"},
-#     )
 
 
 def create_action_panel():
