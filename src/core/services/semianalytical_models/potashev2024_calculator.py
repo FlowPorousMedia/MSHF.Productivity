@@ -1,5 +1,5 @@
 import math
-from typing import List, Tuple
+from typing import Any, Dict, List, Tuple
 import mpmath
 import numpy as np
 from scipy.integrate import quad, trapezoid, simpson
@@ -10,8 +10,12 @@ import time
 from src.core.models.calculator_settings import CalculatorSettings
 from src.core.models.characteristic_data import CharacteristicData
 from src.core.models.init_data.initial_data import InitialData
+from src.core.models.init_data.models_enum import ModelsEnum
+from src.core.models.logcategory import LogCategory
+from src.core.models.loglevel import LogLevel
 from src.core.services.dimless_converter import DimlessConverter
 from src.core.services.fracture_worker import calc_lm_lp
+from src.core.services.log_worker import make_log
 
 
 class Potashev2024Calculator:
@@ -131,12 +135,27 @@ class Potashev2024Calculator:
         def __init__(self):
             pass
 
-        def calc_rate(self, sector: "Potashev2024Calculator.SectorData") -> float:
+        def calc_rate(
+            self,
+            sector: "Potashev2024Calculator.SectorData",
+            logs: List[Dict[str, Any]],
+        ) -> float:
 
             ld = sector.ld
             rc = sector.rc
 
-            if rc < 1.0 + 0.75 * ld:
+            r_crit = 1.0 + 0.75 * ld
+
+            if rc < r_crit:
+                model_name = ModelsEnum.POTASHEV_2024.display_name
+                logs.append(
+                    make_log(
+                        f"{model_name} can not be calculated for R < {r_crit * sector.char_data.x0:.1f}",
+                        LogLevel.WARNING,
+                        LogCategory.CALCULATION,
+                        True,
+                    )
+                )
                 return None
 
             Q = self.__Q(rc, ld)
@@ -272,10 +291,17 @@ class Potashev2024Calculator:
         self.__inner_calculator = Potashev2024Calculator.InnerSectorCalculator()
         self.__outer_calculator = Potashev2024Calculator.OuterSectorCalculator()
         self.__setts: CalculatorSettings = None
+        self.__logs: List[Dict[str, Any]] = None
 
-    def calc_q(self, init_data: InitialData, setts: CalculatorSettings) -> float:
+    def calc_q(
+        self,
+        init_data: InitialData,
+        setts: CalculatorSettings,
+        logs: List[Dict[str, Any]],
+    ) -> float:
         """ """
         self.__setts = setts
+        self.__logs = logs
 
         sectors_worker = Potashev2024Calculator.SectorsWorker()
         # Получаем:
@@ -311,5 +337,5 @@ class Potashev2024Calculator:
         return (
             self.__outer_calculator.calc_rate(sector)
             if sector.is_outer
-            else self.__inner_calculator.calc_rate(sector)
+            else self.__inner_calculator.calc_rate(sector, self.__logs)
         )

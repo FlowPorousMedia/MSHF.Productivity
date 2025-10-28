@@ -1,4 +1,4 @@
-from typing import List
+from typing import Any, Dict, List
 import numpy as np
 
 from src.core.models.calculator_settings import CalculatorSettings
@@ -12,9 +12,18 @@ class Guo2009Calculator:
         self.__ip: InitialData = None
         self.__setts: CalculatorSettings = None
         self.__zei: List[float] = []
+        self.__logs: List[Dict[str, Any]] = None
 
-    def calc_q(self, init_data: InitialData, setts: CalculatorSettings) -> float:
+    def calc_q(
+        self,
+        init_data: InitialData,
+        setts: CalculatorSettings,
+        logs: List[Dict[str, Any]],
+    ) -> float:
         self.__ip = init_data
+        self.__setts = setts
+        self.__logs = logs
+
         self.__update_ze()
         result = 0.0
         j_big_r = self.__calc_j_big_r()

@@ -3,6 +3,7 @@ from dash import Input, Output, ctx, ALL, no_update, State
 from src.app.components.message_dialog import get_message_dialog
 from src.app.models.message_type import MessageType
 
+
 def register(app):
     @app.callback(
         Output("msg-dialog", "is_open"),
@@ -18,13 +19,13 @@ def register(app):
         trigger = ctx.triggered_id
 
         # Case 1: open dialog
-        if trigger == "open-msg-dialog" and open_data is not None:
+        if open_data is not None:
             dialog = get_message_dialog(
                 "msg-dialog",
                 open_data.get("title", "Message"),
                 open_data.get("message", ""),
                 MessageType[open_data.get("type", "INFO").upper()],
-                open_data.get("buttons", ["OK"])
+                open_data.get("buttons", ["OK"]),
             )
             return True, dialog.children, True  # reset store to None immediately
 

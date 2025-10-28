@@ -10,6 +10,7 @@ import dash_bootstrap_components as dbc
 
 from src.app.callbacks.main_callbacks import register_all_callbacks
 from src.app.components.about_modal import create_about_modal
+from src.app.components.log_details import create_logs_modal
 from src.app.components.model_details import create_model_details_modal
 from src.app.components.navbar import create_navbar
 from src.app.components.sidebar import create_sidebar
@@ -53,6 +54,7 @@ app.layout = html.Div(
         get_message_dialog(
             "msg-dialog", "Message", "Default", MessageType.INFO, ["OK"]
         ),
+        create_logs_modal(),
         # Hidden elements for future functionality
         dcc.Store(id="analytical-models-store", data=get_analytic_models()),
         dcc.Store(id="semianalytical-models-store", data=get_semianalytic_models()),
@@ -69,6 +71,8 @@ app.layout = html.Div(
         dcc.Store(id="language-store", data="en"),
         # 🔑 Hidden store used to trigger/open dialog
         dcc.Store(id="open-msg-dialog"),
+        dcc.Store(id="log-store", data=[]),
+        dcc.Store(id="calc-state", data="init"),
     ],
 )
 

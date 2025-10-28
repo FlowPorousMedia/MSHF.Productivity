@@ -19,17 +19,7 @@ def create_main_content():
             # Main content title
             html.H2("Fracture Analysis Dashboard", className="mb-4"),
             # Action bar with Calculate button
-            dbc.Row(
-                dbc.Col(
-                    dbc.Button(
-                        "Calculate",
-                        id="calculate-button",
-                        color="primary",
-                        size="lg",
-                        className="w-100 mb-4",
-                    ),
-                )
-            ),
+            create_action_panel(),
             # Graph and table container
             dbc.Row(
                 [
@@ -75,4 +65,43 @@ def create_main_content():
                 ]
             ),
         ],
+    )
+
+
+def create_action_panel():
+    return dbc.Card(
+        dbc.CardBody(
+            dbc.Row(
+                [
+                    dbc.Col(
+                        dbc.Button(
+                            html.I(className="fas fa-play"),
+                            id="calculate-button",
+                            color="primary",
+                            title="Run calculation",
+                            n_clicks=0,
+                            className="d-flex align-items-center justify-content-center",
+                            style={"width": "32px", "height": "32px", "padding": 0},
+                        ),
+                        width="auto",
+                    ),
+                    dbc.Col(
+                        dbc.Button(
+                            html.I(className="fas fa-list-alt"),
+                            id="show-logs-button",
+                            color="primary",
+                            title="Show logs",
+                            disabled=True,
+                            n_clicks=0,
+                            className="d-flex align-items-center justify-content-center",
+                            style={"width": "32px", "height": "32px", "padding": 0},
+                        ),
+                        width="auto",
+                    ),
+                ],
+                className="g-2",
+                justify="start",
+            )
+        ),
+        className="mb-4 shadow-sm",
     )

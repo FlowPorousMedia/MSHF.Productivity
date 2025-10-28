@@ -1,3 +1,4 @@
+from typing import Any, Dict, List
 import numpy as np
 
 from src.core.models.calculator_settings import CalculatorSettings
@@ -10,12 +11,19 @@ class Elkin2016Calculator:
         self.__setts: CalculatorSettings = None
         self.__xf: float = None
         self.__alpha: float = None
+        self.__logs: List[Dict[str, Any]] = None
 
-    def calc_q(self, init_data: InitialData, setts: CalculatorSettings) -> float:
+    def calc_q(
+        self,
+        init_data: InitialData,
+        setts: CalculatorSettings,
+        logs: List[Dict[str, Any]],
+    ) -> float:
         self.__ip = init_data
         self.__xf = self.__ip.fractures[0].len_p
         self.__alpha = 0.0
         self.__setts = setts
+        self.__logs = logs
 
         q = self.__calc_q_inner()
         qd = self.__calc_q_outer()
