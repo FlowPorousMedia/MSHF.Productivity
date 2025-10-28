@@ -65,6 +65,7 @@ def create_sidebar():
                     ),
                     # Content wrapper
                     html.Div(
+                        className="sidebar-content",
                         style={
                             "width": "100%",
                             "height": "100%",
