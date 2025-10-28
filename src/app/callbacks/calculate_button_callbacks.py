@@ -6,14 +6,18 @@ from src.app.models.result_details import ResultDetails
 from src.app.services import init_data_reader
 from src.core.models.init_data.calc_over_param_enum import CalcParamTypeEnum
 from src.core.models.init_data.initial_data import InitialData
+from src.core.models.logcategory import LogCategory
+from src.core.models.loglevel import LogLevel
 from src.core.models.main_data import MainData
 from src.core.models.result_data.result_type_enum import ResultTypeEnum
+from src.core.services.log_worker import make_log
 from src.core.services.main_solver import MainSolver
 
 
 def register(app):
     # Callback for calculation - returns only solver result
     @app.callback(
+        Output("log-store", "data"),
         Output("solver-result-store", "data"),
         Output("open-msg-dialog", "data", allow_duplicate=True),
         Input("calculate-button", "n_clicks"),
@@ -28,6 +32,7 @@ def register(app):
         State("start-input", "value"),
         State("end-input", "value"),
         State("point-count-input", "value"),
+        State("log-store", "data"),
         prevent_initial_call=True,
     )
     def calculate_results(
@@ -43,11 +48,21 @@ def register(app):
         start_val,
         end_val,
         point_count,
+        logs,
     ):
+        logs = logs or []
+
         if analytical_selected_models is None and (
             semianalytical_selected_models is None
         ):
-            print("No selected models")
+            logs.append(
+                make_log(
+                    "No selected models",
+                    LogLevel.WARNING,
+                    LogCategory.CALCULATION,
+                    True,
+                )
+            )
 
         if n_clicks is None:
             return no_update
