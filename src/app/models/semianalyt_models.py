@@ -9,12 +9,12 @@ def get_semianalytic_models() -> List:
 
     models_data = {
         ModelsEnum.POTASHEV_2024: {
-            "name": "Potashev (2024)",
+            "name": ModelsEnum.POTASHEV_2024.display_name,
             "citation": {
                 "entry_type": "article",
                 "author": "Potashev, K., Mazo, A., Mukhina, M. Maklakov, D., Uraimov, A., Khamidullin, M.",
                 "title": " High-speed algorithm for computing the inflow to multiple-fractured horizontal wells using stream tubes",
-                "journal": "Comput Geosci",
+                "journal": "Computational Geosciences",
                 "volume": "29",
                 "year": "2024",
                 "pages": "1389-1411",
@@ -31,7 +31,7 @@ def get_semianalytic_models() -> List:
                     "Fracture half-length is equal in both directions from the wellbore",
                     "Fracture height is equal to the reservoir height",
                     "Well perforation does not take into account",
-                    "Infinite conductivity fractures"
+                    "Infinite conductivity fractures",
                 ],
             },
         },

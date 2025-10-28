@@ -1,4 +1,5 @@
-from typing import List
+import time
+from typing import Any, Dict, List
 import numpy as np
 import copy
 
@@ -6,6 +7,8 @@ import copy
 from src.core.models.calculator_settings import CalculatorSettings
 from src.core.models.init_data.initial_data import InitialData
 from src.core.models.init_data.models_enum import ModelsEnum
+from src.core.models.logcategory import LogCategory
+from src.core.models.loglevel import LogLevel
 from src.core.models.main_data import MainData
 from src.core.models.result_data.model_result_data import ModelResultData
 from src.core.models.result_data.result_data import ResultData
@@ -14,6 +17,7 @@ from src.core.services.analyt_models.elkin2016_calculator import Elkin2016Calcul
 from src.core.services.analyt_models.guo1997_calculator import Guo1997Calculator
 from src.core.services.analyt_models.guo2009_calculator import Guo2009Calculator
 from src.core.services.analyt_models.li1996_calculator import Li1996Calculator
+from src.core.services.log_worker import make_log
 from src.core.services.param_data_worker import ParamDataWorker
 from src.core.services.semianalytical_models.potashev2024_calculator import (
     Potashev2024Calculator,
@@ -24,8 +28,11 @@ from src.core.models.init_data.calc_over_param_enum import CalcParamTypeEnum
 class MainSolver:
     def __init__(self):
         self.__result: MainData = None
+        self.__logs: List[Dict[str, Any]] = None
 
-    def calc(self, init_data: InitialData) -> MainData:
+    def calc(self, init_data: InitialData, logs: List[Dict[str, Any]]) -> MainData:
+        self.__logs = logs
+
         result = MainData()
         result.initial_data = init_data
         result.result = ResultData()
@@ -80,6 +87,7 @@ class MainSolver:
             init_datas.append(init_d)
 
         for calc_model in original_init_data.settings.calc_models:
+            start_time = time.perf_counter()
             model_type = calc_model.tp
             model = ModelResultData()
             model.name = calc_model.name
@@ -91,6 +99,16 @@ class MainSolver:
                 q = self.__calc_model_q(model_type)
                 model.q_values.append(q)
             self.__result.result.models.append(model)
+            end_time = time.perf_counter()
+            calc_time = end_time - start_time
+            self.__logs.append(
+                make_log(
+                    f"{model.name} calculated in {calc_time:.2f} sec",
+                    LogLevel.INFO,
+                    LogCategory.CALCULATION,
+                    True,
+                )
+            )
 
     def __calc_model_q(self, model_type: ModelsEnum) -> float:
         setts = CalculatorSettings()
@@ -110,7 +128,7 @@ class MainSolver:
             case _:
                 Exception("calc model rate with unknown model type")
 
-        q_dim_m3_sec = calculator.calc_q(self.__result.initial_data, setts)
+        q_dim_m3_sec = calculator.calc_q(self.__result.initial_data, setts, self.__logs)
         q_dim_m3_day = None
         if q_dim_m3_sec is not None:
             q_dim_m3_day = q_dim_m3_sec * 60 * 60 * 24

@@ -112,7 +112,7 @@ def register(app):
                     {
                         "title": "Invalid parametric settings",
                         "message": "Start/End must be numbers, Point count must be integer.",
-                        "type": "ERROR",
+                        "type": LogLevel.ERROR.name,
                         "buttons": ["OK"],
                     },
                 )
@@ -124,7 +124,7 @@ def register(app):
                     {
                         "title": "Invalid parametric settings",
                         "message": "Point count ≥ 2 and Start < End are required.",
-                        "type": "ERROR",
+                        "type": LogLevel.ERROR.name,
                         "buttons": ["OK"],
                     },
                 )
@@ -152,7 +152,7 @@ def register(app):
 
         init_data: InitialData = result_init_data.data
         solver = MainSolver()
-        result: MainData = solver.calc(init_data)
+        result: MainData = solver.calc(init_data, logs)
 
         # УСПЕХ: вернём логи, результат и разблокируем кнопки
         return logs, result.to_dict(), no_update

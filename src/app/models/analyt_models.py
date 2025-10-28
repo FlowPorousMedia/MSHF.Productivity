@@ -9,7 +9,7 @@ def get_analytic_models() -> List:
 
     models_data = {
         ModelsEnum.LI_1996: {
-            "name": "Li (1996)",
+            "name": ModelsEnum.LI_1996.display_name,
             "citation": {
                 "entry_type": "inproceedings",
                 "author": "Li, Hujun, Jia, Zhengqi, and Zhaosheng Wei",
@@ -35,7 +35,7 @@ def get_analytic_models() -> List:
             },
         },
         ModelsEnum.GUO_1997: {
-            "name": "Guo (1997)",
+            "name": ModelsEnum.GUO_1997.display_name,
             "citation": {
                 "entry_type": "inproceedings",
                 "author": "Guo, B., and D.S. Schechter",
@@ -61,7 +61,7 @@ def get_analytic_models() -> List:
             },
         },
         ModelsEnum.GUO_2009: {
-            "name": "Guo (2009)",
+            "name": ModelsEnum.GUO_2009.display_name,
             "citation": {
                 "entry_type": "article",
                 "author": "Guo, Boyun, Yu, Xiance, and Mohammad Khoshgahdam",
@@ -90,7 +90,7 @@ def get_analytic_models() -> List:
             },
         },
         ModelsEnum.ELKIN_2016_12: {
-            "name": "Elkin (2016)",
+            "name": ModelsEnum.ELKIN_2016_12.display_name,
             "citation": {
                 "entry_type": "article",
                 "author": "С.В. Елкин, А.А. Алероев, Н.А. Веремко, М.В. Чертенков",
@@ -99,7 +99,7 @@ def get_analytic_models() -> List:
                 "volume": "12",
                 "year": "2016",
                 "pages": "110-113",
-                "url": "https://www.oil-industry.net/Journal/author/recens.php?ID=11007&art=230007&PAGEN_1=7&forgot_password=yes&backurl=%2FJournal%2Fauthor%2Frecens.php%3FID%3D11007%26art%3D230007%26PAGEN_1%3D7"
+                "url": "https://www.oil-industry.net/Journal/author/recens.php?ID=11007&art=230007&PAGEN_1=7&forgot_password=yes&backurl=%2FJournal%2Fauthor%2Frecens.php%3FID%3D11007%26art%3D230007%26PAGEN_1%3D7",
             },
             "description": "",
             "abstract": "",

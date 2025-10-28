@@ -1,3 +1,4 @@
+from typing import Any, Dict, List
 import numpy as np
 
 from src.core.models.calculator_settings import CalculatorSettings
@@ -9,9 +10,17 @@ class Guo1997Calculator:
     def __init__(self) -> None:
         self.__ip: InitialData = None
         self.__setts: CalculatorSettings = None
+        self.__logs: List[Dict[str, Any]] = None
 
-    def calc_q(self, init_data: InitialData, setts: CalculatorSettings) -> float:
+    def calc_q(
+        self,
+        init_data: InitialData,
+        setts: CalculatorSettings,
+        logs: List[Dict[str, Any]],
+    ) -> float:
         self.__ip = init_data
+        self.__setts = setts
+        self.__logs = logs
 
         result = 0.0
         for i in range(len(self.__ip.fractures)):

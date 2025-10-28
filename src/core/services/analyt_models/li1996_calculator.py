@@ -1,3 +1,4 @@
+from typing import Any, Dict, List
 import numpy as np
 from src.core.models.calculator_settings import CalculatorSettings
 from src.core.models.init_data.initial_data import InitialData
@@ -9,11 +10,18 @@ class Li1996Calculator:
     def __init__(self) -> None:
         self.__init_data: InitialData = None
         self.__setts: CalculatorSettings = None
+        self.__logs: List[Dict[str, Any]] = None
 
-    def calc_q(self, init_data: InitialData, setts: CalculatorSettings) -> float:
+    def calc_q(
+        self,
+        init_data: InitialData,
+        setts: CalculatorSettings,
+        logs: List[Dict[str, Any]],
+    ) -> float:
         """ """
         self.__init_data = init_data
         self.__setts = setts
+        self.__logs = logs
         return self.__calc_total_rate()
 
     def __calc_total_rate(self) -> float:
@@ -57,7 +65,9 @@ class Li1996Calculator:
         w = fract.width
         rw = well.rw
 
-        lf1, lf2 = calc_lm_lp(self.__init_data, fract_index, self.__setts.Li96_account_rc)
+        lf1, lf2 = calc_lm_lp(
+            self.__init_data, fract_index, self.__setts.Li96_account_rc
+        )
         a1 = (rc - xf) / (k * h * (lf1 + lf2))
         a2 = 1.0 / (k * h * xf * (1.0 / lf1 + 1.0 / lf2))
         a3 = xf / (kf * h * w)
@@ -74,7 +84,9 @@ class Li1996Calculator:
         res = self.__init_data.reservoir
         well = self.__init_data.well
 
-        lf1, lf2 = calc_lm_lp(self.__init_data, fract_index, self.__setts.Li96_account_rc)
+        lf1, lf2 = calc_lm_lp(
+            self.__init_data, fract_index, self.__setts.Li96_account_rc
+        )
         rc = res.rc
         Ld = well.Ld
         xf = fract.len_p
