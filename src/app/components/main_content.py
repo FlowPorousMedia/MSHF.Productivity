@@ -14,7 +14,7 @@ def create_main_content():
         children=[
             # Toggle button for sidebar (mobile view)
             # html.Button(
-            #     "☰", id="sidebar-toggle", className="btn btn-secondary d-md-none mb-3"
+            #     "☰", id="sidebar-toggle_mobile", className="btn btn-secondary d-md-none mb-3"
             # ),
             # Main content title
             html.H2("Fracture Analysis Dashboard", className="mb-4"),
