@@ -125,7 +125,6 @@ def register(app):
             try:
                 param_type = CalcParamTypeEnum(param1_type_value)
                 x_title = param_type.display_name
-                print(f"x title = {x_title}")
                 is_log_x = param_type == CalcParamTypeEnum.FRACT_PERM
             except ValueError:
                 x_title = "Parameter"

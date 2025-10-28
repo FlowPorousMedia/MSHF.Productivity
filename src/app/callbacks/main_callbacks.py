@@ -11,6 +11,7 @@ from src.app.callbacks import (
     navbar_callbacks,
     sidebar_callbacks,
     message_dialog_callbacks,
+    log_callbacks,
 )
 
 
@@ -27,3 +28,4 @@ def register_all_callbacks(app):
     navbar_callbacks.register(app)
     sidebar_callbacks.register(app)
     message_dialog_callbacks.register(app)
+    log_callbacks.register(app)
