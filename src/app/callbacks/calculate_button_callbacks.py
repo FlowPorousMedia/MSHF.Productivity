@@ -20,6 +20,7 @@ def register(app):
         Output("log-store", "data"),
         Output("solver-result-store", "data"),
         Output("open-msg-dialog", "data", allow_duplicate=True),
+        Output("calc-state", "data"),
         Input("calculate-button", "n_clicks"),
         State("analytical-models-gridtable", "selectedRows"),
         State("semianalytical-models-gridtable", "selectedRows"),
@@ -50,6 +51,8 @@ def register(app):
         point_count,
         logs,
     ):
+        yield no_update, no_update, no_update, "running"
+
         logs = logs or []
 
         if analytical_selected_models is None and (
@@ -65,7 +68,8 @@ def register(app):
             )
 
         if n_clicks is None:
-            return no_update
+            yield no_update, no_update, no_update, "idle"
+            return
 
         setts = ParametricSettings()
         if parametric_checked:
@@ -81,15 +85,18 @@ def register(app):
                 setts.calc_type = ResultTypeEnum.PARAMETRIC
             except ValueError:
                 print("Invalid parametric settings: non-numeric value")
-                return no_update
+                yield no_update, no_update, no_update, "idle"
+                return
 
             if point_count < 2:
                 print("Point count must be at least 2")
-                return no_update
+                yield no_update, no_update, no_update, "idle"
+                return
 
             if start_val >= end_val:
                 print("Start must be less than end")
-                return no_update
+                yield no_update, no_update, no_update, "idle"
+                return
 
         calc_models = analytical_selected_models + semianalytical_selected_models
 
@@ -99,14 +106,22 @@ def register(app):
 
         if not result_init_data.success:
             details: ResultDetails = result_init_data.details
-            return no_update, {
-                "title": details.title,
-                "message": details.message,
-                "type": (
-                    details.tp.name if hasattr(details.tp, "name") else str(details.tp)
-                ),
-                "buttons": ["OK"],
-            }
+            yield (
+                no_update,
+                no_update,
+                {
+                    "title": details.title,
+                    "message": details.message,
+                    "type": (
+                        details.tp.name
+                        if hasattr(details.tp, "name")
+                        else str(details.tp)
+                    ),
+                    "buttons": ["OK"],
+                },
+                "idle",
+            )
+            return
 
         init_data: InitialData = result_init_data.data
 
@@ -116,4 +131,18 @@ def register(app):
         solver = MainSolver()
         result: MainData = solver.calc(init_data)
 
-        return result.to_dict(), no_update
+        yield logs, result.to_dict(), no_update, "idle"
+
+    @app.callback(
+        Output("calculate-button", "disabled"),
+        Output("show-logs-button", "disabled"),
+        Input("calc-state", "data"),
+    )
+    def update_buttons(state):
+        if state == "init":  # старт
+            return False, True  # calc включена, logs выключена
+        elif state == "running":
+            return True, True  # обе выключены
+        elif state == "idle":
+            return False, False  # обе включены
+        return no_update, no_update
