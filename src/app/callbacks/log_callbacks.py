@@ -27,7 +27,7 @@ def register(app):
         items = []
         for log in logs:
             color = {
-                "INFO": "primary",
+                "INFO": "light",
                 "WARNING": "warning",
                 "ERROR": "danger",
             }.get(
