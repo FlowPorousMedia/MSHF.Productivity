@@ -138,3 +138,12 @@ dd {
   justify-content: center !important;
   padding: 10px 5px !important;
 }
+
+#scheme-svg {
+    width: 100% !important;
+    max-width: 100%;
+}
+
+.sidebar svg {
+    width: 100% !important;
+}
