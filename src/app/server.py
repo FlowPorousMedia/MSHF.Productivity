@@ -71,6 +71,7 @@ app.layout = html.Div(
         dcc.Store(id="language-store", data="en"),
         # 🔑 Hidden store used to trigger/open dialog
         dcc.Store(id="open-msg-dialog"),
+        dcc.Store(id="msg-dialog-response-store", data=None),
         dcc.Store(id="log-store", data=[]),
         dcc.Store(id="calc-state", data="init"),
     ],

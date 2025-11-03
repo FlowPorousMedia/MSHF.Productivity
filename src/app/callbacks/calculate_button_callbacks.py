@@ -4,6 +4,7 @@ from src.app.models.parametric_settings import ParametricSettings
 from src.app.models.result import Result
 from src.app.models.result_details import ResultDetails
 from src.app.services import init_data_reader
+from src.app.services.calc_preprocessor import CalcPreprocessor
 from src.core.models.init_data.calc_over_param_enum import CalcParamTypeEnum
 from src.core.models.init_data.initial_data import InitialData
 from src.core.models.logcategory import LogCategory
@@ -90,6 +91,21 @@ def register(app):
                     "message": "No selected models",
                     "type": LogLevel.WARNING.name,
                     "buttons": ["OK"],
+                },
+            )
+
+        if CalcPreprocessor.is_default_params(
+            well_data, reservoir_data, fluid_data, fracture_data
+        ):
+            return (
+                logs,
+                no_update,
+                {
+                    "context": "confirm_calc_start",
+                    "title": "Default Parameters Warning",
+                    "message": "You are about to run the calculation with default settings. Continue?",
+                    "type": LogLevel.WARNING.name,
+                    "buttons": ["Yes", "No"],
                 },
             )
 
