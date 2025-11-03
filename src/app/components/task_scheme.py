@@ -135,4 +135,17 @@ def __create_elements(L: float, R: float, fracts: List[Dict]) -> List:
             ]
         )
 
+        label_y = fracture_bottom_y + 15  # Отступ 15px ниже трещины
+        elements.append(
+            svg.Text(
+                x=str(fracture_x),
+                y=str(label_y),
+                children=str(i + 1),  # Индекс начинается с 1
+                fill="darkred",
+                fontSize="12",
+                fontWeight="bold",
+                textAnchor="middle",  # Выравнивание по центру
+            )
+        )
+
     return elements
