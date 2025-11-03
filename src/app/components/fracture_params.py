@@ -124,5 +124,10 @@ def create_fracture_params():
                 className="btn btn-secondary ms-2",
                 title="Show Fcd values",
             ),
+            html.Div(
+                id="scheme-container",
+                className="mt-3 p-2",
+                style={"border": "1px solid #dee2e6", "borderRadius": "5px"},
+            ),
         ]
     )
