@@ -1,4 +1,3 @@
-# src/app/callbacks/calculate_button_callbacks.py
 from dash import Input, Output, State, no_update, exceptions
 from src.app.models.parametric_settings import ParametricSettings
 from src.app.models.result import Result

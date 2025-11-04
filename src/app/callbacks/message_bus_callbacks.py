@@ -5,7 +5,7 @@ from src.app.models.message_type import MessageType
 
 
 def register(app):
-    # 1️⃣ Открываем диалог (пришёл запрос)
+    #  Открываем диалог (пришёл запрос)
     @app.callback(
         Output("msg-dialog", "is_open", allow_duplicate=True),
         Output("msg-dialog", "children", allow_duplicate=True),
@@ -30,7 +30,7 @@ def register(app):
 
         return True, dialog.children, context
 
-    # 2️⃣ Пользователь нажал кнопку (Yes / No / OK)
+    #  Пользователь нажал кнопку (Yes / No / OK)
     @app.callback(
         Output("msg-dialog", "is_open", allow_duplicate=True),
         Output("message-response", "data", allow_duplicate=True),
