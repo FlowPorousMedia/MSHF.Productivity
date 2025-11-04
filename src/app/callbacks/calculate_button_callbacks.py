@@ -28,7 +28,7 @@ def register(app):
             return False, False
         return no_update, no_update
 
-    # 1️⃣ click "Рассчитать"
+    # click "Calculate"
     @app.callback(
         Output("message-request", "data"),
         Output("app-state", "data", allow_duplicate=True),
@@ -57,7 +57,7 @@ def register(app):
         print("✅ No confirmation needed, starting calculation")
         return no_update, "running"
 
-    # 2️⃣ handle Yes/No
+    # handle Yes/No
     @app.callback(
         Output("app-state", "data", allow_duplicate=True),  # ← добавлено
         Input("message-response", "data"),
@@ -69,7 +69,7 @@ def register(app):
             raise exceptions.PreventUpdate
         return "running" if msg_response.get("response") == "Yes" else "idle"
 
-    # 3️⃣ run calculation
+    # run calculation
     @app.callback(
         Output("log-store", "data"),
         Output("solver-result-store", "data"),
