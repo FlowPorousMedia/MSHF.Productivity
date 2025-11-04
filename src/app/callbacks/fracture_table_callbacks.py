@@ -57,7 +57,7 @@ def register(app):
         return dash.no_update, dash.no_update
 
     @app.callback(
-        Output("open-msg-dialog", "data", allow_duplicate=True),
+        Output("message-request", "data", allow_duplicate=True),
         Input("show-fcd-button", "n_clicks"),
         State("fracture-table", "data"),
         State("reservoir-params-store", "data"),

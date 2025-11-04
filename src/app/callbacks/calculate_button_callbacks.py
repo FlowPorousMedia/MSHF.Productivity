@@ -1,5 +1,5 @@
-from dash import Input, Output, State, no_update
-
+# src/app/callbacks/calculate_button_callbacks.py
+from dash import Input, Output, State, no_update, exceptions
 from src.app.models.parametric_settings import ParametricSettings
 from src.app.models.result import Result
 from src.app.models.result_details import ResultDetails
@@ -7,46 +7,73 @@ from src.app.services import init_data_reader
 from src.app.services.calc_preprocessor import CalcPreprocessor
 from src.core.models.init_data.calc_over_param_enum import CalcParamTypeEnum
 from src.core.models.init_data.initial_data import InitialData
-from src.core.models.logcategory import LogCategory
 from src.core.models.loglevel import LogLevel
 from src.core.models.main_data import MainData
 from src.core.models.result_data.result_type_enum import ResultTypeEnum
-from src.core.services.log_worker import make_log
 from src.core.services.main_solver import MainSolver
 
 
 def register(app):
-    # --- Кнопки управляются только состоянием calc-state ---
     @app.callback(
         Output("calculate-button", "disabled"),
         Output("show-logs-button", "disabled"),
-        Input("calc-state", "data"),
+        Input("app-state", "data"),
     )
     def update_buttons(state):
-        if state == "init":  # старт
-            return False, True  # calc включена, logs выключена
-        if state == "running":  # расчёт идёт
-            return True, True  # обе выключены
-        if state == "idle":  # расчёт был завершён хотя бы раз
-            return False, False  # обе включены
+        if state == "init":
+            return False, True
+        if state == "running":
+            return True, True
+        if state == "idle":
+            return False, False
         return no_update, no_update
 
-    # --- Колбэк A: клик -> сразу переводим в running ---
+    # 1️⃣ click "Рассчитать"
     @app.callback(
-        Output("calc-state", "data"),
+        Output("message-request", "data"),
+        Output("app-state", "data", allow_duplicate=True),
         Input("calculate-button", "n_clicks"),
+        State("app-state", "data"),
+        State("well-params-store", "data"),
+        State("reservoir-params-store", "data"),
+        State("fluid-params-store", "data"),
+        State("fracture-table", "data"),
         prevent_initial_call=True,
     )
-    def start_calculation(n_clicks):
-        # моментально блокируем обе кнопки через состояние
-        return "running"
+    def handle_calc_request(n_clicks, state, well, reservoir, fluid, fracture):
+        if not n_clicks or state not in ("init", "idle"):
+            raise exceptions.PreventUpdate
 
-    # --- Колбэк B: если running -> выполняем расчёт, отдаём результат и ставим idle ---
+        if CalcPreprocessor.is_default_params(well, reservoir, fluid, fracture):
+            data = {
+                "context": "confirm_calc_start",
+                "title": "Default Parameters Notification",
+                "message": "You are about to run the calculation with default parameters. Continue?",
+                "type": LogLevel.INFO.name,
+                "buttons": ["Yes", "No"],
+            }
+            return data, "confirming"
+
+        print("✅ No confirmation needed, starting calculation")
+        return no_update, "running"
+
+    # 2️⃣ handle Yes/No
+    @app.callback(
+        Output("app-state", "data", allow_duplicate=True),  # ← добавлено
+        Input("message-response", "data"),
+        State("app-state", "data"),
+        prevent_initial_call=True,
+    )
+    def handle_dialog_response(msg_response, state):
+        if not msg_response or msg_response.get("context") != "confirm_calc_start":
+            raise exceptions.PreventUpdate
+        return "running" if msg_response.get("response") == "Yes" else "idle"
+
+    # 3️⃣ run calculation
     @app.callback(
         Output("log-store", "data"),
         Output("solver-result-store", "data"),
-        Output("open-msg-dialog", "data", allow_duplicate=True),
-        Input("calc-state", "data"),
+        Input("app-state", "data"),
         State("analytical-models-gridtable", "selectedRows"),
         State("semianalytical-models-gridtable", "selectedRows"),
         State("fracture-table", "data"),
@@ -62,7 +89,7 @@ def register(app):
         prevent_initial_call=True,
     )
     def calculate_results(
-        calc_state,
+        app_state,
         analytical_selected_models,
         semianalytical_selected_models,
         fracture_data,
@@ -76,111 +103,47 @@ def register(app):
         point_count,
         logs,
     ):
-        # Запускаем расчёт ТОЛЬКО когда состояние "running"
-        if calc_state != "running":
-            return no_update, no_update, no_update
+        if app_state != "running":
+            raise exceptions.PreventUpdate
 
         logs = logs or []
-
         if not analytical_selected_models and not semianalytical_selected_models:
-            return (
-                logs,
-                no_update,
-                {
-                    "title": "Calculation Warning",
-                    "message": "No selected models",
-                    "type": LogLevel.WARNING.name,
-                    "buttons": ["OK"],
-                },
-            )
-
-        if CalcPreprocessor.is_default_params(
-            well_data, reservoir_data, fluid_data, fracture_data
-        ):
-            return (
-                logs,
-                no_update,
-                {
-                    "context": "confirm_calc_start",
-                    "title": "Default Parameters Warning",
-                    "message": "You are about to run the calculation with default settings. Continue?",
-                    "type": LogLevel.WARNING.name,
-                    "buttons": ["Yes", "No"],
-                },
-            )
+            return logs, {
+                "message": "No selected models",
+                "type": LogLevel.WARNING.name,
+            }
 
         setts = ParametricSettings()
         if parametric_checked:
             try:
-                start_val = float(start_val)
-                end_val = float(end_val)
-                point_count = int(point_count)
-                setts.start = start_val
-                setts.end = end_val
-                setts.point_count = point_count
+                setts.start = float(start_val)
+                setts.end = float(end_val)
+                setts.point_count = int(point_count)
                 setts.tp = CalcParamTypeEnum(parameter)
                 setts.calc_type = ResultTypeEnum.PARAMETRIC
             except (TypeError, ValueError):
-                # ошибка ввода — показать диалог и разблокировать кнопки
-                return (
-                    logs,
-                    no_update,
-                    {
-                        "title": "Invalid parametric settings",
-                        "message": "Start/End must be numbers, Point count must be integer.",
-                        "type": LogLevel.ERROR.name,
-                        "buttons": ["OK"],
-                    },
-                )
-
-            if point_count < 2 or start_val >= end_val:
-                return (
-                    logs,
-                    no_update,
-                    {
-                        "title": "Invalid parametric settings",
-                        "message": "Point count ≥ 2 and Start < End are required.",
-                        "type": LogLevel.ERROR.name,
-                        "buttons": ["OK"],
-                    },
-                )
+                return logs, {
+                    "message": "Invalid parametric settings",
+                    "type": LogLevel.ERROR.name,
+                }
+            if setts.point_count < 2 or setts.start >= setts.end:
+                return logs, {
+                    "message": "Invalid parametric settings",
+                    "type": LogLevel.ERROR.name,
+                }
 
         calc_models = (analytical_selected_models or []) + (
             semianalytical_selected_models or []
         )
-
         result_init_data: Result = init_data_reader.make_init_data(
             fracture_data, well_data, reservoir_data, fluid_data, calc_models, setts
         )
 
         if not result_init_data.success:
             details: ResultDetails = result_init_data.details
-            return (
-                logs,
-                no_update,
-                {
-                    "title": details.title,
-                    "message": details.message,
-                    "type": getattr(details.tp, "name", str(details.tp)),
-                    "buttons": ["OK"],
-                },
-            )
+            return logs, {"message": details.message, "type": LogLevel.ERROR.name}
 
         init_data: InitialData = result_init_data.data
         solver = MainSolver()
         result: MainData = solver.calc(init_data, logs)
-
-        # УСПЕХ: вернём логи, результат и разблокируем кнопки
-        return logs, result.to_dict(), no_update
-
-    @app.callback(
-        Output("calc-state", "data", allow_duplicate=True),
-        Input("solver-result-store", "data"),
-        Input("open-msg-dialog", "data"),
-        prevent_initial_call=True,
-    )
-    def finish_calculation(result_data, dialog_data):
-        # если появились результаты ИЛИ всплыло сообщение об ошибке — отпускаем кнопки
-        if result_data is not None or dialog_data is not None:
-            return "idle"
-        return no_update
+        return logs, result.to_dict()
