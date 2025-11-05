@@ -6,9 +6,11 @@ from src.app.services import init_data_reader
 from src.app.services.calc_preprocessor import CalcPreprocessor
 from src.core.models.init_data.calc_over_param_enum import CalcParamTypeEnum
 from src.core.models.init_data.initial_data import InitialData
+from src.core.models.logcategory import LogCategory
 from src.core.models.loglevel import LogLevel
 from src.core.models.main_data import MainData
 from src.core.models.result_data.result_type_enum import ResultTypeEnum
+from src.core.services.log_worker import make_log
 from src.core.services.main_solver import MainSolver
 
 
@@ -31,20 +33,23 @@ def register(app):
     @app.callback(
         Output("message-request", "data"),
         Output("app-state", "data", allow_duplicate=True),
+        Output("log-store", "data", allow_duplicate=True),
         Input("calculate-button", "n_clicks"),
         State("app-state", "data"),
         State("well-params-store", "data"),
         State("reservoir-params-store", "data"),
         State("fluid-params-store", "data"),
         State("fracture-table", "data"),
+        State("log-store", "data"),
         prevent_initial_call=True,
     )
-    def handle_calc_request(n_clicks, state, well, reservoir, fluid, fracture):
+    def handle_calc_request(n_clicks, state, well, reservoir, fluid, fracture, logs):
+        logs = logs or []
+
         if not n_clicks or state not in ("init", "idle"):
             raise exceptions.PreventUpdate
 
-        
-        if CalcPreprocessor.is_default_params(well, reservoir, fluid, fracture):
+        if CalcPreprocessor.is_default_params(well, reservoir, fluid, fracture, logs):
             data = {
                 "context": "confirm_calc_start",
                 "title": "Default Parameters Notification",
@@ -52,10 +57,17 @@ def register(app):
                 "type": LogLevel.INFO.name,
                 "buttons": ["Yes", "No"],
             }
-            return data, "confirming"
+            return data, "confirming", logs
 
-        print("✅ No confirmation needed, starting calculation")
-        return no_update, "running"
+        logs.append(
+            make_log(
+                "No confirmation needed, starting calculation",
+                LogLevel.DEBUG,
+                LogCategory.CALCULATION,
+                False,
+            )
+        )
+        return no_update, "running", logs
 
     # handle Yes/No
     @app.callback(
@@ -107,6 +119,7 @@ def register(app):
             raise exceptions.PreventUpdate
 
         logs = logs or []
+
         if not analytical_selected_models and not semianalytical_selected_models:
             return logs, {
                 "message": "No selected models",
