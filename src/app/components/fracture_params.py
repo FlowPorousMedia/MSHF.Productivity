@@ -1,5 +1,6 @@
 from dash import html, dash_table, dcc
 
+from src.app.models.default_values import DEFAULT_VALUES
 from src.core.models.init_data.field_names.fract_initial_field_names import (
     FracInitFieldNames,
 )
@@ -7,6 +8,7 @@ from src.core.models.init_data.field_names.fract_initial_field_names import (
 
 def create_fracture_params():
     """Create fracture parameters component with dynamic table"""
+    defaults = DEFAULT_VALUES["fractures"]
     return html.Div(
         [
             html.Div(
@@ -18,7 +20,7 @@ def create_fracture_params():
                     dcc.Input(
                         id="fracture-count",
                         type="number",
-                        value=3,
+                        value=len(defaults),
                         min=1,
                         step=1,
                         className="form-control ms-3",
@@ -74,17 +76,7 @@ def create_fracture_params():
                         "type": "numeric",
                     },
                 ],
-                data=[
-                    {
-                        "fracture_id": i + 1,
-                        "length_plus": 100,
-                        "length_minus": 100,
-                        "width": 40,
-                        "permeability": 10000,
-                        "well_cross": i * 400,
-                    }
-                    for i in range(3)
-                ],
+                data=defaults,
                 editable=True,
                 row_deletable=False,
                 style_table={

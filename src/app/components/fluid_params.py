@@ -1,9 +1,14 @@
 from dash import html, dcc
 import dash_bootstrap_components as dbc
 
+from src.app.models.default_values import DEFAULT_VALUES
+
 
 def create_fluid_params():
     """Create fluid properties component"""
+
+    defaults = DEFAULT_VALUES["fluid"]
+
     return html.Div(
         [
             # Viscosity input
@@ -16,7 +21,7 @@ def create_fluid_params():
                         dcc.Input(
                             id={"type": "fluid-params", "name": "viscosity"},
                             type="number",
-                            value=1.0,
+                            value=defaults["viscosity"],
                             min=0.01,
                             step=0.01,
                             className="form-control",
@@ -36,7 +41,7 @@ def create_fluid_params():
             #             dcc.Input(
             #                 id="fluid-density",  id={"type": "fluid-params", "name": "viscosity"},
             #                 type="number",
-            #                 value=800,
+            #                 value=defaults["density"],
             #                 min=1,
             #                 step=1,
             #                 className="form-control",
@@ -57,7 +62,7 @@ def create_fluid_params():
             #             dcc.Input(
             #                 id="fluid-compressibility", id={"type": "fluid-params", "name": "viscosity"},
             #                 type="number",
-            #                 value=1e-5,
+            #                 value=defaults["compressibility"],
             #                 min=0,
             #                 step=1e-6,
             #                 className="form-control",
@@ -77,7 +82,7 @@ def create_fluid_params():
             #             dcc.Input(
             #                 id="fluid-fvf", id={"type": "fluid-params", "name": "viscosity"},
             #                 type="number",
-            #                 value=1.2,
+            #                 value=defaults["fvf"],
             #                 min=1.0,
             #                 step=0.01,
             #                 className="form-control",

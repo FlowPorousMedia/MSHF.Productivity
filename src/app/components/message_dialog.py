@@ -1,13 +1,15 @@
-from dash import html, dcc
+from dash import html
 import dash_bootstrap_components as dbc
-
-
 from src.app.models.message_type import MessageType
 
 
-# Message dialog component
 def get_message_dialog(
-    dialog_id, title, message, type: MessageType.INFO, buttons=["OK"]
+    dialog_id,
+    title,
+    message,
+    type: MessageType = MessageType.INFO,
+    buttons=["OK"],
+    context=None,  # 👈 добавлен
 ):
     title_colors = {
         MessageType.INFO: "blue",
@@ -30,7 +32,8 @@ def get_message_dialog(
         ),
     }
 
-    return dbc.Modal(
+    # ⚡ Весь контент оборачиваем в контейнер с data-context
+    content = html.Div(
         [
             dbc.ModalHeader(
                 dbc.ModalTitle(
@@ -41,34 +44,41 @@ def get_message_dialog(
                         ),
                     ]
                 ),
-                close_button=False,  # disable the "X"
+                close_button=False,
             ),
             __create_modal_body_with_newlines(message),
-            # dbc.ModalBody(message),
             dbc.ModalFooter(
                 [
-                    dbc.Button(b, id={"type": "msg-btn", "index": b}, className="me-2")
+                    dbc.Button(
+                        b,
+                        id={"type": "msg-btn", "index": b},
+                        className="me-2",
+                    )
                     for b in buttons
                 ]
             ),
         ],
+        **({"data-context": context} if context else {}),  # 👈 теперь тут!
+    )
+
+    return dbc.Modal(
+        content,
         id=dialog_id,
         is_open=False,
-        backdrop="static",  # user must click a button
-        keyboard=False,  # cannot close with ESC
+        backdrop="static",
+        keyboard=False,
         centered=True,
     )
 
 
-
-def __create_modal_body_with_newlines(message: str, style: dict = None) -> dbc.ModalBody:
+def __create_modal_body_with_newlines(
+    message: str, style: dict = None
+) -> dbc.ModalBody:
     """
     Create a ModalBody that properly handles newline characters
     """
     default_style = {"whiteSpace": "pre-line", "padding": "10px"}
     if style:
         default_style.update(style)
-    
-    return dbc.ModalBody(
-        html.Div(message, style=default_style)
-    )
+
+    return dbc.ModalBody(html.Div(message, style=default_style))
