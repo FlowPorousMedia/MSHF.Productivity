@@ -1,6 +1,7 @@
 from dash import html, dcc
 import dash_bootstrap_components as dbc
 
+from src.app.models.default_values import DEFAULT_VALUES
 from src.core.models.init_data.field_names.well_initial_field_names import (
     WellInitFieldNames,
 )
@@ -8,6 +9,9 @@ from src.core.models.init_data.field_names.well_initial_field_names import (
 
 def create_well_params():
     """Create well parameters component"""
+
+    defaults = DEFAULT_VALUES["well"]
+
     return html.Div(
         [
             # Length input
@@ -21,7 +25,7 @@ def create_well_params():
                         dcc.Input(
                             id={"type": "well-params", "name": "length"},
                             type="number",
-                            value=800,
+                            value=defaults["length"],
                             min=100,
                             step=10,
                             className="form-control",
@@ -42,7 +46,7 @@ def create_well_params():
                         dcc.Input(
                             id={"type": "well-params", "name": "radius"},
                             type="number",
-                            value=8,
+                            value=defaults["radius"],
                             min=1,
                             step=1,
                             className="form-control",
@@ -63,7 +67,7 @@ def create_well_params():
                         dcc.Input(
                             id={"type": "well-params", "name": "pressure"},
                             type="number",
-                            value=80,
+                            value=defaults["pressure"],
                             min=0,
                             step=1,
                             className="form-control",
@@ -86,7 +90,7 @@ def create_well_params():
                         dcc.Checklist(
                             id={"type": "well-params", "name": "perforated"},
                             options=[{"label": " Yes", "value": True}],
-                            value=[True],
+                            value=[True] if defaults["perforated"] else [],
                             className="pt-2",
                         ),
                         width=6,
