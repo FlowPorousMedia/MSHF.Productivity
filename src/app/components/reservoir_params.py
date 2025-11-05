@@ -1,9 +1,14 @@
 from dash import html, dcc
 import dash_bootstrap_components as dbc
 
+from src.app.models.default_values import DEFAULT_VALUES
+
 
 def create_reservoir_params():
     """Create reservoir parameters component"""
+
+    defaults = DEFAULT_VALUES["reservoir"]
+
     return html.Div(
         [
             # Radius input
@@ -14,7 +19,7 @@ def create_reservoir_params():
                         dcc.Input(
                             id={"type": "reservoir-params", "name": "radius"},
                             type="number",
-                            value=200,
+                            value=defaults["radius"],
                             min=10,
                             step=10,
                             className="form-control",
@@ -32,7 +37,7 @@ def create_reservoir_params():
                         dcc.Input(
                             id={"type": "reservoir-params", "name": "height"},
                             type="number",
-                            value=10,
+                            value=defaults["height"],
                             min=1,
                             step=1,
                             className="form-control",
@@ -52,7 +57,7 @@ def create_reservoir_params():
                         dcc.Input(
                             id={"type": "reservoir-params", "name": "permeability"},
                             type="number",
-                            value=0.1,
+                            value=defaults["permeability"],
                             min=0.1,
                             step=0.1,
                             className="form-control",
@@ -72,7 +77,7 @@ def create_reservoir_params():
                         dcc.Input(
                             id={"type": "reservoir-params", "name": "pressure"},
                             type="number",
-                            value=100,
+                            value=defaults["pressure"],
                             min=0,
                             step=1,
                             className="form-control",
