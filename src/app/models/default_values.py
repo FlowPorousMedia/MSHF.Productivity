@@ -1,5 +1,5 @@
 DEFAULT_VALUES = {
-    "fracture": [
+    "fractures": [
         {
             "fracture_id": i + 1,
             "length_plus": 100,
