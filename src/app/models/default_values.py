@@ -24,8 +24,8 @@ DEFAULT_VALUES = {
     },
     "fluid": {
         "viscosity": 1.0,
-        "compressibility": 1e-5,
-        "density": 800,
-        "fvf": 1.2,  # Formation volume factor
+        # "compressibility": 1e-5,
+        # "density": 800,
+        # "fvf": 1.2,  # Formation volume factor
     },
 }

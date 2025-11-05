@@ -43,6 +43,7 @@ def register(app):
         if not n_clicks or state not in ("init", "idle"):
             raise exceptions.PreventUpdate
 
+        
         if CalcPreprocessor.is_default_params(well, reservoir, fluid, fracture):
             data = {
                 "context": "confirm_calc_start",
