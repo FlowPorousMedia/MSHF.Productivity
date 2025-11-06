@@ -13,6 +13,7 @@ from src.app.components.navbar import create_navbar
 from src.app.components.sidebar import create_sidebar
 from src.app.components.main_content import create_main_content
 from src.app.components.message_dialog import get_message_dialog
+from src.app.components.status_bar import create_status_bar
 from src.app.models.analyt_models import get_analytic_models
 from src.app.models.message_type import MessageType
 from src.app.models.numerical_models import get_numerical_models
