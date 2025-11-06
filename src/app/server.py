@@ -1,9 +1,6 @@
-from dash import (
-    Dash,
-    html,
-    dcc,
-)
+from dash import Dash, html, dcc, DiskcacheManager
 import dash_bootstrap_components as dbc
+import diskcache
 
 
 from src.app.components.about_modal import create_about_modal
@@ -13,7 +10,6 @@ from src.app.components.navbar import create_navbar
 from src.app.components.sidebar import create_sidebar
 from src.app.components.main_content import create_main_content
 from src.app.components.message_dialog import get_message_dialog
-from src.app.components.status_bar import create_status_bar
 from src.app.models.analyt_models import get_analytic_models
 from src.app.models.message_type import MessageType
 from src.app.models.numerical_models import get_numerical_models
@@ -22,7 +18,13 @@ from src.app._version import SOFTWARE_TITLE
 
 
 def create_app() -> Dash:
-    # Initialize the app
+    """
+    Initialize the app
+    """
+
+    cache = diskcache.Cache("./cache")
+    background_callback_manager = DiskcacheManager(cache)
+
     app = Dash(
         __name__,
         title=SOFTWARE_TITLE,
@@ -30,6 +32,7 @@ def create_app() -> Dash:
             dbc.themes.BOOTSTRAP,
         ],
         assets_folder="assets",
+        background_callback_manager=background_callback_manager,
     )
 
     # Define the app layout
