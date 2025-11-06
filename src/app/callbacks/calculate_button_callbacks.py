@@ -286,7 +286,9 @@ def register(app):
         init_data: InitialData = result_init_data.data
 
         def update_solver_progress(progress, message):
-            set_progress((progress, f"{progress}%", message))
+            # set_progress((progress, f"{progress}%", message))
+            overall_progress = 80 + (progress * 0.15)
+            set_progress((overall_progress, f"{int(overall_progress)}%", message))
 
         solver = MainSolver()
         result: MainData = solver.calc(
