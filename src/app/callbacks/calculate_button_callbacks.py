@@ -100,9 +100,9 @@ def register(app):
                 "alignItems": "center",
                 "marginLeft": "10px",
             }
-            return "running", "Запуск расчета...", progress_style
+            return "running", "Starting calculation...", progress_style
         else:
-            return "idle", "Расчет отменен", {"display": "none"}
+            return "idle", "Calculation cancelled", {"display": "none"}
 
     # run calculation - основной background callback
     @app.callback(
@@ -175,7 +175,7 @@ def register(app):
         logs = logs or []
 
         # Этап 1: Проверка моделей
-        set_progress((10, "10%", "Проверка выбранных моделей..."))
+        set_progress((10, "10%", "Checking selected models..."))
         if not analytical_selected_models and not semianalytical_selected_models:
             logs.append(
                 make_log(
@@ -188,7 +188,7 @@ def register(app):
             return (
                 logs,
                 {"message": "No selected models", "type": LogLevel.WARNING.name},
-                "Ошибка: не выбраны модели",
+                "Warning: no models selected",
                 0,
                 "0%",
                 {"display": "none"},
@@ -196,7 +196,7 @@ def register(app):
             )
 
         # Этап 2: Настройка параметров
-        set_progress((20, "20%", "Настройка параметров расчета..."))
+        set_progress((20, "20%", "Configuring calculation parameters..."))
         setts = ParametricSettings()
         if parametric_checked:
             try:
@@ -220,7 +220,7 @@ def register(app):
                         "message": "Invalid parametric settings",
                         "type": LogLevel.ERROR.name,
                     },
-                    "Ошибка: неверные параметры расчета",
+                    "Error: invalid calculation parameters",
                     0,
                     "0%",
                     {"display": "none"},
@@ -242,7 +242,7 @@ def register(app):
                         "message": "Invalid parametric settings",
                         "type": LogLevel.ERROR.name,
                     },
-                    "Ошибка: неверный диапазон параметров",
+                    "Error: invalid parameter range",
                     0,
                     "0%",
                     {"display": "none"},
@@ -250,13 +250,13 @@ def register(app):
                 )
 
         # Этап 3: Подготовка данных
-        set_progress((40, "40%", "Подготовка данных для расчета..."))
+        set_progress((40, "40%", "Preparing data for calculation..."))
         calc_models = (analytical_selected_models or []) + (
             semianalytical_selected_models or []
         )
 
         # Этап 4: Чтение исходных данных
-        set_progress((60, "60%", "Чтение исходных данных..."))
+        set_progress((60, "60%", "Reading initial data..."))
         result_init_data: Result = init_data_reader.make_init_data(
             fracture_data, well_data, reservoir_data, fluid_data, calc_models, setts
         )
@@ -274,7 +274,7 @@ def register(app):
             return (
                 logs,
                 {"message": details.message, "type": LogLevel.ERROR.name},
-                f"Ошибка подготовки данных: {details.message}",
+                f"Data preparation error: {details.message}",
                 0,
                 "0%",
                 {"display": "none"},
@@ -282,7 +282,7 @@ def register(app):
             )
 
         # Этап 5: Выполнение расчета
-        set_progress((80, "80%", "Выполнение расчета..."))
+        set_progress((80, "80%", "Performing calculation..."))
         init_data: InitialData = result_init_data.data
 
         def update_solver_progress(progress, message):
@@ -296,12 +296,12 @@ def register(app):
         )
 
         # Завершение
-        set_progress((100, "100%", "Завершение расчета..."))
+        set_progress((100, "100%", "Finalizing calculation..."))
 
         return (
             logs,
             result.to_dict(),
-            "Расчет завершен успешно",
+            "Calculation completed successfully",
             100,
             "100%",
             {"display": "flex", "flex": "0 0 auto", "alignItems": "center"},
