@@ -1,8 +1,7 @@
 import time
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional, Callable
 import numpy as np
 import copy
-
 
 from src.core.models.calculator_settings import CalculatorSettings
 from src.core.models.init_data.initial_data import InitialData
@@ -29,9 +28,16 @@ class MainSolver:
     def __init__(self):
         self.__result: MainData = None
         self.__logs: List[Dict[str, Any]] = None
+        self.__progress_callback: Optional[Callable[[int, str], None]] = None
 
-    def calc(self, init_data: InitialData, logs: List[Dict[str, Any]]) -> MainData:
+    def calc(
+        self,
+        init_data: InitialData,
+        logs: List[Dict[str, Any]],
+        progress_callback: Optional[Callable[[int, str], None]] = None,
+    ) -> MainData:
         self.__logs = logs
+        self.__progress_callback = progress_callback
 
         result = MainData()
         result.initial_data = init_data
@@ -49,16 +55,27 @@ class MainSolver:
 
         return result
 
+    def __update_progress(self, progress: int, message: str):
+        """Обновляет прогресс если callback предоставлен"""
+        if self.__progress_callback:
+            self.__progress_callback(progress, message)
+
     def __calc_simple(self) -> None:
         self.__result.result.result_type = ResultTypeEnum.SIMPLE
+        total_models = len(self.__result.initial_data.settings.calc_models)
 
-        for calc_model in self.__result.initial_data.settings.calc_models:
+        for i, calc_model in enumerate(self.__result.initial_data.settings.calc_models):
+            progress = int((i / total_models) * 100)
+            self.__update_progress(progress, f"Расчет модели {calc_model.name}...")
+
             model_type = calc_model.tp
             q = self.__calc_model_q(model_type)
             model = ModelResultData()
             model.name = calc_model.name
             model.q_values = np.array([q])
             self.__result.result.models.append(model)
+
+        self.__update_progress(100, "Простой расчет завершен")
 
     def __calc_parametric(self) -> None:
         self.__result.result.result_type = ResultTypeEnum.PARAMETRIC
@@ -67,17 +84,27 @@ class MainSolver:
         p1 = original_init_data.settings.calc_settings.calc_over_param1
         param_type = p1.param_type
 
+        # Этап 1: Подготовка параметров
+        self.__update_progress(5, "Подготовка параметров для расчета...")
+
         if param_type == CalcParamTypeEnum.FRACT_PERM:
             start_log = np.log10(p1.start_value)
             end_log = np.log10(p1.end_value)
             orig_values = np.logspace(start_log, end_log, num=p1.point_count)
         else:
-            orig_values = np.linspace(p1.start_value, p1.end_value, p1.point_count)
+            orig_values = np.linspace(p1.start_value, p1.end_value, num=p1.point_count)
 
         worker = ParamDataWorker()
         init_datas: List[InitialData] = []
 
-        for user_value in orig_values:
+        # Этап 2: Создание наборов данных
+        self.__update_progress(10, "Создание наборов данных...")
+        for i, user_value in enumerate(orig_values):
+            progress = 10 + int((i / len(orig_values)) * 10)  # 10-20%
+            self.__update_progress(
+                progress, f"Подготовка данных {i+1}/{len(orig_values)}..."
+            )
+
             si_value = param_type.to_si(user_value)
             init_d = worker.create_initial_data(
                 original_init_data,
@@ -86,7 +113,15 @@ class MainSolver:
             )
             init_datas.append(init_d)
 
-        for calc_model in original_init_data.settings.calc_models:
+        total_models = len(original_init_data.settings.calc_models)
+        total_iterations = total_models * len(init_datas)
+
+        # Этап 3: Расчет по моделям
+        current_iteration = 0
+
+        for model_index, calc_model in enumerate(
+            original_init_data.settings.calc_models
+        ):
             start_time = time.perf_counter()
             model_type = calc_model.tp
             model = ModelResultData()
@@ -94,13 +129,29 @@ class MainSolver:
             model.q_values = []
             model.param1_type = p1.param_type
             model.param1_values = orig_values
-            for init_d in init_datas:
+
+            self.__update_progress(20, f"Запуск расчета модели {model.name}...")
+
+            for data_index, init_d in enumerate(init_datas):
+                # Обновляем прогресс для каждой итерации
+                current_iteration += 1
+                progress = 20 + int(
+                    (current_iteration / total_iterations) * 75
+                )  # 20-95%
+
+                self.__update_progress(
+                    progress,
+                    f"Модель {model.name}: точка {data_index+1}/{len(init_datas)}",
+                )
+
                 self.__result.initial_data = init_d
                 q = self.__calc_model_q(model_type)
                 model.q_values.append(q)
+
             self.__result.result.models.append(model)
             end_time = time.perf_counter()
             calc_time = end_time - start_time
+
             self.__logs.append(
                 make_log(
                     f"{model.name} calculated in {calc_time:.2f} sec",
@@ -109,6 +160,8 @@ class MainSolver:
                     True,
                 )
             )
+
+        self.__update_progress(100, "Параметрический расчет завершен")
 
     def __calc_model_q(self, model_type: ModelsEnum) -> float:
         setts = CalculatorSettings()
