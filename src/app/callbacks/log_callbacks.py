@@ -1,6 +1,6 @@
 from dash import Input, Output, State, html, ctx
-import dash_bootstrap_components as dbc
 
+from src.app.services.log_item_worker import render_log_item
 from src.core.models.logcategory import LogCategory
 from src.core.models.loglevel import LogLevel
 
@@ -51,8 +51,6 @@ def register(app):
         if not info_outline:
             active_levels.append(LogLevel.INFO.value)
 
-        print(checklist)
-
         # Если отмечен "Show system logs" — добавляем DEBUG
         if "system" in checklist:
             active_levels.append(LogLevel.DEBUG.value)
@@ -85,10 +83,8 @@ def register(app):
             )
 
             if level not in active_levels:
-                print (f"{log} is not active")
                 continue
             if category not in allowed_categories:
-                print (f"{log} is not allowed category")
                 continue
             if search_text and search_text not in log["message"].lower():
                 continue
@@ -100,44 +96,7 @@ def register(app):
                 "No logs match the filters.", className="text-muted fst-italic"
             )
 
-        # === Визуализация ===
-        def render_log_item(log):
-            level = (
-                log["level"].value
-                if hasattr(log["level"], "value")
-                else str(log["level"])
-            )
-            color_map = {
-                "DEBUG": "secondary",
-                "INFO": "info",
-                "WARNING": "warning",
-                "ERROR": "danger",
-                "CRITICAL": "dark",
-            }
-            badge_color = color_map.get(level, "secondary")
-
-            category = (
-                log["category"].value
-                if hasattr(log["category"], "value")
-                else str(log["category"])
-            )
-
-            return dbc.Card(
-                dbc.CardBody(
-                    [
-                        html.Small(
-                            f"[{log['timestamp']}]", className="text-muted me-2"
-                        ),
-                        dbc.Badge(level, color=badge_color, className="me-2"),
-                        html.Span(f"{category.upper()}: ", className="fw-semibold"),
-                        html.Span(log["message"]),
-                    ],
-                    className="py-2",
-                ),
-                className="mb-1 shadow-sm border-0 bg-light",
-            )
-
-        return html.Div([render_log_item(log) for log in filtered])
+        return html.Div([render_log_item(log, search_text) for log in filtered])
 
     @app.callback(
         Output("filter-error", "outline"),
