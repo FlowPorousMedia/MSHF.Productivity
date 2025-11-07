@@ -140,10 +140,36 @@ dd {
 }
 
 #scheme-svg {
-    width: 100% !important;
-    max-width: 100%;
+  width: 100% !important;
+  max-width: 100%;
 }
 
 .sidebar svg {
-    width: 100% !important;
+  width: 100% !important;
+}
+
+/* Убираем заливку при наведении на outline-кнопки */
+.btn-outline-danger:hover,
+.btn-outline-warning:hover,
+.btn-outline-info:hover {
+  background-color: transparent !important;
+  /* оставляем белый фон */
+  color: inherit !important;
+  /* не меняем цвет текста */
+  border-color: currentColor !important;
+  /* используем текущий цвет рамки */
+  box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.05);
+  /* лёгкая тень при наведении */
+}
+
+/* Чтобы при активной кнопке outline=False — выглядело как настоящая заливка */
+.btn-danger:not(.btn-outline-danger),
+.btn-warning:not(.btn-outline-warning),
+.btn-info:not(.btn-outline-info) {
+  color: white !important;
+}
+
+/* Мягкий переход */
+.btn {
+  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 }
