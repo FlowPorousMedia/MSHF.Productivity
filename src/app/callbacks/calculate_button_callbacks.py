@@ -1,4 +1,4 @@
-from dash import Input, Output, State, no_update, exceptions
+from dash import Input, Output, State, no_update, exceptions, html
 from src.app.models.parametric_settings import ParametricSettings
 from src.app.models.result import Result
 from src.app.models.result_details import ResultDetails
@@ -58,7 +58,7 @@ def register(app):
             "alignItems": "center",
             "marginLeft": "10px",
         }
-        status_text = "Подготовка к расчету..."
+        status_text = "Preparing for calculation..."
 
         if CalcPreprocessor.is_default_params(well, reservoir, fluid, fracture, logs):
             data = {
@@ -304,6 +304,37 @@ def register(app):
             "Расчет завершен успешно",
             100,
             "100%",
-            {"display": "none"},
+            {"display": "flex", "flex": "0 0 auto", "alignItems": "center"},
             "idle",
         )
+
+    @app.callback(
+        Output("graph-container", "children", allow_duplicate=True),
+        Output("table-container", "children", allow_duplicate=True),
+        Input("message-response", "data"),  # ← меняем триггер на ответ от диалога
+        State("calculate-button", "n_clicks"),
+        prevent_initial_call=True,
+    )
+    def clear_containers(msg_response, n_clicks):
+        if not n_clicks or not msg_response:
+            raise exceptions.PreventUpdate
+
+        # Очищаем только если пользователь нажал "Yes"
+        if (
+            msg_response.get("context") == "confirm_calc_start"
+            and msg_response.get("response") == "Yes"
+        ):
+            empty_content = html.Div(
+                [
+                    html.Div(
+                        [
+                            html.I(className="bi bi-hourglass-split me-2"),
+                            "Calculation in progress...",
+                        ],
+                        className="alert alert-info d-flex align-items-center",
+                    ),
+                ]
+            )
+            return empty_content, empty_content
+
+        raise exceptions.PreventUpdate

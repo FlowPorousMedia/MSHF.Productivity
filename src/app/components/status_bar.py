@@ -18,6 +18,7 @@ def create_status_bar():
             "fontSize": "12px",
             "boxSizing": "border-box",
             "width": "100%",
+            "gap": "10px",
         },
         children=[
             # Status text
@@ -25,10 +26,11 @@ def create_status_bar():
                 id="status-text",
                 children="Ready for calculation",
                 style={
-                    "flex": 1,
+                    "flex": "0 0 auto",
                     "whiteSpace": "nowrap",
                     "overflow": "hidden",
                     "textOverflow": "ellipsis",
+                    "minWidth": "150px",
                 },
             ),
             # Progress bar (hidden by default)
@@ -36,7 +38,7 @@ def create_status_bar():
                 id="progress-wrapper",
                 style={
                     "display": "none",
-                    "flex": "1",
+                    "flex": "0 0 auto",
                     "alignItems": "center",
                     "marginLeft": "10px",
                 },
@@ -49,7 +51,7 @@ def create_status_bar():
                         animated=True,
                         style={
                             "height": "12px",
-                            "width": "200px",
+                            "width": "400px",
                             "marginRight": "10px",
                         },
                     ),
