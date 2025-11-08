@@ -20,6 +20,11 @@ providing a quick and efficient solution for well performance evaluation.
 
 [Онлайн версия программы (Online Tool)](https://mshf-productivity.onrender.com)
 
+> ⚠️ **Примечание (Note):**
+> При первом запуске онлайн-версии может быть небольшая задержка загрузки — это нормально.
+> The first load of the online version may take a bit longer — this is normal.
+
+
 [Руководство пользователя (User Guide)](https://github.com/FlowPorousMedia/MSHF.Productivity/wiki)
 
 ---
