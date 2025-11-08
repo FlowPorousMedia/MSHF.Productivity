@@ -1,20 +1,133 @@
 import dash_bootstrap_components as dbc
-from dash import html, Input, Output, State, no_update
+from dash import html, dcc
 
 
 def create_logs_modal():
     return dbc.Modal(
         [
-            dbc.ModalHeader(dbc.ModalTitle("Calculation Logs")),
-            dbc.ModalBody(id="logs-body"),  # сюда будем рендерить логи
+            dbc.ModalHeader(dbc.ModalTitle("Log Viewer"), close_button=False),
+            dbc.ModalBody(
+                [
+                    # 1. Первая строка — фильтры по уровням
+                    dbc.Row(
+                        [
+                            dbc.Col(
+                                html.Div("Show logs for:", className="fw-semibold"),
+                                width="auto",
+                            ),
+                            dbc.Col(
+                                dbc.ButtonGroup(
+                                    [
+                                        dbc.Button(
+                                            "ERROR",
+                                            id="filter-error",
+                                            color="danger",
+                                            outline=False,
+                                            n_clicks=0,
+                                        ),
+                                        dbc.Button(
+                                            "WARNING",
+                                            id="filter-warning",
+                                            color="warning",
+                                            outline=False,
+                                            n_clicks=0,
+                                        ),
+                                        dbc.Button(
+                                            "INFO",
+                                            id="filter-info",
+                                            color="info",
+                                            outline=False,
+                                            n_clicks=0,
+                                        ),
+                                    ],
+                                    size="sm",
+                                ),
+                                width="auto",
+                            ),
+                        ],
+                        className="g-2 mb-2 align-items-center",
+                    ),
+                    # 2. Чекбоксы
+                    dbc.Row(
+                        dbc.Col(
+                            dbc.Checklist(
+                                options=[
+                                    {
+                                        "label": "Show only calculation logs",
+                                        "value": "calc",
+                                    },
+                                    {"label": "Show system logs", "value": "system"},
+                                ],
+                                value=["calc"],
+                                id="logs-checklist",
+                                inline=True,
+                                switch=True,
+                            )
+                        ),
+                        className="mb-2",
+                    ),
+                    # 3. Поиск
+                    dbc.Row(
+                        [
+                            dbc.Col(
+                                html.Div("Search:", className="fw-semibold text-end"),
+                                width="auto",
+                                className="align-self-center pe-0",  # убираем лишний отступ справа
+                            ),
+                            dbc.Col(
+                                dbc.Input(
+                                    id="logs-search",
+                                    type="text",
+                                    placeholder="Search in logs...",
+                                    size="sm",
+                                ),
+                                width=6,
+                            ),
+                        ],
+                        className="mb-3",
+                    ),
+                    html.Div(
+                        id="logs-count",
+                        className="text-muted small mb-2 fst-italic",
+                    ),
+                    # 4. Тело логов
+                    html.Div(id="logs-body", className="logs-container"),
+                    dcc.Interval(
+                        id="copy-tooltip-interval",
+                        interval=1000,  # 1 секунда
+                        disabled=True,
+                        n_intervals=0,
+                    ),
+                ]
+            ),
             dbc.ModalFooter(
-                dbc.Button(
-                    "Close", id="close-logs-button", className="ms-auto", n_clicks=0
-                )
+                [
+                    dbc.Button(
+                        "Save",
+                        id="save-logs-button",
+                        color="success",
+                        className="me-2",
+                        n_clicks=0,
+                    ),
+                    dbc.Button(
+                        "Clear",
+                        id="clear-logs-button",
+                        color="danger",
+                        outline=True,
+                        className="me-2",
+                        n_clicks=0,
+                    ),
+                    dbc.Button(
+                        "Close", id="close-logs-button", className="ms-auto", n_clicks=0
+                    ),
+                    dcc.Download(id="download-logs"),  # 👈 компонент для скачивания
+                ]
             ),
         ],
         id="modal-logs",
         is_open=False,
-        size="lg",  # можно md / lg / xl
-        scrollable=True,  # если логов много
+        size="xl",
+        scrollable=True,
+        backdrop="static",
+        keyboard=False,
     )
