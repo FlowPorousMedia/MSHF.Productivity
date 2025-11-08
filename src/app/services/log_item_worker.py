@@ -1,4 +1,5 @@
 import re
+from typing import Any, Dict, List
 import uuid
 from dash import html, dcc
 import dash_bootstrap_components as dbc
@@ -85,3 +86,52 @@ def render_log_item(log, search_text=None):
         ),
         className="mb-1 shadow-sm border-0 bg-light",
     )
+
+
+def filter_logs(
+    logs: List[Dict[str, Any]],
+    err_outline: bool,
+    warn_outline: bool,
+    info_outline: bool,
+    checklist: list,
+    search_text: str,
+) -> list:
+    """Возвращает список логов, отфильтрованных по уровням, категориям и поиску."""
+
+    if not logs:
+        return []
+
+    # === Активные уровни ===
+    active_levels = []
+    if not err_outline:
+        active_levels.append("ERROR")
+    if not warn_outline:
+        active_levels.append("WARNING")
+    if not info_outline:
+        active_levels.append("INFO")
+    if "system" in checklist:
+        active_levels.append("DEBUG")
+
+    # === Категории ===
+    if "calc" in checklist:
+        allowed_categories = ["calculation"]
+    else:
+        allowed_categories = ["calculation", "ui", "check_data", "system"]
+
+    # === Поиск ===
+    search_text = (search_text or "").lower().strip()
+
+    # === Фильтрация ===
+    filtered = []
+    for log in logs:
+        level = str(getattr(log["level"], "value", log["level"]))
+        category = str(getattr(log["category"], "value", log["category"]))
+        if level not in active_levels:
+            continue
+        if category not in allowed_categories:
+            continue
+        if search_text and search_text not in log["message"].lower():
+            continue
+        filtered.append(log)
+
+    return filtered

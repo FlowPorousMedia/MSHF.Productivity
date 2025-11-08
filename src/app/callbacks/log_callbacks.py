@@ -4,7 +4,7 @@ import dash
 from dash import ALL, Input, Output, State, html, ctx, no_update, dcc
 
 from src.app._version import SOFTWARE_TITLE, USER_VERSION
-from src.app.services.log_item_worker import render_log_item
+from src.app.services.log_item_worker import filter_logs, render_log_item
 from src.core.models.logcategory import LogCategory
 from src.core.models.loglevel import LogLevel
 
@@ -46,54 +46,9 @@ def register(app):
         if not logs:
             return html.Div("No logs yet.", className="text-muted fst-italic")
 
-        # === Активные уровни ===
-        active_levels = []
-        if not err_outline:
-            active_levels.append(LogLevel.ERROR.value)
-        if not warn_outline:
-            active_levels.append(LogLevel.WARNING.value)
-        if not info_outline:
-            active_levels.append(LogLevel.INFO.value)
-
-        # Если отмечен "Show system logs" — добавляем DEBUG
-        if "system" in checklist:
-            active_levels.append(LogLevel.DEBUG.value)
-
-        # === Категории ===
-        if "calc" in checklist:
-            allowed_categories = [LogCategory.CALCULATION.value]
-        else:
-            allowed_categories = [
-                LogCategory.CALCULATION.value,
-                LogCategory.UI.value,
-                LogCategory.CHECK_DATA.value,
-                LogCategory.SYSTEM.value,
-            ]
-
-        # === Фильтрация логов ===
-        filtered = []
-        search_text = (search_text or "").lower().strip()
-
-        for log in logs:
-            level = (
-                log["level"].value
-                if hasattr(log["level"], "value")
-                else str(log["level"])
-            )
-            category = (
-                log["category"].value
-                if hasattr(log["category"], "value")
-                else str(log["category"])
-            )
-
-            if level not in active_levels:
-                continue
-            if category not in allowed_categories:
-                continue
-            if search_text and search_text not in log["message"].lower():
-                continue
-
-            filtered.append(log)
+        filtered = filter_logs(
+            logs, err_outline, warn_outline, info_outline, checklist, search_text
+        )
 
         if not filtered:
             return html.Div(
@@ -190,35 +145,9 @@ def register(app):
         if not n_clicks or not logs:
             return dash.no_update
 
-        # === Логика та же, что в render_logs ===
-        active_levels = []
-        if not err_outline:
-            active_levels.append("ERROR")
-        if not warn_outline:
-            active_levels.append("WARNING")
-        if not info_outline:
-            active_levels.append("INFO")
-        if "system" in checklist:
-            active_levels.append("DEBUG")
-
-        if "calc" in checklist:
-            allowed_categories = ["calculation"]
-        else:
-            allowed_categories = ["calculation", "ui", "check_data", "system"]
-
-        search_text = (search_text or "").lower().strip()
-
-        filtered = []
-        for log in logs:
-            level = str(getattr(log["level"], "value", log["level"]))
-            category = str(getattr(log["category"], "value", log["category"]))
-            if level not in active_levels:
-                continue
-            if category not in allowed_categories:
-                continue
-            if search_text and search_text not in log["message"].lower():
-                continue
-            filtered.append(log)
+        filtered = filter_logs(
+            logs, err_outline, warn_outline, info_outline, checklist, search_text
+        )
 
         if not filtered:
             return dash.no_update
@@ -254,3 +183,24 @@ def register(app):
                 "cursor": "not-allowed",
             }
         return False, {"opacity": "1.0", "cursor": "pointer"}
+
+    @app.callback(
+        Output("logs-count", "children"),
+        Input("log-store", "data"),
+        Input("filter-error", "outline"),
+        Input("filter-warning", "outline"),
+        Input("filter-info", "outline"),
+        Input("logs-checklist", "value"),
+        Input("logs-search", "value"),
+    )
+    def update_logs_count(
+        logs, err_outline, warn_outline, info_outline, checklist, search_text
+    ):
+        if not logs:
+            return "Showing 0 messages"
+
+        filtered = filter_logs(
+            logs, err_outline, warn_outline, info_outline, checklist, search_text
+        )
+
+        return f"Showing {len(filtered)} of {len(logs)} messages"

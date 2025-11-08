@@ -86,6 +86,10 @@ def create_logs_modal():
                         ],
                         className="mb-3",
                     ),
+                    html.Div(
+                        id="logs-count",
+                        className="text-muted small mb-2 fst-italic",
+                    ),
                     # 4. Тело логов
                     html.Div(id="logs-body", className="logs-container"),
                     dcc.Interval(
