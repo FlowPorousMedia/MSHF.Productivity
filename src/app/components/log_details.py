@@ -1,5 +1,5 @@
 import dash_bootstrap_components as dbc
-from dash import html
+from dash import html, dcc
 
 
 def create_logs_modal():
@@ -88,6 +88,12 @@ def create_logs_modal():
                     ),
                     # 4. Тело логов
                     html.Div(id="logs-body", className="logs-container"),
+                    dcc.Interval(
+                        id="copy-tooltip-interval",
+                        interval=1000,  # 1 секунда
+                        disabled=True,
+                        n_intervals=0,
+                    ),
                 ]
             ),
             dbc.ModalFooter(

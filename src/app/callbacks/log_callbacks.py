@@ -1,4 +1,6 @@
-from dash import Input, Output, State, html, ctx
+import time
+import dash
+from dash import ALL, Input, Output, State, html, ctx, no_update
 
 from src.app.services.log_item_worker import render_log_item
 from src.core.models.logcategory import LogCategory
@@ -120,3 +122,51 @@ def register(app):
             outlines[idx] = not outlines[idx]  # переключаем
 
         return outlines
+
+    @app.callback(
+        Output({"type": "copy-log", "index": ALL}, "children"),
+        Output({"type": "copy-tooltip", "index": ALL}, "is_open"),
+        Output("copy-tooltip-interval", "disabled"),
+        Output("copy-tooltip-interval", "n_intervals"),
+        Input({"type": "copy-log", "index": ALL}, "n_clicks"),
+        Input("copy-tooltip-interval", "n_intervals"),
+        State({"type": "copy-tooltip", "index": ALL}, "is_open"),
+        prevent_initial_call=True,
+    )
+    def copy_icon_and_tooltip(n_clicks_list, tick, current_tooltips):
+        n = len(n_clicks_list)
+        default_icons = [html.I(className="fas fa-copy text-muted")] * n
+        all_closed = [False] * n
+        disable_interval = True
+        reset_ticks = 0
+
+        # если ничего не кликнули и не тикает
+        if not n or (not any(n_clicks_list) and (tick is None or tick == 0)):
+            return default_icons, all_closed, disable_interval, reset_ticks
+
+        triggered = ctx.triggered_id
+
+        # ⏱ тикнул интервал — закрываем все тултипы
+        if triggered == "copy-tooltip-interval":
+            return default_icons, all_closed, True, 0
+
+        # 🖱 клик по кнопке копирования
+        if isinstance(triggered, dict) and triggered.get("type") == "copy-log":
+            clicked_ts = triggered["index"]
+
+            icons = []
+            tooltips = []
+            # проходим по всем id, реально сравнивая значение index
+            for i, btn in enumerate(ctx.inputs_list[0]):
+                idx = btn["id"]["index"]
+                if idx == str(clicked_ts):
+                    icons.append(html.I(className="fas fa-copy text-primary"))
+                    tooltips.append(True)  # показать тултип только у нужного
+                else:
+                    icons.append(html.I(className="fas fa-copy text-muted"))
+                    tooltips.append(False)
+
+            # включаем интервал на 1 секунду для автозакрытия
+            return icons, tooltips, False, 0
+
+        return default_icons, all_closed, True, 0
