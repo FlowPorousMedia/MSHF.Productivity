@@ -99,6 +99,13 @@ def create_logs_modal():
             dbc.ModalFooter(
                 [
                     dbc.Button(
+                        "Save",
+                        id="save-logs-button",
+                        color="success",
+                        className="me-2",
+                        n_clicks=0,
+                    ),
+                    dbc.Button(
                         "Clear",
                         id="clear-logs-button",
                         color="danger",
@@ -109,6 +116,7 @@ def create_logs_modal():
                     dbc.Button(
                         "Close", id="close-logs-button", className="ms-auto", n_clicks=0
                     ),
+                    dcc.Download(id="download-logs"),  # 👈 компонент для скачивания
                 ]
             ),
         ],

@@ -1,7 +1,9 @@
+from datetime import datetime
 import time
 import dash
-from dash import ALL, Input, Output, State, html, ctx, no_update
+from dash import ALL, Input, Output, State, html, ctx, no_update, dcc
 
+from src.app._version import SOFTWARE_TITLE, USER_VERSION
 from src.app.services.log_item_worker import render_log_item
 from src.core.models.logcategory import LogCategory
 from src.core.models.loglevel import LogLevel
@@ -170,3 +172,85 @@ def register(app):
             return icons, tooltips, False, 0
 
         return default_icons, all_closed, True, 0
+
+    @app.callback(
+        Output("download-logs", "data"),
+        Input("save-logs-button", "n_clicks"),
+        State("log-store", "data"),
+        State("filter-error", "outline"),
+        State("filter-warning", "outline"),
+        State("filter-info", "outline"),
+        State("logs-checklist", "value"),
+        State("logs-search", "value"),
+        prevent_initial_call=True,
+    )
+    def save_filtered_logs(
+        n_clicks, logs, err_outline, warn_outline, info_outline, checklist, search_text
+    ):
+        if not n_clicks or not logs:
+            return dash.no_update
+
+        # === Логика та же, что в render_logs ===
+        active_levels = []
+        if not err_outline:
+            active_levels.append("ERROR")
+        if not warn_outline:
+            active_levels.append("WARNING")
+        if not info_outline:
+            active_levels.append("INFO")
+        if "system" in checklist:
+            active_levels.append("DEBUG")
+
+        if "calc" in checklist:
+            allowed_categories = ["calculation"]
+        else:
+            allowed_categories = ["calculation", "ui", "check_data", "system"]
+
+        search_text = (search_text or "").lower().strip()
+
+        filtered = []
+        for log in logs:
+            level = str(getattr(log["level"], "value", log["level"]))
+            category = str(getattr(log["category"], "value", log["category"]))
+            if level not in active_levels:
+                continue
+            if category not in allowed_categories:
+                continue
+            if search_text and search_text not in log["message"].lower():
+                continue
+            filtered.append(log)
+
+        if not filtered:
+            return dash.no_update
+
+        # === Формируем текст ===
+        lines = []
+        for log in filtered:
+            lines.append(
+                f"[{log['timestamp']}] {getattr(log['level'], 'value', log['level'])} "
+                f"{getattr(log['category'], 'value', log['category']).upper()}: {log['message']}"
+            )
+        content = "\n".join(lines)
+
+        # === Формируем имя файла ===
+        filename = (
+            f"{SOFTWARE_TITLE}_v{USER_VERSION}_logs_"
+            f"{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.txt"
+        )
+
+        # === Отправляем файл ===
+        return dcc.send_string(content, filename)
+
+    @app.callback(
+        Output("save-logs-button", "disabled"),
+        Output("save-logs-button", "style"),
+        Input("log-store", "data"),
+    )
+    def toggle_save_button(logs):
+        if not logs or len(logs) == 0:
+            return True, {
+                "opacity": "0.5",
+                "pointerEvents": "none",
+                "cursor": "not-allowed",
+            }
+        return False, {"opacity": "1.0", "cursor": "pointer"}
