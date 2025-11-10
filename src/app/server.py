@@ -3,6 +3,7 @@ import dash_bootstrap_components as dbc
 import diskcache
 
 
+from src.app.i18n import tr
 from src.app.components.about_modal import create_about_modal
 from src.app.components.log_details import create_logs_modal
 from src.app.components.model_details import create_model_details_modal
@@ -57,7 +58,11 @@ def create_app() -> Dash:
                     create_about_modal(),
                     create_model_details_modal(),
                     get_message_dialog(
-                        "msg-dialog", "Message", "Default", MessageType.INFO, ["OK"]
+                        "msg-dialog",
+                        tr("Message"),
+                        tr("Default"),
+                        MessageType.INFO,
+                        [tr("OK")],
                     ),
                     create_logs_modal(),
                 ],
