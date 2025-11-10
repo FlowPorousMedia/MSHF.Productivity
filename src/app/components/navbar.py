@@ -43,9 +43,9 @@ def create_navbar():
                                         [
                                             dbc.DropdownMenu(
                                                 [
-                                                    # dbc.DropdownMenuItem(
-                                                    #     "Русский", id="lang-ru"
-                                                    # ),
+                                                    dbc.DropdownMenuItem(
+                                                        "Русский", id="lang-ru"
+                                                    ),
                                                     dbc.DropdownMenuItem(
                                                         "English", id="lang-en"
                                                     ),
@@ -53,7 +53,7 @@ def create_navbar():
                                                 label=html.I(
                                                     className="fas fa-language",
                                                     id="language-icon",
-                                                ),  # Default flag icon
+                                                ),
                                                 nav=True,
                                                 id="language-dropdown",
                                                 align_end=True,

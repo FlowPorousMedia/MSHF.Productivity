@@ -41,22 +41,27 @@ def create_app() -> Dash:
         # style={"height": "100vh", "display": "flex"},
         children=[
             dcc.Location(id="url", refresh=False),  # Add this to handle URL routing
-            # Navbar at the top
-            create_navbar(),
-            # Content area with sidebar and main content
             html.Div(
-                style={"display": "flex", "flex": 1, "overflow": "hidden"},
+                id="app-content-container",
                 children=[
-                    create_sidebar(),
-                    create_main_content(),
+                    # Navbar at the top
+                    create_navbar(),
+                    # Content area with sidebar and main content
+                    html.Div(
+                        style={"display": "flex", "flex": 1, "overflow": "hidden"},
+                        children=[
+                            create_sidebar(),
+                            create_main_content(),
+                        ],
+                    ),
+                    create_about_modal(),
+                    create_model_details_modal(),
+                    get_message_dialog(
+                        "msg-dialog", "Message", "Default", MessageType.INFO, ["OK"]
+                    ),
+                    create_logs_modal(),
                 ],
             ),
-            create_about_modal(),
-            create_model_details_modal(),
-            get_message_dialog(
-                "msg-dialog", "Message", "Default", MessageType.INFO, ["OK"]
-            ),
-            create_logs_modal(),
             # ===============
             # Add stores for parameter groups
             # ===============
@@ -69,7 +74,7 @@ def create_app() -> Dash:
             dcc.Store(id="analytical-models-store", data=get_analytic_models()),
             dcc.Store(id="semianalytical-models-store", data=get_semianalytic_models()),
             # dcc.Store(id="numerical-models-store", data=get_numerical_models()),
-            dcc.Store(id="language-store", data="en"),
+            dcc.Store(id="language-store", data="ru"),
             dcc.Store(id="log-store", data=[]),
             dcc.Store(id="solver-result-store", data=None),
             # ===============
