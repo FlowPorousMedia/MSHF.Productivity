@@ -3,7 +3,7 @@ import dash_bootstrap_components as dbc
 import diskcache
 
 
-from src.app.i18n import tr
+from src.app.i18n import _, set_language
 from src.app.components.about_modal import create_about_modal
 from src.app.components.log_details import create_logs_modal
 from src.app.components.model_details import create_model_details_modal
@@ -21,7 +21,10 @@ from src.app._version import SOFTWARE_TITLE
 def create_app() -> Dash:
     """
     Initialize the app
+
     """
+
+    set_language("ru")
 
     cache = diskcache.Cache("./cache")
     background_callback_manager = DiskcacheManager(cache)
@@ -59,10 +62,10 @@ def create_app() -> Dash:
                     create_model_details_modal(),
                     get_message_dialog(
                         "msg-dialog",
-                        tr("Message"),
-                        tr("Default"),
+                        _("Message"),
+                        _("Default"),
                         MessageType.INFO,
-                        [tr("OK")],
+                        [_("OK")],
                     ),
                     create_logs_modal(),
                 ],

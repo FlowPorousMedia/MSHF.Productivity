@@ -1,6 +1,7 @@
 from dash import html
 import dash_bootstrap_components as dbc
 
+from src.app.i18n import _
 from src.app._version import SOFTWARE_TITLE
 
 
@@ -59,6 +60,7 @@ def create_navbar():
                                                 align_end=True,
                                             ),
                                             dbc.Tooltip(
+                                                _("Language"),
                                                 id="language-tooltip",
                                                 target="language-icon",
                                                 placement="left",
@@ -81,6 +83,7 @@ def create_navbar():
                                                 id="guide-navlink",
                                             ),
                                             dbc.Tooltip(
+                                                _("Guide"),
                                                 id="guide-tooltip",
                                                 target="guide-icon",
                                                 placement="left",

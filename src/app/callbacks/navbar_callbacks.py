@@ -1,6 +1,8 @@
 import dash
 from dash import Input, Output, State, ctx
 
+from src.app.i18n import set_language, _
+
 
 def register(app):
     # Callback for language selection (you would expand this based on your i18n implementation)
@@ -11,10 +13,13 @@ def register(app):
         prevent_initial_call=True,
     )
     def update_language(ru_clicks, en_clicks):
+        print("I am inside the update_language")
         trigger = ctx.triggered_id
         if trigger == "lang-ru":
+            print("Language changed to russian")
             return "ru"
         elif trigger == "lang-en":
+            print("Language changed to english")
             return "en"
         raise dash.exceptions.PreventUpdate
 
@@ -40,6 +45,26 @@ def register(app):
             return not is_open
         return is_open
 
+    # @app.callback(
+    #     Output("github-tooltip", "children"),
+    #     Output("language-tooltip", "children"),
+    #     Output("guide-tooltip", "children"),
+    #     Output("about-tooltip", "children"),
+    #     Input("language-store", "data"),
+    # )
+    # def update_tooltips(language):
+    #     if language == "ru":
+    #         return "GitHub", "Язык", "Руководство пользователя", "О программе"
+    #     else:
+    #         return "GitHub", "Language", "User Guide", "About"
+
+    @app.callback(Output("guide-navlink", "href"), Input("language-store", "data"))
+    def update_guide_link(language):
+        if language == "ru":
+            return "https://github.com/FlowPorousMedia/MSHF.Productivity/wiki/Home-RU"
+        else:
+            return "https://github.com/FlowPorousMedia/MSHF.Productivity/wiki/Home-EN"
+
     @app.callback(
         Output("github-tooltip", "children"),
         Output("language-tooltip", "children"),
@@ -48,14 +73,13 @@ def register(app):
         Input("language-store", "data"),
     )
     def update_tooltips(language):
-        if language == "ru":
-            return "GitHub", "Язык", "Руководство пользователя", "О программе"
-        else:
-            return "GitHub", "Language", "User Guide", "About"
+        # переключаем язык в gettext
+        set_language(language)
+        print("Language set to:", language)
 
-    @app.callback(Output("guide-navlink", "href"), Input("language-store", "data"))
-    def update_guide_link(language):
-        if language == "ru":
-            return "https://github.com/FlowPorousMedia/MSHF.Productivity/wiki/Home-RU"
-        else:
-            return "https://github.com/FlowPorousMedia/MSHF.Productivity/wiki/Home-EN"
+        return (
+            _("GitHub"),
+            _("Language"),
+            _("Guide"),
+            _("About"),
+        )

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-10 14:23+0300\n"
-"PO-Revision-Date: 2025-11-10 14:29+0300\n"
+"POT-Creation-Date: 2025-11-10 19:53+0300\n"
+"PO-Revision-Date: 2025-11-10 19:47+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
 "Language-Team: en <LL@li.org>\n"
@@ -17,4 +17,24 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.17.0\n"
+
+#: src/app/server.py:65
+msgid "Message"
+msgstr "Message"
+
+#: src/app/server.py:66
+msgid "Default"
+msgstr "Default"
+
+#: src/app/server.py:68
+msgid "OK"
+msgstr "OK"
+
+#: src/app/components/navbar.py:63
+msgid "Language"
+msgstr "Language"
+
+#: src/app/components/navbar.py:85
+msgid "Guide"
+msgstr "Guide"
 
