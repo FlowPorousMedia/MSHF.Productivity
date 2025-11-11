@@ -31,6 +31,7 @@ def create_navbar():
                                                 style={"fontSize": "1.2rem"},
                                             ),
                                             dbc.Tooltip(
+                                                _("Github"),
                                                 id="github-tooltip",
                                                 target="github-icon",
                                                 placement="left",
@@ -104,6 +105,7 @@ def create_navbar():
                                                 style={"fontSize": "1.2rem"},
                                             ),
                                             dbc.Tooltip(
+                                                _("About"),
                                                 id="about-tooltip",
                                                 target="about-icon",
                                                 placement="left",

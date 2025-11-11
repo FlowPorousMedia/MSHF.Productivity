@@ -21,3 +21,6 @@ init:
 	done
 
 translate: extract update compile
+
+run:
+	python3 main.py
