@@ -2,6 +2,7 @@ import dash
 from dash import Input, Output, State, ctx
 
 from src.app.i18n import set_language, _
+from src.app.services.translator_helpers import with_language
 
 
 def register(app):
@@ -45,19 +46,6 @@ def register(app):
             return not is_open
         return is_open
 
-    # @app.callback(
-    #     Output("github-tooltip", "children"),
-    #     Output("language-tooltip", "children"),
-    #     Output("guide-tooltip", "children"),
-    #     Output("about-tooltip", "children"),
-    #     Input("language-store", "data"),
-    # )
-    # def update_tooltips(language):
-    #     if language == "ru":
-    #         return "GitHub", "Язык", "Руководство пользователя", "О программе"
-    #     else:
-    #         return "GitHub", "Language", "User Guide", "About"
-
     @app.callback(Output("guide-navlink", "href"), Input("language-store", "data"))
     def update_guide_link(language):
         if language == "ru":
@@ -72,13 +60,10 @@ def register(app):
         Output("about-tooltip", "children"),
         Input("language-store", "data"),
     )
+    @with_language
     def update_tooltips(language):
-        # переключаем язык в gettext
-        set_language(language)
-        print("Language set to:", language)
-
         return (
-            _("GitHub"),
+            _("Github"),
             _("Language"),
             _("Guide"),
             _("About"),

@@ -13,6 +13,7 @@ from src.app.callbacks import (
     log_callbacks,
     task_scheme_callbacks,
     message_bus_callbacks,
+    common_callbacks,
 )
 
 
@@ -31,3 +32,4 @@ def register_all_callbacks(app):
     log_callbacks.register(app)
     task_scheme_callbacks.register(app)
     message_bus_callbacks.register(app)
+    common_callbacks.register(app)

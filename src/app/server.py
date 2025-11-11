@@ -82,7 +82,7 @@ def create_app() -> Dash:
             dcc.Store(id="analytical-models-store", data=get_analytic_models()),
             dcc.Store(id="semianalytical-models-store", data=get_semianalytic_models()),
             # dcc.Store(id="numerical-models-store", data=get_numerical_models()),
-            dcc.Store(id="language-store", data="ru"),
+            dcc.Store(id="language-store", data="ru", storage_type="local"),
             dcc.Store(id="log-store", data=[]),
             dcc.Store(id="solver-result-store", data=None),
             # ===============

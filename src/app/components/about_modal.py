@@ -2,12 +2,13 @@ from dash import html
 import dash_bootstrap_components as dbc
 
 from src.app._version import SOFTWARE_TITLE, USER_VERSION
+from src.app.i18n import _
 
 
 def create_about_modal():
     return dbc.Modal(
         [
-            dbc.ModalHeader(f"About {SOFTWARE_TITLE} (v.{USER_VERSION})"),
+            dbc.ModalHeader(f"{_('About')} {SOFTWARE_TITLE} (v.{USER_VERSION})"),
             dbc.ModalBody(
                 [
                     html.H4(
@@ -15,24 +16,30 @@ def create_about_modal():
                             html.Span(
                                 "MSHF.Productivity", style={"font-weight": "bold"}
                             ),
-                            " is a powerful Productivity Evaluation Tool for Multistage Fractured Horizontal Wells (MSHF)",
+                            " "
+                            + _(
+                                "is a powerful Productivity Evaluation Tool for Multistage Fractured Horizontal Wells (MSHF)"
+                            ),
                         ]
                     ),
                     html.P(
-                        "This software tool enables petroleum engineers to rapidly forecast production rates for multistage "
-                        "fractured horizontal wells. It utilizes analytical modeling to perform steady-state flow analysis, "
-                        "providing a quick and efficient solution for well performance evaluation."
+                        _(
+                            "This software tool enables petroleum engineers to rapidly forecast production rates for multistage "
+                            "fractured horizontal wells. It utilizes analytical modeling to perform steady-state flow analysis, "
+                            "providing a quick and efficient solution for well performance evaluation."
+                        )
                     ),
                     # Authors section
                     html.H5(
-                        "Authors", style={"margin-top": "20px", "margin-bottom": "10px"}
+                        _("Authors"),
+                        style={"margin-top": "20px", "margin-bottom": "10px"},
                     ),
                     html.Ul(
                         [
                             html.Li(
                                 [
                                     html.A(
-                                        "Marsel Khamidullin",
+                                        _("Marsel Khamidullin"),
                                         href="https://www.researchgate.net/profile/Marsel-Khamidullin",
                                         target="_blank",
                                     )
@@ -41,7 +48,7 @@ def create_about_modal():
                             html.Li(
                                 [
                                     html.A(
-                                        "Constantin Potashev",
+                                        _("Constantin Potashev"),
                                         href="https://www.researchgate.net/profile/Konstantin-Potashev",
                                         target="_blank",
                                     )
@@ -51,7 +58,7 @@ def create_about_modal():
                     ),
                     # License section
                     html.H5(
-                        "License",
+                        _("License"),
                         style={"margin-top": "20px", "margin-bottom": "10px"},
                     ),
                     html.P(
@@ -62,12 +69,12 @@ def create_about_modal():
                                 href="https://github.com/FlowPorousMedia/",
                                 target="_blank",
                             ),
-                            ", 2025. All rights reserved",
+                            ", 2025. " + _("All rights reserved"),
                         ]
                     ),
                     html.P(
                         [
-                            "This project is distributed under the ",
+                            _("This project is distributed under the "),
                             html.A(
                                 "MIT",
                                 href="https://github.com/FlowPorousMedia/MSHF.Productivity/blob/main/LICENSE",
@@ -77,14 +84,14 @@ def create_about_modal():
                     ),
                     # Support section with GitHub Issues link
                     html.H5(
-                         "Support",
+                        _("Support"),
                         style={"margin-top": "20px", "margin-bottom": "10px"},
                     ),
                     html.P(
                         [
-                            "For support, please open an issue on ",
+                            _("For support, please open an issue on "),
                             html.A(
-                                "GitHub Issues",
+                                _("GitHub Issues"),
                                 href="https://github.com/FlowPorousMedia/MSHF.Productivity/issues",
                                 target="_blank",
                             ),
@@ -93,7 +100,7 @@ def create_about_modal():
                     ),
                 ]
             ),
-            dbc.ModalFooter(dbc.Button("Close", id="close-about", className="ms-auto")),
+            dbc.ModalFooter(dbc.Button(_("Close"), id="close-about", className="ms-auto")),
         ],
         id="about-modal",
         size="lg",

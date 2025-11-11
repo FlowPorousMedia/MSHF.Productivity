@@ -7,6 +7,8 @@ from dash import Input, Output, no_update, html, dash_table, dcc, State, MATCH
 from dash.dash_table.Format import Format
 import dash_bootstrap_components as dbc
 
+from src.app.i18n import _, set_language
+from src.app.services.translator_helpers import with_language
 from src.core.models.result_data.result_type_enum import ResultTypeEnum
 
 
@@ -34,7 +36,7 @@ def register(app):
             models = calc_result.get("models", [])
 
         if not models:
-            return html.Div("No results available", className="alert alert-info")
+            return html.Div(_("No results available"), className="alert alert-info")
 
         # Обработка разных типов результатов с помощью match-case
         match result_type:
@@ -60,7 +62,7 @@ def register(app):
             return None
 
         models = stored_data["models"]
-        param_caption = stored_data.get("param_caption", "Parameter")
+        param_caption = stored_data.get("param_caption", _("Parameter"))
 
         # Создаем CSV в памяти
         csv_buffer = io.StringIO()
@@ -110,7 +112,7 @@ def register(app):
         # Создаем данные для таблицы
         data = [
             {
-                "row_header": "Q, m³/day",
+                "row_header": _("Q, m³/day"),
                 **{
                     f"col_{i}": (
                         model["q_values"][0] if model.get("q_values") else None
@@ -141,7 +143,7 @@ def register(app):
             ],
         )
 
-        return html.Div([html.H4("Flow Rate Table", className="mb-3"), table])
+        return html.Div([html.H4(_("Flow Rate Table"), className="mb-3"), table])
 
     def __render_parametric_result(models: list) -> html.Div:
         """Рендеринг таблицы для PARAMETRIC результата"""
@@ -153,9 +155,9 @@ def register(app):
         ):
             return html.Div(
                 [
-                    html.H4("Parametric Results Table", className="mb-3"),
+                    html.H4(_("Parametric Results Table"), className="mb-3"),
                     html.Div(
-                        "No parametric data available for display.",
+                        _("No parametric data available for display"),
                         className="alert alert-warning",
                     ),
                 ]
@@ -167,7 +169,7 @@ def register(app):
         # Создаем заголовки столбцов
         headers = [html.Th(param_caption, className="fw-bold")]
         for model in models:
-            model_name = model.get("name", "Unnamed Model")
+            model_name = model.get("name", _("Unnamed Model"))
             headers.append(html.Th(model_name, className="fw-bold"))
 
         # Создаем строки таблицы
@@ -218,7 +220,7 @@ def register(app):
 
         # Создаем кнопку скачивания
         download_button = dbc.Button(
-            "Download CSV",
+            _("Download CSV"),
             id={"type": "btn-download-parametric-csv", "index": component_id},
             color="success",
             className="mt-3",
@@ -237,8 +239,8 @@ def register(app):
 
         return html.Div(
             [
-                html.H4("Parametric Results Table", className="mb-3"),
-                html.Div("Q, m³/day", className="mt-2 text-end fw-light"),
+                html.H4(_("Parametric Results Table"), className="mb-3"),
+                html.Div(_("Q, m³/day"), className="mt-2 text-end fw-light"),
                 table,
                 download_button,
                 download_component,
@@ -253,9 +255,9 @@ def register(app):
         # Пока заглушка
         return html.Div(
             [
-                html.H4("Map Results", className="mb-3"),
+                html.H4(_("Map Results"), className="mb-3"),
                 html.Div(
-                    "Map results display is under development",
+                    _("Map results display is under development"),
                     className="alert alert-info",
                 ),
             ]
@@ -265,9 +267,11 @@ def register(app):
         """Рендеринг для неизвестного типа результата"""
         return html.Div(
             [
-                html.H4("Results", className="mb-3"),
+                html.H4(_("Results"), className="mb-3"),
                 html.Div(
-                    f"Result type '{result_type}' is not supported",
+                    _("Result type '{result_type}' is not supported").format(
+                        result_type=result_type
+                    ),
                     className="alert alert-danger",
                 ),
             ]

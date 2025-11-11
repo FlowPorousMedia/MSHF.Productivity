@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-11 16:35+0300\n"
+"POT-Creation-Date: 2025-11-11 17:24+0300\n"
 "PO-Revision-Date: 2025-11-10 19:47+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
@@ -31,23 +31,127 @@ msgstr "По умолчанию"
 msgid "OK"
 msgstr "OK"
 
-#: src/app/callbacks/navbar_callbacks.py:81
-msgid "GitHub"
-msgstr ""
+#: src/app/callbacks/navbar_callbacks.py:66 src/app/components/navbar.py:34
+msgid "Github"
+msgstr "Github"
 
-#: src/app/callbacks/navbar_callbacks.py:82 src/app/components/navbar.py:64
+#: src/app/callbacks/navbar_callbacks.py:67 src/app/components/navbar.py:64
 msgid "Language"
 msgstr "Язык"
 
-#: src/app/callbacks/navbar_callbacks.py:83 src/app/components/navbar.py:87
+#: src/app/callbacks/navbar_callbacks.py:68 src/app/components/navbar.py:87
 msgid "Guide"
 msgstr "Руководство"
 
-#: src/app/callbacks/navbar_callbacks.py:84 src/app/components/navbar.py:108
+#: src/app/callbacks/navbar_callbacks.py:69
+#: src/app/components/about_modal.py:11 src/app/components/navbar.py:108
 msgid "About"
 msgstr "О программе"
 
-#: src/app/components/navbar.py:34
-msgid "Github"
-msgstr "Github"
+#: src/app/callbacks/table_content_callbacks.py:39
+msgid "No results available"
+msgstr "Результаты отсутствуют"
+
+#: src/app/callbacks/table_content_callbacks.py:65
+msgid "Parameter"
+msgstr "Параметр"
+
+#: src/app/callbacks/table_content_callbacks.py:115
+#: src/app/callbacks/table_content_callbacks.py:243
+msgid "Q, m³/day"
+msgstr "Q, м³/сут"
+
+#: src/app/callbacks/table_content_callbacks.py:146
+msgid "Flow Rate Table"
+msgstr "Таблица дебита"
+
+#: src/app/callbacks/table_content_callbacks.py:158
+#: src/app/callbacks/table_content_callbacks.py:242
+msgid "Parametric Results Table"
+msgstr "Таблица параметрических результатов"
+
+#: src/app/callbacks/table_content_callbacks.py:160
+msgid "No parametric data available for display"
+msgstr "Нет параметрических данных для отображения"
+
+#: src/app/callbacks/table_content_callbacks.py:172
+msgid "Unnamed Model"
+msgstr "Модель без названия"
+
+#: src/app/callbacks/table_content_callbacks.py:223
+msgid "Download CSV"
+msgstr "Скачать CSV"
+
+#: src/app/callbacks/table_content_callbacks.py:258
+msgid "Map Results"
+msgstr "Результаты на карте"
+
+#: src/app/callbacks/table_content_callbacks.py:260
+msgid "Map results display is under development"
+msgstr "Отображение результатов на карте находится в разработке"
+
+#: src/app/callbacks/table_content_callbacks.py:270
+msgid "Results"
+msgstr "Результаты"
+
+#: src/app/callbacks/table_content_callbacks.py:272
+#, python-brace-format
+msgid "Result type '{result_type}' is not supported"
+msgstr "Тип результата '{result_type}' не поддерживается"
+
+#: src/app/components/about_modal.py:21
+msgid ""
+"is a powerful Productivity Evaluation Tool for Multistage Fractured "
+"Horizontal Wells (MSHF)"
+msgstr "— это мощный инструмент для оценки продуктивности горизонтальных скважин c многозонным гидроразрывом пласта (МГРП)"
+
+#: src/app/components/about_modal.py:27
+msgid ""
+"This software tool enables petroleum engineers to rapidly forecast "
+"production rates for multistage fractured horizontal wells. It utilizes "
+"analytical modeling to perform steady-state flow analysis, providing a "
+"quick and efficient solution for well performance evaluation."
+msgstr "Программа предоставляет инженерам-нефтяникам удобный инструмент для "
+"быстрой оценки дебита скважин с МГРП при стационарной фильтрации с помощью аналитических моделей"
+
+#: src/app/components/about_modal.py:34
+msgid "Authors"
+msgstr "Авторы"
+
+#: src/app/components/about_modal.py:42
+msgid "Marsel Khamidullin"
+msgstr "Марсель Хамидуллин"
+
+#: src/app/components/about_modal.py:51
+msgid "Constantin Potashev"
+msgstr "Константин Поташев"
+
+#: src/app/components/about_modal.py:61
+msgid "License"
+msgstr "Лицензия"
+
+#: src/app/components/about_modal.py:72
+msgid "All rights reserved"
+msgstr "Все права защищены"
+
+#: src/app/components/about_modal.py:77
+msgid "This project is distributed under the "
+msgstr "Данный проект распространяется на условиях лицензии "
+
+#: src/app/components/about_modal.py:87
+msgid "Support"
+msgstr "Поддержка"
+
+#: src/app/components/about_modal.py:92
+msgid "For support, please open an issue on "
+msgstr "Для получения поддержки откройте обращение в "
+
+#: src/app/components/about_modal.py:94
+msgid "GitHub Issues"
+msgstr "GitHub"
+
+#: src/app/components/about_modal.py:103
+msgid "Close"
+msgstr "Закрыть"
+
 
