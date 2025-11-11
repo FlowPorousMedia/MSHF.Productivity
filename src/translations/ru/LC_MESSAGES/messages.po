@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-11 19:38+0300\n"
+"POT-Creation-Date: 2025-11-11 20:13+0300\n"
 "PO-Revision-Date: 2025-11-10 19:47+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
@@ -31,19 +31,36 @@ msgstr "По умолчанию"
 msgid "OK"
 msgstr "OK"
 
-#: src/app/callbacks/navbar_callbacks.py:66 src/app/components/navbar.py:34
+#: src/app/callbacks/log_callbacks.py:48
+msgid "No logs yet"
+msgstr "Логи отсутствуют"
+
+#: src/app/callbacks/log_callbacks.py:56
+msgid "No logs match the filters"
+msgstr "Нет записей, соответствующих выбранным фильтрам"
+
+#: src/app/callbacks/log_callbacks.py:201
+msgid "Showing 0 messages"
+msgstr "Показано 0 сообщений"
+
+#: src/app/callbacks/log_callbacks.py:207
+#, python-brace-format
+msgid "Showing {filtered} of {logs} messages"
+msgstr "Показано {filtered} из {logs} сообщений"
+
+#: src/app/callbacks/navbar_callbacks.py:63 src/app/components/navbar.py:34
 msgid "Github"
 msgstr "Github"
 
-#: src/app/callbacks/navbar_callbacks.py:67 src/app/components/navbar.py:64
+#: src/app/callbacks/navbar_callbacks.py:64 src/app/components/navbar.py:64
 msgid "Language"
 msgstr "Язык"
 
-#: src/app/callbacks/navbar_callbacks.py:68 src/app/components/navbar.py:87
+#: src/app/callbacks/navbar_callbacks.py:65 src/app/components/navbar.py:87
 msgid "Guide"
 msgstr "Руководство"
 
-#: src/app/callbacks/navbar_callbacks.py:69
+#: src/app/callbacks/navbar_callbacks.py:66
 #: src/app/components/about_modal.py:11 src/app/components/navbar.py:108
 msgid "About"
 msgstr "О программе"
@@ -154,8 +171,52 @@ msgstr "Для получения поддержки откройте обращ
 msgid "GitHub Issues"
 msgstr "GitHub"
 
-#: src/app/components/about_modal.py:103
+#: src/app/components/about_modal.py:103 src/app/components/log_details.py:123
 msgid "Close"
+msgstr "Закрыть"
+
+#: src/app/components/log_details.py:10
+msgid "Log Viewer"
+msgstr "Журнал сообщений"
+
+#: src/app/components/log_details.py:17
+msgid "Show logs for:"
+msgstr "Показывать в журнале логи по типу"
+
+#: src/app/components/log_details.py:24
+msgid "ERROR"
+msgstr "ОШИБКА"
+
+#: src/app/components/log_details.py:31
+msgid "WARNING"
+msgstr "ПРЕДУПРЕЖДЕНИЕ"
+
+#: src/app/components/log_details.py:38
+msgid "INFO"
+msgstr "ИНФОРМАЦИЯ"
+
+#: src/app/components/log_details.py:58
+msgid "Show only calculation logs"
+msgstr "Показывать только логи расчета"
+
+#: src/app/components/log_details.py:61
+msgid "Show system logs"
+msgstr "Показывать системные логи"
+
+#: src/app/components/log_details.py:75
+msgid "Search:"
+msgstr "Поиск"
+
+#: src/app/components/log_details.py:83
+msgid "Search in logs..."
+msgstr "Введите запрос для поиска по журналу"
+
+#: src/app/components/log_details.py:108
+msgid "Save"
+msgstr "Сохранить"
+
+#: src/app/components/log_details.py:115
+msgid "Clear"
 msgstr "Закрыть"
 
 #: src/app/components/main_content.py:37
@@ -185,5 +246,4 @@ msgstr "Рассчитать"
 #: src/app/components/main_content.py:117
 msgid "Show logs"
 msgstr "Показать журнал"
-
 

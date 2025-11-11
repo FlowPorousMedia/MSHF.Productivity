@@ -4,6 +4,7 @@ import dash
 from dash import ALL, Input, Output, State, html, ctx, no_update, dcc
 
 from src.app._version import SOFTWARE_TITLE, USER_VERSION
+from src.app.i18n import _
 from src.app.services.log_item_worker import filter_logs, render_log_item
 from src.core.models.logcategory import LogCategory
 from src.core.models.loglevel import LogLevel
@@ -44,7 +45,7 @@ def register(app):
         logs, err_outline, warn_outline, info_outline, checklist, search_text
     ):
         if not logs:
-            return html.Div("No logs yet.", className="text-muted fst-italic")
+            return html.Div(_("No logs yet"), className="text-muted fst-italic")
 
         filtered = filter_logs(
             logs, err_outline, warn_outline, info_outline, checklist, search_text
@@ -52,7 +53,7 @@ def register(app):
 
         if not filtered:
             return html.Div(
-                "No logs match the filters.", className="text-muted fst-italic"
+                _("No logs match the filters"), className="text-muted fst-italic"
             )
 
         return html.Div([render_log_item(log, search_text) for log in filtered])
@@ -197,10 +198,12 @@ def register(app):
         logs, err_outline, warn_outline, info_outline, checklist, search_text
     ):
         if not logs:
-            return "Showing 0 messages"
+            return _("Showing 0 messages")
 
         filtered = filter_logs(
             logs, err_outline, warn_outline, info_outline, checklist, search_text
         )
 
-        return f"Showing {len(filtered)} of {len(logs)} messages"
+        return _("Showing {filtered} of {logs} messages").format(
+            filtered=len(filtered), logs=len(logs)
+        )

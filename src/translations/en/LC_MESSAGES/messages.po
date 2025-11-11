@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-11 19:38+0300\n"
+"POT-Creation-Date: 2025-11-11 20:13+0300\n"
 "PO-Revision-Date: 2025-11-10 19:47+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -30,20 +30,37 @@ msgstr "Default"
 msgid "OK"
 msgstr "OK"
 
-#: src/app/callbacks/navbar_callbacks.py:66 src/app/components/navbar.py:34
+#: src/app/callbacks/log_callbacks.py:48
+msgid "No logs yet"
+msgstr ""
+
+#: src/app/callbacks/log_callbacks.py:56
+msgid "No logs match the filters"
+msgstr ""
+
+#: src/app/callbacks/log_callbacks.py:201
+msgid "Showing 0 messages"
+msgstr ""
+
+#: src/app/callbacks/log_callbacks.py:207
+#, python-brace-format
+msgid "Showing {filtered} of {logs} messages"
+msgstr ""
+
+#: src/app/callbacks/navbar_callbacks.py:63 src/app/components/navbar.py:34
 #, fuzzy
 msgid "Github"
 msgstr "Github"
 
-#: src/app/callbacks/navbar_callbacks.py:67 src/app/components/navbar.py:64
+#: src/app/callbacks/navbar_callbacks.py:64 src/app/components/navbar.py:64
 msgid "Language"
 msgstr "Language"
 
-#: src/app/callbacks/navbar_callbacks.py:68 src/app/components/navbar.py:87
+#: src/app/callbacks/navbar_callbacks.py:65 src/app/components/navbar.py:87
 msgid "Guide"
 msgstr "Guide"
 
-#: src/app/callbacks/navbar_callbacks.py:69
+#: src/app/callbacks/navbar_callbacks.py:66
 #: src/app/components/about_modal.py:11 src/app/components/navbar.py:108
 msgid "About"
 msgstr "About"
@@ -151,8 +168,52 @@ msgstr ""
 msgid "GitHub Issues"
 msgstr "Github"
 
-#: src/app/components/about_modal.py:103
+#: src/app/components/about_modal.py:103 src/app/components/log_details.py:123
 msgid "Close"
+msgstr ""
+
+#: src/app/components/log_details.py:10
+msgid "Log Viewer"
+msgstr ""
+
+#: src/app/components/log_details.py:17
+msgid "Show logs for:"
+msgstr ""
+
+#: src/app/components/log_details.py:24
+msgid "ERROR"
+msgstr ""
+
+#: src/app/components/log_details.py:31
+msgid "WARNING"
+msgstr ""
+
+#: src/app/components/log_details.py:38
+msgid "INFO"
+msgstr ""
+
+#: src/app/components/log_details.py:58
+msgid "Show only calculation logs"
+msgstr ""
+
+#: src/app/components/log_details.py:61
+msgid "Show system logs"
+msgstr ""
+
+#: src/app/components/log_details.py:75
+msgid "Search:"
+msgstr ""
+
+#: src/app/components/log_details.py:83
+msgid "Search in logs..."
+msgstr ""
+
+#: src/app/components/log_details.py:108
+msgid "Save"
+msgstr ""
+
+#: src/app/components/log_details.py:115
+msgid "Clear"
 msgstr ""
 
 #: src/app/components/main_content.py:37
