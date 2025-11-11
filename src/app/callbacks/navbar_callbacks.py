@@ -14,13 +14,10 @@ def register(app):
         prevent_initial_call=True,
     )
     def update_language(ru_clicks, en_clicks):
-        print("I am inside the update_language")
         trigger = ctx.triggered_id
         if trigger == "lang-ru":
-            print("Language changed to russian")
             return "ru"
         elif trigger == "lang-en":
-            print("Language changed to english")
             return "en"
         raise dash.exceptions.PreventUpdate
 

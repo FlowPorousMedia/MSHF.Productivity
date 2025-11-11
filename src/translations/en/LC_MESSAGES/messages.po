@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-11 17:24+0300\n"
+"POT-Creation-Date: 2025-11-11 19:38+0300\n"
 "PO-Revision-Date: 2025-11-10 19:47+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -153,5 +153,35 @@ msgstr "Github"
 
 #: src/app/components/about_modal.py:103
 msgid "Close"
+msgstr ""
+
+#: src/app/components/main_content.py:37
+msgid "Fracture Analysis Dashboard"
+msgstr ""
+
+#: src/app/components/main_content.py:48
+#, fuzzy
+msgid "Results Plot"
+msgstr "Results"
+
+#: src/app/components/main_content.py:53
+msgid "Press \"Calculate\" to see visual results here"
+msgstr ""
+
+#: src/app/components/main_content.py:72
+#, fuzzy
+msgid "Results Table"
+msgstr "No results available"
+
+#: src/app/components/main_content.py:77
+msgid "Press \"Calculate\" to see table results here"
+msgstr ""
+
+#: src/app/components/main_content.py:105
+msgid "Run calculation"
+msgstr ""
+
+#: src/app/components/main_content.py:117
+msgid "Show logs"
 msgstr ""
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-11 17:24+0300\n"
+"POT-Creation-Date: 2025-11-11 19:38+0300\n"
 "PO-Revision-Date: 2025-11-10 19:47+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
@@ -103,7 +103,9 @@ msgstr "Тип результата '{result_type}' не поддерживае�
 msgid ""
 "is a powerful Productivity Evaluation Tool for Multistage Fractured "
 "Horizontal Wells (MSHF)"
-msgstr "— это мощный инструмент для оценки продуктивности горизонтальных скважин c многозонным гидроразрывом пласта (МГРП)"
+msgstr ""
+"— это мощный инструмент для оценки продуктивности горизонтальных скважин "
+"c многозонным гидроразрывом пласта (МГРП)"
 
 #: src/app/components/about_modal.py:27
 msgid ""
@@ -111,8 +113,10 @@ msgid ""
 "production rates for multistage fractured horizontal wells. It utilizes "
 "analytical modeling to perform steady-state flow analysis, providing a "
 "quick and efficient solution for well performance evaluation."
-msgstr "Программа предоставляет инженерам-нефтяникам удобный инструмент для "
-"быстрой оценки дебита скважин с МГРП при стационарной фильтрации с помощью аналитических моделей"
+msgstr ""
+"Программа предоставляет инженерам-нефтяникам удобный инструмент для "
+"быстрой оценки дебита скважин с МГРП при стационарной фильтрации с "
+"помощью аналитических моделей"
 
 #: src/app/components/about_modal.py:34
 msgid "Authors"
@@ -153,5 +157,33 @@ msgstr "GitHub"
 #: src/app/components/about_modal.py:103
 msgid "Close"
 msgstr "Закрыть"
+
+#: src/app/components/main_content.py:37
+msgid "Fracture Analysis Dashboard"
+msgstr "Панель визуализации расчетов"
+
+#: src/app/components/main_content.py:48
+msgid "Results Plot"
+msgstr "Графики"
+
+#: src/app/components/main_content.py:53
+msgid "Press \"Calculate\" to see visual results here"
+msgstr "Нажмите «Рассчитать», чтобы увидеть результаты расчета"
+
+#: src/app/components/main_content.py:72
+msgid "Results Table"
+msgstr "Таблица"
+
+#: src/app/components/main_content.py:77
+msgid "Press \"Calculate\" to see table results here"
+msgstr "Нажмите «Рассчитать», чтобы увидеть результаты расчета"
+
+#: src/app/components/main_content.py:105
+msgid "Run calculation"
+msgstr "Рассчитать"
+
+#: src/app/components/main_content.py:117
+msgid "Show logs"
+msgstr "Показать журнал"
 
 
