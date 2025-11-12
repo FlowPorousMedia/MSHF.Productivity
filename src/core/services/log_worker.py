@@ -2,12 +2,12 @@ from datetime import datetime
 from typing import Any, Dict
 
 from src.core.models.logcategory import LogCategory
-from src.core.models.loglevel import LogLevel
+from src.core.models.message_level import MessageLevel
 
 
 def make_log(
     message: str,
-    level: LogLevel = LogLevel.INFO,
+    level: MessageLevel = MessageLevel.INFO,
     category: LogCategory = LogCategory.SYSTEM,
     user_visible: bool = False,
 ) -> Dict[str, Any]:

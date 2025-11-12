@@ -6,10 +6,14 @@ from src.app.components.parametric_settings_panel import (
 )
 from src.app.components.status_bar import create_status_bar
 from src.app.i18n import _
+from src.app.services.result_table_graph_helper import get_default_containers
 
 
 def create_main_content():
     """Create the main content area with visualization and table"""
+
+    graph_container, table_container = get_default_containers()
+
     return html.Div(
         id="main-content",
         style={
@@ -44,18 +48,7 @@ def create_main_content():
                                 html.Div(
                                     id="graph-container",
                                     className="bg-white p-3 border rounded",
-                                    children=[
-                                        html.H4(_("Results Plot"), className="mb-3"),
-                                        html.Div(
-                                            [
-                                                html.I(className="bi bi-graph-up me-2"),
-                                                _(
-                                                    'Press "Calculate" to see visual results here'
-                                                ),
-                                            ],
-                                            className="alert alert-light d-flex align-items-center",
-                                        ),
-                                    ],
+                                    children=[*graph_container],
                                 ),
                                 width=12,
                                 className="mb-4",
@@ -68,18 +61,7 @@ def create_main_content():
                                 html.Div(
                                     id="table-container",
                                     className="bg-white p-3 border rounded",
-                                    children=[
-                                        html.H4(_("Results Table"), className="mb-3"),
-                                        html.Div(
-                                            [
-                                                html.I(className="bi bi-table me-2"),
-                                                _(
-                                                    'Press "Calculate" to see table results here'
-                                                ),
-                                            ],
-                                            className="alert alert-light d-flex align-items-center",
-                                        ),
-                                    ],
+                                    children=[*table_container],
                                 ),
                                 width=12,
                             )

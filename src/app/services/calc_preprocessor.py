@@ -1,6 +1,6 @@
 from src.app.models.default_values import DEFAULT_VALUES
 from src.core.models.logcategory import LogCategory
-from src.core.models.loglevel import LogLevel
+from src.core.models.message_level import MessageLevel
 from src.core.services.log_worker import make_log
 
 
@@ -69,7 +69,7 @@ class CalcPreprocessor:
                 logs.append(
                     make_log(
                         f"[{label}] ❌ Ключ '{key}' отсутствует во втором словаре",
-                        LogLevel.DEBUG,
+                        MessageLevel.DEBUG,
                         LogCategory.CHECK_DATA,
                         False,
                     )
@@ -85,7 +85,7 @@ class CalcPreprocessor:
                         f"[{label}] ❌ Несовпадение по ключу '{key}': "
                         f"default={val!r} ({type(val).__name__}), "
                         f"user={val2!r} ({type(val2).__name__})",
-                        LogLevel.DEBUG,
+                        MessageLevel.DEBUG,
                         LogCategory.CHECK_DATA,
                         False,
                     )
@@ -95,7 +95,7 @@ class CalcPreprocessor:
                 logs.append(
                     make_log(
                         f"[{label}] ✅ Совпадает '{key}': {val!r}",
-                        LogLevel.DEBUG,
+                        MessageLevel.DEBUG,
                         LogCategory.CHECK_DATA,
                         False,
                     )

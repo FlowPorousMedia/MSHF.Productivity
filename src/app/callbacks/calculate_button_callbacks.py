@@ -5,10 +5,15 @@ from src.app.models.result import Result
 from src.app.models.result_details import ResultDetails
 from src.app.services import init_data_reader
 from src.app.services.calc_preprocessor import CalcPreprocessor
+from src.app.services.response_utils import make_response
+from src.app.services.result_table_graph_helper import (
+    get_calc_content,
+    get_default_containers,
+)
 from src.core.models.init_data.calc_over_param_enum import CalcParamTypeEnum
 from src.core.models.init_data.initial_data import InitialData
 from src.core.models.logcategory import LogCategory
-from src.core.models.loglevel import LogLevel
+from src.core.models.message_level import MessageLevel
 from src.core.models.main_data import MainData
 from src.core.models.result_data.result_type_enum import ResultTypeEnum
 from src.core.services.log_worker import make_log
@@ -68,15 +73,18 @@ def register(app):
                 "message": _(
                     "You are about to run the calculation with default parameters. Continue?"
                 ),
-                "type": LogLevel.INFO.name,
-                "buttons": [{"label": _("Yes"), "value": True}, {"label": _("No"), "value": False}]
+                "type": MessageLevel.INFO.name,
+                "buttons": [
+                    {"label": _("Yes"), "value": True},
+                    {"label": _("No"), "value": False},
+                ],
             }
             return data, "confirming", logs, status_text, progress_style
 
         logs.append(
             make_log(
                 _("No confirmation needed, starting calculation"),
-                LogLevel.DEBUG,
+                MessageLevel.DEBUG,
                 LogCategory.CALCULATION,
                 False,
             )
@@ -111,6 +119,7 @@ def register(app):
     @app.callback(
         output=[
             Output("log-store", "data", allow_duplicate=True),
+            Output("message-request", "data", allow_duplicate=True),
             Output("solver-result-store", "data", allow_duplicate=True),
             Output("status-text", "children", allow_duplicate=True),
             Output("calculation-progress", "value", allow_duplicate=True),
@@ -165,37 +174,38 @@ def register(app):
     ):
         # Запускаем расчет только когда состояние "running"
         if app_state != "running":
-            return (
-                logs or [],
-                no_update,
-                "Готов",
-                0,
-                "0%",
-                {"display": "none"},
-                app_state,
-            )
+            return make_response(logs, state=app_state)
 
         logs = logs or []
 
         # Этап 1: Проверка моделей
         set_progress((10, "10%", _("Checking selected models...")))
         if not analytical_selected_models and not semianalytical_selected_models:
+            message_body = _("No models selected")
             logs.append(
                 make_log(
-                    _("No models selected"),
-                    LogLevel.WARNING,
+                    message_body,
+                    MessageLevel.WARNING,
                     LogCategory.CALCULATION,
                     False,
                 )
             )
-            return (
-                logs,
-                {"message": _("No models selected"), "type": LogLevel.WARNING.name},
-                ("Warning: no models selected"),
-                0,
-                "0%",
-                {"display": "none"},
-                "idle",
+
+            message = {
+                "context": "calc_error_no_models",
+                "title": message_body,
+                "message": _(
+                    "Please select at least one model before starting the calculation."
+                ),
+                "type": MessageLevel.WARNING.name,
+                "buttons": [_("OK")],
+            }
+
+            return make_response(
+                logs=logs,
+                message=message,
+                status_text=_("Warning: no models selected"),
+                state="idle",
             )
 
         # Этап 2: Настройка параметров
@@ -212,7 +222,7 @@ def register(app):
                 logs.append(
                     make_log(
                         _("Invalid parametric settings"),
-                        LogLevel.ERROR,
+                        MessageLevel.ERROR,
                         LogCategory.CALCULATION,
                         False,
                     )
@@ -221,7 +231,7 @@ def register(app):
                     logs,
                     {
                         "message": _("Invalid parametric settings"),
-                        "type": LogLevel.ERROR.name,
+                        "type": MessageLevel.ERROR.label,
                     },
                     _("Error: invalid calculation parameters"),
                     0,
@@ -234,7 +244,7 @@ def register(app):
                 logs.append(
                     make_log(
                         _("Invalid parametric range"),
-                        LogLevel.ERROR,
+                        MessageLevel.ERROR,
                         LogCategory.CALCULATION,
                         False,
                     )
@@ -243,7 +253,7 @@ def register(app):
                     logs,
                     {
                         "message": _("Invalid parametric settings"),
-                        "type": LogLevel.ERROR.name,
+                        "type": MessageLevel.ERROR.label,
                     },
                     _("Error: invalid parameter range"),
                     0,
@@ -266,17 +276,18 @@ def register(app):
 
         if not result_init_data.success:
             details: ResultDetails = result_init_data.details
+            print("was here")
             logs.append(
                 make_log(
                     _("Init data error: {message}").format(message=details.message),
-                    LogLevel.ERROR,
+                    MessageLevel.ERROR,
                     LogCategory.CALCULATION,
                     False,
                 )
             )
             return (
                 logs,
-                {"message": details.message, "type": LogLevel.ERROR.name},
+                {"message": details.message, "type": MessageLevel.ERROR},
                 _("Data preparation error: {message}").format(message=details.message),
                 0,
                 "0%",
@@ -303,6 +314,7 @@ def register(app):
 
         return (
             logs,
+            no_update,
             result.to_dict(),
             _("Calculation completed successfully"),
             0,
@@ -327,17 +339,23 @@ def register(app):
             msg_response.get("context") == "confirm_calc_start"
             and msg_response.get("response") == "True"
         ):
-            empty_content = html.Div(
-                [
-                    html.Div(
-                        [
-                            html.I(className="bi bi-hourglass-split me-2"),
-                            _("Calculation in progress..."),
-                        ],
-                        className="alert alert-info d-flex align-items-center",
-                    ),
-                ]
-            )
-            return empty_content, empty_content
+            calc_content = get_calc_content()
+
+            return calc_content, calc_content
 
         raise exceptions.PreventUpdate
+
+    @app.callback(
+        Output("graph-container", "children", allow_duplicate=True),
+        Output("table-container", "children", allow_duplicate=True),
+        Input("app-state", "data"),
+        prevent_initial_call=True,
+    )
+    def update_main_display(state):
+        if state in ("init", "idle"):
+            return get_default_containers()
+        elif state == "running":
+            calc_content = get_calc_content()
+            return calc_content, calc_content
+        else:
+            raise exceptions.PreventUpdate

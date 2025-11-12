@@ -1,13 +1,9 @@
 from datetime import datetime
-import time
-import dash
 from dash import ALL, Input, Output, State, html, ctx, no_update, dcc
 
 from src.app._version import SOFTWARE_TITLE, USER_VERSION
 from src.app.i18n import _
 from src.app.services.log_item_worker import filter_logs, render_log_item
-from src.core.models.logcategory import LogCategory
-from src.core.models.loglevel import LogLevel
 
 
 def register(app):
@@ -148,14 +144,14 @@ def register(app):
         n_clicks, logs, err_outline, warn_outline, info_outline, checklist, search_text
     ):
         if not n_clicks or not logs:
-            return dash.no_update
+            return no_update
 
         filtered = filter_logs(
             logs, err_outline, warn_outline, info_outline, checklist, search_text
         )
 
         if not filtered:
-            return dash.no_update
+            return no_update
 
         # === Формируем текст ===
         lines = []

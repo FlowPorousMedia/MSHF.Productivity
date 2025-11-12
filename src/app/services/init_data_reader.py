@@ -1,6 +1,5 @@
 from typing import Any, Dict, List
 
-from src.app.models.message_type import MessageType
 from src.app.models.parametric_settings import ParametricSettings
 from src.app.models.result import Result
 from src.app.models.result_details import ResultDetails
@@ -14,6 +13,7 @@ from src.core.models.init_data.reservoir_initial_data import ReservoirInitialDat
 from src.core.models.init_data.well_initial_data import WellInitialData
 from src.core.models.init_data.fluid_initial_data import FluidInitialData
 
+from src.core.models.message_level import MessageLevel
 from src.core.models.result_data.calc_model import CalcModel
 from src.core.models.result_data.result_type_enum import ResultTypeEnum
 from src.core.services.measurement_converter import MeasurementConverter
@@ -71,7 +71,7 @@ def make_init_data(
                 result.success = False
                 result.data = None
                 result.details = ResultDetails()
-                result.details.tp = MessageType.ERROR
+                result.details.tp = MessageLevel.ERROR
                 result.details.title = "Invalid fracture data"
                 result.details.message = (
                     f"Please, set correct value for fracture {i+1}:\n {str(e)}"

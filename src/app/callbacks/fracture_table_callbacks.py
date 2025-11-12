@@ -5,7 +5,7 @@ from dash import (
     State,
 )
 
-from src.app.models.message_type import MessageType
+from src.core.models.message_level import MessageLevel
 
 
 def register(app):
@@ -83,7 +83,7 @@ def register(app):
             return {
                 "title": "Invalid Reservoir Data",
                 "message": "Reservoir permeability is missing or invalid.",
-                "type": "ERROR",
+                "type": MessageLevel.ERROR.label,
                 "buttons": ["OK"],
             }
 
@@ -101,21 +101,21 @@ def register(app):
                     return {
                         "title": "Invalid Fracture Data",
                         "message": f"Fracture {frac_id} length is negative",
-                        "type": "ERROR",
+                        "type": MessageLevel.ERROR.label,
                         "buttons": ["OK"],
                     }
                 if w_f <= 0:
                     return {
                         "title": "Invalid Fracture Data",
                         "message": f"Fracture {frac_id} width is negative",
-                        "type": "ERROR",
+                        "type": MessageLevel.ERROR.label,
                         "buttons": ["OK"],
                     }
                 if k_f <= 0:
                     return {
                         "title": "Invalid Fracture Data",
                         "message": f"Fracture {frac_id} permeability is negative",
-                        "type": "ERROR",
+                        "type": MessageLevel.ERROR.label,
                         "buttons": ["OK"],
                     }
                 fcd_val = (k_f * w_f) / (res_perm * l_f)
@@ -124,7 +124,7 @@ def register(app):
                 return {
                     "title": "Invalid Fracture Data",
                     "message": f"Fracture {frac_id} {str(e)} is incorrect",
-                    "type": "ERROR",
+                    "type": MessageLevel.ERROR.label,
                     "buttons": ["OK"],
                 }
 
@@ -134,6 +134,6 @@ def register(app):
         return {
             "title": "Dimensionless Fracture Conductivity (Fcd)",
             "message": message,
-            "type": MessageType.INFO.name,
+            "type": MessageLevel.INFO.label,
             "buttons": ["Close"],
         }

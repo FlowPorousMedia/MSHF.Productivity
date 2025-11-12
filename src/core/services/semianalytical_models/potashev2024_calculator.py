@@ -12,7 +12,7 @@ from src.core.models.characteristic_data import CharacteristicData
 from src.core.models.init_data.initial_data import InitialData
 from src.core.models.init_data.models_enum import ModelsEnum
 from src.core.models.logcategory import LogCategory
-from src.core.models.loglevel import LogLevel
+from src.core.models.message_level import MessageLevel
 from src.core.services.dimless_converter import DimlessConverter
 from src.core.services.fracture_worker import calc_lm_lp
 from src.core.services.log_worker import make_log
@@ -151,7 +151,7 @@ class Potashev2024Calculator:
                 logs.append(
                     make_log(
                         f"{model_name} can not be calculated for R < {r_crit * sector.char_data.x0:.1f}",
-                        LogLevel.WARNING,
+                        MessageLevel.WARNING,
                         LogCategory.CALCULATION,
                         True,
                     )

@@ -5,17 +5,17 @@ import diskcache
 
 from src.app.i18n import _, set_language
 from src.app.components.about_modal import create_about_modal
-from src.app.components.log_details import create_logs_modal
+from src.app.components.log_viewer import create_log_viewer
 from src.app.components.model_details import create_model_details_modal
 from src.app.components.navbar import create_navbar
 from src.app.components.sidebar import create_sidebar
 from src.app.components.main_content import create_main_content
 from src.app.components.message_dialog import get_message_dialog
 from src.app.models.analyt_models import get_analytic_models
-from src.app.models.message_type import MessageType
 from src.app.models.numerical_models import get_numerical_models
 from src.app.models.semianalyt_models import get_semianalytic_models
 from src.app._version import SOFTWARE_TITLE
+from src.core.models.message_level import MessageLevel
 
 
 def create_app() -> Dash:
@@ -64,10 +64,10 @@ def create_app() -> Dash:
                         "msg-dialog",
                         _("Message"),
                         _("Default"),
-                        MessageType.INFO,
+                        MessageLevel.INFO,
                         [_("OK")],
                     ),
-                    create_logs_modal(),
+                    create_log_viewer(),
                 ],
             ),
             # ===============

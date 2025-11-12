@@ -7,7 +7,7 @@ from src.core.models.calculator_settings import CalculatorSettings
 from src.core.models.init_data.initial_data import InitialData
 from src.core.models.init_data.models_enum import ModelsEnum
 from src.core.models.logcategory import LogCategory
-from src.core.models.loglevel import LogLevel
+from src.core.models.message_level import MessageLevel
 from src.core.models.main_data import MainData
 from src.core.models.result_data.model_result_data import ModelResultData
 from src.core.models.result_data.result_data import ResultData
@@ -155,7 +155,7 @@ class MainSolver:
             self.__logs.append(
                 make_log(
                     f"{model.name} calculated in {calc_time:.2f} sec",
-                    LogLevel.INFO,
+                    MessageLevel.INFO,
                     LogCategory.CALCULATION,
                     True,
                 )

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-12 16:40+0300\n"
+"POT-Creation-Date: 2025-11-12 19:21+0300\n"
 "PO-Revision-Date: 2025-11-10 19:47+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
@@ -27,120 +27,127 @@ msgstr "Сообщение"
 msgid "Default"
 msgstr "По умолчанию"
 
-#: src/app/server.py:68
+#: src/app/callbacks/calculate_button_callbacks.py:197 src/app/server.py:68
 msgid "OK"
 msgstr "OK"
 
-#: src/app/callbacks/calculate_button_callbacks.py:62
+#: src/app/callbacks/calculate_button_callbacks.py:63
 msgid "Preparing for calculation..."
 msgstr "Подготовка к расчету"
 
-#: src/app/callbacks/calculate_button_callbacks.py:67
+#: src/app/callbacks/calculate_button_callbacks.py:68
 msgid "Default Parameters Notification"
 msgstr "Уведомление о параметрах по умолчанию"
 
-#: src/app/callbacks/calculate_button_callbacks.py:69
+#: src/app/callbacks/calculate_button_callbacks.py:70
 msgid "You are about to run the calculation with default parameters. Continue?"
 msgstr "Вы собираетесь запустить расчет с параметрами по умолчанию. Продолжить?"
 
-#: src/app/callbacks/calculate_button_callbacks.py:72
+#: src/app/callbacks/calculate_button_callbacks.py:74
 msgid "Yes"
 msgstr "Да"
 
-#: src/app/callbacks/calculate_button_callbacks.py:72
+#: src/app/callbacks/calculate_button_callbacks.py:75
 msgid "No"
 msgstr "Нет"
 
-#: src/app/callbacks/calculate_button_callbacks.py:78
+#: src/app/callbacks/calculate_button_callbacks.py:82
 msgid "No confirmation needed, starting calculation"
 msgstr "Подтверждение не требуется, запуск расчета"
 
-#: src/app/callbacks/calculate_button_callbacks.py:106
+#: src/app/callbacks/calculate_button_callbacks.py:110
 msgid "Starting calculation..."
 msgstr "Расчета начинается..."
 
-#: src/app/callbacks/calculate_button_callbacks.py:108
+#: src/app/callbacks/calculate_button_callbacks.py:112
 msgid "Calculation cancelled"
 msgstr "Расчет отменен"
 
-#: src/app/callbacks/calculate_button_callbacks.py:181
+#: src/app/callbacks/calculate_button_callbacks.py:178
 msgid "Checking selected models..."
 msgstr "Проверка выбранных моделей..."
 
-#: src/app/callbacks/calculate_button_callbacks.py:185
-#: src/app/callbacks/calculate_button_callbacks.py:193
+#: src/app/callbacks/calculate_button_callbacks.py:180
 msgid "No models selected"
 msgstr "Не выбраны модели"
 
-#: src/app/callbacks/calculate_button_callbacks.py:202
+#: src/app/callbacks/calculate_button_callbacks.py:194
+msgid "Please select at least one model before starting the calculation."
+msgstr "Пожалуйста, выберите хотя бы одну модель для запуска расчета"
+
+#: src/app/callbacks/calculate_button_callbacks.py:203
+msgid "Warning: no models selected"
+msgstr "Внимание: Не выбраны модели"
+
+#: src/app/callbacks/calculate_button_callbacks.py:208
 msgid "Configuring calculation parameters..."
 msgstr "Настройка параметров расчета..."
 
-#: src/app/callbacks/calculate_button_callbacks.py:214
-#: src/app/callbacks/calculate_button_callbacks.py:223
-#: src/app/callbacks/calculate_button_callbacks.py:245
+#: src/app/callbacks/calculate_button_callbacks.py:220
+#: src/app/callbacks/calculate_button_callbacks.py:229
+#: src/app/callbacks/calculate_button_callbacks.py:251
 msgid "Invalid parametric settings"
 msgstr "Некорректные параметрические настройки"
 
-#: src/app/callbacks/calculate_button_callbacks.py:226
+#: src/app/callbacks/calculate_button_callbacks.py:232
 msgid "Error: invalid calculation parameters"
 msgstr "Ошибка: неверные параметры расчета"
 
-#: src/app/callbacks/calculate_button_callbacks.py:236
+#: src/app/callbacks/calculate_button_callbacks.py:242
 msgid "Invalid parametric range"
 msgstr "Неверный диапазон параметров"
 
-#: src/app/callbacks/calculate_button_callbacks.py:248
+#: src/app/callbacks/calculate_button_callbacks.py:254
 msgid "Error: invalid parameter range"
 msgstr "Ошибка: неверный диапазон параметров"
 
-#: src/app/callbacks/calculate_button_callbacks.py:256
+#: src/app/callbacks/calculate_button_callbacks.py:262
 msgid "Preparing data for calculation..."
 msgstr "Подготовка данных для расчета..."
 
-#: src/app/callbacks/calculate_button_callbacks.py:262
+#: src/app/callbacks/calculate_button_callbacks.py:268
 msgid "Reading initial data..."
 msgstr "Чтение исходных данных..."
 
-#: src/app/callbacks/calculate_button_callbacks.py:271
+#: src/app/callbacks/calculate_button_callbacks.py:278
 #, python-brace-format
 msgid "Init data error: {message}"
 msgstr "Ошибка в исходных данных: {message}"
 
-#: src/app/callbacks/calculate_button_callbacks.py:280
+#: src/app/callbacks/calculate_button_callbacks.py:287
 #, python-brace-format
 msgid "Data preparation error: {message}"
 msgstr "Ошибка подготовки данных: {message}"
 
-#: src/app/callbacks/calculate_button_callbacks.py:288
+#: src/app/callbacks/calculate_button_callbacks.py:295
 msgid "Performing calculation..."
 msgstr "Расчет..."
 
-#: src/app/callbacks/calculate_button_callbacks.py:302
+#: src/app/callbacks/calculate_button_callbacks.py:309
 msgid "Finalizing calculation..."
 msgstr "Расчет завершается..."
 
-#: src/app/callbacks/calculate_button_callbacks.py:307
+#: src/app/callbacks/calculate_button_callbacks.py:315
 msgid "Calculation completed successfully"
 msgstr "Расчет успешно завершен"
 
-#: src/app/callbacks/calculate_button_callbacks.py:335
+#: src/app/callbacks/calculate_button_callbacks.py:343
 msgid "Calculation in progress..."
 msgstr "Переход к расчету..."
 
-#: src/app/callbacks/log_callbacks.py:48
+#: src/app/callbacks/log_callbacks.py:44
 msgid "No logs yet"
 msgstr "Логи отсутствуют"
 
-#: src/app/callbacks/log_callbacks.py:56
+#: src/app/callbacks/log_callbacks.py:52
 msgid "No logs match the filters"
 msgstr "Нет записей, соответствующих выбранным фильтрам"
 
-#: src/app/callbacks/log_callbacks.py:205
+#: src/app/callbacks/log_callbacks.py:201
 msgid "Showing 0 messages"
 msgstr "Показано 0 сообщений"
 
-#: src/app/callbacks/log_callbacks.py:211
+#: src/app/callbacks/log_callbacks.py:207
 #, python-brace-format
 msgid "Showing {filtered} of {logs} messages"
 msgstr "Показано {filtered} из {logs} сообщений"
@@ -268,53 +275,41 @@ msgstr "Для получения поддержки откройте обращ
 msgid "GitHub Issues"
 msgstr "GitHub"
 
-#: src/app/components/about_modal.py:103 src/app/components/log_details.py:123
+#: src/app/components/about_modal.py:103 src/app/components/log_viewer.py:126
 msgid "Close"
 msgstr "Закрыть"
 
-#: src/app/components/log_details.py:10
+#: src/app/components/log_viewer.py:11
 msgid "Log Viewer"
 msgstr "Журнал сообщений"
 
-#: src/app/components/log_details.py:17
+#: src/app/components/log_viewer.py:18
 msgid "Show logs for:"
 msgstr "Показывать в журнале логи по типу"
 
-#: src/app/components/log_details.py:24
-msgid "ERROR"
-msgstr "ОШИБКА"
-
-#: src/app/components/log_details.py:31
-msgid "WARNING"
-msgstr "ПРЕДУПРЕЖДЕНИЕ"
-
-#: src/app/components/log_details.py:38
-msgid "INFO"
-msgstr "ИНФОРМАЦИЯ"
-
-#: src/app/components/log_details.py:58
+#: src/app/components/log_viewer.py:59
 msgid "Show only calculation logs"
 msgstr "Показывать только логи расчета"
 
-#: src/app/components/log_details.py:61
+#: src/app/components/log_viewer.py:62
 msgid "Show system logs"
 msgstr "Показывать системные логи"
 
-#: src/app/components/log_details.py:75
+#: src/app/components/log_viewer.py:77
 msgid "Search:"
 msgstr "Поиск"
 
-#: src/app/components/log_details.py:83
+#: src/app/components/log_viewer.py:86
 msgid "Search in logs..."
 msgstr "Введите запрос для поиска по журналу"
 
-#: src/app/components/log_details.py:108
+#: src/app/components/log_viewer.py:111
 msgid "Save"
 msgstr "Сохранить"
 
-#: src/app/components/log_details.py:115
+#: src/app/components/log_viewer.py:118
 msgid "Clear"
-msgstr "Закрыть"
+msgstr "Очистить"
 
 #: src/app/components/main_content.py:37
 msgid "Fracture Analysis Dashboard"
@@ -353,4 +348,24 @@ msgstr "Скопировать в буфер обмена"
 #: src/app/services/log_item_worker.py:91
 msgid "Copied!"
 msgstr "Скопировано!"
+
+#: src/core/models/message_level.py:16
+msgid "DEBUG"
+msgstr "ОТЛАДОЧНОЕ"
+
+#: src/core/models/message_level.py:17
+msgid "INFO"
+msgstr "ИНФОРМАЦИЯ"
+
+#: src/core/models/message_level.py:18
+msgid "WARNING"
+msgstr "ПРЕДУПРЕЖДЕНИЕ"
+
+#: src/core/models/message_level.py:19
+msgid "ERROR"
+msgstr "ОШИБКА"
+
+#: src/core/models/message_level.py:20
+msgid "CRITICAL"
+msgstr "КРИТИЧЕСКОЕ"
 
