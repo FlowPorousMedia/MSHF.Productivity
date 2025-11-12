@@ -7,7 +7,8 @@ def create_status_bar():
     return html.Div(
         id="status-bar",
         style={
-            "position": "relative",
+            "position": "fixed",
+            "bottom": 0,
             "height": "25px",
             "backgroundColor": "#f8f9fa",
             "borderTop": "1px solid #dee2e6",
@@ -19,6 +20,7 @@ def create_status_bar():
             "boxSizing": "border-box",
             "width": "100%",
             "gap": "10px",
+            "zIndex": 1050,
         },
         children=[
             # Status text

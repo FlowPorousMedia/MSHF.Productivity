@@ -4,6 +4,8 @@ import uuid
 from dash import html, dcc
 import dash_bootstrap_components as dbc
 
+from src.app.i18n import _
+
 
 def render_log_item(log, search_text=None):
     level = log["level"].value if hasattr(log["level"], "value") else str(log["level"])
@@ -44,7 +46,8 @@ def render_log_item(log, search_text=None):
     unique_id = f"{log['timestamp']}-{uuid.uuid4().hex[:6]}"
 
     copy_id = {"type": "copy-log", "index": unique_id}
-    tooltip_id = {"type": "copy-tooltip", "index": unique_id}
+    copied_tooltip_id = {"type": "copied-tooltip", "index": unique_id}
+    copy_tooltip_id = {"type": "copy-tooltip", "index": unique_id}
 
     return dbc.Card(
         dbc.CardBody(
@@ -62,7 +65,9 @@ def render_log_item(log, search_text=None):
                     id=f"log-text-{log['timestamp']}",
                 ),
                 html.Span(
-                    html.I(className="fas fa-copy text-muted"),
+                    html.I(
+                        className="fas fa-copy text-muted", title=_("Copy to clipboard")
+                    ),
                     id=copy_id,
                     className="float-end copy-icon",
                     style={"cursor": "pointer"},
@@ -70,15 +75,24 @@ def render_log_item(log, search_text=None):
                 ),
                 dcc.Clipboard(
                     target_id=f"log-text-{log['timestamp']}",
-                    title="Copy to clipboard",
-                    style={"display": "none"},
+                    title=_("Copy to clipboard"),
+                    style={"visibility": "hidden", "position": "absolute"},
                 ),
+                # 1️⃣ Тултип-подсказка (hover)
                 dbc.Tooltip(
-                    "Copied!",
+                    _("Copy to clipboard"),
                     target=copy_id,
-                    id=tooltip_id,
+                    id=copy_tooltip_id,
                     placement="top",
-                    trigger="manual",  # 👈 важно: больше не срабатывает на hover
+                    trigger="hover",  # стандартный режим
+                ),
+                # 2. Тултип-уведомление (manual)
+                dbc.Tooltip(
+                    _("Copied!"),
+                    target=copy_id,
+                    id=copied_tooltip_id,
+                    placement="top",
+                    trigger="manual",  # срабатывает мануально
                     is_open=False,
                 ),
             ],

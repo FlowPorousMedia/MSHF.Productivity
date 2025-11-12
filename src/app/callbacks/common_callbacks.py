@@ -10,4 +10,4 @@ def register(app):
     )
     def init_language(lang):
         set_language(lang)
-        return "initialized"
+        return "init"

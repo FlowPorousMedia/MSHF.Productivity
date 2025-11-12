@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-11 20:13+0300\n"
+"POT-Creation-Date: 2025-11-12 15:28+0300\n"
 "PO-Revision-Date: 2025-11-10 19:47+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
@@ -246,4 +246,12 @@ msgstr "Рассчитать"
 #: src/app/components/main_content.py:117
 msgid "Show logs"
 msgstr "Показать журнал"
+
+#: src/app/services/log_item_worker.py:75
+msgid "Copy to clipboard"
+msgstr "Скопировать в буфер обмена"
+
+#: src/app/services/log_item_worker.py:79
+msgid "Copied!"
+msgstr "Скопировано!"
 
