@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-12 19:21+0300\n"
+"POT-Creation-Date: 2025-11-12 21:10+0300\n"
 "PO-Revision-Date: 2025-11-10 19:47+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
@@ -27,113 +27,109 @@ msgstr "Сообщение"
 msgid "Default"
 msgstr "По умолчанию"
 
-#: src/app/callbacks/calculate_button_callbacks.py:197 src/app/server.py:68
+#: src/app/callbacks/calculate_button_callbacks.py:201 src/app/server.py:68
 msgid "OK"
 msgstr "OK"
 
-#: src/app/callbacks/calculate_button_callbacks.py:63
+#: src/app/callbacks/calculate_button_callbacks.py:67
 msgid "Preparing for calculation..."
 msgstr "Подготовка к расчету"
 
-#: src/app/callbacks/calculate_button_callbacks.py:68
+#: src/app/callbacks/calculate_button_callbacks.py:72
 msgid "Default Parameters Notification"
 msgstr "Уведомление о параметрах по умолчанию"
 
-#: src/app/callbacks/calculate_button_callbacks.py:70
+#: src/app/callbacks/calculate_button_callbacks.py:74
 msgid "You are about to run the calculation with default parameters. Continue?"
 msgstr "Вы собираетесь запустить расчет с параметрами по умолчанию. Продолжить?"
 
-#: src/app/callbacks/calculate_button_callbacks.py:74
+#: src/app/callbacks/calculate_button_callbacks.py:78
 msgid "Yes"
 msgstr "Да"
 
-#: src/app/callbacks/calculate_button_callbacks.py:75
+#: src/app/callbacks/calculate_button_callbacks.py:79
 msgid "No"
 msgstr "Нет"
 
-#: src/app/callbacks/calculate_button_callbacks.py:82
+#: src/app/callbacks/calculate_button_callbacks.py:86
 msgid "No confirmation needed, starting calculation"
 msgstr "Подтверждение не требуется, запуск расчета"
 
-#: src/app/callbacks/calculate_button_callbacks.py:110
+#: src/app/callbacks/calculate_button_callbacks.py:114
 msgid "Starting calculation..."
 msgstr "Расчета начинается..."
 
-#: src/app/callbacks/calculate_button_callbacks.py:112
+#: src/app/callbacks/calculate_button_callbacks.py:116
 msgid "Calculation cancelled"
 msgstr "Расчет отменен"
 
-#: src/app/callbacks/calculate_button_callbacks.py:178
+#: src/app/callbacks/calculate_button_callbacks.py:182
 msgid "Checking selected models..."
 msgstr "Проверка выбранных моделей..."
 
-#: src/app/callbacks/calculate_button_callbacks.py:180
+#: src/app/callbacks/calculate_button_callbacks.py:184
 msgid "No models selected"
 msgstr "Не выбраны модели"
 
-#: src/app/callbacks/calculate_button_callbacks.py:194
+#: src/app/callbacks/calculate_button_callbacks.py:198
 msgid "Please select at least one model before starting the calculation."
 msgstr "Пожалуйста, выберите хотя бы одну модель для запуска расчета"
 
-#: src/app/callbacks/calculate_button_callbacks.py:203
+#: src/app/callbacks/calculate_button_callbacks.py:207
 msgid "Warning: no models selected"
 msgstr "Внимание: Не выбраны модели"
 
-#: src/app/callbacks/calculate_button_callbacks.py:208
+#: src/app/callbacks/calculate_button_callbacks.py:212
 msgid "Configuring calculation parameters..."
 msgstr "Настройка параметров расчета..."
 
-#: src/app/callbacks/calculate_button_callbacks.py:220
-#: src/app/callbacks/calculate_button_callbacks.py:229
-#: src/app/callbacks/calculate_button_callbacks.py:251
+#: src/app/callbacks/calculate_button_callbacks.py:224
+#: src/app/callbacks/calculate_button_callbacks.py:233
+#: src/app/callbacks/calculate_button_callbacks.py:255
 msgid "Invalid parametric settings"
 msgstr "Некорректные параметрические настройки"
 
-#: src/app/callbacks/calculate_button_callbacks.py:232
+#: src/app/callbacks/calculate_button_callbacks.py:236
 msgid "Error: invalid calculation parameters"
 msgstr "Ошибка: неверные параметры расчета"
 
-#: src/app/callbacks/calculate_button_callbacks.py:242
+#: src/app/callbacks/calculate_button_callbacks.py:246
 msgid "Invalid parametric range"
 msgstr "Неверный диапазон параметров"
 
-#: src/app/callbacks/calculate_button_callbacks.py:254
+#: src/app/callbacks/calculate_button_callbacks.py:258
 msgid "Error: invalid parameter range"
 msgstr "Ошибка: неверный диапазон параметров"
 
-#: src/app/callbacks/calculate_button_callbacks.py:262
+#: src/app/callbacks/calculate_button_callbacks.py:266
 msgid "Preparing data for calculation..."
 msgstr "Подготовка данных для расчета..."
 
-#: src/app/callbacks/calculate_button_callbacks.py:268
+#: src/app/callbacks/calculate_button_callbacks.py:272
 msgid "Reading initial data..."
 msgstr "Чтение исходных данных..."
 
-#: src/app/callbacks/calculate_button_callbacks.py:278
+#: src/app/callbacks/calculate_button_callbacks.py:282
 #, python-brace-format
 msgid "Init data error: {message}"
 msgstr "Ошибка в исходных данных: {message}"
 
-#: src/app/callbacks/calculate_button_callbacks.py:287
+#: src/app/callbacks/calculate_button_callbacks.py:291
 #, python-brace-format
 msgid "Data preparation error: {message}"
 msgstr "Ошибка подготовки данных: {message}"
 
-#: src/app/callbacks/calculate_button_callbacks.py:295
+#: src/app/callbacks/calculate_button_callbacks.py:299
 msgid "Performing calculation..."
 msgstr "Расчет..."
 
-#: src/app/callbacks/calculate_button_callbacks.py:309
+#: src/app/callbacks/calculate_button_callbacks.py:313
 msgid "Finalizing calculation..."
 msgstr "Расчет завершается..."
 
-#: src/app/callbacks/calculate_button_callbacks.py:315
+#: src/app/callbacks/calculate_button_callbacks.py:319
 msgid "Calculation completed successfully"
 msgstr "Расчет успешно завершен"
-
-#: src/app/callbacks/calculate_button_callbacks.py:343
-msgid "Calculation in progress..."
-msgstr "Переход к расчету..."
 
 #: src/app/callbacks/log_callbacks.py:44
 msgid "No logs yet"
@@ -311,33 +307,65 @@ msgstr "Сохранить"
 msgid "Clear"
 msgstr "Очистить"
 
-#: src/app/components/main_content.py:37
+#: src/app/components/main_content.py:41
 msgid "Fracture Analysis Dashboard"
 msgstr "Панель визуализации расчетов"
 
-#: src/app/components/main_content.py:48
-msgid "Results Plot"
-msgstr "Графики"
-
-#: src/app/components/main_content.py:53
-msgid "Press \"Calculate\" to see visual results here"
-msgstr "Нажмите «Рассчитать», чтобы увидеть результаты расчета"
-
-#: src/app/components/main_content.py:72
-msgid "Results Table"
-msgstr "Таблица"
-
-#: src/app/components/main_content.py:77
-msgid "Press \"Calculate\" to see table results here"
-msgstr "Нажмите «Рассчитать», чтобы увидеть результаты расчета"
-
-#: src/app/components/main_content.py:105
+#: src/app/components/main_content.py:87
 msgid "Run calculation"
 msgstr "Рассчитать"
 
-#: src/app/components/main_content.py:117
+#: src/app/components/main_content.py:99
 msgid "Show logs"
 msgstr "Показать журнал"
+
+#: src/app/components/sidebar.py:55
+msgid "Parameters"
+msgstr "Параметр"
+
+#: src/app/components/sidebar.py:67
+msgid "Collapse/Expand sidebar"
+msgstr "Скрыть/Показать боковую панель"
+
+#: src/app/components/sidebar.py:93
+msgid "Fracture Parameters"
+msgstr "Трещины"
+
+#: src/app/components/sidebar.py:99
+msgid "Well Parameters"
+msgstr "Скважина"
+
+#: src/app/components/sidebar.py:105
+msgid "Reservoir Parameters"
+msgstr "Пласт"
+
+#: src/app/components/sidebar.py:111
+msgid "Fluid Properties"
+msgstr "Флюид"
+
+#: src/app/components/sidebar.py:119
+msgid "Input Data"
+msgstr "Входные данные"
+
+#: src/app/components/sidebar.py:132
+msgid "Analytical"
+msgstr "Аналитические"
+
+#: src/app/components/sidebar.py:140
+msgid "Semi-analytical"
+msgstr "Полу-аналитические"
+
+#: src/app/components/sidebar.py:148
+msgid "Models"
+msgstr "Модели"
+
+#: src/app/components/sidebar.py:160
+msgid "Parametric Calc Settings"
+msgstr "Параметрический расчет"
+
+#: src/app/components/sidebar.py:169
+msgid "Settings"
+msgstr "Настройки"
 
 #: src/app/services/log_item_worker.py:69
 #: src/app/services/log_item_worker.py:78
@@ -348,6 +376,26 @@ msgstr "Скопировать в буфер обмена"
 #: src/app/services/log_item_worker.py:91
 msgid "Copied!"
 msgstr "Скопировано!"
+
+#: src/app/services/result_table_graph_helper.py:9
+msgid "Results Plot"
+msgstr "Графики"
+
+#: src/app/services/result_table_graph_helper.py:13
+msgid "Press \"Calculate\" to see visual results here"
+msgstr "Нажмите «Рассчитать», чтобы увидеть результаты расчета"
+
+#: src/app/services/result_table_graph_helper.py:20
+msgid "Results Table"
+msgstr "Таблица"
+
+#: src/app/services/result_table_graph_helper.py:24
+msgid "Press \"Calculate\" to see table results here"
+msgstr "Нажмите «Рассчитать», чтобы увидеть результаты расчета"
+
+#: src/app/services/result_table_graph_helper.py:39
+msgid "Calculation in progress..."
+msgstr "Переход к расчету..."
 
 #: src/core/models/message_level.py:16
 msgid "DEBUG"

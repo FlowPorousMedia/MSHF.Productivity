@@ -8,15 +8,20 @@ from src.app.components.parametric_settings_panel import (
 from src.app.components.well_params import create_well_params
 from src.app.components.reservoir_params import create_reservoir_params
 from src.app.components.fluid_params import create_fluid_params
+from src.app.i18n import _
 from src.app.models.analyt_models import get_analytic_models
 from src.app.models.semianalyt_models import get_semianalytic_models
 from src.app.services import models_grid_creator
 
 
 def create_sidebar():
+    """
+    Create sidebar with foldable panels
+    """
+
     analytical_models = get_analytic_models()
     semianalytical_models = get_semianalytic_models()
-    """Create sidebar with foldable panels"""
+
     return html.Div(
         id="sidebar-container",
         style={
@@ -47,7 +52,7 @@ def create_sidebar():
                             "backgroundColor": "#f8f9fa",
                         },
                         children=[
-                            html.H5("Parameters", style={"margin": "0"}),
+                            html.H5(_("Parameters"), style={"margin": "0"}),
                             html.Button(
                                 id="sidebar-toggle",
                                 children=html.I(className="fas fa-chevron-left"),
@@ -59,7 +64,7 @@ def create_sidebar():
                                     "padding": "5px 10px",
                                     "borderRadius": "3px",
                                 },
-                                title="Collapse/Expand sidebar",
+                                title=_("Collapse/Expand sidebar"),
                             ),
                         ],
                     ),
@@ -85,25 +90,25 @@ def create_sidebar():
                                                     # Fracture Parameters Subpanel
                                                     dbc.AccordionItem(
                                                         create_fracture_params(),
-                                                        title="Fracture Parameters",
+                                                        title=_("Fracture Parameters"),
                                                         item_id="fracture-panel",
                                                     ),
                                                     # Well Parameters Subpanel
                                                     dbc.AccordionItem(
                                                         create_well_params(),
-                                                        title="Well Parameters",
+                                                        title=_("Well Parameters"),
                                                         item_id="well-panel",
                                                     ),
                                                     # Reservoir Parameters Subpanel
                                                     dbc.AccordionItem(
                                                         create_reservoir_params(),
-                                                        title="Reservoir Parameters",
+                                                        title=_("Reservoir Parameters"),
                                                         item_id="reservoir-panel",
                                                     ),
                                                     # Fluid Properties Subpanel
                                                     dbc.AccordionItem(
                                                         create_fluid_params(),
-                                                        title="Fluid Properties",
+                                                        title=_("Fluid Properties"),
                                                         item_id="fluid-panel",
                                                     ),
                                                 ],
@@ -111,7 +116,7 @@ def create_sidebar():
                                                 start_collapsed=True,
                                             )
                                         ],
-                                        title="Input Data",
+                                        title=_("Input Data"),
                                         item_id="input-data-panel",
                                         className="mt-3",
                                     ),
@@ -124,7 +129,7 @@ def create_sidebar():
                                                             analytical_models,
                                                             ag_grid_id="analytical-models-gridtable",
                                                         ),
-                                                        title="Analytical",
+                                                        title=_("Analytical"),
                                                         item_id="analytical-model-panel",
                                                     ),
                                                     dbc.AccordionItem(
@@ -132,7 +137,7 @@ def create_sidebar():
                                                             semianalytical_models,
                                                             ag_grid_id="semianalytical-models-gridtable",
                                                         ),
-                                                        title="Semi-analytical",
+                                                        title=_("Semi-analytical"),
                                                         item_id="semianalytical-model-panel",
                                                     ),
                                                 ],
@@ -140,7 +145,7 @@ def create_sidebar():
                                                 start_collapsed=True,
                                             )
                                         ],
-                                        title="Models",
+                                        title=_("Models"),
                                         item_id="models-panel",
                                         className="mt-3",
                                     ),
@@ -152,7 +157,7 @@ def create_sidebar():
                                                         [
                                                             create_parametric_settings_panel()
                                                         ],
-                                                        title="Parametric Calc Settings",
+                                                        title=_("Parametric Calc Settings"),
                                                         item_id="parametric-settings-panel",
                                                         className="mt-3",
                                                     ),
@@ -161,7 +166,7 @@ def create_sidebar():
                                                 start_collapsed=True,
                                             )
                                         ],
-                                        title="Settings",
+                                        title=_("Settings"),
                                         item_id="settings-panel",
                                         className="mt-3",
                                     ),

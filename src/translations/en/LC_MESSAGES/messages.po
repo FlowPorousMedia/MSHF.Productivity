@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-12 19:21+0300\n"
+"POT-Creation-Date: 2025-11-12 21:10+0300\n"
 "PO-Revision-Date: 2025-11-10 19:47+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -26,112 +26,108 @@ msgstr "Message"
 msgid "Default"
 msgstr "Default"
 
-#: src/app/callbacks/calculate_button_callbacks.py:197 src/app/server.py:68
+#: src/app/callbacks/calculate_button_callbacks.py:201 src/app/server.py:68
 msgid "OK"
 msgstr "OK"
 
-#: src/app/callbacks/calculate_button_callbacks.py:63
+#: src/app/callbacks/calculate_button_callbacks.py:67
 msgid "Preparing for calculation..."
 msgstr ""
 
-#: src/app/callbacks/calculate_button_callbacks.py:68
+#: src/app/callbacks/calculate_button_callbacks.py:72
 msgid "Default Parameters Notification"
 msgstr ""
 
-#: src/app/callbacks/calculate_button_callbacks.py:70
+#: src/app/callbacks/calculate_button_callbacks.py:74
 msgid "You are about to run the calculation with default parameters. Continue?"
 msgstr ""
 
-#: src/app/callbacks/calculate_button_callbacks.py:74
+#: src/app/callbacks/calculate_button_callbacks.py:78
 msgid "Yes"
 msgstr ""
 
-#: src/app/callbacks/calculate_button_callbacks.py:75
+#: src/app/callbacks/calculate_button_callbacks.py:79
 msgid "No"
 msgstr ""
 
-#: src/app/callbacks/calculate_button_callbacks.py:82
+#: src/app/callbacks/calculate_button_callbacks.py:86
 msgid "No confirmation needed, starting calculation"
 msgstr ""
 
-#: src/app/callbacks/calculate_button_callbacks.py:110
+#: src/app/callbacks/calculate_button_callbacks.py:114
 msgid "Starting calculation..."
 msgstr ""
 
-#: src/app/callbacks/calculate_button_callbacks.py:112
+#: src/app/callbacks/calculate_button_callbacks.py:116
 msgid "Calculation cancelled"
 msgstr ""
 
-#: src/app/callbacks/calculate_button_callbacks.py:178
+#: src/app/callbacks/calculate_button_callbacks.py:182
 msgid "Checking selected models..."
 msgstr ""
 
-#: src/app/callbacks/calculate_button_callbacks.py:180
+#: src/app/callbacks/calculate_button_callbacks.py:184
 msgid "No models selected"
 msgstr ""
 
-#: src/app/callbacks/calculate_button_callbacks.py:194
+#: src/app/callbacks/calculate_button_callbacks.py:198
 msgid "Please select at least one model before starting the calculation."
 msgstr ""
 
-#: src/app/callbacks/calculate_button_callbacks.py:203
+#: src/app/callbacks/calculate_button_callbacks.py:207
 msgid "Warning: no models selected"
 msgstr ""
 
-#: src/app/callbacks/calculate_button_callbacks.py:208
+#: src/app/callbacks/calculate_button_callbacks.py:212
 msgid "Configuring calculation parameters..."
 msgstr ""
 
-#: src/app/callbacks/calculate_button_callbacks.py:220
-#: src/app/callbacks/calculate_button_callbacks.py:229
-#: src/app/callbacks/calculate_button_callbacks.py:251
+#: src/app/callbacks/calculate_button_callbacks.py:224
+#: src/app/callbacks/calculate_button_callbacks.py:233
+#: src/app/callbacks/calculate_button_callbacks.py:255
 msgid "Invalid parametric settings"
 msgstr ""
 
-#: src/app/callbacks/calculate_button_callbacks.py:232
+#: src/app/callbacks/calculate_button_callbacks.py:236
 msgid "Error: invalid calculation parameters"
 msgstr ""
 
-#: src/app/callbacks/calculate_button_callbacks.py:242
+#: src/app/callbacks/calculate_button_callbacks.py:246
 msgid "Invalid parametric range"
 msgstr ""
 
-#: src/app/callbacks/calculate_button_callbacks.py:254
+#: src/app/callbacks/calculate_button_callbacks.py:258
 msgid "Error: invalid parameter range"
 msgstr ""
 
-#: src/app/callbacks/calculate_button_callbacks.py:262
+#: src/app/callbacks/calculate_button_callbacks.py:266
 msgid "Preparing data for calculation..."
 msgstr ""
 
-#: src/app/callbacks/calculate_button_callbacks.py:268
+#: src/app/callbacks/calculate_button_callbacks.py:272
 msgid "Reading initial data..."
 msgstr ""
 
-#: src/app/callbacks/calculate_button_callbacks.py:278
+#: src/app/callbacks/calculate_button_callbacks.py:282
 #, python-brace-format
 msgid "Init data error: {message}"
 msgstr ""
 
-#: src/app/callbacks/calculate_button_callbacks.py:287
+#: src/app/callbacks/calculate_button_callbacks.py:291
 #, python-brace-format
 msgid "Data preparation error: {message}"
 msgstr ""
 
-#: src/app/callbacks/calculate_button_callbacks.py:295
+#: src/app/callbacks/calculate_button_callbacks.py:299
 msgid "Performing calculation..."
 msgstr ""
 
-#: src/app/callbacks/calculate_button_callbacks.py:309
+#: src/app/callbacks/calculate_button_callbacks.py:313
 msgid "Finalizing calculation..."
 msgstr ""
 
-#: src/app/callbacks/calculate_button_callbacks.py:315
+#: src/app/callbacks/calculate_button_callbacks.py:319
 msgid "Calculation completed successfully"
-msgstr ""
-
-#: src/app/callbacks/calculate_button_callbacks.py:343
-msgid "Calculation in progress..."
 msgstr ""
 
 #: src/app/callbacks/log_callbacks.py:44
@@ -308,34 +304,68 @@ msgstr ""
 msgid "Clear"
 msgstr ""
 
-#: src/app/components/main_content.py:37
+#: src/app/components/main_content.py:41
 msgid "Fracture Analysis Dashboard"
 msgstr ""
 
-#: src/app/components/main_content.py:48
-#, fuzzy
-msgid "Results Plot"
-msgstr "Results"
-
-#: src/app/components/main_content.py:53
-msgid "Press \"Calculate\" to see visual results here"
-msgstr ""
-
-#: src/app/components/main_content.py:72
-#, fuzzy
-msgid "Results Table"
-msgstr "No results available"
-
-#: src/app/components/main_content.py:77
-msgid "Press \"Calculate\" to see table results here"
-msgstr ""
-
-#: src/app/components/main_content.py:105
+#: src/app/components/main_content.py:87
 msgid "Run calculation"
 msgstr ""
 
-#: src/app/components/main_content.py:117
+#: src/app/components/main_content.py:99
 msgid "Show logs"
+msgstr ""
+
+#: src/app/components/sidebar.py:55
+#, fuzzy
+msgid "Parameters"
+msgstr "Parameter"
+
+#: src/app/components/sidebar.py:67
+msgid "Collapse/Expand sidebar"
+msgstr ""
+
+#: src/app/components/sidebar.py:93
+#, fuzzy
+msgid "Fracture Parameters"
+msgstr "Parameter"
+
+#: src/app/components/sidebar.py:99
+#, fuzzy
+msgid "Well Parameters"
+msgstr "Parameter"
+
+#: src/app/components/sidebar.py:105
+#, fuzzy
+msgid "Reservoir Parameters"
+msgstr "Parameter"
+
+#: src/app/components/sidebar.py:111
+msgid "Fluid Properties"
+msgstr ""
+
+#: src/app/components/sidebar.py:119
+msgid "Input Data"
+msgstr ""
+
+#: src/app/components/sidebar.py:132
+msgid "Analytical"
+msgstr ""
+
+#: src/app/components/sidebar.py:140
+msgid "Semi-analytical"
+msgstr ""
+
+#: src/app/components/sidebar.py:148
+msgid "Models"
+msgstr ""
+
+#: src/app/components/sidebar.py:160
+msgid "Parametric Calc Settings"
+msgstr ""
+
+#: src/app/components/sidebar.py:169
+msgid "Settings"
 msgstr ""
 
 #: src/app/services/log_item_worker.py:69
@@ -346,6 +376,28 @@ msgstr ""
 
 #: src/app/services/log_item_worker.py:91
 msgid "Copied!"
+msgstr ""
+
+#: src/app/services/result_table_graph_helper.py:9
+#, fuzzy
+msgid "Results Plot"
+msgstr "Results"
+
+#: src/app/services/result_table_graph_helper.py:13
+msgid "Press \"Calculate\" to see visual results here"
+msgstr ""
+
+#: src/app/services/result_table_graph_helper.py:20
+#, fuzzy
+msgid "Results Table"
+msgstr "No results available"
+
+#: src/app/services/result_table_graph_helper.py:24
+msgid "Press \"Calculate\" to see table results here"
+msgstr ""
+
+#: src/app/services/result_table_graph_helper.py:39
+msgid "Calculation in progress..."
 msgstr ""
 
 #: src/core/models/message_level.py:16
