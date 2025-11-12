@@ -1,6 +1,7 @@
 from dash import html, dcc
 import dash_bootstrap_components as dbc
 
+from src.app.i18n import _
 from src.app.models.default_values import DEFAULT_VALUES
 
 
@@ -15,7 +16,7 @@ def create_fluid_params():
             dbc.Row(
                 [
                     dbc.Col(
-                        html.Label("Viscosity (cP):", className="fw-bold"), width=6
+                        html.Label(_("Viscosity (cP):"), className="fw-bold"), width=6
                     ),
                     dbc.Col(
                         dcc.Input(

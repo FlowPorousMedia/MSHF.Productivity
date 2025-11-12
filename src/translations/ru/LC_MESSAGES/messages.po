@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-12 21:10+0300\n"
+"POT-Creation-Date: 2025-11-12 21:17+0300\n"
 "PO-Revision-Date: 2025-11-10 19:47+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
@@ -274,6 +274,10 @@ msgstr "GitHub"
 #: src/app/components/about_modal.py:103 src/app/components/log_viewer.py:126
 msgid "Close"
 msgstr "Закрыть"
+
+#: src/app/components/fluid_params.py:19
+msgid "Viscosity (cP):"
+msgstr "Вязкость (сП):"
 
 #: src/app/components/log_viewer.py:11
 msgid "Log Viewer"
