@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-12 15:28+0300\n"
+"POT-Creation-Date: 2025-11-12 16:40+0300\n"
 "PO-Revision-Date: 2025-11-10 19:47+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -30,6 +30,103 @@ msgstr "Default"
 msgid "OK"
 msgstr "OK"
 
+#: src/app/callbacks/calculate_button_callbacks.py:62
+msgid "Preparing for calculation..."
+msgstr ""
+
+#: src/app/callbacks/calculate_button_callbacks.py:67
+msgid "Default Parameters Notification"
+msgstr ""
+
+#: src/app/callbacks/calculate_button_callbacks.py:69
+msgid "You are about to run the calculation with default parameters. Continue?"
+msgstr ""
+
+#: src/app/callbacks/calculate_button_callbacks.py:72
+msgid "Yes"
+msgstr ""
+
+#: src/app/callbacks/calculate_button_callbacks.py:72
+msgid "No"
+msgstr ""
+
+#: src/app/callbacks/calculate_button_callbacks.py:78
+msgid "No confirmation needed, starting calculation"
+msgstr ""
+
+#: src/app/callbacks/calculate_button_callbacks.py:106
+msgid "Starting calculation..."
+msgstr ""
+
+#: src/app/callbacks/calculate_button_callbacks.py:108
+msgid "Calculation cancelled"
+msgstr ""
+
+#: src/app/callbacks/calculate_button_callbacks.py:181
+msgid "Checking selected models..."
+msgstr ""
+
+#: src/app/callbacks/calculate_button_callbacks.py:185
+#: src/app/callbacks/calculate_button_callbacks.py:193
+msgid "No models selected"
+msgstr ""
+
+#: src/app/callbacks/calculate_button_callbacks.py:202
+msgid "Configuring calculation parameters..."
+msgstr ""
+
+#: src/app/callbacks/calculate_button_callbacks.py:214
+#: src/app/callbacks/calculate_button_callbacks.py:223
+#: src/app/callbacks/calculate_button_callbacks.py:245
+msgid "Invalid parametric settings"
+msgstr ""
+
+#: src/app/callbacks/calculate_button_callbacks.py:226
+msgid "Error: invalid calculation parameters"
+msgstr ""
+
+#: src/app/callbacks/calculate_button_callbacks.py:236
+msgid "Invalid parametric range"
+msgstr ""
+
+#: src/app/callbacks/calculate_button_callbacks.py:248
+msgid "Error: invalid parameter range"
+msgstr ""
+
+#: src/app/callbacks/calculate_button_callbacks.py:256
+msgid "Preparing data for calculation..."
+msgstr ""
+
+#: src/app/callbacks/calculate_button_callbacks.py:262
+msgid "Reading initial data..."
+msgstr ""
+
+#: src/app/callbacks/calculate_button_callbacks.py:271
+#, python-brace-format
+msgid "Init data error: {message}"
+msgstr ""
+
+#: src/app/callbacks/calculate_button_callbacks.py:280
+#, python-brace-format
+msgid "Data preparation error: {message}"
+msgstr ""
+
+#: src/app/callbacks/calculate_button_callbacks.py:288
+msgid "Performing calculation..."
+msgstr ""
+
+#: src/app/callbacks/calculate_button_callbacks.py:302
+msgid "Finalizing calculation..."
+msgstr ""
+
+#: src/app/callbacks/calculate_button_callbacks.py:307
+msgid "Calculation completed successfully"
+msgstr ""
+
+#: src/app/callbacks/calculate_button_callbacks.py:335
+msgid "Calculation in progress..."
+msgstr ""
+
 #: src/app/callbacks/log_callbacks.py:48
 msgid "No logs yet"
 msgstr ""
@@ -38,11 +135,11 @@ msgstr ""
 msgid "No logs match the filters"
 msgstr ""
 
-#: src/app/callbacks/log_callbacks.py:201
+#: src/app/callbacks/log_callbacks.py:205
 msgid "Showing 0 messages"
 msgstr ""
 
-#: src/app/callbacks/log_callbacks.py:207
+#: src/app/callbacks/log_callbacks.py:211
 #, python-brace-format
 msgid "Showing {filtered} of {logs} messages"
 msgstr ""
@@ -246,11 +343,13 @@ msgstr ""
 msgid "Show logs"
 msgstr ""
 
-#: src/app/services/log_item_worker.py:75
+#: src/app/services/log_item_worker.py:69
+#: src/app/services/log_item_worker.py:78
+#: src/app/services/log_item_worker.py:83
 msgid "Copy to clipboard"
 msgstr ""
 
-#: src/app/services/log_item_worker.py:79
+#: src/app/services/log_item_worker.py:91
 msgid "Copied!"
 msgstr ""
 

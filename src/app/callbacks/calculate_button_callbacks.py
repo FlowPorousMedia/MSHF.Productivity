@@ -1,4 +1,5 @@
 from dash import Input, Output, State, no_update, exceptions, html
+from src.app.i18n import _
 from src.app.models.parametric_settings import ParametricSettings
 from src.app.models.result import Result
 from src.app.models.result_details import ResultDetails
@@ -58,21 +59,23 @@ def register(app):
             "alignItems": "center",
             "marginLeft": "10px",
         }
-        status_text = "Preparing for calculation..."
+        status_text = _("Preparing for calculation...")
 
         if CalcPreprocessor.is_default_params(well, reservoir, fluid, fracture, logs):
             data = {
                 "context": "confirm_calc_start",
-                "title": "Default Parameters Notification",
-                "message": "You are about to run the calculation with default parameters. Continue?",
+                "title": _("Default Parameters Notification"),
+                "message": _(
+                    "You are about to run the calculation with default parameters. Continue?"
+                ),
                 "type": LogLevel.INFO.name,
-                "buttons": ["Yes", "No"],
+                "buttons": [{"label": _("Yes"), "value": True}, {"label": _("No"), "value": False}]
             }
             return data, "confirming", logs, status_text, progress_style
 
         logs.append(
             make_log(
-                "No confirmation needed, starting calculation",
+                _("No confirmation needed, starting calculation"),
                 LogLevel.DEBUG,
                 LogCategory.CALCULATION,
                 False,
@@ -93,16 +96,16 @@ def register(app):
         if not msg_response or msg_response.get("context") != "confirm_calc_start":
             raise exceptions.PreventUpdate
 
-        if msg_response.get("response") == "Yes":
+        if msg_response.get("response") == "True":
             progress_style = {
                 "display": "flex",
                 "flex": "1",
                 "alignItems": "center",
                 "marginLeft": "10px",
             }
-            return "running", "Starting calculation...", progress_style
+            return "running", _("Starting calculation..."), progress_style
         else:
-            return "idle", "Calculation cancelled", {"display": "none"}
+            return "idle", _("Calculation cancelled"), {"display": "none"}
 
     # run calculation - основной background callback
     @app.callback(
@@ -175,11 +178,11 @@ def register(app):
         logs = logs or []
 
         # Этап 1: Проверка моделей
-        set_progress((10, "10%", "Checking selected models..."))
+        set_progress((10, "10%", _("Checking selected models...")))
         if not analytical_selected_models and not semianalytical_selected_models:
             logs.append(
                 make_log(
-                    "No models selected",
+                    _("No models selected"),
                     LogLevel.WARNING,
                     LogCategory.CALCULATION,
                     False,
@@ -187,8 +190,8 @@ def register(app):
             )
             return (
                 logs,
-                {"message": "No selected models", "type": LogLevel.WARNING.name},
-                "Warning: no models selected",
+                {"message": _("No models selected"), "type": LogLevel.WARNING.name},
+                ("Warning: no models selected"),
                 0,
                 "0%",
                 {"display": "none"},
@@ -196,7 +199,7 @@ def register(app):
             )
 
         # Этап 2: Настройка параметров
-        set_progress((20, "20%", "Configuring calculation parameters..."))
+        set_progress((20, "20%", _("Configuring calculation parameters...")))
         setts = ParametricSettings()
         if parametric_checked:
             try:
@@ -208,7 +211,7 @@ def register(app):
             except (TypeError, ValueError):
                 logs.append(
                     make_log(
-                        "Invalid parametric settings",
+                        _("Invalid parametric settings"),
                         LogLevel.ERROR,
                         LogCategory.CALCULATION,
                         False,
@@ -217,10 +220,10 @@ def register(app):
                 return (
                     logs,
                     {
-                        "message": "Invalid parametric settings",
+                        "message": _("Invalid parametric settings"),
                         "type": LogLevel.ERROR.name,
                     },
-                    "Error: invalid calculation parameters",
+                    _("Error: invalid calculation parameters"),
                     0,
                     "0%",
                     {"display": "none"},
@@ -230,7 +233,7 @@ def register(app):
             if setts.point_count < 2 or setts.start >= setts.end:
                 logs.append(
                     make_log(
-                        "Invalid parametric range",
+                        _("Invalid parametric range"),
                         LogLevel.ERROR,
                         LogCategory.CALCULATION,
                         False,
@@ -239,10 +242,10 @@ def register(app):
                 return (
                     logs,
                     {
-                        "message": "Invalid parametric settings",
+                        "message": _("Invalid parametric settings"),
                         "type": LogLevel.ERROR.name,
                     },
-                    "Error: invalid parameter range",
+                    _("Error: invalid parameter range"),
                     0,
                     "0%",
                     {"display": "none"},
@@ -250,13 +253,13 @@ def register(app):
                 )
 
         # Этап 3: Подготовка данных
-        set_progress((40, "40%", "Preparing data for calculation..."))
+        set_progress((40, "40%", _("Preparing data for calculation...")))
         calc_models = (analytical_selected_models or []) + (
             semianalytical_selected_models or []
         )
 
         # Этап 4: Чтение исходных данных
-        set_progress((60, "60%", "Reading initial data..."))
+        set_progress((60, "60%", _("Reading initial data...")))
         result_init_data: Result = init_data_reader.make_init_data(
             fracture_data, well_data, reservoir_data, fluid_data, calc_models, setts
         )
@@ -265,7 +268,7 @@ def register(app):
             details: ResultDetails = result_init_data.details
             logs.append(
                 make_log(
-                    f"Init data error: {details.message}",
+                    _("Init data error: {message}").format(message=details.message),
                     LogLevel.ERROR,
                     LogCategory.CALCULATION,
                     False,
@@ -274,7 +277,7 @@ def register(app):
             return (
                 logs,
                 {"message": details.message, "type": LogLevel.ERROR.name},
-                f"Data preparation error: {details.message}",
+                _("Data preparation error: {message}").format(message=details.message),
                 0,
                 "0%",
                 {"display": "none"},
@@ -282,7 +285,7 @@ def register(app):
             )
 
         # Этап 5: Выполнение расчета
-        set_progress((80, "80%", "Performing calculation..."))
+        set_progress((80, "80%", _("Performing calculation...")))
         init_data: InitialData = result_init_data.data
 
         def update_solver_progress(progress, message):
@@ -296,14 +299,14 @@ def register(app):
         )
 
         # Завершение
-        set_progress((100, "100%", "Finalizing calculation..."))
+        set_progress((100, "100%", _("Finalizing calculation...")))
 
         return (
             logs,
             result.to_dict(),
-            "Calculation completed successfully",
-            100,
-            "100%",
+            _("Calculation completed successfully"),
+            0,
+            "",
             {"display": "flex", "flex": "0 0 auto", "alignItems": "center"},
             "idle",
         )
@@ -322,14 +325,14 @@ def register(app):
         # Очищаем только если пользователь нажал "Yes"
         if (
             msg_response.get("context") == "confirm_calc_start"
-            and msg_response.get("response") == "Yes"
+            and msg_response.get("response") == "True"
         ):
             empty_content = html.Div(
                 [
                     html.Div(
                         [
                             html.I(className="bi bi-hourglass-split me-2"),
-                            "Calculation in progress...",
+                            _("Calculation in progress..."),
                         ],
                         className="alert alert-info d-flex align-items-center",
                     ),

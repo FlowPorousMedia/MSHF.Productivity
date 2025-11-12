@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-12 15:28+0300\n"
+"POT-Creation-Date: 2025-11-12 16:40+0300\n"
 "PO-Revision-Date: 2025-11-10 19:47+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
@@ -31,6 +31,103 @@ msgstr "По умолчанию"
 msgid "OK"
 msgstr "OK"
 
+#: src/app/callbacks/calculate_button_callbacks.py:62
+msgid "Preparing for calculation..."
+msgstr "Подготовка к расчету"
+
+#: src/app/callbacks/calculate_button_callbacks.py:67
+msgid "Default Parameters Notification"
+msgstr "Уведомление о параметрах по умолчанию"
+
+#: src/app/callbacks/calculate_button_callbacks.py:69
+msgid "You are about to run the calculation with default parameters. Continue?"
+msgstr "Вы собираетесь запустить расчет с параметрами по умолчанию. Продолжить?"
+
+#: src/app/callbacks/calculate_button_callbacks.py:72
+msgid "Yes"
+msgstr "Да"
+
+#: src/app/callbacks/calculate_button_callbacks.py:72
+msgid "No"
+msgstr "Нет"
+
+#: src/app/callbacks/calculate_button_callbacks.py:78
+msgid "No confirmation needed, starting calculation"
+msgstr "Подтверждение не требуется, запуск расчета"
+
+#: src/app/callbacks/calculate_button_callbacks.py:106
+msgid "Starting calculation..."
+msgstr "Расчета начинается..."
+
+#: src/app/callbacks/calculate_button_callbacks.py:108
+msgid "Calculation cancelled"
+msgstr "Расчет отменен"
+
+#: src/app/callbacks/calculate_button_callbacks.py:181
+msgid "Checking selected models..."
+msgstr "Проверка выбранных моделей..."
+
+#: src/app/callbacks/calculate_button_callbacks.py:185
+#: src/app/callbacks/calculate_button_callbacks.py:193
+msgid "No models selected"
+msgstr "Не выбраны модели"
+
+#: src/app/callbacks/calculate_button_callbacks.py:202
+msgid "Configuring calculation parameters..."
+msgstr "Настройка параметров расчета..."
+
+#: src/app/callbacks/calculate_button_callbacks.py:214
+#: src/app/callbacks/calculate_button_callbacks.py:223
+#: src/app/callbacks/calculate_button_callbacks.py:245
+msgid "Invalid parametric settings"
+msgstr "Некорректные параметрические настройки"
+
+#: src/app/callbacks/calculate_button_callbacks.py:226
+msgid "Error: invalid calculation parameters"
+msgstr "Ошибка: неверные параметры расчета"
+
+#: src/app/callbacks/calculate_button_callbacks.py:236
+msgid "Invalid parametric range"
+msgstr "Неверный диапазон параметров"
+
+#: src/app/callbacks/calculate_button_callbacks.py:248
+msgid "Error: invalid parameter range"
+msgstr "Ошибка: неверный диапазон параметров"
+
+#: src/app/callbacks/calculate_button_callbacks.py:256
+msgid "Preparing data for calculation..."
+msgstr "Подготовка данных для расчета..."
+
+#: src/app/callbacks/calculate_button_callbacks.py:262
+msgid "Reading initial data..."
+msgstr "Чтение исходных данных..."
+
+#: src/app/callbacks/calculate_button_callbacks.py:271
+#, python-brace-format
+msgid "Init data error: {message}"
+msgstr "Ошибка в исходных данных: {message}"
+
+#: src/app/callbacks/calculate_button_callbacks.py:280
+#, python-brace-format
+msgid "Data preparation error: {message}"
+msgstr "Ошибка подготовки данных: {message}"
+
+#: src/app/callbacks/calculate_button_callbacks.py:288
+msgid "Performing calculation..."
+msgstr "Расчет..."
+
+#: src/app/callbacks/calculate_button_callbacks.py:302
+msgid "Finalizing calculation..."
+msgstr "Расчет завершается..."
+
+#: src/app/callbacks/calculate_button_callbacks.py:307
+msgid "Calculation completed successfully"
+msgstr "Расчет успешно завершен"
+
+#: src/app/callbacks/calculate_button_callbacks.py:335
+msgid "Calculation in progress..."
+msgstr "Переход к расчету..."
+
 #: src/app/callbacks/log_callbacks.py:48
 msgid "No logs yet"
 msgstr "Логи отсутствуют"
@@ -39,11 +136,11 @@ msgstr "Логи отсутствуют"
 msgid "No logs match the filters"
 msgstr "Нет записей, соответствующих выбранным фильтрам"
 
-#: src/app/callbacks/log_callbacks.py:201
+#: src/app/callbacks/log_callbacks.py:205
 msgid "Showing 0 messages"
 msgstr "Показано 0 сообщений"
 
-#: src/app/callbacks/log_callbacks.py:207
+#: src/app/callbacks/log_callbacks.py:211
 #, python-brace-format
 msgid "Showing {filtered} of {logs} messages"
 msgstr "Показано {filtered} из {logs} сообщений"
@@ -247,11 +344,13 @@ msgstr "Рассчитать"
 msgid "Show logs"
 msgstr "Показать журнал"
 
-#: src/app/services/log_item_worker.py:75
+#: src/app/services/log_item_worker.py:69
+#: src/app/services/log_item_worker.py:78
+#: src/app/services/log_item_worker.py:83
 msgid "Copy to clipboard"
 msgstr "Скопировать в буфер обмена"
 
-#: src/app/services/log_item_worker.py:79
+#: src/app/services/log_item_worker.py:91
 msgid "Copied!"
 msgstr "Скопировано!"
 

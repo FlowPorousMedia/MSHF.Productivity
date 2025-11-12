@@ -32,7 +32,14 @@ def get_message_dialog(
         ),
     }
 
-    # ⚡ Весь контент оборачиваем в контейнер с data-context
+    normalized_buttons = []
+    for b in buttons:
+        if isinstance(b, dict):
+            normalized_buttons.append(b)
+        else:
+            normalized_buttons.append({"label": str(b), "value": str(b)})
+
+    # Весь контент оборачиваем в контейнер с data-context
     content = html.Div(
         [
             dbc.ModalHeader(
@@ -50,15 +57,15 @@ def get_message_dialog(
             dbc.ModalFooter(
                 [
                     dbc.Button(
-                        b,
-                        id={"type": "msg-btn", "index": b},
+                        b["label"],
+                        id={"type": "msg-btn", "index": str(b["value"])},
                         className="me-2",
                     )
-                    for b in buttons
+                    for b in normalized_buttons
                 ]
             ),
         ],
-        **({"data-context": context} if context else {}),  # 👈 теперь тут!
+        **({"data-context": context} if context else {}),
     )
 
     return dbc.Modal(
