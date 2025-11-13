@@ -1,13 +1,22 @@
 from enum import Enum
 
+from src.app.i18n import _
+
 
 class FracInitFieldNames(Enum):
-    LENGTH_PLUS = "Length Plus (m)"
-    LENGTH_MINUS = "Length Minus (m)"
-    WIDTH = "Width (mm)"
-    PERMEABILITY = "Permeability (D)"
-    WELL_CROSS = "Well cross depth (m)"
+    LENGTH_PLUS = "LENGTH_PLUS"
+    LENGTH_MINUS = "LENGTH_MINUS"
+    WIDTH = "WIDTH"
+    PERMEABILITY = "PERMEABILITY"
+    WELL_CROSS = "WELL_CROSS"
 
     @property
-    def value_str(self):
-        return self.value
+    def label(self):
+        labels = {
+            FracInitFieldNames.LENGTH_PLUS: _("Length Plus (m)"),
+            FracInitFieldNames.LENGTH_MINUS: _("Length Minus (m)"),
+            FracInitFieldNames.WIDTH: _("Width (mm)"),
+            FracInitFieldNames.PERMEABILITY: _("Permeability (D)"),
+            FracInitFieldNames.WELL_CROSS: _("Well cross depth (m)"),
+        }
+        return labels[self]
