@@ -67,13 +67,14 @@ def register(app):
         status_text = _("Preparing for calculation...")
 
         if CalcPreprocessor.is_default_params(well, reservoir, fluid, fracture, logs):
+            print('was here')
             data = {
                 "context": "confirm_calc_start",
                 "title": _("Default Parameters Notification"),
                 "message": _(
                     "You are about to run the calculation with default parameters. Continue?"
                 ),
-                "type": MessageLevel.INFO.name,
+                "type": MessageLevel.INFO,
                 "buttons": [
                     {"label": _("Yes"), "value": True},
                     {"label": _("No"), "value": False},

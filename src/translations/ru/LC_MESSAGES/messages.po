@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-12 21:17+0300\n"
+"POT-Creation-Date: 2025-11-13 16:04+0300\n"
 "PO-Revision-Date: 2025-11-10 19:47+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
@@ -27,7 +27,13 @@ msgstr "Сообщение"
 msgid "Default"
 msgstr "По умолчанию"
 
-#: src/app/callbacks/calculate_button_callbacks.py:201 src/app/server.py:68
+#: src/app/callbacks/calculate_button_callbacks.py:201
+#: src/app/callbacks/fracture_table_callbacks.py:76
+#: src/app/callbacks/fracture_table_callbacks.py:88
+#: src/app/callbacks/fracture_table_callbacks.py:108
+#: src/app/callbacks/fracture_table_callbacks.py:117
+#: src/app/callbacks/fracture_table_callbacks.py:126
+#: src/app/callbacks/fracture_table_callbacks.py:137 src/app/server.py:68
 msgid "OK"
 msgstr "OK"
 
@@ -130,6 +136,67 @@ msgstr "Расчет завершается..."
 #: src/app/callbacks/calculate_button_callbacks.py:319
 msgid "Calculation completed successfully"
 msgstr "Расчет успешно завершен"
+
+#: src/app/callbacks/fracture_table_callbacks.py:73
+msgid "Missing Data"
+msgstr "Отсутствуют данные"
+
+#: src/app/callbacks/fracture_table_callbacks.py:74
+msgid "Fracture or reservoir data is missing"
+msgstr "Отсутствуют данные по пласту или трещинам ГРП"
+
+#: src/app/callbacks/fracture_table_callbacks.py:82
+msgid "Reservoir permeability must be > 0"
+msgstr "Значение проницаемости пласта должно быть > 0"
+
+#: src/app/callbacks/fracture_table_callbacks.py:85
+msgid "Invalid Reservoir Data"
+msgstr "Некорректные данные по пласту"
+
+#: src/app/callbacks/fracture_table_callbacks.py:86
+msgid "Reservoir permeability is missing or invalid"
+msgstr "Значение проницаемости пласта не задано или некорректное"
+
+#: src/app/callbacks/fracture_table_callbacks.py:103
+#: src/app/callbacks/fracture_table_callbacks.py:112
+#: src/app/callbacks/fracture_table_callbacks.py:121
+#: src/app/callbacks/fracture_table_callbacks.py:132
+msgid "Invalid Fracture Data"
+msgstr "Некорретные данные по трещинам"
+
+#: src/app/callbacks/fracture_table_callbacks.py:104
+#, python-brace-format
+msgid "Fracture {frac_id} length is negative"
+msgstr "Длина трещины {frac_id} отрицательна"
+
+#: src/app/callbacks/fracture_table_callbacks.py:113
+#, python-brace-format
+msgid "Fracture {frac_id} width is negative"
+msgstr "Ширина трещины {frac_id} отрицательна"
+
+#: src/app/callbacks/fracture_table_callbacks.py:123
+#, python-brace-format
+msgid "Fracture {frac_id} permeability is negative"
+msgstr "Проницаемость трещины {frac_id} отрицательна"
+
+#: src/app/callbacks/fracture_table_callbacks.py:133
+#, python-brace-format
+msgid "Fracture {frac_id} {message} is incorrect"
+msgstr "Данные по трещине {frac_id} некорректны"
+
+#: src/app/callbacks/fracture_table_callbacks.py:142
+#, python-brace-format
+msgid "Fracture {frac_id}: Fcd = {fcd_val}"
+msgstr "Трещина {frac_id}: Fcd = {fcd_val}"
+
+#: src/app/callbacks/fracture_table_callbacks.py:149
+msgid "Dimensionless Fracture Conductivity (Fcd)"
+msgstr "Безразмерная проводимость трещины  (Fcd)"
+
+#: src/app/callbacks/fracture_table_callbacks.py:152
+#: src/app/components/about_modal.py:103 src/app/components/log_viewer.py:126
+msgid "Close"
+msgstr "Закрыть"
 
 #: src/app/callbacks/log_callbacks.py:44
 msgid "No logs yet"
@@ -270,10 +337,6 @@ msgstr "Для получения поддержки откройте обращ
 #: src/app/components/about_modal.py:94
 msgid "GitHub Issues"
 msgstr "GitHub"
-
-#: src/app/components/about_modal.py:103 src/app/components/log_viewer.py:126
-msgid "Close"
-msgstr "Закрыть"
 
 #: src/app/components/fluid_params.py:19
 msgid "Viscosity (cP):"
@@ -420,4 +483,5 @@ msgstr "ОШИБКА"
 #: src/core/models/message_level.py:20
 msgid "CRITICAL"
 msgstr "КРИТИЧЕСКОЕ"
+
 

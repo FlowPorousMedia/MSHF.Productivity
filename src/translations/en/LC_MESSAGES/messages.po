@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-12 21:17+0300\n"
+"POT-Creation-Date: 2025-11-13 16:04+0300\n"
 "PO-Revision-Date: 2025-11-10 19:47+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -26,7 +26,13 @@ msgstr "Message"
 msgid "Default"
 msgstr "Default"
 
-#: src/app/callbacks/calculate_button_callbacks.py:201 src/app/server.py:68
+#: src/app/callbacks/calculate_button_callbacks.py:201
+#: src/app/callbacks/fracture_table_callbacks.py:76
+#: src/app/callbacks/fracture_table_callbacks.py:88
+#: src/app/callbacks/fracture_table_callbacks.py:108
+#: src/app/callbacks/fracture_table_callbacks.py:117
+#: src/app/callbacks/fracture_table_callbacks.py:126
+#: src/app/callbacks/fracture_table_callbacks.py:137 src/app/server.py:68
 msgid "OK"
 msgstr "OK"
 
@@ -128,6 +134,67 @@ msgstr ""
 
 #: src/app/callbacks/calculate_button_callbacks.py:319
 msgid "Calculation completed successfully"
+msgstr ""
+
+#: src/app/callbacks/fracture_table_callbacks.py:73
+msgid "Missing Data"
+msgstr ""
+
+#: src/app/callbacks/fracture_table_callbacks.py:74
+msgid "Fracture or reservoir data is missing"
+msgstr ""
+
+#: src/app/callbacks/fracture_table_callbacks.py:82
+msgid "Reservoir permeability must be > 0"
+msgstr ""
+
+#: src/app/callbacks/fracture_table_callbacks.py:85
+msgid "Invalid Reservoir Data"
+msgstr ""
+
+#: src/app/callbacks/fracture_table_callbacks.py:86
+msgid "Reservoir permeability is missing or invalid"
+msgstr ""
+
+#: src/app/callbacks/fracture_table_callbacks.py:103
+#: src/app/callbacks/fracture_table_callbacks.py:112
+#: src/app/callbacks/fracture_table_callbacks.py:121
+#: src/app/callbacks/fracture_table_callbacks.py:132
+msgid "Invalid Fracture Data"
+msgstr ""
+
+#: src/app/callbacks/fracture_table_callbacks.py:104
+#, python-brace-format
+msgid "Fracture {frac_id} length is negative"
+msgstr ""
+
+#: src/app/callbacks/fracture_table_callbacks.py:113
+#, python-brace-format
+msgid "Fracture {frac_id} width is negative"
+msgstr ""
+
+#: src/app/callbacks/fracture_table_callbacks.py:123
+#, python-brace-format
+msgid "Fracture {frac_id} permeability is negative"
+msgstr ""
+
+#: src/app/callbacks/fracture_table_callbacks.py:133
+#, python-brace-format
+msgid "Fracture {frac_id} {message} is incorrect"
+msgstr ""
+
+#: src/app/callbacks/fracture_table_callbacks.py:142
+#, python-brace-format
+msgid "Fracture {frac_id}: Fcd = {fcd_val}"
+msgstr ""
+
+#: src/app/callbacks/fracture_table_callbacks.py:149
+msgid "Dimensionless Fracture Conductivity (Fcd)"
+msgstr ""
+
+#: src/app/callbacks/fracture_table_callbacks.py:152
+#: src/app/components/about_modal.py:103 src/app/components/log_viewer.py:126
+msgid "Close"
 msgstr ""
 
 #: src/app/callbacks/log_callbacks.py:44
@@ -267,10 +334,6 @@ msgstr ""
 #, fuzzy
 msgid "GitHub Issues"
 msgstr "Github"
-
-#: src/app/components/about_modal.py:103 src/app/components/log_viewer.py:126
-msgid "Close"
-msgstr ""
 
 #: src/app/components/fluid_params.py:19
 msgid "Viscosity (cP):"
@@ -446,5 +509,8 @@ msgstr ""
 #~ msgstr ""
 
 #~ msgid "Critical"
+#~ msgstr ""
+
+#~ msgid "Fracture or reservoir data not available"
 #~ msgstr ""
 

@@ -5,6 +5,7 @@ from dash import (
     State,
 )
 
+from src.app.i18n import _
 from src.core.models.message_level import MessageLevel
 
 
@@ -69,22 +70,22 @@ def register(app):
 
         if not fracture_data or not reservoir_data:
             return {
-                "title": "Missing Data",
-                "message": "Fracture or reservoir data not available.",
-                "type": "WARNING",
-                "buttons": ["OK"],
+                "title": _("Missing Data"),
+                "message": _("Fracture or reservoir data is missing"),
+                "type": MessageLevel.WARNING,
+                "buttons": [_("OK")],
             }
 
         try:
             res_perm = float(reservoir_data.get("permeability", 0.1))
             if res_perm <= 0:
-                raise ValueError("Reservoir permeability must be > 0")
+                raise ValueError(_("Reservoir permeability must be > 0"))
         except (TypeError, ValueError):
             return {
-                "title": "Invalid Reservoir Data",
-                "message": "Reservoir permeability is missing or invalid.",
-                "type": MessageLevel.ERROR.label,
-                "buttons": ["OK"],
+                "title": _("Invalid Reservoir Data"),
+                "message": _("Reservoir permeability is missing or invalid"),
+                "type": MessageLevel.ERROR,
+                "buttons": [_("OK")],
             }
 
         fcd_lines = []
@@ -99,41 +100,54 @@ def register(app):
 
                 if l_f <= 0:
                     return {
-                        "title": "Invalid Fracture Data",
-                        "message": f"Fracture {frac_id} length is negative",
-                        "type": MessageLevel.ERROR.label,
-                        "buttons": ["OK"],
+                        "title": _("Invalid Fracture Data"),
+                        "message": _("Fracture {frac_id} length is negative").format(
+                            frac_id=frac_id
+                        ),
+                        "type": MessageLevel.ERROR,
+                        "buttons": [_("OK")],
                     }
                 if w_f <= 0:
                     return {
-                        "title": "Invalid Fracture Data",
-                        "message": f"Fracture {frac_id} width is negative",
-                        "type": MessageLevel.ERROR.label,
-                        "buttons": ["OK"],
+                        "title": _("Invalid Fracture Data"),
+                        "message": _("Fracture {frac_id} width is negative").format(
+                            frac_id=frac_id
+                        ),
+                        "type": MessageLevel.ERROR,
+                        "buttons": [_("OK")],
                     }
                 if k_f <= 0:
                     return {
-                        "title": "Invalid Fracture Data",
-                        "message": f"Fracture {frac_id} permeability is negative",
-                        "type": MessageLevel.ERROR.label,
-                        "buttons": ["OK"],
+                        "title": _("Invalid Fracture Data"),
+                        "message": _(
+                            "Fracture {frac_id} permeability is negative"
+                        ).format(frac_id=frac_id),
+                        "type": MessageLevel.ERROR,
+                        "buttons": [_("OK")],
                     }
                 fcd_val = (k_f * w_f) / (res_perm * l_f)
                 fcd_val = round(fcd_val, 1)
             except (TypeError, ValueError, KeyError) as e:
                 return {
-                    "title": "Invalid Fracture Data",
-                    "message": f"Fracture {frac_id} {str(e)} is incorrect",
-                    "type": MessageLevel.ERROR.label,
-                    "buttons": ["OK"],
+                    "title": _("Invalid Fracture Data"),
+                    "message": _("Fracture {frac_id} {message} is incorrect").format(
+                        frac_id=frac_id, message=str(e)
+                    ),
+                    "type": MessageLevel.ERROR,
+                    "buttons": [_("OK")],
                 }
 
-            fcd_lines.append(f"Fracture {frac_id}: Fcd = {fcd_val}")
+            fcd_val_str = f"{fcd_val:g}"
+            fcd_lines.append(
+                _("Fracture {frac_id}: Fcd = {fcd_val}").format(
+                    frac_id=frac_id, fcd_val=fcd_val_str
+                )
+            )
 
         message = "\n".join(fcd_lines)
         return {
-            "title": "Dimensionless Fracture Conductivity (Fcd)",
+            "title": _("Dimensionless Fracture Conductivity (Fcd)"),
             "message": message,
-            "type": MessageLevel.INFO.label,
-            "buttons": ["Close"],
+            "type": MessageLevel.INFO,
+            "buttons": [_("Close")],
         }
