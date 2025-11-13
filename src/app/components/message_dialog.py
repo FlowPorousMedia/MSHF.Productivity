@@ -1,6 +1,7 @@
 from dash import html
 import dash_bootstrap_components as dbc
 
+from src.app.i18n import _
 from src.core.models.message_level import MessageLevel
 
 
@@ -9,7 +10,7 @@ def get_message_dialog(
     title,
     message,
     type: MessageLevel = MessageLevel.INFO,
-    buttons=["OK"],
+    buttons=[_("OK")],
     context=None,
 ):
     """

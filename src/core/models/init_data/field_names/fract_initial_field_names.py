@@ -13,10 +13,10 @@ class FracInitFieldNames(Enum):
     @property
     def label(self):
         labels = {
-            FracInitFieldNames.LENGTH_PLUS: _("Length Plus (m)"),
-            FracInitFieldNames.LENGTH_MINUS: _("Length Minus (m)"),
-            FracInitFieldNames.WIDTH: _("Width (mm)"),
-            FracInitFieldNames.PERMEABILITY: _("Permeability (D)"),
-            FracInitFieldNames.WELL_CROSS: _("Well cross depth (m)"),
+            FracInitFieldNames.LENGTH_PLUS: _("Length Plus, (m)"),
+            FracInitFieldNames.LENGTH_MINUS: _("Length Minus, (m)"),
+            FracInitFieldNames.WIDTH: _("Width, (mm)"),
+            FracInitFieldNames.PERMEABILITY: _("Permeability, (D)"),
+            FracInitFieldNames.WELL_CROSS: _("Well cross depth, (m)"),
         }
         return labels[self]

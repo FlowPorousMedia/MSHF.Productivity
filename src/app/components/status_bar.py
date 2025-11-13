@@ -1,6 +1,8 @@
 from dash import html, dcc
 import dash_bootstrap_components as dbc
 
+from src.app.i18n import _
+
 
 def create_status_bar():
     """Создает статусную панель в стиле WinForms"""
@@ -26,7 +28,7 @@ def create_status_bar():
             # Status text
             html.Span(
                 id="status-text",
-                children="Ready for calculation",
+                children=_("Ready for calculation"),
                 style={
                     "flex": "0 0 auto",
                     "whiteSpace": "nowrap",

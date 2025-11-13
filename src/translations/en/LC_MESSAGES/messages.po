@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-13 22:44+0300\n"
+"POT-Creation-Date: 2025-11-14 00:00+0300\n"
 "PO-Revision-Date: 2025-11-10 19:47+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -32,7 +32,8 @@ msgstr "Default"
 #: src/app/callbacks/fracture_table_callbacks.py:108
 #: src/app/callbacks/fracture_table_callbacks.py:117
 #: src/app/callbacks/fracture_table_callbacks.py:126
-#: src/app/callbacks/fracture_table_callbacks.py:137 src/app/server.py:68
+#: src/app/callbacks/fracture_table_callbacks.py:137
+#: src/app/components/message_dialog.py:13 src/app/server.py:68
 msgid "OK"
 msgstr "OK"
 
@@ -194,6 +195,7 @@ msgstr ""
 
 #: src/app/callbacks/fracture_table_callbacks.py:152
 #: src/app/components/about_modal.py:103 src/app/components/log_viewer.py:126
+#: src/app/components/model_details.py:13
 msgid "Close"
 msgstr ""
 
@@ -212,9 +214,8 @@ msgid "Model {index}"
 msgstr ""
 
 #: src/app/callbacks/graph_content_callbacks.py:82
-#, fuzzy
 msgid "Flow Rate Comparison"
-msgstr "Flow Rate Table"
+msgstr ""
 
 #: src/app/callbacks/graph_content_callbacks.py:84
 #: src/app/callbacks/graph_content_callbacks.py:184
@@ -230,25 +231,23 @@ msgid "Q, m³/day"
 msgstr "Q, m³/day"
 
 #: src/app/callbacks/graph_content_callbacks.py:105
-#, fuzzy
 msgid "Flow Rate Plot"
-msgstr "Flow Rate Table"
+msgstr ""
 
 #: src/app/callbacks/graph_content_callbacks.py:115
 #: src/app/callbacks/graph_content_callbacks.py:172
 #: src/app/callbacks/graph_content_callbacks.py:200
-#, fuzzy
 msgid "Parametric Results Plot"
-msgstr "Parametric Results Table"
+msgstr ""
 
 #: src/app/callbacks/graph_content_callbacks.py:117
-#, fuzzy
 msgid "No data available for parametric visualization"
-msgstr "No parametric data available for display"
+msgstr ""
 
 #: src/app/callbacks/graph_content_callbacks.py:137
 #: src/app/callbacks/graph_content_callbacks.py:140
 #: src/app/callbacks/table_content_callbacks.py:65
+#: src/app/components/parametric_settings_panel.py:30
 msgid "Parameter"
 msgstr "Parameter"
 
@@ -258,14 +257,12 @@ msgid "Unnamed Model"
 msgstr "Unnamed Model"
 
 #: src/app/callbacks/graph_content_callbacks.py:174
-#, fuzzy
 msgid "No valid data available for parametric visualization"
-msgstr "No parametric data available for display"
+msgstr ""
 
 #: src/app/callbacks/graph_content_callbacks.py:181
-#, fuzzy
 msgid "Parametric Analysis"
-msgstr "Parameter"
+msgstr ""
 
 #: src/app/callbacks/graph_content_callbacks.py:213
 #: src/app/callbacks/table_content_callbacks.py:263
@@ -280,19 +277,17 @@ msgstr ""
 
 #: src/app/callbacks/graph_content_callbacks.py:227
 #: src/app/callbacks/graph_content_callbacks.py:239
-#, fuzzy
 msgid "Results Graph"
-msgstr "Results"
+msgstr ""
 
 #: src/app/callbacks/graph_content_callbacks.py:229
-#, fuzzy
 msgid "No data available for visualization"
-msgstr "No parametric data available for display"
+msgstr ""
 
 #: src/app/callbacks/graph_content_callbacks.py:241
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Error: {message}"
-msgstr "Message"
+msgstr ""
 
 #: src/app/callbacks/log_callbacks.py:44
 msgid "No logs yet"
@@ -312,7 +307,6 @@ msgid "Showing {filtered} of {logs} messages"
 msgstr ""
 
 #: src/app/callbacks/navbar_callbacks.py:63 src/app/components/navbar.py:34
-#, fuzzy
 msgid "Github"
 msgstr "Github"
 
@@ -343,9 +337,8 @@ msgid "Parametric Results Table"
 msgstr "Parametric Results Table"
 
 #: src/app/callbacks/table_content_callbacks.py:163
-#, fuzzy
 msgid "No parametric data available for display"
-msgstr "No parametric data available for display"
+msgstr ""
 
 #: src/app/callbacks/table_content_callbacks.py:226
 msgid "Download CSV"
@@ -411,12 +404,11 @@ msgid "For support, please open an issue on "
 msgstr ""
 
 #: src/app/components/about_modal.py:94
-#, fuzzy
 msgid "GitHub Issues"
-msgstr "Github"
+msgstr ""
 
 #: src/app/components/fluid_params.py:19
-msgid "Viscosity (cP):"
+msgid "Viscosity, (cP):"
 msgstr ""
 
 #: src/app/components/fracture_params.py:20
@@ -479,29 +471,64 @@ msgstr ""
 msgid "Show logs"
 msgstr ""
 
+#: src/app/components/model_details.py:9
+msgid "Model Details"
+msgstr ""
+
+#: src/app/components/parametric_settings_panel.py:22
+msgid "Parametric Plot"
+msgstr ""
+
+#: src/app/components/parametric_settings_panel.py:80
+#: src/app/components/parametric_settings_panel.py:87
+msgid "Start"
+msgstr ""
+
+#: src/app/components/parametric_settings_panel.py:104
+#: src/app/components/parametric_settings_panel.py:111
+msgid "End"
+msgstr ""
+
+#: src/app/components/parametric_settings_panel.py:128
+#: src/app/components/parametric_settings_panel.py:135
+msgid "Point Count"
+msgstr ""
+
+#: src/app/components/reservoir_params.py:18
+msgid "Radius, (m):"
+msgstr ""
+
+#: src/app/components/reservoir_params.py:36
+msgid "Height, (m):"
+msgstr ""
+
+#: src/app/components/reservoir_params.py:55
+msgid "Permeability, (D):"
+msgstr ""
+
+#: src/app/components/reservoir_params.py:75
+msgid "Pressure, (atm):"
+msgstr ""
+
 #: src/app/components/sidebar.py:55
-#, fuzzy
 msgid "Parameters"
-msgstr "Parameter"
+msgstr ""
 
 #: src/app/components/sidebar.py:67
 msgid "Collapse/Expand sidebar"
 msgstr ""
 
 #: src/app/components/sidebar.py:93
-#, fuzzy
 msgid "Fracture Parameters"
-msgstr "Parameter"
+msgstr ""
 
 #: src/app/components/sidebar.py:99
-#, fuzzy
 msgid "Well Parameters"
-msgstr "Parameter"
+msgstr ""
 
 #: src/app/components/sidebar.py:105
-#, fuzzy
 msgid "Reservoir Parameters"
-msgstr "Parameter"
+msgstr ""
 
 #: src/app/components/sidebar.py:111
 msgid "Fluid Properties"
@@ -527,6 +554,110 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
+#: src/app/components/status_bar.py:31
+msgid "Ready for calculation"
+msgstr ""
+
+#: src/app/components/task_scheme.py:14
+msgid "Scheme MSHFHW"
+msgstr ""
+
+#: src/app/models/analyt_models.py:25
+msgid ""
+"A practical method to predict performance of a horizontal well which is "
+"hydraulically fractured and partially perforated has been proposed in "
+"this paper. Using the mathematical model presented in this paper, factors"
+" affecting performance of a hydraulically fractured horizontal well have "
+"been analyzed"
+msgstr ""
+
+#: src/app/models/analyt_models.py:32 src/app/models/analyt_models.py:64
+#: src/app/models/analyt_models.py:96 src/app/models/analyt_models.py:121
+#: src/app/models/semianalyt_models.py:32
+msgid "Prediction of performance for hydraulically fractured horizontal wells"
+msgstr ""
+
+#: src/app/models/analyt_models.py:34
+msgid "Wells with partial perforation"
+msgstr ""
+
+#: src/app/models/analyt_models.py:38 src/app/models/analyt_models.py:69
+#: src/app/models/analyt_models.py:99 src/app/models/analyt_models.py:124
+#: src/app/models/semianalyt_models.py:37
+msgid "Fracture half-length is equal in both directions from the wellbore"
+msgstr ""
+
+#: src/app/models/analyt_models.py:40 src/app/models/analyt_models.py:71
+#: src/app/models/analyt_models.py:100 src/app/models/analyt_models.py:125
+#: src/app/models/semianalyt_models.py:39
+msgid "Fracture height is equal to the reservoir height"
+msgstr ""
+
+#: src/app/models/analyt_models.py:57
+msgid ""
+"This paper presents a simple and more rigorous mathematical model for "
+"predicting performance of vertical and horizontal wells intersecting "
+"fractures fully penetrating reservoir sections. An important feature of "
+"the new model is that it allows rigorous coupling of flow in the matrix "
+"and flow in the fracture"
+msgstr ""
+
+#: src/app/models/analyt_models.py:72 src/app/models/analyt_models.py:101
+#: src/app/models/analyt_models.py:126 src/app/models/semianalyt_models.py:40
+msgid "Well perforation does not take into account"
+msgstr ""
+
+#: src/app/models/analyt_models.py:89
+msgid ""
+"Formulated a simple analytical model that describes the productivity of "
+"multifractured horizontal wells better. The new model couples the radial "
+"flow in the nonfractured region of reservoir, the linear flow toward the "
+"fractures in the fractured region, the linear flow in the fracture, and "
+"the radial flow in the fracture toward the horizontal wellbore. It can "
+"model pseudosteady-state flow of reservoir fluids in reservoir sections "
+"of any shape, with the fractured region being located at any area in the "
+"reservoir"
+msgstr ""
+
+#: src/app/models/semianalyt_models.py:26
+msgid ""
+"The scope of the work is to develop high-speed and fairly accurate "
+"methods for calculating the productivity of wells with multi-stage "
+"hydraulic fracturing"
+msgstr ""
+
+#: src/app/models/semianalyt_models.py:41
+msgid "Infinite conductivity fractures"
+msgstr ""
+
+#: src/app/services/calc_preprocessor.py:67
+#, python-brace-format
+msgid "[{label}] ❌ Key '{key}' is not in dictionry"
+msgstr ""
+
+#: src/app/services/calc_preprocessor.py:84
+#, python-brace-format
+msgid ""
+"[{label}] ❌ Key mismatch '{key}': default={val!r} ({type(val).__name__}),"
+" user={val2!r} ({type(val2).__name__})"
+msgstr ""
+
+#: src/app/services/calc_preprocessor.py:97
+#, python-brace-format
+msgid "[{label}] ✅ Совпадает '{key}': {val!r}"
+msgstr ""
+
+#: src/app/services/init_data_reader.py:76
+msgid "Invalid fracture data"
+msgstr ""
+
+#: src/app/services/init_data_reader.py:78
+#, python-brace-format
+msgid ""
+"Please, set correct value for fracture {index}:\n"
+" {message}"
+msgstr ""
+
 #: src/app/services/log_item_worker.py:69
 #: src/app/services/log_item_worker.py:78
 #: src/app/services/log_item_worker.py:83
@@ -537,19 +668,41 @@ msgstr ""
 msgid "Copied!"
 msgstr ""
 
+#: src/app/services/model_info_worker.py:13
+msgid "Citation"
+msgstr ""
+
+#: src/app/services/model_info_worker.py:17
+msgid "Abstract"
+msgstr ""
+
+#: src/app/services/model_info_worker.py:21
+msgid "Model specification"
+msgstr ""
+
+#: src/app/services/model_info_worker.py:27
+msgid "Application"
+msgstr ""
+
+#: src/app/services/model_info_worker.py:34
+msgid "Limitations"
+msgstr ""
+
+#: src/app/services/model_info_worker.py:53
+msgid "Source"
+msgstr ""
+
 #: src/app/services/result_table_graph_helper.py:9
-#, fuzzy
 msgid "Results Plot"
-msgstr "Results"
+msgstr ""
 
 #: src/app/services/result_table_graph_helper.py:13
 msgid "Press \"Calculate\" to see visual results here"
 msgstr ""
 
 #: src/app/services/result_table_graph_helper.py:20
-#, fuzzy
 msgid "Results Table"
-msgstr "No results available"
+msgstr ""
 
 #: src/app/services/result_table_graph_helper.py:24
 msgid "Press \"Calculate\" to see table results here"
@@ -579,53 +732,182 @@ msgstr ""
 msgid "CRITICAL"
 msgstr ""
 
-#: src/core/models/init_data/field_names/fract_initial_field_names.py:7
-msgid "Length Plus (m)"
+#: src/core/models/init_data/calc_over_param_enum.py:18
+msgid "Fract count"
 msgstr ""
 
-#: src/core/models/init_data/field_names/fract_initial_field_names.py:8
-msgid "Length Minus (m)"
+#: src/core/models/init_data/calc_over_param_enum.py:19
+msgid "Fract length, (m)"
 msgstr ""
 
-#: src/core/models/init_data/field_names/fract_initial_field_names.py:9
-msgid "Width (mm)"
+#: src/core/models/init_data/calc_over_param_enum.py:20
+msgid "Fract perm, (D)"
 msgstr ""
 
-#: src/core/models/init_data/field_names/fract_initial_field_names.py:10
-msgid "Permeability (D)"
+#: src/core/models/init_data/calc_over_param_enum.py:21
+msgid "Fract width, (mm)"
 msgstr ""
 
-#: src/core/models/init_data/field_names/fract_initial_field_names.py:11
-msgid "Well cross depth (m)"
+#: src/core/models/init_data/calc_over_param_enum.py:22
+msgid "Reservoir radius, (m)"
 msgstr ""
 
-#~ msgid "ERROR"
-#~ msgstr ""
+#: src/core/models/init_data/calc_over_param_enum.py:23
+msgid "Reservoir height, (m)"
+msgstr ""
 
-#~ msgid "WARNING"
-#~ msgstr ""
+#: src/core/models/init_data/calc_over_param_enum.py:24
+msgid "Well length, (m)"
+msgstr ""
 
-#~ msgid "INFO"
-#~ msgstr ""
+#: src/core/models/init_data/fract_initial_data.py:109
+#, python-brace-format
+msgid ""
+"Fracture permeability ({fract_perm} D) is less than reservoir "
+"permeability ({reservoir_perm} D)"
+msgstr ""
 
-#~ msgid "Debug"
-#~ msgstr ""
+#: src/core/models/init_data/models_enum.py:16
+msgid "Li (1996)"
+msgstr ""
 
-#~ msgid "Info"
-#~ msgstr ""
+#: src/core/models/init_data/models_enum.py:17
+msgid "Guo (1997)"
+msgstr ""
 
-#~ msgid "Warning"
-#~ msgstr ""
+#: src/core/models/init_data/models_enum.py:18
+msgid "Guo (2009)"
+msgstr ""
 
-#~ msgid "Error"
-#~ msgstr ""
+#: src/core/models/init_data/models_enum.py:19
+msgid "Elkin (2016)"
+msgstr ""
 
-#~ msgid "Critical"
-#~ msgstr ""
+#: src/core/models/init_data/models_enum.py:20
+msgid "Potashev (2024)"
+msgstr ""
 
-#~ msgid "Fracture or reservoir data not available"
-#~ msgstr ""
+#: src/core/models/init_data/well_initial_data.py:48
+msgid "Well Length is required"
+msgstr ""
 
-#~ msgid "Q, m3/day"
-#~ msgstr "Q, m³/day"
+#: src/core/models/init_data/well_initial_data.py:50
+msgid "Well Length should be positive number"
+msgstr ""
+
+#: src/core/models/init_data/field_names/fract_initial_field_names.py:16
+msgid "Length Plus, (m)"
+msgstr ""
+
+#: src/core/models/init_data/field_names/fract_initial_field_names.py:17
+msgid "Length Minus, (m)"
+msgstr ""
+
+#: src/core/models/init_data/field_names/fract_initial_field_names.py:18
+msgid "Width, (mm)"
+msgstr ""
+
+#: src/core/models/init_data/field_names/fract_initial_field_names.py:19
+msgid "Permeability, (D)"
+msgstr ""
+
+#: src/core/models/init_data/field_names/fract_initial_field_names.py:20
+msgid "Well cross depth, (m)"
+msgstr ""
+
+#: src/core/models/init_data/field_names/well_initial_field_names.py:15
+msgid "Length, (m)"
+msgstr ""
+
+#: src/core/models/init_data/field_names/well_initial_field_names.py:16
+msgid "Radius, (cm)"
+msgstr ""
+
+#: src/core/models/init_data/field_names/well_initial_field_names.py:17
+msgid "Pressure, (atm)"
+msgstr ""
+
+#: src/core/models/init_data/field_names/well_initial_field_names.py:18
+msgid "Perforated"
+msgstr ""
+
+#: src/core/services/data_validation_helper.py:44
+#, python-brace-format
+msgid "{field_name} should be at least {min_val}{str_descrp}"
+msgstr ""
+
+#: src/core/services/data_validation_helper.py:51
+#, python-brace-format
+msgid "{field_name} should be greater than {min_val}{str_descrp}"
+msgstr ""
+
+#: src/core/services/data_validation_helper.py:61
+#, python-brace-format
+msgid "{field_name} should be at most {max_val}{str_descrp}"
+msgstr ""
+
+#: src/core/services/data_validation_helper.py:68
+#, python-brace-format
+msgid "{field_name} should be less than {max_val}{str_descrp}"
+msgstr ""
+
+#: src/core/services/fracture_worker.py:16
+#, python-brace-format
+msgid "Fract Index '{fract_index}' is out of bounds [1, {n}]"
+msgstr ""
+
+#: src/core/services/main_solver.py:72
+#, python-brace-format
+msgid "Расчет модели {model_name}..."
+msgstr ""
+
+#: src/core/services/main_solver.py:82
+msgid "Простой расчет завершен"
+msgstr ""
+
+#: src/core/services/main_solver.py:92
+msgid "Подготовка параметров для расчета..."
+msgstr ""
+
+#: src/core/services/main_solver.py:105
+msgid "Создание наборов данных..."
+msgstr ""
+
+#: src/core/services/main_solver.py:110
+#, python-brace-format
+msgid "Подготовка данных {index}/{count}..."
+msgstr ""
+
+#: src/core/services/main_solver.py:142
+#, python-brace-format
+msgid "Запуск расчета модели {model_name}..."
+msgstr ""
+
+#: src/core/services/main_solver.py:156
+#, python-brace-format
+msgid "Model {model_name}: point {point_index}/{point_count}"
+msgstr ""
+
+#: src/core/services/main_solver.py:173
+#, python-brace-format
+msgid "{model_name} calculated in {calc_time:.2f} sec"
+msgstr ""
+
+#: src/core/services/main_solver.py:182
+msgid "Parametric calculation completed"
+msgstr ""
+
+#: src/core/services/main_solver.py:200
+msgid "calc model rate with unknown model type"
+msgstr ""
+
+#: src/core/services/param_data_worker.py:46
+msgid "Invalid parameter for parametric calculation"
+msgstr ""
+
+#: src/core/services/semianalytical_models/potashev2024_calculator.py:154
+#, python-brace-format
+msgid "{model_name} can not be calculated for R < {rc:.1f}"
+msgstr ""
+
 

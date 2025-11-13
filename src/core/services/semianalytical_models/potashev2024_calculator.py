@@ -7,6 +7,7 @@ from mpmath import ellipe, ellipf
 import cmath
 import time
 
+from src.app.i18n import _
 from src.core.models.calculator_settings import CalculatorSettings
 from src.core.models.characteristic_data import CharacteristicData
 from src.core.models.init_data.initial_data import InitialData
@@ -147,10 +148,12 @@ class Potashev2024Calculator:
             r_crit = 1.0 + 0.75 * ld
 
             if rc < r_crit:
-                model_name = ModelsEnum.POTASHEV_2024.display_name
+                model_name = ModelsEnum.POTASHEV_2024.label
                 logs.append(
                     make_log(
-                        f"{model_name} can not be calculated for R < {r_crit * sector.char_data.x0:.1f}",
+                        _("{model_name} can not be calculated for R < {rc:.1f}").format(
+                            model_name=model_name, rc=r_crit * sector.char_data.x0
+                        ),
                         MessageLevel.WARNING,
                         LogCategory.CALCULATION,
                         True,
@@ -253,8 +256,8 @@ class Potashev2024Calculator:
             result = I * E_val
 
             # Check and handle imaginary part
-            if not mpmath.almosteq(result.imag, 0.0, rel_eps=1e-5, abs_eps=1e-5):
-                print(f"Warning: Im part in __calc_iEw: {result.imag}")
+            # if not mpmath.almosteq(result.imag, 0.0, rel_eps=1e-5, abs_eps=1e-5):
+            #     print(f"Warning: Im part in __calc_iEw: {result.imag}")
             return float(result.real)
 
         def __lam(self, x: float, r: float) -> float:

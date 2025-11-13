@@ -131,7 +131,7 @@ def register(app):
         if param1_type_value is not None:
             try:
                 param_type = CalcParamTypeEnum(param1_type_value)
-                x_title = param_type.display_name
+                x_title = param_type.label
                 is_log_x = param_type == CalcParamTypeEnum.FRACT_PERM
             except ValueError:
                 x_title = _("Parameter")

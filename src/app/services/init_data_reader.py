@@ -1,5 +1,6 @@
 from typing import Any, Dict, List
 
+from src.app.i18n import _
 from src.app.models.parametric_settings import ParametricSettings
 from src.app.models.result import Result
 from src.app.models.result_details import ResultDetails
@@ -72,10 +73,10 @@ def make_init_data(
                 result.data = None
                 result.details = ResultDetails()
                 result.details.tp = MessageLevel.ERROR
-                result.details.title = "Invalid fracture data"
-                result.details.message = (
-                    f"Please, set correct value for fracture {i+1}:\n {str(e)}"
-                )
+                result.details.title = _("Invalid fracture data")
+                result.details.message = _(
+                    "Please, set correct value for fracture {index}:\n {message}"
+                ).format(index=i + 1, message=str(e))
                 return result
 
     # fluid data

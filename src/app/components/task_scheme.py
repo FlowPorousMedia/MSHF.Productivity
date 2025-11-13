@@ -2,6 +2,8 @@ from typing import Dict, List
 import dash_svg as svg
 from dash import html
 
+from src.app.i18n import _
+
 
 def create_task_scheme_component(L: float, R: float, fracts: List[Dict]) -> List:
     """Создает SVG компонент для Dash"""
@@ -9,7 +11,7 @@ def create_task_scheme_component(L: float, R: float, fracts: List[Dict]) -> List
 
     return html.Div(
         [
-            html.H5("Scheme", style={"textAlign": "center", "marginBottom": "10px"}),
+            html.H5(_("Scheme MSHFHW"), style={"textAlign": "center", "marginBottom": "10px"}),
             html.Div(  # Обертка для responsive поведения
                 svg.Svg(
                     id="scheme-svg",

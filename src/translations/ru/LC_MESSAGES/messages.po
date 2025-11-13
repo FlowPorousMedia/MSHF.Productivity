@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-13 22:44+0300\n"
+"POT-Creation-Date: 2025-11-14 00:00+0300\n"
 "PO-Revision-Date: 2025-11-10 19:47+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
@@ -33,13 +33,14 @@ msgstr "По умолчанию"
 #: src/app/callbacks/fracture_table_callbacks.py:108
 #: src/app/callbacks/fracture_table_callbacks.py:117
 #: src/app/callbacks/fracture_table_callbacks.py:126
-#: src/app/callbacks/fracture_table_callbacks.py:137 src/app/server.py:68
+#: src/app/callbacks/fracture_table_callbacks.py:137
+#: src/app/components/message_dialog.py:13 src/app/server.py:68
 msgid "OK"
 msgstr "OK"
 
 #: src/app/callbacks/calculate_button_callbacks.py:67
 msgid "Preparing for calculation..."
-msgstr "Подготовка к расчету"
+msgstr "Подготовка к расчету..."
 
 #: src/app/callbacks/calculate_button_callbacks.py:72
 msgid "Default Parameters Notification"
@@ -59,15 +60,15 @@ msgstr "Нет"
 
 #: src/app/callbacks/calculate_button_callbacks.py:86
 msgid "No confirmation needed, starting calculation"
-msgstr "Подтверждение не требуется, запуск расчета"
+msgstr "Подтверждение не требуется, запуск расчета..."
 
 #: src/app/callbacks/calculate_button_callbacks.py:114
 msgid "Starting calculation..."
-msgstr "Расчета начинается..."
+msgstr "Расчет начинается..."
 
 #: src/app/callbacks/calculate_button_callbacks.py:116
 msgid "Calculation cancelled"
-msgstr "Расчет отменен"
+msgstr "Расчет отменён"
 
 #: src/app/callbacks/calculate_button_callbacks.py:182
 msgid "Checking selected models..."
@@ -79,11 +80,11 @@ msgstr "Не выбраны модели"
 
 #: src/app/callbacks/calculate_button_callbacks.py:198
 msgid "Please select at least one model before starting the calculation."
-msgstr "Пожалуйста, выберите хотя бы одну модель для запуска расчета"
+msgstr "Пожалуйста, выберите хотя бы одну модель перед запуском расчета."
 
 #: src/app/callbacks/calculate_button_callbacks.py:207
 msgid "Warning: no models selected"
-msgstr "Внимание: Не выбраны модели"
+msgstr "Внимание: модели не выбраны"
 
 #: src/app/callbacks/calculate_button_callbacks.py:212
 msgid "Configuring calculation parameters..."
@@ -162,7 +163,7 @@ msgstr "Значение проницаемости пласта не задан
 #: src/app/callbacks/fracture_table_callbacks.py:121
 #: src/app/callbacks/fracture_table_callbacks.py:132
 msgid "Invalid Fracture Data"
-msgstr "Некорретные данные по трещинам"
+msgstr "Некорректные данные по трещинам"
 
 #: src/app/callbacks/fracture_table_callbacks.py:104
 #, python-brace-format
@@ -182,7 +183,7 @@ msgstr "Проницаемость трещины {frac_id} отрицатель
 #: src/app/callbacks/fracture_table_callbacks.py:133
 #, python-brace-format
 msgid "Fracture {frac_id} {message} is incorrect"
-msgstr "Данные по трещине {frac_id} некорректны"
+msgstr "Параметр '{message}' в трещине {frac_id} некорректен"
 
 #: src/app/callbacks/fracture_table_callbacks.py:142
 #, python-brace-format
@@ -191,10 +192,11 @@ msgstr "Трещина {frac_id}: Fcd = {fcd_val}"
 
 #: src/app/callbacks/fracture_table_callbacks.py:149
 msgid "Dimensionless Fracture Conductivity (Fcd)"
-msgstr "Безразмерная проводимость трещины  (Fcd)"
+msgstr "Безразмерная проводимость трещины (Fcd)"
 
 #: src/app/callbacks/fracture_table_callbacks.py:152
 #: src/app/components/about_modal.py:103 src/app/components/log_viewer.py:126
+#: src/app/components/model_details.py:13
 msgid "Close"
 msgstr "Закрыть"
 
@@ -214,7 +216,7 @@ msgstr "Модель {index}"
 
 #: src/app/callbacks/graph_content_callbacks.py:82
 msgid "Flow Rate Comparison"
-msgstr "Таблица дебитов"
+msgstr "Сравнение дебитов"
 
 #: src/app/callbacks/graph_content_callbacks.py:84
 #: src/app/callbacks/graph_content_callbacks.py:184
@@ -246,6 +248,7 @@ msgstr "Нет данных для отображения"
 #: src/app/callbacks/graph_content_callbacks.py:137
 #: src/app/callbacks/graph_content_callbacks.py:140
 #: src/app/callbacks/table_content_callbacks.py:65
+#: src/app/components/parametric_settings_panel.py:30
 msgid "Parameter"
 msgstr "Параметр"
 
@@ -329,7 +332,7 @@ msgstr "Результаты отсутствуют"
 
 #: src/app/callbacks/table_content_callbacks.py:146
 msgid "Flow Rate Table"
-msgstr "Таблица дебита"
+msgstr "Таблица дебитов"
 
 #: src/app/callbacks/table_content_callbacks.py:161
 #: src/app/callbacks/table_content_callbacks.py:246
@@ -363,7 +366,7 @@ msgid ""
 "Horizontal Wells (MSHF)"
 msgstr ""
 "— это мощный инструмент для оценки продуктивности горизонтальных скважин "
-"c многозонным гидроразрывом пласта (МГРП)"
+"с многозонным гидроразрывом пласта (МГРП)"
 
 #: src/app/components/about_modal.py:27
 msgid ""
@@ -374,7 +377,7 @@ msgid ""
 msgstr ""
 "Программа предоставляет инженерам-нефтяникам удобный инструмент для "
 "быстрой оценки дебита скважин с МГРП при стационарной фильтрации с "
-"помощью аналитических моделей"
+"помощью аналитических моделей."
 
 #: src/app/components/about_modal.py:34
 msgid "Authors"
@@ -410,10 +413,10 @@ msgstr "Для получения поддержки откройте обращ
 
 #: src/app/components/about_modal.py:94
 msgid "GitHub Issues"
-msgstr "GitHub"
+msgstr "GitHub Issues"
 
 #: src/app/components/fluid_params.py:19
-msgid "Viscosity (cP):"
+msgid "Viscosity, (cP):"
 msgstr "Вязкость (сП):"
 
 #: src/app/components/fracture_params.py:20
@@ -438,7 +441,7 @@ msgstr "Журнал сообщений"
 
 #: src/app/components/log_viewer.py:18
 msgid "Show logs for:"
-msgstr "Показывать в журнале логи по типу"
+msgstr "Показывать в журнале логи по типу:"
 
 #: src/app/components/log_viewer.py:59
 msgid "Show only calculation logs"
@@ -450,11 +453,11 @@ msgstr "Показывать системные логи"
 
 #: src/app/components/log_viewer.py:77
 msgid "Search:"
-msgstr "Поиск"
+msgstr "Поиск:"
 
 #: src/app/components/log_viewer.py:86
 msgid "Search in logs..."
-msgstr "Введите запрос для поиска по журналу"
+msgstr "Введите текст для поиска по журналу"
 
 #: src/app/components/log_viewer.py:111
 msgid "Save"
@@ -466,7 +469,7 @@ msgstr "Очистить"
 
 #: src/app/components/main_content.py:41
 msgid "Fracture Analysis Dashboard"
-msgstr "Панель визуализации расчетов"
+msgstr "Панель анализа ГС и трещин"
 
 #: src/app/components/main_content.py:87
 msgid "Run calculation"
@@ -476,9 +479,48 @@ msgstr "Рассчитать"
 msgid "Show logs"
 msgstr "Показать журнал"
 
+#: src/app/components/model_details.py:9
+msgid "Model Details"
+msgstr "Описание модели"
+
+#: src/app/components/parametric_settings_panel.py:22
+msgid "Parametric Plot"
+msgstr "Параметрический график"
+
+#: src/app/components/parametric_settings_panel.py:80
+#: src/app/components/parametric_settings_panel.py:87
+msgid "Start"
+msgstr "Начало"
+
+#: src/app/components/parametric_settings_panel.py:104
+#: src/app/components/parametric_settings_panel.py:111
+msgid "End"
+msgstr "Конец"
+
+#: src/app/components/parametric_settings_panel.py:128
+#: src/app/components/parametric_settings_panel.py:135
+msgid "Point Count"
+msgstr "Количество точек"
+
+#: src/app/components/reservoir_params.py:18
+msgid "Radius, (m):"
+msgstr "Радиус пласта (м):"
+
+#: src/app/components/reservoir_params.py:36
+msgid "Height, (m):"
+msgstr "Высота пласта (м):"
+
+#: src/app/components/reservoir_params.py:55
+msgid "Permeability, (D):"
+msgstr "Проницаемость (Д):"
+
+#: src/app/components/reservoir_params.py:75
+msgid "Pressure, (atm):"
+msgstr "Давление (атм):"
+
 #: src/app/components/sidebar.py:55
 msgid "Parameters"
-msgstr "Параметр"
+msgstr "Параметры"
 
 #: src/app/components/sidebar.py:67
 msgid "Collapse/Expand sidebar"
@@ -520,6 +562,129 @@ msgstr "Параметрический расчет"
 msgid "Settings"
 msgstr "Настройки"
 
+#: src/app/components/status_bar.py:31
+msgid "Ready for calculation"
+msgstr "Готово к расчету"
+
+#: src/app/components/task_scheme.py:14
+msgid "Scheme MSHFHW"
+msgstr "Схема ГС с МГРП"
+
+#: src/app/models/analyt_models.py:25
+msgid ""
+"A practical method to predict performance of a horizontal well which is "
+"hydraulically fractured and partially perforated has been proposed in "
+"this paper. Using the mathematical model presented in this paper, factors"
+" affecting performance of a hydraulically fractured horizontal well have "
+"been analyzed"
+msgstr ""
+"Предложен практический метод расчёта продуктивности горизонтальной "
+"скважины с гидроразрывом пласта и частичной перфорацией. На основе "
+"представленной математической модели выполнён анализ факторов, влияющих "
+"на продуктивность такой скважины."
+
+#: src/app/models/analyt_models.py:32 src/app/models/analyt_models.py:64
+#: src/app/models/analyt_models.py:96 src/app/models/analyt_models.py:121
+#: src/app/models/semianalyt_models.py:32
+msgid "Prediction of performance for hydraulically fractured horizontal wells"
+msgstr "Прогноз продуктивности горизонтальных скважин с гидроразрывом пласта"
+
+#: src/app/models/analyt_models.py:34
+msgid "Wells with partial perforation"
+msgstr "Скважины с частичной перфорацией"
+
+#: src/app/models/analyt_models.py:38 src/app/models/analyt_models.py:69
+#: src/app/models/analyt_models.py:99 src/app/models/analyt_models.py:124
+#: src/app/models/semianalyt_models.py:37
+msgid "Fracture half-length is equal in both directions from the wellbore"
+msgstr "Полудлина трещины одинакова в обе стороны от ствола скважины"
+
+#: src/app/models/analyt_models.py:40 src/app/models/analyt_models.py:71
+#: src/app/models/analyt_models.py:100 src/app/models/analyt_models.py:125
+#: src/app/models/semianalyt_models.py:39
+msgid "Fracture height is equal to the reservoir height"
+msgstr "Высота трещины равна мощности пласта"
+
+#: src/app/models/analyt_models.py:57
+msgid ""
+"This paper presents a simple and more rigorous mathematical model for "
+"predicting performance of vertical and horizontal wells intersecting "
+"fractures fully penetrating reservoir sections. An important feature of "
+"the new model is that it allows rigorous coupling of flow in the matrix "
+"and flow in the fracture"
+msgstr ""
+"В статье представлена простая и строгая математическая модель для оценки "
+"продуктивности вертикальных и горизонтальных скважин, пересекающих "
+"трещины, полностью проходящие пласт. Модель обеспечивает строгую связь "
+"течения в матрице и в трещине."
+
+#: src/app/models/analyt_models.py:72 src/app/models/analyt_models.py:101
+#: src/app/models/analyt_models.py:126 src/app/models/semianalyt_models.py:40
+msgid "Well perforation does not take into account"
+msgstr "Перфорация скважины не учитывается"
+
+#: src/app/models/analyt_models.py:89
+msgid ""
+"Formulated a simple analytical model that describes the productivity of "
+"multifractured horizontal wells better. The new model couples the radial "
+"flow in the nonfractured region of reservoir, the linear flow toward the "
+"fractures in the fractured region, the linear flow in the fracture, and "
+"the radial flow in the fracture toward the horizontal wellbore. It can "
+"model pseudosteady-state flow of reservoir fluids in reservoir sections "
+"of any shape, with the fractured region being located at any area in the "
+"reservoir"
+msgstr ""
+"Предложена простая аналитическая модель, более точно описывающая "
+"продуктивность многотрещинных горизонтальных скважин. Модель учитывает "
+"радиальное и линейное течение как в матрице, так и в трещинах, включая "
+"радиальное течение в трещине к горизонтальному стволу. Подходит для "
+"псевдоустановившегося режима в резервуарах любой формы."
+
+#: src/app/models/semianalyt_models.py:26
+msgid ""
+"The scope of the work is to develop high-speed and fairly accurate "
+"methods for calculating the productivity of wells with multi-stage "
+"hydraulic fracturing"
+msgstr ""
+"Цель работы — разработка быстрых и достаточно точных методов оценки "
+"продуктивности скважин с многостадийным гидроразрывом пласта."
+
+#: src/app/models/semianalyt_models.py:41
+msgid "Infinite conductivity fractures"
+msgstr "Трещины с бесконечной проводимостью"
+
+#: src/app/services/calc_preprocessor.py:67
+#, python-brace-format
+msgid "[{label}] ❌ Key '{key}' is not in dictionry"
+msgstr "[{label}] ❌ Ключ '{key}' отсутствует в словаре"
+
+#: src/app/services/calc_preprocessor.py:84
+#, python-brace-format
+msgid ""
+"[{label}] ❌ Key mismatch '{key}': default={val!r} ({type(val).__name__}),"
+" user={val2!r} ({type(val2).__name__})"
+msgstr ""
+"[{label}] ❌ Несовпадение ключа '{key}': по умолчанию={val!r} "
+"({type(val).__name__}), пользователь={val2!r} ({type(val2).__name__})"
+
+#: src/app/services/calc_preprocessor.py:97
+#, python-brace-format
+msgid "[{label}] ✅ Совпадает '{key}': {val!r}"
+msgstr "[{label}] ✅ Совпадает '{key}': {val!r}"
+
+#: src/app/services/init_data_reader.py:76
+msgid "Invalid fracture data"
+msgstr "Некорректные данные по трещине"
+
+#: src/app/services/init_data_reader.py:78
+#, python-brace-format
+msgid ""
+"Please, set correct value for fracture {index}:\n"
+" {message}"
+msgstr ""
+"Пожалуйста, задайте корректное значение для трещины {index}:\n"
+" {message}"
+
 #: src/app/services/log_item_worker.py:69
 #: src/app/services/log_item_worker.py:78
 #: src/app/services/log_item_worker.py:83
@@ -529,6 +694,30 @@ msgstr "Скопировать в буфер обмена"
 #: src/app/services/log_item_worker.py:91
 msgid "Copied!"
 msgstr "Скопировано!"
+
+#: src/app/services/model_info_worker.py:13
+msgid "Citation"
+msgstr "Цитирование"
+
+#: src/app/services/model_info_worker.py:17
+msgid "Abstract"
+msgstr "Аннотация"
+
+#: src/app/services/model_info_worker.py:21
+msgid "Model specification"
+msgstr "Детали модели"
+
+#: src/app/services/model_info_worker.py:27
+msgid "Application"
+msgstr "Применение"
+
+#: src/app/services/model_info_worker.py:34
+msgid "Limitations"
+msgstr "Ограничения"
+
+#: src/app/services/model_info_worker.py:53
+msgid "Source"
+msgstr "Источник"
 
 #: src/app/services/result_table_graph_helper.py:9
 msgid "Results Plot"
@@ -570,23 +759,183 @@ msgstr "ОШИБКА"
 msgid "CRITICAL"
 msgstr "КРИТИЧЕСКОЕ"
 
-#: src/core/models/init_data/field_names/fract_initial_field_names.py:7
-msgid "Length Plus (m)"
+#: src/core/models/init_data/calc_over_param_enum.py:18
+msgid "Fract count"
+msgstr "Количество трещин"
+
+#: src/core/models/init_data/calc_over_param_enum.py:19
+msgid "Fract length, (m)"
+msgstr "Длина трещины, (м)"
+
+#: src/core/models/init_data/calc_over_param_enum.py:20
+msgid "Fract perm, (D)"
+msgstr "Проницаемость трещины, (Д)"
+
+#: src/core/models/init_data/calc_over_param_enum.py:21
+msgid "Fract width, (mm)"
+msgstr "Ширина трещины, (мм)"
+
+#: src/core/models/init_data/calc_over_param_enum.py:22
+msgid "Reservoir radius, (m)"
+msgstr "Радиус контура питания, (м)"
+
+#: src/core/models/init_data/calc_over_param_enum.py:23
+msgid "Reservoir height, (m)"
+msgstr "Высота пласта, (м)"
+
+#: src/core/models/init_data/calc_over_param_enum.py:24
+msgid "Well length, (m)"
+msgstr "Длина ГС, (м)"
+
+#: src/core/models/init_data/fract_initial_data.py:109
+#, python-brace-format
+msgid ""
+"Fracture permeability ({fract_perm} D) is less than reservoir "
+"permeability ({reservoir_perm} D)"
+msgstr ""
+"Проницаемость трещины ({fract_perm} Д) меньше проницаемости пласта "
+"({reservoir_perm} Д)"
+
+#: src/core/models/init_data/models_enum.py:16
+msgid "Li (1996)"
+msgstr "Li (1996)"
+
+#: src/core/models/init_data/models_enum.py:17
+msgid "Guo (1997)"
+msgstr "Guo (1997)"
+
+#: src/core/models/init_data/models_enum.py:18
+msgid "Guo (2009)"
+msgstr "Guo (2009)"
+
+#: src/core/models/init_data/models_enum.py:19
+msgid "Elkin (2016)"
+msgstr "Ёлкин (2016)"
+
+#: src/core/models/init_data/models_enum.py:20
+msgid "Potashev (2024)"
+msgstr "Potashev (2024)"
+
+#: src/core/models/init_data/well_initial_data.py:48
+msgid "Well Length is required"
+msgstr "Необходимо указать длину скважины"
+
+#: src/core/models/init_data/well_initial_data.py:50
+msgid "Well Length should be positive number"
+msgstr "Длина скважины должна быть положительным числом"
+
+#: src/core/models/init_data/field_names/fract_initial_field_names.py:16
+msgid "Length Plus, (m)"
 msgstr "Длина + (м)"
 
-#: src/core/models/init_data/field_names/fract_initial_field_names.py:8
-msgid "Length Minus (m)"
+#: src/core/models/init_data/field_names/fract_initial_field_names.py:17
+msgid "Length Minus, (m)"
 msgstr "Длина - (м)"
 
-#: src/core/models/init_data/field_names/fract_initial_field_names.py:9
-msgid "Width (mm)"
+#: src/core/models/init_data/field_names/fract_initial_field_names.py:18
+msgid "Width, (mm)"
 msgstr "Ширина (мм)"
 
-#: src/core/models/init_data/field_names/fract_initial_field_names.py:10
-msgid "Permeability (D)"
+#: src/core/models/init_data/field_names/fract_initial_field_names.py:19
+msgid "Permeability, (D)"
 msgstr "Проницаемость (Д)"
 
-#: src/core/models/init_data/field_names/fract_initial_field_names.py:11
-msgid "Well cross depth (m)"
-msgstr "Пересечение с ГС (м)"
+#: src/core/models/init_data/field_names/fract_initial_field_names.py:20
+msgid "Well cross depth, (m)"
+msgstr "Глубина пересечения с ГС (м)"
+
+#: src/core/models/init_data/field_names/well_initial_field_names.py:15
+msgid "Length, (m)"
+msgstr "Длина (м)"
+
+#: src/core/models/init_data/field_names/well_initial_field_names.py:16
+msgid "Radius, (cm)"
+msgstr "Радиус (см)"
+
+#: src/core/models/init_data/field_names/well_initial_field_names.py:17
+msgid "Pressure, (atm)"
+msgstr "Давление (атм)"
+
+#: src/core/models/init_data/field_names/well_initial_field_names.py:18
+msgid "Perforated"
+msgstr "Перфорирована"
+
+#: src/core/services/data_validation_helper.py:44
+#, python-brace-format
+msgid "{field_name} should be at least {min_val}{str_descrp}"
+msgstr "{field_name} должно быть не меньше {min_val}{str_descrp}"
+
+#: src/core/services/data_validation_helper.py:51
+#, python-brace-format
+msgid "{field_name} should be greater than {min_val}{str_descrp}"
+msgstr "{field_name} должно быть больше {min_val}{str_descrp}"
+
+#: src/core/services/data_validation_helper.py:61
+#, python-brace-format
+msgid "{field_name} should be at most {max_val}{str_descrp}"
+msgstr "{field_name} должно быть не больше {max_val}{str_descrp}"
+
+#: src/core/services/data_validation_helper.py:68
+#, python-brace-format
+msgid "{field_name} should be less than {max_val}{str_descrp}"
+msgstr "{field_name} должно быть меньше {max_val}{str_descrp}"
+
+#: src/core/services/fracture_worker.py:16
+#, python-brace-format
+msgid "Fract Index '{fract_index}' is out of bounds [1, {n}]"
+msgstr "Индекс трещины '{fract_index}' выходит за пределы [1, {n}]"
+
+#: src/core/services/main_solver.py:72
+#, python-brace-format
+msgid "Расчет модели {model_name}..."
+msgstr "Расчет модели {model_name}..."
+
+#: src/core/services/main_solver.py:82
+msgid "Простой расчет завершен"
+msgstr "Простой расчет завершен"
+
+#: src/core/services/main_solver.py:92
+msgid "Подготовка параметров для расчета..."
+msgstr "Подготовка параметров для расчета..."
+
+#: src/core/services/main_solver.py:105
+msgid "Создание наборов данных..."
+msgstr "Создание наборов данных..."
+
+#: src/core/services/main_solver.py:110
+#, python-brace-format
+msgid "Подготовка данных {index}/{count}..."
+msgstr "Подготовка данных {index}/{count}..."
+
+#: src/core/services/main_solver.py:142
+#, python-brace-format
+msgid "Запуск расчета модели {model_name}..."
+msgstr "Запуск расчета модели {model_name}..."
+
+#: src/core/services/main_solver.py:156
+#, python-brace-format
+msgid "Model {model_name}: point {point_index}/{point_count}"
+msgstr "Модель {model_name}: точка {point_index}/{point_count}"
+
+#: src/core/services/main_solver.py:173
+#, python-brace-format
+msgid "{model_name} calculated in {calc_time:.2f} sec"
+msgstr "{model_name} рассчитана за {calc_time:.2f} с"
+
+#: src/core/services/main_solver.py:182
+msgid "Parametric calculation completed"
+msgstr "Параметрический расчет завершён"
+
+#: src/core/services/main_solver.py:200
+msgid "calc model rate with unknown model type"
+msgstr "расчет модели с неизвестным типом"
+
+#: src/core/services/param_data_worker.py:46
+msgid "Invalid parameter for parametric calculation"
+msgstr "Некорректный параметр для параметрического расчета"
+
+#: src/core/services/semianalytical_models/potashev2024_calculator.py:154
+#, python-brace-format
+msgid "{model_name} can not be calculated for R < {rc:.1f}"
+msgstr "{model_name} не может быть рассчитана при R < {rc:.1f}"
 

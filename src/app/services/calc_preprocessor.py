@@ -1,3 +1,4 @@
+from src.app.i18n import _
 from src.app.models.default_values import DEFAULT_VALUES
 from src.core.models.logcategory import LogCategory
 from src.core.models.message_level import MessageLevel
@@ -17,24 +18,20 @@ class CalcPreprocessor:
         if not CalcPreprocessor.compare_dicts(
             defaults["well"], well_data, logs, "well"
         ):
-            print("well is not default")
             return False
 
         if not CalcPreprocessor.compare_dicts(
             defaults["reservoir"], reservoir_data, logs, "reservoir"
         ):
-            print("reservoir is not default")
             return False
 
         if not CalcPreprocessor.compare_dicts(
             defaults["fluid"], fluid_data, logs, "fluid"
         ):
-            print("fluid is not default")
             return False
 
         default_fractures = defaults["fractures"]
         if len(fracture_data) != len(default_fractures):
-            print("fractures count is not default")
             return False
 
         for f_default, f_user in zip(default_fractures, fracture_data):
@@ -42,7 +39,6 @@ class CalcPreprocessor:
                 if key == "fracture_id":
                     continue
                 if not CalcPreprocessor.is_equal(f_default[key], f_user.get(key)):
-                    print("fract is not default")
                     return False
 
         return True
@@ -68,7 +64,9 @@ class CalcPreprocessor:
             if key not in d2:
                 logs.append(
                     make_log(
-                        f"[{label}] ❌ Ключ '{key}' отсутствует во втором словаре",
+                        _("[{label}] ❌ Key '{key}' is not in dictionry").format(
+                            label=label, key=key
+                        ),
                         MessageLevel.DEBUG,
                         LogCategory.CHECK_DATA,
                         False,
@@ -82,9 +80,11 @@ class CalcPreprocessor:
             if not CalcPreprocessor.is_equal(val, val2):
                 logs.append(
                     make_log(
-                        f"[{label}] ❌ Несовпадение по ключу '{key}': "
-                        f"default={val!r} ({type(val).__name__}), "
-                        f"user={val2!r} ({type(val2).__name__})",
+                        _(
+                            "[{label}] ❌ Key mismatch '{key}': "
+                            "default={val!r} ({type(val).__name__}), "
+                            "user={val2!r} ({type(val2).__name__})"
+                        ).format(label=label, key=key, val=val, val2=val2),
                         MessageLevel.DEBUG,
                         LogCategory.CHECK_DATA,
                         False,
@@ -94,7 +94,9 @@ class CalcPreprocessor:
             else:
                 logs.append(
                     make_log(
-                        f"[{label}] ✅ Совпадает '{key}': {val!r}",
+                        _("[{label}] ✅ Совпадает '{key}': {val!r}").format(
+                            label=label, key=key, val=val
+                        ),
                         MessageLevel.DEBUG,
                         LogCategory.CHECK_DATA,
                         False,

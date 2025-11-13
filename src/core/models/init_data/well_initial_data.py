@@ -1,5 +1,7 @@
 from typing import List, Tuple
 
+from src.app.i18n import _
+
 
 class WellInitialData:
     def __init__(self):
@@ -43,6 +45,6 @@ class WellInitialData:
         self.pw: float = None
 
         if self.L is None:
-            errors.append(f"Well Length (m) is required")
+            errors.append(_("Well Length is required"))
         elif self.L <= 0:
-            errors.append("Well Length (m) should be positive number")
+            errors.append(_("Well Length should be positive number"))

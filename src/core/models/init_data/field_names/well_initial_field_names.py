@@ -1,12 +1,20 @@
 from enum import Enum
 
+from src.app.i18n import _
+
 
 class WellInitFieldNames(Enum):
-    L = "Length (m)"
-    RW = "Radius (cm)"
-    PW = "Pressure (atm)"
-    IS_PERFORATED = "Perforated"
+    L = "L"
+    RW = "RW"
+    PW = "PW"
+    IS_PERFORATED = "IS_PERFORATED"
 
     @property
-    def value_str(self):
-        return self.value
+    def label(self):
+        labels = {
+            WellInitFieldNames.L: _("Length, (m)"),
+            WellInitFieldNames.RW: _("Radius, (cm)"),
+            WellInitFieldNames.PW: _("Pressure, (atm)"),
+            WellInitFieldNames.IS_PERFORATED: _("Perforated"),
+        }
+        return labels[self]

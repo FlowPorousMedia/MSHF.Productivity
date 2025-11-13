@@ -16,7 +16,7 @@ def create_fluid_params():
             dbc.Row(
                 [
                     dbc.Col(
-                        html.Label(_("Viscosity (cP):"), className="fw-bold"), width=6
+                        html.Label(_("Viscosity, (cP):"), className="fw-bold"), width=6
                     ),
                     dbc.Col(
                         dcc.Input(
