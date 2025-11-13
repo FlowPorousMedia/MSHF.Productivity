@@ -146,7 +146,10 @@ def register(app):
         return html.Div([html.H4(_("Flow Rate Table"), className="mb-3"), table])
 
     def __render_parametric_result(models: list) -> html.Div:
-        """Рендеринг таблицы для PARAMETRIC результата"""
+        """
+        Рендеринг таблицы для PARAMETRIC результата
+        """
+
         # Проверка наличия моделей и данных
         if (
             not models
@@ -237,18 +240,20 @@ def register(app):
             data={"models": models, "param_caption": param_caption},
         )
 
-        return html.Div(
-            [
-                html.H4(_("Parametric Results Table"), className="mb-3"),
-                html.Div(_("Q, m³/day"), className="mt-2 text-end fw-light"),
-                table,
-                download_button,
-                download_component,
-                data_store,
-            ],
-            className="border rounded p-3 bg-white",
-            id={"type": "parametric-result-container", "index": component_id},
-        )
+        return [
+            html.Div(
+                [
+                    html.H4(_("Parametric Results Table"), className="mb-3"),
+                    html.Div(_("Q, m³/day"), className="mt-2 text-end fw-light"),
+                    table,
+                    download_button,
+                    download_component,
+                    data_store,
+                ],
+                className="border rounded p-3 bg-white",
+                id={"type": "parametric-result-container", "index": component_id},
+            )
+        ]
 
     def __render_map_result(models: list) -> html.Div:
         """Рендеринг таблицы для MAP результата"""

@@ -67,7 +67,6 @@ def register(app):
         status_text = _("Preparing for calculation...")
 
         if CalcPreprocessor.is_default_params(well, reservoir, fluid, fracture, logs):
-            print('was here')
             data = {
                 "context": "confirm_calc_start",
                 "title": _("Default Parameters Notification"),
@@ -206,7 +205,7 @@ def register(app):
                 logs=logs,
                 message=message,
                 status_text=_("Warning: no models selected"),
-                state="idle",
+                state="error",
             )
 
         # Этап 2: Настройка параметров
@@ -238,7 +237,7 @@ def register(app):
                     0,
                     "0%",
                     {"display": "none"},
-                    "idle",
+                    "error",
                 )
 
             if setts.point_count < 2 or setts.start >= setts.end:
@@ -260,7 +259,7 @@ def register(app):
                     0,
                     "0%",
                     {"display": "none"},
-                    "idle",
+                    "error",
                 )
 
         # Этап 3: Подготовка данных
@@ -277,7 +276,6 @@ def register(app):
 
         if not result_init_data.success:
             details: ResultDetails = result_init_data.details
-            print("was here")
             logs.append(
                 make_log(
                     _("Init data error: {message}").format(message=details.message),
@@ -293,7 +291,7 @@ def register(app):
                 0,
                 "0%",
                 {"display": "none"},
-                "idle",
+                "error",
             )
 
         # Этап 5: Выполнение расчета
@@ -353,10 +351,17 @@ def register(app):
         prevent_initial_call=True,
     )
     def update_main_display(state):
-        if state in ("init", "idle"):
+        if state == "init":
             return get_default_containers()
+
         elif state == "running":
             calc_content = get_calc_content()
             return calc_content, calc_content
+
+        elif state == "error":
+            # Ошибка → вернуть дефолт
+            return get_default_containers()
+
         else:
+            # idle — расчет завершён → оставить результат как есть
             raise exceptions.PreventUpdate
