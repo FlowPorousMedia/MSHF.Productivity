@@ -1,5 +1,7 @@
 import dash
 from dash import Input, Output, State, ctx
+import dash_bootstrap_components as dbc
+
 
 from src.app.i18n import set_language, _
 from src.app.services.translator_helpers import with_language
@@ -65,3 +67,17 @@ def register(app):
             _("Guide"),
             _("About"),
         )
+
+    @app.callback(
+        Output("language-dropdown", "children"),
+        Input("language-store", "data"),
+    )
+    def update_language_menu(lang):
+        return [
+            dbc.DropdownMenuItem(
+                ("✓ " if lang == "ru" else "") + "Русский", id="lang-ru"
+            ),
+            dbc.DropdownMenuItem(
+                ("✓ " if lang == "en" else "") + "English", id="lang-en"
+            ),
+        ]

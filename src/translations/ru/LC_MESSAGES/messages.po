@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-14 00:00+0300\n"
+"POT-Creation-Date: 2025-11-14 00:27+0300\n"
 "PO-Revision-Date: 2025-11-10 19:47+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
@@ -309,19 +309,19 @@ msgstr "Показано 0 сообщений"
 msgid "Showing {filtered} of {logs} messages"
 msgstr "Показано {filtered} из {logs} сообщений"
 
-#: src/app/callbacks/navbar_callbacks.py:63 src/app/components/navbar.py:34
+#: src/app/callbacks/navbar_callbacks.py:65 src/app/components/navbar.py:34
 msgid "Github"
 msgstr "Github"
 
-#: src/app/callbacks/navbar_callbacks.py:64 src/app/components/navbar.py:64
+#: src/app/callbacks/navbar_callbacks.py:66 src/app/components/navbar.py:64
 msgid "Language"
 msgstr "Язык"
 
-#: src/app/callbacks/navbar_callbacks.py:65 src/app/components/navbar.py:87
+#: src/app/callbacks/navbar_callbacks.py:67 src/app/components/navbar.py:87
 msgid "Guide"
 msgstr "Руководство"
 
-#: src/app/callbacks/navbar_callbacks.py:66
+#: src/app/callbacks/navbar_callbacks.py:68
 #: src/app/components/about_modal.py:11 src/app/components/navbar.py:108
 msgid "About"
 msgstr "О программе"
@@ -584,7 +584,7 @@ msgstr ""
 "на продуктивность такой скважины."
 
 #: src/app/models/analyt_models.py:32 src/app/models/analyt_models.py:64
-#: src/app/models/analyt_models.py:96 src/app/models/analyt_models.py:121
+#: src/app/models/analyt_models.py:99 src/app/models/analyt_models.py:128
 #: src/app/models/semianalyt_models.py:32
 msgid "Prediction of performance for hydraulically fractured horizontal wells"
 msgstr "Прогноз продуктивности горизонтальных скважин с гидроразрывом пласта"
@@ -594,13 +594,13 @@ msgid "Wells with partial perforation"
 msgstr "Скважины с частичной перфорацией"
 
 #: src/app/models/analyt_models.py:38 src/app/models/analyt_models.py:69
-#: src/app/models/analyt_models.py:99 src/app/models/analyt_models.py:124
+#: src/app/models/analyt_models.py:104 src/app/models/analyt_models.py:133
 #: src/app/models/semianalyt_models.py:37
 msgid "Fracture half-length is equal in both directions from the wellbore"
 msgstr "Полудлина трещины одинакова в обе стороны от ствола скважины"
 
 #: src/app/models/analyt_models.py:40 src/app/models/analyt_models.py:71
-#: src/app/models/analyt_models.py:100 src/app/models/analyt_models.py:125
+#: src/app/models/analyt_models.py:106 src/app/models/analyt_models.py:135
 #: src/app/models/semianalyt_models.py:39
 msgid "Fracture height is equal to the reservoir height"
 msgstr "Высота трещины равна мощности пласта"
@@ -618,12 +618,12 @@ msgstr ""
 "трещины, полностью проходящие пласт. Модель обеспечивает строгую связь "
 "течения в матрице и в трещине."
 
-#: src/app/models/analyt_models.py:72 src/app/models/analyt_models.py:101
-#: src/app/models/analyt_models.py:126 src/app/models/semianalyt_models.py:40
+#: src/app/models/analyt_models.py:72 src/app/models/analyt_models.py:107
+#: src/app/models/analyt_models.py:136 src/app/models/semianalyt_models.py:40
 msgid "Well perforation does not take into account"
 msgstr "Перфорация скважины не учитывается"
 
-#: src/app/models/analyt_models.py:89
+#: src/app/models/analyt_models.py:90
 msgid ""
 "Formulated a simple analytical model that describes the productivity of "
 "multifractured horizontal wells better. The new model couples the radial "
@@ -639,6 +639,10 @@ msgstr ""
 "радиальное и линейное течение как в матрице, так и в трещинах, включая "
 "радиальное течение в трещине к горизонтальному стволу. Подходит для "
 "псевдоустановившегося режима в резервуарах любой формы."
+
+#: src/app/models/analyt_models.py:147 src/app/models/semianalyt_models.py:52
+msgid "Show model details"
+msgstr "Детали модели"
 
 #: src/app/models/semianalyt_models.py:26
 msgid ""

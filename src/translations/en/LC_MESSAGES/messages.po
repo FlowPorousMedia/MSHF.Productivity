@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-14 00:00+0300\n"
+"POT-Creation-Date: 2025-11-14 00:27+0300\n"
 "PO-Revision-Date: 2025-11-10 19:47+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -306,19 +306,19 @@ msgstr ""
 msgid "Showing {filtered} of {logs} messages"
 msgstr ""
 
-#: src/app/callbacks/navbar_callbacks.py:63 src/app/components/navbar.py:34
+#: src/app/callbacks/navbar_callbacks.py:65 src/app/components/navbar.py:34
 msgid "Github"
 msgstr "Github"
 
-#: src/app/callbacks/navbar_callbacks.py:64 src/app/components/navbar.py:64
+#: src/app/callbacks/navbar_callbacks.py:66 src/app/components/navbar.py:64
 msgid "Language"
 msgstr "Language"
 
-#: src/app/callbacks/navbar_callbacks.py:65 src/app/components/navbar.py:87
+#: src/app/callbacks/navbar_callbacks.py:67 src/app/components/navbar.py:87
 msgid "Guide"
 msgstr "Guide"
 
-#: src/app/callbacks/navbar_callbacks.py:66
+#: src/app/callbacks/navbar_callbacks.py:68
 #: src/app/components/about_modal.py:11 src/app/components/navbar.py:108
 msgid "About"
 msgstr "About"
@@ -572,7 +572,7 @@ msgid ""
 msgstr ""
 
 #: src/app/models/analyt_models.py:32 src/app/models/analyt_models.py:64
-#: src/app/models/analyt_models.py:96 src/app/models/analyt_models.py:121
+#: src/app/models/analyt_models.py:99 src/app/models/analyt_models.py:128
 #: src/app/models/semianalyt_models.py:32
 msgid "Prediction of performance for hydraulically fractured horizontal wells"
 msgstr ""
@@ -582,13 +582,13 @@ msgid "Wells with partial perforation"
 msgstr ""
 
 #: src/app/models/analyt_models.py:38 src/app/models/analyt_models.py:69
-#: src/app/models/analyt_models.py:99 src/app/models/analyt_models.py:124
+#: src/app/models/analyt_models.py:104 src/app/models/analyt_models.py:133
 #: src/app/models/semianalyt_models.py:37
 msgid "Fracture half-length is equal in both directions from the wellbore"
 msgstr ""
 
 #: src/app/models/analyt_models.py:40 src/app/models/analyt_models.py:71
-#: src/app/models/analyt_models.py:100 src/app/models/analyt_models.py:125
+#: src/app/models/analyt_models.py:106 src/app/models/analyt_models.py:135
 #: src/app/models/semianalyt_models.py:39
 msgid "Fracture height is equal to the reservoir height"
 msgstr ""
@@ -602,12 +602,12 @@ msgid ""
 "and flow in the fracture"
 msgstr ""
 
-#: src/app/models/analyt_models.py:72 src/app/models/analyt_models.py:101
-#: src/app/models/analyt_models.py:126 src/app/models/semianalyt_models.py:40
+#: src/app/models/analyt_models.py:72 src/app/models/analyt_models.py:107
+#: src/app/models/analyt_models.py:136 src/app/models/semianalyt_models.py:40
 msgid "Well perforation does not take into account"
 msgstr ""
 
-#: src/app/models/analyt_models.py:89
+#: src/app/models/analyt_models.py:90
 msgid ""
 "Formulated a simple analytical model that describes the productivity of "
 "multifractured horizontal wells better. The new model couples the radial "
@@ -617,6 +617,10 @@ msgid ""
 "model pseudosteady-state flow of reservoir fluids in reservoir sections "
 "of any shape, with the fractured region being located at any area in the "
 "reservoir"
+msgstr ""
+
+#: src/app/models/analyt_models.py:147 src/app/models/semianalyt_models.py:52
+msgid "Show model details"
 msgstr ""
 
 #: src/app/models/semianalyt_models.py:26
@@ -909,5 +913,4 @@ msgstr ""
 #, python-brace-format
 msgid "{model_name} can not be calculated for R < {rc:.1f}"
 msgstr ""
-
 
