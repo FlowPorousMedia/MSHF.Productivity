@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-13 16:04+0300\n"
+"POT-Creation-Date: 2025-11-13 18:34+0300\n"
 "PO-Revision-Date: 2025-11-10 19:47+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
@@ -27,7 +27,7 @@ msgstr "Сообщение"
 msgid "Default"
 msgstr "По умолчанию"
 
-#: src/app/callbacks/calculate_button_callbacks.py:201
+#: src/app/callbacks/calculate_button_callbacks.py:202
 #: src/app/callbacks/fracture_table_callbacks.py:76
 #: src/app/callbacks/fracture_table_callbacks.py:88
 #: src/app/callbacks/fracture_table_callbacks.py:108
@@ -41,99 +41,99 @@ msgstr "OK"
 msgid "Preparing for calculation..."
 msgstr "Подготовка к расчету"
 
-#: src/app/callbacks/calculate_button_callbacks.py:72
+#: src/app/callbacks/calculate_button_callbacks.py:73
 msgid "Default Parameters Notification"
 msgstr "Уведомление о параметрах по умолчанию"
 
-#: src/app/callbacks/calculate_button_callbacks.py:74
+#: src/app/callbacks/calculate_button_callbacks.py:75
 msgid "You are about to run the calculation with default parameters. Continue?"
 msgstr "Вы собираетесь запустить расчет с параметрами по умолчанию. Продолжить?"
 
-#: src/app/callbacks/calculate_button_callbacks.py:78
+#: src/app/callbacks/calculate_button_callbacks.py:79
 msgid "Yes"
 msgstr "Да"
 
-#: src/app/callbacks/calculate_button_callbacks.py:79
+#: src/app/callbacks/calculate_button_callbacks.py:80
 msgid "No"
 msgstr "Нет"
 
-#: src/app/callbacks/calculate_button_callbacks.py:86
+#: src/app/callbacks/calculate_button_callbacks.py:87
 msgid "No confirmation needed, starting calculation"
 msgstr "Подтверждение не требуется, запуск расчета"
 
-#: src/app/callbacks/calculate_button_callbacks.py:114
+#: src/app/callbacks/calculate_button_callbacks.py:115
 msgid "Starting calculation..."
 msgstr "Расчета начинается..."
 
-#: src/app/callbacks/calculate_button_callbacks.py:116
+#: src/app/callbacks/calculate_button_callbacks.py:117
 msgid "Calculation cancelled"
 msgstr "Расчет отменен"
 
-#: src/app/callbacks/calculate_button_callbacks.py:182
+#: src/app/callbacks/calculate_button_callbacks.py:183
 msgid "Checking selected models..."
 msgstr "Проверка выбранных моделей..."
 
-#: src/app/callbacks/calculate_button_callbacks.py:184
+#: src/app/callbacks/calculate_button_callbacks.py:185
 msgid "No models selected"
 msgstr "Не выбраны модели"
 
-#: src/app/callbacks/calculate_button_callbacks.py:198
+#: src/app/callbacks/calculate_button_callbacks.py:199
 msgid "Please select at least one model before starting the calculation."
 msgstr "Пожалуйста, выберите хотя бы одну модель для запуска расчета"
 
-#: src/app/callbacks/calculate_button_callbacks.py:207
+#: src/app/callbacks/calculate_button_callbacks.py:208
 msgid "Warning: no models selected"
 msgstr "Внимание: Не выбраны модели"
 
-#: src/app/callbacks/calculate_button_callbacks.py:212
+#: src/app/callbacks/calculate_button_callbacks.py:213
 msgid "Configuring calculation parameters..."
 msgstr "Настройка параметров расчета..."
 
-#: src/app/callbacks/calculate_button_callbacks.py:224
-#: src/app/callbacks/calculate_button_callbacks.py:233
-#: src/app/callbacks/calculate_button_callbacks.py:255
+#: src/app/callbacks/calculate_button_callbacks.py:225
+#: src/app/callbacks/calculate_button_callbacks.py:234
+#: src/app/callbacks/calculate_button_callbacks.py:256
 msgid "Invalid parametric settings"
 msgstr "Некорректные параметрические настройки"
 
-#: src/app/callbacks/calculate_button_callbacks.py:236
+#: src/app/callbacks/calculate_button_callbacks.py:237
 msgid "Error: invalid calculation parameters"
 msgstr "Ошибка: неверные параметры расчета"
 
-#: src/app/callbacks/calculate_button_callbacks.py:246
+#: src/app/callbacks/calculate_button_callbacks.py:247
 msgid "Invalid parametric range"
 msgstr "Неверный диапазон параметров"
 
-#: src/app/callbacks/calculate_button_callbacks.py:258
+#: src/app/callbacks/calculate_button_callbacks.py:259
 msgid "Error: invalid parameter range"
 msgstr "Ошибка: неверный диапазон параметров"
 
-#: src/app/callbacks/calculate_button_callbacks.py:266
+#: src/app/callbacks/calculate_button_callbacks.py:267
 msgid "Preparing data for calculation..."
 msgstr "Подготовка данных для расчета..."
 
-#: src/app/callbacks/calculate_button_callbacks.py:272
+#: src/app/callbacks/calculate_button_callbacks.py:273
 msgid "Reading initial data..."
 msgstr "Чтение исходных данных..."
 
-#: src/app/callbacks/calculate_button_callbacks.py:282
+#: src/app/callbacks/calculate_button_callbacks.py:283
 #, python-brace-format
 msgid "Init data error: {message}"
 msgstr "Ошибка в исходных данных: {message}"
 
-#: src/app/callbacks/calculate_button_callbacks.py:291
+#: src/app/callbacks/calculate_button_callbacks.py:292
 #, python-brace-format
 msgid "Data preparation error: {message}"
 msgstr "Ошибка подготовки данных: {message}"
 
-#: src/app/callbacks/calculate_button_callbacks.py:299
+#: src/app/callbacks/calculate_button_callbacks.py:300
 msgid "Performing calculation..."
 msgstr "Расчет..."
 
-#: src/app/callbacks/calculate_button_callbacks.py:313
+#: src/app/callbacks/calculate_button_callbacks.py:314
 msgid "Finalizing calculation..."
 msgstr "Расчет завершается..."
 
-#: src/app/callbacks/calculate_button_callbacks.py:319
+#: src/app/callbacks/calculate_button_callbacks.py:320
 msgid "Calculation completed successfully"
 msgstr "Расчет успешно завершен"
 
@@ -198,6 +198,97 @@ msgstr "Безразмерная проводимость трещины  (Fcd)"
 msgid "Close"
 msgstr "Закрыть"
 
+#: src/app/callbacks/graph_content_callbacks.py:33
+msgid "Invalid result format"
+msgstr "Некорректный формат результатов"
+
+#: src/app/callbacks/graph_content_callbacks.py:48
+#, python-brace-format
+msgid "Unsupported result type: {result_type_value}"
+msgstr "Неподдерживаемый тип результатов: {result_type_value}"
+
+#: src/app/callbacks/graph_content_callbacks.py:61
+#, python-brace-format
+msgid "Model {index}"
+msgstr "Модель {index}"
+
+#: src/app/callbacks/graph_content_callbacks.py:82
+msgid "Flow Rate Comparison"
+msgstr "Таблица дебитов"
+
+#: src/app/callbacks/graph_content_callbacks.py:84
+#: src/app/callbacks/graph_content_callbacks.py:184
+#: src/app/components/sidebar.py:148
+msgid "Models"
+msgstr "Модели"
+
+#: src/app/callbacks/graph_content_callbacks.py:85
+#: src/app/callbacks/graph_content_callbacks.py:183
+#: src/app/callbacks/table_content_callbacks.py:115
+#: src/app/callbacks/table_content_callbacks.py:243
+msgid "Q, m³/day"
+msgstr "Q, м³/сут"
+
+#: src/app/callbacks/graph_content_callbacks.py:105
+msgid "Flow Rate Plot"
+msgstr "График дебитов"
+
+#: src/app/callbacks/graph_content_callbacks.py:115
+#: src/app/callbacks/graph_content_callbacks.py:172
+#: src/app/callbacks/graph_content_callbacks.py:200
+msgid "Parametric Results Plot"
+msgstr "График результатов"
+
+#: src/app/callbacks/graph_content_callbacks.py:117
+msgid "No data available for parametric visualization"
+msgstr "Нет данных для отображения"
+
+#: src/app/callbacks/graph_content_callbacks.py:137
+#: src/app/callbacks/graph_content_callbacks.py:140
+#: src/app/callbacks/table_content_callbacks.py:65
+msgid "Parameter"
+msgstr "Параметр"
+
+#: src/app/callbacks/graph_content_callbacks.py:157
+#: src/app/callbacks/table_content_callbacks.py:172
+msgid "Unnamed Model"
+msgstr "Модель без названия"
+
+#: src/app/callbacks/graph_content_callbacks.py:174
+msgid "No valid data available for parametric visualization"
+msgstr "Нет корректных данных для отображения"
+
+#: src/app/callbacks/graph_content_callbacks.py:181
+msgid "Parametric Analysis"
+msgstr "Параметрический расчет"
+
+#: src/app/callbacks/graph_content_callbacks.py:213
+#: src/app/callbacks/table_content_callbacks.py:258
+msgid "Map Results"
+msgstr "Результаты на карте"
+
+#: src/app/callbacks/graph_content_callbacks.py:216
+msgid ""
+"Map visualization is under development and will be available in a future "
+"release"
+msgstr ""
+"Визуализация карт находится в разработке и будет доступна в будущих "
+"версиях"
+
+#: src/app/callbacks/graph_content_callbacks.py:227
+#: src/app/callbacks/graph_content_callbacks.py:239
+msgid "Results Graph"
+msgstr "Графики"
+
+#: src/app/callbacks/graph_content_callbacks.py:229
+msgid "No data available for visualization"
+msgstr "Нет данных для отображения"
+
+#: src/app/callbacks/graph_content_callbacks.py:241
+#, python-brace-format
+msgid "Error: {message}"
+msgstr "Ошибка: {message}"
+
 #: src/app/callbacks/log_callbacks.py:44
 msgid "No logs yet"
 msgstr "Логи отсутствуют"
@@ -236,15 +327,6 @@ msgstr "О программе"
 msgid "No results available"
 msgstr "Результаты отсутствуют"
 
-#: src/app/callbacks/table_content_callbacks.py:65
-msgid "Parameter"
-msgstr "Параметр"
-
-#: src/app/callbacks/table_content_callbacks.py:115
-#: src/app/callbacks/table_content_callbacks.py:243
-msgid "Q, m³/day"
-msgstr "Q, м³/сут"
-
 #: src/app/callbacks/table_content_callbacks.py:146
 msgid "Flow Rate Table"
 msgstr "Таблица дебита"
@@ -258,17 +340,9 @@ msgstr "Таблица параметрических результатов"
 msgid "No parametric data available for display"
 msgstr "Нет параметрических данных для отображения"
 
-#: src/app/callbacks/table_content_callbacks.py:172
-msgid "Unnamed Model"
-msgstr "Модель без названия"
-
 #: src/app/callbacks/table_content_callbacks.py:223
 msgid "Download CSV"
 msgstr "Скачать CSV"
-
-#: src/app/callbacks/table_content_callbacks.py:258
-msgid "Map Results"
-msgstr "Результаты на карте"
 
 #: src/app/callbacks/table_content_callbacks.py:260
 msgid "Map results display is under development"
@@ -422,10 +496,6 @@ msgstr "Аналитические"
 msgid "Semi-analytical"
 msgstr "Полу-аналитические"
 
-#: src/app/components/sidebar.py:148
-msgid "Models"
-msgstr "Модели"
-
 #: src/app/components/sidebar.py:160
 msgid "Parametric Calc Settings"
 msgstr "Параметрический расчет"
@@ -483,5 +553,3 @@ msgstr "ОШИБКА"
 #: src/core/models/message_level.py:20
 msgid "CRITICAL"
 msgstr "КРИТИЧЕСКОЕ"
-
-

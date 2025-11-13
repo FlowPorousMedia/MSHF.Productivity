@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-13 16:04+0300\n"
+"POT-Creation-Date: 2025-11-13 18:34+0300\n"
 "PO-Revision-Date: 2025-11-10 19:47+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -26,7 +26,7 @@ msgstr "Message"
 msgid "Default"
 msgstr "Default"
 
-#: src/app/callbacks/calculate_button_callbacks.py:201
+#: src/app/callbacks/calculate_button_callbacks.py:202
 #: src/app/callbacks/fracture_table_callbacks.py:76
 #: src/app/callbacks/fracture_table_callbacks.py:88
 #: src/app/callbacks/fracture_table_callbacks.py:108
@@ -40,99 +40,99 @@ msgstr "OK"
 msgid "Preparing for calculation..."
 msgstr ""
 
-#: src/app/callbacks/calculate_button_callbacks.py:72
+#: src/app/callbacks/calculate_button_callbacks.py:73
 msgid "Default Parameters Notification"
 msgstr ""
 
-#: src/app/callbacks/calculate_button_callbacks.py:74
+#: src/app/callbacks/calculate_button_callbacks.py:75
 msgid "You are about to run the calculation with default parameters. Continue?"
 msgstr ""
 
-#: src/app/callbacks/calculate_button_callbacks.py:78
+#: src/app/callbacks/calculate_button_callbacks.py:79
 msgid "Yes"
 msgstr ""
 
-#: src/app/callbacks/calculate_button_callbacks.py:79
+#: src/app/callbacks/calculate_button_callbacks.py:80
 msgid "No"
 msgstr ""
 
-#: src/app/callbacks/calculate_button_callbacks.py:86
+#: src/app/callbacks/calculate_button_callbacks.py:87
 msgid "No confirmation needed, starting calculation"
 msgstr ""
 
-#: src/app/callbacks/calculate_button_callbacks.py:114
+#: src/app/callbacks/calculate_button_callbacks.py:115
 msgid "Starting calculation..."
 msgstr ""
 
-#: src/app/callbacks/calculate_button_callbacks.py:116
+#: src/app/callbacks/calculate_button_callbacks.py:117
 msgid "Calculation cancelled"
 msgstr ""
 
-#: src/app/callbacks/calculate_button_callbacks.py:182
+#: src/app/callbacks/calculate_button_callbacks.py:183
 msgid "Checking selected models..."
 msgstr ""
 
-#: src/app/callbacks/calculate_button_callbacks.py:184
+#: src/app/callbacks/calculate_button_callbacks.py:185
 msgid "No models selected"
 msgstr ""
 
-#: src/app/callbacks/calculate_button_callbacks.py:198
+#: src/app/callbacks/calculate_button_callbacks.py:199
 msgid "Please select at least one model before starting the calculation."
 msgstr ""
 
-#: src/app/callbacks/calculate_button_callbacks.py:207
+#: src/app/callbacks/calculate_button_callbacks.py:208
 msgid "Warning: no models selected"
 msgstr ""
 
-#: src/app/callbacks/calculate_button_callbacks.py:212
+#: src/app/callbacks/calculate_button_callbacks.py:213
 msgid "Configuring calculation parameters..."
 msgstr ""
 
-#: src/app/callbacks/calculate_button_callbacks.py:224
-#: src/app/callbacks/calculate_button_callbacks.py:233
-#: src/app/callbacks/calculate_button_callbacks.py:255
+#: src/app/callbacks/calculate_button_callbacks.py:225
+#: src/app/callbacks/calculate_button_callbacks.py:234
+#: src/app/callbacks/calculate_button_callbacks.py:256
 msgid "Invalid parametric settings"
 msgstr ""
 
-#: src/app/callbacks/calculate_button_callbacks.py:236
+#: src/app/callbacks/calculate_button_callbacks.py:237
 msgid "Error: invalid calculation parameters"
 msgstr ""
 
-#: src/app/callbacks/calculate_button_callbacks.py:246
+#: src/app/callbacks/calculate_button_callbacks.py:247
 msgid "Invalid parametric range"
 msgstr ""
 
-#: src/app/callbacks/calculate_button_callbacks.py:258
+#: src/app/callbacks/calculate_button_callbacks.py:259
 msgid "Error: invalid parameter range"
 msgstr ""
 
-#: src/app/callbacks/calculate_button_callbacks.py:266
+#: src/app/callbacks/calculate_button_callbacks.py:267
 msgid "Preparing data for calculation..."
 msgstr ""
 
-#: src/app/callbacks/calculate_button_callbacks.py:272
+#: src/app/callbacks/calculate_button_callbacks.py:273
 msgid "Reading initial data..."
 msgstr ""
 
-#: src/app/callbacks/calculate_button_callbacks.py:282
+#: src/app/callbacks/calculate_button_callbacks.py:283
 #, python-brace-format
 msgid "Init data error: {message}"
 msgstr ""
 
-#: src/app/callbacks/calculate_button_callbacks.py:291
+#: src/app/callbacks/calculate_button_callbacks.py:292
 #, python-brace-format
 msgid "Data preparation error: {message}"
 msgstr ""
 
-#: src/app/callbacks/calculate_button_callbacks.py:299
+#: src/app/callbacks/calculate_button_callbacks.py:300
 msgid "Performing calculation..."
 msgstr ""
 
-#: src/app/callbacks/calculate_button_callbacks.py:313
+#: src/app/callbacks/calculate_button_callbacks.py:314
 msgid "Finalizing calculation..."
 msgstr ""
 
-#: src/app/callbacks/calculate_button_callbacks.py:319
+#: src/app/callbacks/calculate_button_callbacks.py:320
 msgid "Calculation completed successfully"
 msgstr ""
 
@@ -197,6 +197,103 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
+#: src/app/callbacks/graph_content_callbacks.py:33
+msgid "Invalid result format"
+msgstr ""
+
+#: src/app/callbacks/graph_content_callbacks.py:48
+#, python-brace-format
+msgid "Unsupported result type: {result_type_value}"
+msgstr ""
+
+#: src/app/callbacks/graph_content_callbacks.py:61
+#, python-brace-format
+msgid "Model {index}"
+msgstr ""
+
+#: src/app/callbacks/graph_content_callbacks.py:82
+#, fuzzy
+msgid "Flow Rate Comparison"
+msgstr "Flow Rate Table"
+
+#: src/app/callbacks/graph_content_callbacks.py:84
+#: src/app/callbacks/graph_content_callbacks.py:184
+#: src/app/components/sidebar.py:148
+msgid "Models"
+msgstr ""
+
+#: src/app/callbacks/graph_content_callbacks.py:85
+#: src/app/callbacks/graph_content_callbacks.py:183
+#: src/app/callbacks/table_content_callbacks.py:115
+#: src/app/callbacks/table_content_callbacks.py:243
+msgid "Q, m³/day"
+msgstr "Q, m³/day"
+
+#: src/app/callbacks/graph_content_callbacks.py:105
+#, fuzzy
+msgid "Flow Rate Plot"
+msgstr "Flow Rate Table"
+
+#: src/app/callbacks/graph_content_callbacks.py:115
+#: src/app/callbacks/graph_content_callbacks.py:172
+#: src/app/callbacks/graph_content_callbacks.py:200
+#, fuzzy
+msgid "Parametric Results Plot"
+msgstr "Parametric Results Table"
+
+#: src/app/callbacks/graph_content_callbacks.py:117
+#, fuzzy
+msgid "No data available for parametric visualization"
+msgstr "No parametric data available for display"
+
+#: src/app/callbacks/graph_content_callbacks.py:137
+#: src/app/callbacks/graph_content_callbacks.py:140
+#: src/app/callbacks/table_content_callbacks.py:65
+msgid "Parameter"
+msgstr "Parameter"
+
+#: src/app/callbacks/graph_content_callbacks.py:157
+#: src/app/callbacks/table_content_callbacks.py:172
+msgid "Unnamed Model"
+msgstr "Unnamed Model"
+
+#: src/app/callbacks/graph_content_callbacks.py:174
+#, fuzzy
+msgid "No valid data available for parametric visualization"
+msgstr "No parametric data available for display"
+
+#: src/app/callbacks/graph_content_callbacks.py:181
+#, fuzzy
+msgid "Parametric Analysis"
+msgstr "Parameter"
+
+#: src/app/callbacks/graph_content_callbacks.py:213
+#: src/app/callbacks/table_content_callbacks.py:258
+msgid "Map Results"
+msgstr "Map Results"
+
+#: src/app/callbacks/graph_content_callbacks.py:216
+msgid ""
+"Map visualization is under development and will be available in a future "
+"release"
+msgstr ""
+
+#: src/app/callbacks/graph_content_callbacks.py:227
+#: src/app/callbacks/graph_content_callbacks.py:239
+#, fuzzy
+msgid "Results Graph"
+msgstr "Results"
+
+#: src/app/callbacks/graph_content_callbacks.py:229
+#, fuzzy
+msgid "No data available for visualization"
+msgstr "No parametric data available for display"
+
+#: src/app/callbacks/graph_content_callbacks.py:241
+#, fuzzy, python-brace-format
+msgid "Error: {message}"
+msgstr "Message"
+
 #: src/app/callbacks/log_callbacks.py:44
 msgid "No logs yet"
 msgstr ""
@@ -236,15 +333,6 @@ msgstr "About"
 msgid "No results available"
 msgstr "No results available"
 
-#: src/app/callbacks/table_content_callbacks.py:65
-msgid "Parameter"
-msgstr "Parameter"
-
-#: src/app/callbacks/table_content_callbacks.py:115
-#: src/app/callbacks/table_content_callbacks.py:243
-msgid "Q, m³/day"
-msgstr "Q, m³/day"
-
 #: src/app/callbacks/table_content_callbacks.py:146
 msgid "Flow Rate Table"
 msgstr "Flow Rate Table"
@@ -259,17 +347,9 @@ msgstr "Parametric Results Table"
 msgid "No parametric data available for display"
 msgstr "No parametric data available for display"
 
-#: src/app/callbacks/table_content_callbacks.py:172
-msgid "Unnamed Model"
-msgstr "Unnamed Model"
-
 #: src/app/callbacks/table_content_callbacks.py:223
 msgid "Download CSV"
 msgstr "Download CSV"
-
-#: src/app/callbacks/table_content_callbacks.py:258
-msgid "Map Results"
-msgstr "Map Results"
 
 #: src/app/callbacks/table_content_callbacks.py:260
 msgid "Map results display is under development"
@@ -423,10 +503,6 @@ msgstr ""
 msgid "Semi-analytical"
 msgstr ""
 
-#: src/app/components/sidebar.py:148
-msgid "Models"
-msgstr ""
-
 #: src/app/components/sidebar.py:160
 msgid "Parametric Calc Settings"
 msgstr ""
@@ -513,4 +589,7 @@ msgstr ""
 
 #~ msgid "Fracture or reservoir data not available"
 #~ msgstr ""
+
+#~ msgid "Q, m3/day"
+#~ msgstr "Q, m³/day"
 
