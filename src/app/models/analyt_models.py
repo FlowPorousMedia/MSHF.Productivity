@@ -86,17 +86,23 @@ def get_analytic_models() -> List:
                 "doi": "10.2118/114452-PA",
             },
             "description": "",
-            "abstract": _("Formulated a simple analytical model that describes the productivity of multifractured horizontal wells better. "
-            "The new model couples the radial flow in the nonfractured region of reservoir, the linear flow toward the fractures in the "
-            "fractured region, the linear flow in the fracture, and the radial flow in the fracture toward the horizontal wellbore. "
-            "It can model pseudosteady-state flow of reservoir fluids in reservoir sections of any shape, with the fractured region being "
-            "located at any area in the reservoir"),
+            "abstract": _(
+                "Formulated a simple analytical model that describes the productivity of multifractured horizontal wells better. "
+                "The new model couples the radial flow in the nonfractured region of reservoir, the linear flow toward the fractures in the "
+                "fractured region, the linear flow in the fracture, and the radial flow in the fracture toward the horizontal wellbore. "
+                "It can model pseudosteady-state flow of reservoir fluids in reservoir sections of any shape, with the fractured region being "
+                "located at any area in the reservoir"
+            ),
             "parameters": {
                 "applicability": [
-                    _("Prediction of performance for hydraulically fractured horizontal wells"),
+                    _(
+                        "Prediction of performance for hydraulically fractured horizontal wells"
+                    ),
                 ],
                 "limitations": [
-                    _("Fracture half-length is equal in both directions from the wellbore"),
+                    _(
+                        "Fracture half-length is equal in both directions from the wellbore"
+                    ),
                     _("Fracture height is equal to the reservoir height"),
                     _("Well perforation does not take into account"),
                 ],
@@ -118,10 +124,14 @@ def get_analytic_models() -> List:
             "abstract": "",
             "parameters": {
                 "applicability": [
-                    _("Prediction of performance for hydraulically fractured horizontal wells"),
+                    _(
+                        "Prediction of performance for hydraulically fractured horizontal wells"
+                    ),
                 ],
                 "limitations": [
-                    _("Fracture half-length is equal in both directions from the wellbore"),
+                    _(
+                        "Fracture half-length is equal in both directions from the wellbore"
+                    ),
                     _("Fracture height is equal to the reservoir height"),
                     _("Well perforation does not take into account"),
                 ],
@@ -134,6 +144,7 @@ def get_analytic_models() -> List:
             "id": model.value,
             "name": data["name"],
             "info": "?",  # this is just button Name in table
+            "tooltip": _("Show model details"),
             "metadata": data,  # Все остальные данные здесь!
         }
         for model, data in models_data.items()

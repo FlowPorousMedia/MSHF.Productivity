@@ -23,6 +23,7 @@ def create(models: List, ag_grid_id: str):
             "cellRendererParams": {
                 "className": "btn btn-info",
             },
+            "tooltipField": "tooltip",
         },
     ]
 

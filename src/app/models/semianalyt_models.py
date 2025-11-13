@@ -49,6 +49,7 @@ def get_semianalytic_models() -> List:
             "id": model.value,
             "name": data["name"],
             "info": "?",  # this is just button Name in table
+            "tooltip": _("Show model details"),
             "metadata": data,  # Все остальные данные здесь!
         }
         for model, data in models_data.items()
