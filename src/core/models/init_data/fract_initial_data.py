@@ -1,5 +1,6 @@
 from typing import List, Tuple
 
+from src.app.i18n import _
 from src.core.models.init_data.field_names.fract_initial_field_names import (
     FracInitFieldNames,
 )
@@ -99,7 +100,7 @@ class FractInitialData:
         )
 
         # warnings
-        _, max_warn = DataValidationHelper.warn_field(
+        __, max_warn = DataValidationHelper.warn_field(
             self.perm, None, reservoir_perm, min_inclusive=True, max_inclusive=True
         )
 
