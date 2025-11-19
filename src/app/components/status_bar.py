@@ -1,13 +1,16 @@
 from dash import html, dcc
 import dash_bootstrap_components as dbc
 
+from src.app.i18n import _
+
 
 def create_status_bar():
     """Создает статусную панель в стиле WinForms"""
     return html.Div(
         id="status-bar",
         style={
-            "position": "relative",
+            "position": "fixed",
+            "bottom": 0,
             "height": "25px",
             "backgroundColor": "#f8f9fa",
             "borderTop": "1px solid #dee2e6",
@@ -19,12 +22,13 @@ def create_status_bar():
             "boxSizing": "border-box",
             "width": "100%",
             "gap": "10px",
+            "zIndex": 1050,
         },
         children=[
             # Status text
             html.Span(
                 id="status-text",
-                children="Ready for calculation",
+                children=_("Ready for calculation"),
                 style={
                     "flex": "0 0 auto",
                     "whiteSpace": "nowrap",

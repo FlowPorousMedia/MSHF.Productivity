@@ -173,3 +173,9 @@ dd {
 .btn {
   transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 }
+
+._dash-loading {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+}

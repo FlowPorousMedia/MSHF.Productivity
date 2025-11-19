@@ -1,5 +1,6 @@
 from dash import html, dash_table, dcc
 
+from src.app.i18n import _
 from src.app.models.default_values import DEFAULT_VALUES
 from src.core.models.init_data.field_names.fract_initial_field_names import (
     FracInitFieldNames,
@@ -7,14 +8,16 @@ from src.core.models.init_data.field_names.fract_initial_field_names import (
 
 
 def create_fracture_params():
-    """Create fracture parameters component with dynamic table"""
+    """
+    Create fracture parameters component with dynamic table
+    """
     defaults = DEFAULT_VALUES["fractures"]
     return html.Div(
         [
             html.Div(
                 [
                     html.Label(
-                        "Fractures count:",
+                        _("Fractures count:"),
                         className="fw-bold mb-0 align-self-center",
                     ),
                     dcc.Input(
@@ -41,36 +44,36 @@ def create_fracture_params():
                 id="fracture-table",
                 columns=[
                     {
-                        "name": "Fract",
+                        "name": _("Fract"),
                         "id": "fracture_id",
                         "editable": False,
                     },
                     {
-                        "name": FracInitFieldNames.LENGTH_PLUS.value,
+                        "name": FracInitFieldNames.LENGTH_PLUS.label,
                         "id": "length_plus",
                         "editable": True,
                         "type": "numeric",
                     },
                     {
-                        "name": FracInitFieldNames.LENGTH_MINUS.value,
+                        "name": FracInitFieldNames.LENGTH_MINUS.label,
                         "id": "length_minus",
                         "editable": True,
                         "type": "numeric",
                     },
                     {
-                        "name": FracInitFieldNames.WIDTH.value,
+                        "name": FracInitFieldNames.WIDTH.label,
                         "id": "width",
                         "editable": True,
                         "type": "numeric",
                     },
                     {
-                        "name": FracInitFieldNames.PERMEABILITY.value,
+                        "name": FracInitFieldNames.PERMEABILITY.label,
                         "id": "permeability",
                         "editable": True,
                         "type": "numeric",
                     },
                     {
-                        "name": FracInitFieldNames.WELL_CROSS.value,
+                        "name": FracInitFieldNames.WELL_CROSS.label,
                         "id": "well_cross",
                         "editable": True,
                         "type": "numeric",
@@ -111,10 +114,10 @@ def create_fracture_params():
                 ],
             ),
             html.Button(
-                "Show Fcd",
+                _("Show Fcd"),
                 id="show-fcd-button",
                 className="btn btn-secondary ms-2",
-                title="Show Fcd values",
+                title=_("Show Fcd values"),
             ),
             html.Div(
                 id="scheme-container",

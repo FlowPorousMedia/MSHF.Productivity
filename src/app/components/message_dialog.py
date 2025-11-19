@@ -1,64 +1,57 @@
 from dash import html
 import dash_bootstrap_components as dbc
-from src.app.models.message_type import MessageType
+
+from src.app.i18n import _
+from src.core.models.message_level import MessageLevel
 
 
 def get_message_dialog(
     dialog_id,
     title,
     message,
-    type: MessageType = MessageType.INFO,
-    buttons=["OK"],
-    context=None,  # 👈 добавлен
+    type: MessageLevel = MessageLevel.INFO,
+    buttons=[_("OK")],
+    context=None,
 ):
-    title_colors = {
-        MessageType.INFO: "blue",
-        MessageType.WARNING: "orange",
-        MessageType.ERROR: "red",
-    }
+    """
+    Универсальное диалоговое окно сообщений.
+    Поддерживает MessageLevel с автоматическими цветами и иконками.
+    """
 
-    icons = {
-        MessageType.INFO: html.I(
-            className="fa-solid fa-circle-info",
-            style={"color": title_colors[MessageType.INFO], "margin-right": "8px"},
-        ),
-        MessageType.WARNING: html.I(
-            className="fa-solid fa-triangle-exclamation",
-            style={"color": title_colors[MessageType.WARNING], "margin-right": "8px"},
-        ),
-        MessageType.ERROR: html.I(
-            className="fas fa-circle-xmark",
-            style={"color": title_colors[MessageType.ERROR], "margin-right": "8px"},
-        ),
-    }
+    normalized_buttons = []
+    for b in buttons:
+        if isinstance(b, dict):
+            normalized_buttons.append(b)
+        else:
+            normalized_buttons.append({"label": str(b), "value": str(b)})
 
-    # ⚡ Весь контент оборачиваем в контейнер с data-context
+    header_icon = html.I(
+        className=type.icon,
+        style={"color": type.color, "marginRight": "8px"},
+    )
+
+    title_span = html.Span(title, style={"color": type.color})
+
+    # Весь контент оборачиваем в контейнер с data-context
     content = html.Div(
         [
             dbc.ModalHeader(
-                dbc.ModalTitle(
-                    [
-                        icons.get(type, ""),
-                        html.Span(
-                            title, style={"color": title_colors.get(type, "black")}
-                        ),
-                    ]
-                ),
+                dbc.ModalTitle([header_icon, title_span]),
                 close_button=False,
             ),
             __create_modal_body_with_newlines(message),
             dbc.ModalFooter(
                 [
                     dbc.Button(
-                        b,
-                        id={"type": "msg-btn", "index": b},
+                        b["label"],
+                        id={"type": "msg-btn", "index": str(b["value"])},
                         className="me-2",
                     )
-                    for b in buttons
+                    for b in normalized_buttons
                 ]
             ),
         ],
-        **({"data-context": context} if context else {}),  # 👈 теперь тут!
+        **({"data-context": context} if context else {}),
     )
 
     return dbc.Modal(

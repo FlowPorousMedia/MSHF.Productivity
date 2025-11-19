@@ -1,41 +1,44 @@
 import dash_bootstrap_components as dbc
 from dash import html, dcc
 
+from src.app.i18n import _
+from src.core.models.message_level import MessageLevel
 
-def create_logs_modal():
+
+def create_log_viewer():
     return dbc.Modal(
         [
-            dbc.ModalHeader(dbc.ModalTitle("Log Viewer"), close_button=False),
+            dbc.ModalHeader(dbc.ModalTitle(_("Log Viewer")), close_button=False),
             dbc.ModalBody(
                 [
                     # 1. Первая строка — фильтры по уровням
                     dbc.Row(
                         [
                             dbc.Col(
-                                html.Div("Show logs for:", className="fw-semibold"),
+                                html.Div(_("Show logs for:"), className="fw-semibold"),
                                 width="auto",
                             ),
                             dbc.Col(
                                 dbc.ButtonGroup(
                                     [
                                         dbc.Button(
-                                            "ERROR",
+                                            _(MessageLevel.ERROR.label),
                                             id="filter-error",
-                                            color="danger",
+                                            color=MessageLevel.ERROR.color,
                                             outline=False,
                                             n_clicks=0,
                                         ),
                                         dbc.Button(
-                                            "WARNING",
+                                            _(MessageLevel.WARNING.label),
                                             id="filter-warning",
-                                            color="warning",
+                                            color=MessageLevel.WARNING.color,
                                             outline=False,
                                             n_clicks=0,
                                         ),
                                         dbc.Button(
-                                            "INFO",
+                                            _(MessageLevel.INFO.label),
                                             id="filter-info",
-                                            color="info",
+                                            color=MessageLevel.INFO.color,
                                             outline=False,
                                             n_clicks=0,
                                         ),
@@ -53,10 +56,10 @@ def create_logs_modal():
                             dbc.Checklist(
                                 options=[
                                     {
-                                        "label": "Show only calculation logs",
+                                        "label": _("Show only calculation logs"),
                                         "value": "calc",
                                     },
-                                    {"label": "Show system logs", "value": "system"},
+                                    {"label": _("Show system logs"), "value": "system"},
                                 ],
                                 value=["calc"],
                                 id="logs-checklist",
@@ -70,7 +73,9 @@ def create_logs_modal():
                     dbc.Row(
                         [
                             dbc.Col(
-                                html.Div("Search:", className="fw-semibold text-end"),
+                                html.Div(
+                                    _("Search:"), className="fw-semibold text-end"
+                                ),
                                 width="auto",
                                 className="align-self-center pe-0",  # убираем лишний отступ справа
                             ),
@@ -78,7 +83,7 @@ def create_logs_modal():
                                 dbc.Input(
                                     id="logs-search",
                                     type="text",
-                                    placeholder="Search in logs...",
+                                    placeholder=_("Search in logs..."),
                                     size="sm",
                                 ),
                                 width=6,
@@ -103,14 +108,14 @@ def create_logs_modal():
             dbc.ModalFooter(
                 [
                     dbc.Button(
-                        "Save",
+                        _("Save"),
                         id="save-logs-button",
                         color="success",
                         className="me-2",
                         n_clicks=0,
                     ),
                     dbc.Button(
-                        "Clear",
+                        _("Clear"),
                         id="clear-logs-button",
                         color="danger",
                         outline=True,
@@ -118,7 +123,10 @@ def create_logs_modal():
                         n_clicks=0,
                     ),
                     dbc.Button(
-                        "Close", id="close-logs-button", className="ms-auto", n_clicks=0
+                        _("Close"),
+                        id="close-logs-button",
+                        className="ms-auto",
+                        n_clicks=0,
                     ),
                     dcc.Download(id="download-logs"),  # 👈 компонент для скачивания
                 ]

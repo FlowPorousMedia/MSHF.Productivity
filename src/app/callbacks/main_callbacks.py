@@ -1,4 +1,5 @@
 from src.app.callbacks import (
+    bootstrap_callbacks,
     calculate_button_callbacks,
     fracture_table_callbacks,
     model_info_view_callbacks,
@@ -13,10 +14,15 @@ from src.app.callbacks import (
     log_callbacks,
     task_scheme_callbacks,
     message_bus_callbacks,
+    common_callbacks,
 )
 
 
 def register_all_callbacks(app):
+    # always must be first !!!
+    bootstrap_callbacks.register(app)
+
+
     fracture_table_callbacks.register(app)
     well_params_component_callbacks.register(app)
     reservoir_params_component_callbacks.register(app)
@@ -31,3 +37,4 @@ def register_all_callbacks(app):
     log_callbacks.register(app)
     task_scheme_callbacks.register(app)
     message_bus_callbacks.register(app)
+    common_callbacks.register(app)

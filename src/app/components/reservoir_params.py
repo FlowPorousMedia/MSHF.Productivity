@@ -1,6 +1,7 @@
 from dash import html, dcc
 import dash_bootstrap_components as dbc
 
+from src.app.i18n import _
 from src.app.models.default_values import DEFAULT_VALUES
 
 
@@ -14,7 +15,7 @@ def create_reservoir_params():
             # Radius input
             dbc.Row(
                 [
-                    dbc.Col(html.Label("Radius (m):", className="fw-bold"), width=6),
+                    dbc.Col(html.Label(_("Radius, (m):"), className="fw-bold"), width=6),
                     dbc.Col(
                         dcc.Input(
                             id={"type": "reservoir-params", "name": "radius"},
@@ -32,7 +33,7 @@ def create_reservoir_params():
             # Height input
             dbc.Row(
                 [
-                    dbc.Col(html.Label("Height (m):", className="fw-bold"), width=6),
+                    dbc.Col(html.Label(_("Height, (m):"), className="fw-bold"), width=6),
                     dbc.Col(
                         dcc.Input(
                             id={"type": "reservoir-params", "name": "height"},
@@ -51,7 +52,7 @@ def create_reservoir_params():
             dbc.Row(
                 [
                     dbc.Col(
-                        html.Label("Permeability (D):", className="fw-bold"), width=6
+                        html.Label(_("Permeability, (D):"), className="fw-bold"), width=6
                     ),
                     dbc.Col(
                         dcc.Input(
@@ -71,7 +72,7 @@ def create_reservoir_params():
             dbc.Row(
                 [
                     dbc.Col(
-                        html.Label("Pressure (atm):", className="fw-bold"), width=6
+                        html.Label(_("Pressure, (atm):"), className="fw-bold"), width=6
                     ),
                     dbc.Col(
                         dcc.Input(

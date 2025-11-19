@@ -1,4 +1,5 @@
 from typing import Tuple
+from src.app.i18n import _
 from src.core.models.init_data.initial_data import InitialData
 
 
@@ -11,12 +12,16 @@ def calc_lm_lp(
     """
     n = len(init_data.fractures)
     if fract_index < 0 or fract_index >= n:
-        raise IndexError(f"Fract Index '{fract_index+1}' is out of bounds [1, {n}]")
+        raise IndexError(
+            _("Fract Index '{fract_index}' is out of bounds [1, {n}]").format(
+                fract_index=fract_index + 1, n=n
+            )
+        )
 
     rc = init_data.reservoir.rc if account_rc else 0.0
     yf_current = init_data.fractures[fract_index].well_cross_coord
     if fract_index == 0:
-        dl = yf_current - 0.0 # distance from well begin till fracture
+        dl = yf_current - 0.0  # distance from well begin till fracture
         lm = rc + dl
     else:
         yf_left = init_data.fractures[fract_index - 1].well_cross_coord

@@ -5,10 +5,15 @@ from src.app.components.parametric_settings_panel import (
     create_parametric_settings_panel,
 )
 from src.app.components.status_bar import create_status_bar
+from src.app.i18n import _
+from src.app.services.result_table_graph_helper import get_default_containers
 
 
 def create_main_content():
     """Create the main content area with visualization and table"""
+
+    graph_container, table_container = get_default_containers()
+
     return html.Div(
         id="main-content",
         style={
@@ -33,7 +38,7 @@ def create_main_content():
                     #     "☰", id="sidebar-toggle_mobile", className="btn btn-secondary d-md-none mb-3"
                     # ),
                     # Main content title
-                    html.H2("Fracture Analysis Dashboard", className="mb-4"),
+                    html.H2(_("Fracture Analysis Dashboard"), className="mb-4"),
                     # Action bar with Calculate button
                     create_action_panel(),
                     # Graph and table container
@@ -43,16 +48,7 @@ def create_main_content():
                                 html.Div(
                                     id="graph-container",
                                     className="bg-white p-3 border rounded",
-                                    children=[
-                                        html.H4("Results Plot", className="mb-3"),
-                                        html.Div(
-                                            [
-                                                html.I(className="bi bi-graph-up me-2"),
-                                                'Press "Calculate" to see visual results here',
-                                            ],
-                                            className="alert alert-light d-flex align-items-center",
-                                        ),
-                                    ],
+                                    children=[*graph_container],
                                 ),
                                 width=12,
                                 className="mb-4",
@@ -65,16 +61,7 @@ def create_main_content():
                                 html.Div(
                                     id="table-container",
                                     className="bg-white p-3 border rounded",
-                                    children=[
-                                        html.H4("Results Table", className="mb-3"),
-                                        html.Div(
-                                            [
-                                                html.I(className="bi bi-table me-2"),
-                                                'Press "Calculate" to see table results here',
-                                            ],
-                                            className="alert alert-light d-flex align-items-center",
-                                        ),
-                                    ],
+                                    children=[*table_container],
                                 ),
                                 width=12,
                             )
@@ -97,7 +84,7 @@ def create_action_panel():
                             html.I(className="fas fa-play"),
                             id="calculate-button",
                             color="primary",
-                            title="Run calculation",
+                            title=_("Run calculation"),
                             n_clicks=0,
                             className="d-flex align-items-center justify-content-center",
                             style={"width": "32px", "height": "32px", "padding": 0},
@@ -109,7 +96,7 @@ def create_action_panel():
                             html.I(className="fas fa-list-alt"),
                             id="show-logs-button",
                             color="primary",
-                            title="Show logs",
+                            title=_("Show logs"),
                             disabled=True,
                             n_clicks=0,
                             className="d-flex align-items-center justify-content-center",

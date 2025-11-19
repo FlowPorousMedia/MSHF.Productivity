@@ -1,5 +1,6 @@
 from typing import List
 
+from src.app.i18n import _
 from src.core.models.init_data.models_enum import ModelsEnum
 
 
@@ -9,7 +10,7 @@ def get_semianalytic_models() -> List:
 
     models_data = {
         ModelsEnum.POTASHEV_2024: {
-            "name": ModelsEnum.POTASHEV_2024.display_name,
+            "name": ModelsEnum.POTASHEV_2024.label,
             "citation": {
                 "entry_type": "article",
                 "author": "Potashev, K., Mazo, A., Mukhina, M. Maklakov, D., Uraimov, A., Khamidullin, M.",
@@ -21,17 +22,23 @@ def get_semianalytic_models() -> List:
                 "doi": "10.1007/s10596-024-10322-w",
             },
             "description": "",
-            "abstract": "The scope of the work is to develop high-speed and fairly accurate methods for calculating the "
-            "productivity of wells with multi-stage hydraulic fracturing",
+            "abstract": _(
+                "The scope of the work is to develop high-speed and fairly accurate methods for calculating the "
+                "productivity of wells with multi-stage hydraulic fracturing"
+            ),
             "parameters": {
                 "applicability": [
-                    "Prediction of performance for hydraulically fractured horizontal wells",
+                    _(
+                        "Prediction of performance for hydraulically fractured horizontal wells"
+                    ),
                 ],
                 "limitations": [
-                    "Fracture half-length is equal in both directions from the wellbore",
-                    "Fracture height is equal to the reservoir height",
-                    "Well perforation does not take into account",
-                    "Infinite conductivity fractures",
+                    _(
+                        "Fracture half-length is equal in both directions from the wellbore"
+                    ),
+                    _("Fracture height is equal to the reservoir height"),
+                    _("Well perforation does not take into account"),
+                    _("Infinite conductivity fractures"),
                 ],
             },
         },
@@ -42,6 +49,7 @@ def get_semianalytic_models() -> List:
             "id": model.value,
             "name": data["name"],
             "info": "?",  # this is just button Name in table
+            "tooltip": _("Show model details"),
             "metadata": data,  # Все остальные данные здесь!
         }
         for model, data in models_data.items()

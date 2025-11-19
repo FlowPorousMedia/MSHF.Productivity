@@ -1,6 +1,7 @@
 from dash import html, dcc
 import dash_bootstrap_components as dbc
 
+from src.app.i18n import _
 from src.core.models.init_data.calc_over_param_enum import CalcParamTypeEnum
 
 
@@ -18,7 +19,7 @@ def create_parametric_settings_panel():
             # Parametric Plot Checkbox (already has inline label)
             dbc.Checkbox(
                 id="parametric-plot-checkbox",
-                label="Parametric Plot",
+                label=_("Parametric Plot"),
                 value=True,
                 className="mb-3",
             ),
@@ -26,7 +27,7 @@ def create_parametric_settings_panel():
             dbc.Row(
                 [
                     dbc.Col(
-                        dbc.Label("Parameter", width="auto"),
+                        dbc.Label(_("Parameter"), width="auto"),
                         className=label_col_class,
                     ),
                     dbc.Col(
@@ -34,31 +35,31 @@ def create_parametric_settings_panel():
                             id="parameter-dropdown",
                             options=[
                                 {
-                                    "label": CalcParamTypeEnum.FRACT_COUNT.display_name,
+                                    "label": CalcParamTypeEnum.FRACT_COUNT.label,
                                     "value": CalcParamTypeEnum.FRACT_COUNT.value,
                                 },
                                 {
-                                    "label": CalcParamTypeEnum.FRACT_LEN.display_name,
+                                    "label": CalcParamTypeEnum.FRACT_LEN.label,
                                     "value": CalcParamTypeEnum.FRACT_LEN.value,
                                 },
                                 {
-                                    "label": CalcParamTypeEnum.FRACT_PERM.display_name,
+                                    "label": CalcParamTypeEnum.FRACT_PERM.label,
                                     "value": CalcParamTypeEnum.FRACT_PERM.value,
                                 },
                                 {
-                                    "label": CalcParamTypeEnum.FRACT_WIDTH.display_name,
+                                    "label": CalcParamTypeEnum.FRACT_WIDTH.label,
                                     "value": CalcParamTypeEnum.FRACT_WIDTH.value,
                                 },
                                 {
-                                    "label": CalcParamTypeEnum.WELL_LEN.display_name,
+                                    "label": CalcParamTypeEnum.WELL_LEN.label,
                                     "value": CalcParamTypeEnum.WELL_LEN.value,
                                 },
                                 {
-                                    "label": CalcParamTypeEnum.RES_RAD.display_name,
+                                    "label": CalcParamTypeEnum.RES_RAD.label,
                                     "value": CalcParamTypeEnum.RES_RAD.value,
                                 },
                                 {
-                                    "label": CalcParamTypeEnum.RES_HEIGTH.display_name,
+                                    "label": CalcParamTypeEnum.RES_HEIGTH.label,
                                     "value": CalcParamTypeEnum.RES_HEIGTH.value,
                                 },
                             ],
@@ -76,14 +77,14 @@ def create_parametric_settings_panel():
             dbc.Row(
                 [
                     dbc.Col(
-                        dbc.Label("Start", width="auto"),
+                        dbc.Label(_("Start"), width="auto"),
                         className=label_col_class,
                     ),
                     dbc.Col(
                         dbc.Input(
                             id="start-input",
                             type="number",
-                            placeholder="Start",
+                            placeholder=_("Start"),
                             value=2,
                             min=2,
                             step=1,
@@ -100,14 +101,14 @@ def create_parametric_settings_panel():
             dbc.Row(
                 [
                     dbc.Col(
-                        dbc.Label("End", width="auto"),
+                        dbc.Label(_("End"), width="auto"),
                         className=label_col_class,
                     ),
                     dbc.Col(
                         dbc.Input(
                             id="end-input",
                             type="number",
-                            placeholder="End",
+                            placeholder=_("End"),
                             value=10,
                             min=2,
                             step=1,
@@ -124,14 +125,14 @@ def create_parametric_settings_panel():
             dbc.Row(
                 [
                     dbc.Col(
-                        dbc.Label("Point Count", width="auto"),
+                        dbc.Label(_("Point Count"), width="auto"),
                         className=label_col_class,
                     ),
                     dbc.Col(
                         dbc.Input(
                             id="point-count-input",
                             type="number",
-                            placeholder="Point Count",
+                            placeholder=_("Point Count"),
                             value=9,
                             min=2,
                             step=1,

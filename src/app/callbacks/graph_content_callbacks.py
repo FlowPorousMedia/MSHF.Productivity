@@ -1,5 +1,6 @@
 from dash import Input, Output, no_update, dcc, html
 import plotly.graph_objects as go
+from src.app.i18n import _
 from src.core.models.init_data.calc_over_param_enum import CalcParamTypeEnum
 from src.core.models.result_data.result_type_enum import ResultTypeEnum
 
@@ -29,7 +30,7 @@ def register(app):
             else:
                 models = []
         except (ValueError, TypeError):
-            return __render_unknown_graph("Invalid result format")
+            return __render_unknown_graph(_("Invalid result format"))
 
         # Обработка разных типов результатов
         match result_type:
@@ -44,15 +45,21 @@ def register(app):
                 return __render_map_graph(models)
             case _:
                 return __render_unknown_graph(
-                    f"Unsupported result type: {result_type_value}"
+                    _("Unsupported result type: {result_type_value}").format(
+                        result_type_value=result_type_value
+                    )
                 )
 
     # Вспомогательные функции для рендеринга графиков
     def __render_simple_graph(models: list) -> html.Div:
-        """Рендеринг столбчатой диаграммы для SIMPLE результата"""
+        """
+        Рендеринг столбчатой диаграммы для SIMPLE результата
+        """
+
         # Подготавливаем данные для графика
         model_names = [
-            model.get("name", f"Model {i+1}") for i, model in enumerate(models)
+            model.get("name", _("Model {index}").format(index=i + 1))
+            for i, model in enumerate(models)
         ]
         q_values = [model.get("q_values", [None])[0] for model in models]
 
@@ -72,10 +79,10 @@ def register(app):
 
         # Настраиваем оформление
         fig.update_layout(
-            title="Flow Rate Comparison",
+            title=_("Flow Rate Comparison"),
             title_x=0.5,
-            xaxis_title="Models",
-            yaxis_title="Q, m³/day",
+            xaxis_title=_("Models"),
+            yaxis_title=_("Q, m³/day"),
             plot_bgcolor="white",
             showlegend=False,
             margin=dict(l=40, r=40, t=60, b=40),
@@ -95,7 +102,7 @@ def register(app):
         )
 
         return html.Div(
-            [html.H4("Flow Rate Plot", className="mb-3"), dcc.Graph(figure=fig)]
+            [html.H4(_("Flow Rate Plot"), className="mb-3"), dcc.Graph(figure=fig)]
         )
 
     def __render_parametric_graph(models: list) -> html.Div:
@@ -105,9 +112,9 @@ def register(app):
         if not models:
             return html.Div(
                 [
-                    html.H4("Parametric Results Plot", className="mb-3"),
+                    html.H4(_("Parametric Results Plot"), className="mb-3"),
                     html.Div(
-                        "No data available for parametric visualization.",
+                        _("No data available for parametric visualization"),
                         className="alert alert-warning",
                     ),
                 ]
@@ -124,13 +131,13 @@ def register(app):
         if param1_type_value is not None:
             try:
                 param_type = CalcParamTypeEnum(param1_type_value)
-                x_title = param_type.display_name
+                x_title = param_type.label
                 is_log_x = param_type == CalcParamTypeEnum.FRACT_PERM
             except ValueError:
-                x_title = "Parameter"
+                x_title = _("Parameter")
                 is_log_x = False
         else:
-            x_title = "Parameter"
+            x_title = _("Parameter")
             is_log_x = False
 
         for model in models:
@@ -147,7 +154,7 @@ def register(app):
                     x=ps1,
                     y=qs,
                     mode="lines+markers",
-                    name=model_name or "Unnamed Model",
+                    name=model_name or _("Unnamed Model"),
                     hoverinfo="x+y+name",
                     hovertemplate=(
                         f"<b>{model_name or ''}</b><br>"
@@ -162,19 +169,19 @@ def register(app):
         if valid_models_count == 0:
             return html.Div(
                 [
-                    html.H4("Parametric Results Plot", className="mb-3"),
+                    html.H4(_("Parametric Results Plot"), className="mb-3"),
                     html.Div(
-                        "No valid data available for parametric visualization.",
+                        _("No valid data available for parametric visualization"),
                         className="alert alert-warning",
                     ),
                 ]
             )
 
         fig.update_layout(
-            title="Parametric Analysis",
+            title=_("Parametric Analysis"),
             xaxis_title=x_title,
-            yaxis_title="Q, m3/day",
-            legend_title="Models",
+            yaxis_title=_("Q, m³/day"),
+            legend_title=_("Models"),
             hovermode="closest",
             template="plotly_white",
             height=600,
@@ -190,7 +197,7 @@ def register(app):
 
         return html.Div(
             [
-                html.H4("Parametric Results Plot", className="mb-3"),
+                html.H4(_("Parametric Results Plot"), className="mb-3"),
                 dcc.Graph(
                     figure=fig,
                     config={"displayModeBar": True},
@@ -203,9 +210,11 @@ def register(app):
         """Рендеринг для MAP результата"""
         return html.Div(
             [
-                html.H4("Map Results", className="mb-3"),
+                html.H4(_("Map Results"), className="mb-3"),
                 html.Div(
-                    "Map visualization is under development and will be available in a future release.",
+                    _(
+                        "Map visualization is under development and will be available in a future release"
+                    ),
                     className="alert alert-info",
                 ),
             ]
@@ -215,9 +224,9 @@ def register(app):
         """Рендеринг при отсутствии данных"""
         return html.Div(
             [
-                html.H4("Results Graph", className="mb-3"),
+                html.H4(_("Results Graph"), className="mb-3"),
                 html.Div(
-                    "No data available for visualization",
+                    _("No data available for visualization"),
                     className="alert alert-warning",
                 ),
             ]
@@ -227,9 +236,9 @@ def register(app):
         """Рендеринг для неизвестных ошибок"""
         return html.Div(
             [
-                html.H4("Results Graph", className="mb-3"),
+                html.H4(_("Results Graph"), className="mb-3"),
                 html.Div(
-                    f"Error: {message}",
+                    _("Error: {message}").format(message=message),
                     className="alert alert-danger",
                 ),
             ]

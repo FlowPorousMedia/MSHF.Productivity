@@ -1,5 +1,7 @@
 from enum import Enum
 
+from src.app.i18n import _
+
 
 class CalcParamTypeEnum(Enum):
     FRACT_COUNT = 0
@@ -11,15 +13,15 @@ class CalcParamTypeEnum(Enum):
     RES_HEIGTH = 6
 
     @property
-    def display_name(self):
+    def label(self):
         name_map = {
-            self.FRACT_COUNT: "Fract count",
-            self.RES_RAD: "Reservoir radius, m",
-            self.RES_HEIGTH: "Reservoir height, m",
-            self.WELL_LEN: "Well length, m",
-            self.FRACT_LEN: "Fract length, m",
-            self.FRACT_PERM: "Fract perm, D",
-            self.FRACT_WIDTH: "Fract width, mm",
+            self.FRACT_COUNT: _("Fract count"),
+            self.FRACT_LEN: _("Fract length, (m)"),
+            self.FRACT_PERM: _("Fract perm, (D)"),
+            self.FRACT_WIDTH: _("Fract width, (mm)"),
+            self.RES_RAD: _("Reservoir radius, (m)"),
+            self.RES_HEIGTH: _("Reservoir height, (m)"),
+            self.WELL_LEN: _("Well length, (m)"),
         }
         return name_map.get(self, self.value)
 

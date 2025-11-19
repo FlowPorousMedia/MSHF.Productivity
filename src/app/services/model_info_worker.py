@@ -2,34 +2,36 @@ from typing import Dict
 from dash import html, dcc
 import dash_bootstrap_components as dbc
 
+from src.app.i18n import _
+
 
 def model_info_to_html(model_data: Dict):
     model = model_data["metadata"]
     children = [
         # html.H4(model["name"], className="mb-3"),
         # Библиографическая ссылка
-        html.H5("Citation"),
+        html.H5(_("Citation")),
         model_citation_to_html(model["citation"]),
         html.Hr(),
         # Описание модели
-        html.H5("Abstract"),
+        html.H5(_("Abstract")),
         html.P(model["abstract"], className="model-abstract"),
         html.Hr(),
         # Параметры модели
-        html.H5("Model specification"),
+        html.H5(_("Model specification")),
         dbc.Row(
             [
                 html.P(model["description"], className="model-description"),
                 dbc.Col(
                     [
-                        html.Dt("Application"),
+                        html.Dt(_("Application")),
                         html.Dd(__list_to_html(model["parameters"]["applicability"])),
                     ],
                     width=6,
                 ),
                 dbc.Col(
                     [
-                        html.Dt("Limitations"),
+                        html.Dt(_("Limitations")),
                         html.Dd(__list_to_html(model["parameters"]["limitations"])),
                     ],
                     width=6,
@@ -48,7 +50,7 @@ def model_info_to_html(model_data: Dict):
         )
         children.append(
             dbc.Button(
-                [html.I(className="bi bi-book me-2"), "More"],
+                [html.I(className="fas fa-book me-2"), _("Source")],
                 href=link,
                 target="_blank",
                 color="primary",

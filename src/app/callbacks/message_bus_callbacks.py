@@ -1,7 +1,7 @@
 # src/app/callbacks/message_bus_callbacks.py
 from dash import Input, Output, State, ALL, ctx, no_update
 from src.app.components.message_dialog import get_message_dialog
-from src.app.models.message_type import MessageType
+from src.core.models.message_level import MessageLevel
 
 
 def register(app):
@@ -15,7 +15,7 @@ def register(app):
     )
     def open_dialog(request_data):
         if not request_data:
-            raise no_update
+            return no_update, no_update, no_update
 
         context = request_data.get("context")
 
@@ -23,9 +23,9 @@ def register(app):
             "msg-dialog",
             request_data.get("title", "Message"),
             request_data.get("message", ""),
-            MessageType[request_data.get("type", "INFO").upper()],
+            MessageLevel[request_data.get("type", "INFO").upper()],
             request_data.get("buttons", ["OK"]),
-            context=context,  # 👈 добавляем контекст сюда!
+            context=context,  #  добавляем контекст
         )
 
         return True, dialog.children, context

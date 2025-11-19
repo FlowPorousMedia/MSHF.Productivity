@@ -105,7 +105,9 @@ class FractInitialData:
 
         if max_warn:
             warnings.append(
-                f"Fracture permeability ({self.perm} D) is less than reservoir permeability ({reservoir_perm} D)"
+                _(
+                    "Fracture permeability ({fract_perm} D) is less than reservoir permeability ({reservoir_perm} D)"
+                ).format(fract_perm=self.perm, reservoir_perm=reservoir_perm)
             )
 
         return errors, warnings

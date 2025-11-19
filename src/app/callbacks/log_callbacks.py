@@ -1,12 +1,9 @@
 from datetime import datetime
-import time
-import dash
 from dash import ALL, Input, Output, State, html, ctx, no_update, dcc
 
 from src.app._version import SOFTWARE_TITLE, USER_VERSION
+from src.app.i18n import _
 from src.app.services.log_item_worker import filter_logs, render_log_item
-from src.core.models.logcategory import LogCategory
-from src.core.models.loglevel import LogLevel
 
 
 def register(app):
@@ -44,7 +41,7 @@ def register(app):
         logs, err_outline, warn_outline, info_outline, checklist, search_text
     ):
         if not logs:
-            return html.Div("No logs yet.", className="text-muted fst-italic")
+            return html.Div(_("No logs yet"), className="text-muted fst-italic")
 
         filtered = filter_logs(
             logs, err_outline, warn_outline, info_outline, checklist, search_text
@@ -52,7 +49,7 @@ def register(app):
 
         if not filtered:
             return html.Div(
-                "No logs match the filters.", className="text-muted fst-italic"
+                _("No logs match the filters"), className="text-muted fst-italic"
             )
 
         return html.Div([render_log_item(log, search_text) for log in filtered])
@@ -82,12 +79,13 @@ def register(app):
 
     @app.callback(
         Output({"type": "copy-log", "index": ALL}, "children"),
+        Output({"type": "copied-tooltip", "index": ALL}, "is_open"),
         Output({"type": "copy-tooltip", "index": ALL}, "is_open"),
         Output("copy-tooltip-interval", "disabled"),
         Output("copy-tooltip-interval", "n_intervals"),
         Input({"type": "copy-log", "index": ALL}, "n_clicks"),
         Input("copy-tooltip-interval", "n_intervals"),
-        State({"type": "copy-tooltip", "index": ALL}, "is_open"),
+        State({"type": "copied-tooltip", "index": ALL}, "is_open"),
         prevent_initial_call=True,
     )
     def copy_icon_and_tooltip(n_clicks_list, tick, current_tooltips):
@@ -99,34 +97,37 @@ def register(app):
 
         # если ничего не кликнули и не тикает
         if not n or (not any(n_clicks_list) and (tick is None or tick == 0)):
-            return default_icons, all_closed, disable_interval, reset_ticks
+            return default_icons, all_closed, all_closed, disable_interval, reset_ticks
 
         triggered = ctx.triggered_id
 
-        # ⏱ тикнул интервал — закрываем все тултипы
+        # тикнул интервал — закрываем все тултипы
         if triggered == "copy-tooltip-interval":
-            return default_icons, all_closed, True, 0
+            return default_icons, all_closed, all_closed, True, 0
 
-        # 🖱 клик по кнопке копирования
+        # нажитие кнопки копирования
         if isinstance(triggered, dict) and triggered.get("type") == "copy-log":
             clicked_ts = triggered["index"]
 
             icons = []
-            tooltips = []
+            copied_tooltips = []
+            hover_tooltips = []
             # проходим по всем id, реально сравнивая значение index
             for i, btn in enumerate(ctx.inputs_list[0]):
                 idx = btn["id"]["index"]
                 if idx == str(clicked_ts):
                     icons.append(html.I(className="fas fa-copy text-primary"))
-                    tooltips.append(True)  # показать тултип только у нужного
+                    copied_tooltips.append(True)
+                    hover_tooltips.append(False)
                 else:
                     icons.append(html.I(className="fas fa-copy text-muted"))
-                    tooltips.append(False)
+                    copied_tooltips.append(False)
+                    hover_tooltips.append(False)
 
             # включаем интервал на 1 секунду для автозакрытия
-            return icons, tooltips, False, 0
+            return icons, copied_tooltips, hover_tooltips, False, 0
 
-        return default_icons, all_closed, True, 0
+        return default_icons, all_closed, all_closed, True, 0
 
     @app.callback(
         Output("download-logs", "data"),
@@ -143,14 +144,14 @@ def register(app):
         n_clicks, logs, err_outline, warn_outline, info_outline, checklist, search_text
     ):
         if not n_clicks or not logs:
-            return dash.no_update
+            return no_update
 
         filtered = filter_logs(
             logs, err_outline, warn_outline, info_outline, checklist, search_text
         )
 
         if not filtered:
-            return dash.no_update
+            return no_update
 
         # === Формируем текст ===
         lines = []
@@ -197,10 +198,12 @@ def register(app):
         logs, err_outline, warn_outline, info_outline, checklist, search_text
     ):
         if not logs:
-            return "Showing 0 messages"
+            return _("Showing 0 messages")
 
         filtered = filter_logs(
             logs, err_outline, warn_outline, info_outline, checklist, search_text
         )
 
-        return f"Showing {len(filtered)} of {len(logs)} messages"
+        return _("Showing {filtered} of {logs} messages").format(
+            filtered=len(filtered), logs=len(logs)
+        )

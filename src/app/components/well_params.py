@@ -18,7 +18,7 @@ def create_well_params():
             dbc.Row(
                 [
                     dbc.Col(
-                        html.Label(WellInitFieldNames.L.value, className="fw-bold"),
+                        html.Label(WellInitFieldNames.L.label, className="fw-bold"),
                         width=6,
                     ),
                     dbc.Col(
@@ -39,7 +39,7 @@ def create_well_params():
             dbc.Row(
                 [
                     dbc.Col(
-                        html.Label(WellInitFieldNames.RW.value, className="fw-bold"),
+                        html.Label(WellInitFieldNames.RW.label, className="fw-bold"),
                         width=6,
                     ),
                     dbc.Col(
@@ -60,7 +60,7 @@ def create_well_params():
             dbc.Row(
                 [
                     dbc.Col(
-                        html.Label(WellInitFieldNames.PW.value, className="fw-bold"),
+                        html.Label(WellInitFieldNames.PW.label, className="fw-bold"),
                         width=6,
                     ),
                     dbc.Col(
@@ -82,7 +82,7 @@ def create_well_params():
                 [
                     dbc.Col(
                         html.Label(
-                            WellInitFieldNames.IS_PERFORATED.value, className="fw-bold"
+                            WellInitFieldNames.IS_PERFORATED.label, className="fw-bold"
                         ),
                         width=6,
                     ),

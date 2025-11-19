@@ -1,5 +1,7 @@
 from typing import List, Optional, Tuple
 
+from src.app.i18n import _
+
 
 class DataValidationHelper:
     @staticmethod
@@ -38,12 +40,16 @@ class DataValidationHelper:
             if min_inclusive:
                 if value < min_val:
                     messages.append(
-                        f"{field_name} should be at least {min_val}{str_descrp}"
+                        _(
+                            "{field_name} should be at least {min_val}{str_descrp}"
+                        ).format(field_name, min_val, str_descrp)
                     )
             else:
                 if value <= min_val:
                     messages.append(
-                        f"{field_name} should be greater than {min_val}{str_descrp}"
+                        _(
+                            "{field_name} should be greater than {min_val}{str_descrp}"
+                        ).format(field_name, min_val, str_descrp)
                     )
 
         # Validate upper bound if provided
@@ -51,12 +57,16 @@ class DataValidationHelper:
             if max_inclusive:
                 if value > max_val:
                     messages.append(
-                        f"{field_name} should be at most {max_val}{str_descrp}"
+                        _(
+                            "{field_name} should be at most {max_val}{str_descrp}"
+                        ).format(field_name, max_val, str_descrp)
                     )
             else:
                 if value >= max_val:
                     messages.append(
-                        f"{field_name} should be less than {max_val}{str_descrp}"
+                        _(
+                            "{field_name} should be less than {max_val}{str_descrp}"
+                        ).format(field_name, max_val, str_descrp)
                     )
 
     @staticmethod

@@ -1,5 +1,6 @@
 from typing import List
 
+from src.app.i18n import _
 from src.core.models.init_data.models_enum import ModelsEnum
 
 
@@ -9,7 +10,7 @@ def get_analytic_models() -> List:
 
     models_data = {
         ModelsEnum.LI_1996: {
-            "name": ModelsEnum.LI_1996.display_name,
+            "name": ModelsEnum.LI_1996.label,
             "citation": {
                 "entry_type": "inproceedings",
                 "author": "Li, Hujun, Jia, Zhengqi, and Zhaosheng Wei",
@@ -20,22 +21,28 @@ def get_analytic_models() -> List:
                 "doi": "10.2118/37051-MS",
             },
             "description": "",
-            "abstract": "A practical method to predict performance of a horizontal well which is hydraulically fractured and "
-            "partially perforated has been proposed in this paper. Using the mathematical model presented in this "
-            "paper, factors affecting performance of a hydraulically fractured horizontal well have been analyzed",
+            "abstract": _(
+                "A practical method to predict performance of a horizontal well which is hydraulically fractured and "
+                "partially perforated has been proposed in this paper. Using the mathematical model presented in this "
+                "paper, factors affecting performance of a hydraulically fractured horizontal well have been analyzed"
+            ),
             "parameters": {
                 "applicability": [
-                    "Prediction of performance for hydraulically fractured horizontal wells",
-                    "Wells with partial perforation",
+                    _(
+                        "Prediction of performance for hydraulically fractured horizontal wells"
+                    ),
+                    _("Wells with partial perforation"),
                 ],
                 "limitations": [
-                    "Fracture half-length is equal in both directions from the wellbore",
-                    "Fracture height is equal to the reservoir height",
+                    _(
+                        "Fracture half-length is equal in both directions from the wellbore"
+                    ),
+                    _("Fracture height is equal to the reservoir height"),
                 ],
             },
         },
         ModelsEnum.GUO_1997: {
-            "name": ModelsEnum.GUO_1997.display_name,
+            "name": ModelsEnum.GUO_1997.label,
             "citation": {
                 "entry_type": "inproceedings",
                 "author": "Guo, B., and D.S. Schechter",
@@ -46,22 +53,28 @@ def get_analytic_models() -> List:
                 "doi": "10.2118/38104-MS",
             },
             "description": "",
-            "abstract": "This paper presents a simple and more rigorous mathematical model for predicting performance of vertical and "
-            "horizontal wells intersecting fractures fully penetrating reservoir sections. An important feature of the new model is that "
-            "it allows rigorous coupling of flow in the matrix and flow in the fracture",
+            "abstract": _(
+                "This paper presents a simple and more rigorous mathematical model for predicting performance of vertical and "
+                "horizontal wells intersecting fractures fully penetrating reservoir sections. An important feature of the new model is that "
+                "it allows rigorous coupling of flow in the matrix and flow in the fracture"
+            ),
             "parameters": {
                 "applicability": [
-                    "Prediction of performance for hydraulically fractured horizontal wells",
+                    _(
+                        "Prediction of performance for hydraulically fractured horizontal wells"
+                    ),
                 ],
                 "limitations": [
-                    "Fracture half-length is equal in both directions from the wellbore",
-                    "Fracture height is equal to the reservoir height",
-                    "Well perforation does not take into account",
+                    _(
+                        "Fracture half-length is equal in both directions from the wellbore"
+                    ),
+                    _("Fracture height is equal to the reservoir height"),
+                    _("Well perforation does not take into account"),
                 ],
             },
         },
         ModelsEnum.GUO_2009: {
-            "name": ModelsEnum.GUO_2009.display_name,
+            "name": ModelsEnum.GUO_2009.label,
             "citation": {
                 "entry_type": "article",
                 "author": "Guo, Boyun, Yu, Xiance, and Mohammad Khoshgahdam",
@@ -73,24 +86,30 @@ def get_analytic_models() -> List:
                 "doi": "10.2118/114452-PA",
             },
             "description": "",
-            "abstract": "Formulated a simple analytical model that describes the productivity of multifractured horizontal wells better. "
-            "The new model couples the radial flow in the nonfractured region of reservoir, the linear flow toward the fractures in the "
-            "fractured region, the linear flow in the fracture, and the radial flow in the fracture toward the horizontal wellbore. "
-            "It can model pseudosteady-state flow of reservoir fluids in reservoir sections of any shape, with the fractured region being "
-            "located at any area in the reservoir",
+            "abstract": _(
+                "Formulated a simple analytical model that describes the productivity of multifractured horizontal wells better. "
+                "The new model couples the radial flow in the nonfractured region of reservoir, the linear flow toward the fractures in the "
+                "fractured region, the linear flow in the fracture, and the radial flow in the fracture toward the horizontal wellbore. "
+                "It can model pseudosteady-state flow of reservoir fluids in reservoir sections of any shape, with the fractured region being "
+                "located at any area in the reservoir"
+            ),
             "parameters": {
                 "applicability": [
-                    "Prediction of performance for hydraulically fractured horizontal wells",
+                    _(
+                        "Prediction of performance for hydraulically fractured horizontal wells"
+                    ),
                 ],
                 "limitations": [
-                    "Fracture half-length is equal in both directions from the wellbore",
-                    "Fracture height is equal to the reservoir height",
-                    "Well perforation does not take into account",
+                    _(
+                        "Fracture half-length is equal in both directions from the wellbore"
+                    ),
+                    _("Fracture height is equal to the reservoir height"),
+                    _("Well perforation does not take into account"),
                 ],
             },
         },
         ModelsEnum.ELKIN_2016_12: {
-            "name": ModelsEnum.ELKIN_2016_12.display_name,
+            "name": ModelsEnum.ELKIN_2016_12.label,
             "citation": {
                 "entry_type": "article",
                 "author": "С.В. Елкин, А.А. Алероев, Н.А. Веремко, М.В. Чертенков",
@@ -105,12 +124,16 @@ def get_analytic_models() -> List:
             "abstract": "",
             "parameters": {
                 "applicability": [
-                    "Prediction of performance for hydraulically fractured horizontal wells",
+                    _(
+                        "Prediction of performance for hydraulically fractured horizontal wells"
+                    ),
                 ],
                 "limitations": [
-                    "Fracture half-length is equal in both directions from the wellbore",
-                    "Fracture height is equal to the reservoir height",
-                    "Well perforation does not take into account",
+                    _(
+                        "Fracture half-length is equal in both directions from the wellbore"
+                    ),
+                    _("Fracture height is equal to the reservoir height"),
+                    _("Well perforation does not take into account"),
                 ],
             },
         },
@@ -121,6 +144,7 @@ def get_analytic_models() -> List:
             "id": model.value,
             "name": data["name"],
             "info": "?",  # this is just button Name in table
+            "tooltip": _("Show model details"),
             "metadata": data,  # Все остальные данные здесь!
         }
         for model, data in models_data.items()

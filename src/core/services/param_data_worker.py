@@ -1,4 +1,6 @@
 import copy
+
+from src.app.i18n import _
 from src.core.models.init_data.calc_over_param_enum import CalcParamTypeEnum
 from src.core.models.init_data.fract_initial_data import FractInitialData
 from src.core.models.init_data.initial_data import InitialData
@@ -41,7 +43,7 @@ class ParamDataWorker:
             case CalcParamTypeEnum.FRACT_WIDTH:
                 return self.__fract_width()
             case _:
-                raise Exception("aaa")
+                raise Exception(_("Invalid parameter for parametric calculation"))
 
     def __fract_count(self) -> InitialData:
         original_fract = copy.deepcopy(self.__original_init_data.fractures[0])

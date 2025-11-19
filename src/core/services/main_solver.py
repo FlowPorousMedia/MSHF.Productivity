@@ -3,11 +3,12 @@ from typing import Any, Dict, List, Optional, Callable
 import numpy as np
 import copy
 
+from src.app.i18n import _
 from src.core.models.calculator_settings import CalculatorSettings
 from src.core.models.init_data.initial_data import InitialData
 from src.core.models.init_data.models_enum import ModelsEnum
 from src.core.models.logcategory import LogCategory
-from src.core.models.loglevel import LogLevel
+from src.core.models.message_level import MessageLevel
 from src.core.models.main_data import MainData
 from src.core.models.result_data.model_result_data import ModelResultData
 from src.core.models.result_data.result_data import ResultData
@@ -51,7 +52,7 @@ class MainSolver:
             case ResultTypeEnum.PARAMETRIC:
                 self.__calc_parametric()
             case _:
-                print("only simple calc is available")
+                pass
 
         return result
 
@@ -66,7 +67,10 @@ class MainSolver:
 
         for i, calc_model in enumerate(self.__result.initial_data.settings.calc_models):
             progress = int((i / total_models) * 100)
-            self.__update_progress(progress, f"Расчет модели {calc_model.name}...")
+            self.__update_progress(
+                progress,
+                _("Расчет модели {model_name}...").format(model_name=calc_model.name),
+            )
 
             model_type = calc_model.tp
             q = self.__calc_model_q(model_type)
@@ -75,7 +79,7 @@ class MainSolver:
             model.q_values = np.array([q])
             self.__result.result.models.append(model)
 
-        self.__update_progress(100, "Простой расчет завершен")
+        self.__update_progress(100, _("Простой расчет завершен"))
 
     def __calc_parametric(self) -> None:
         self.__result.result.result_type = ResultTypeEnum.PARAMETRIC
@@ -85,7 +89,7 @@ class MainSolver:
         param_type = p1.param_type
 
         # Этап 1: Подготовка параметров
-        self.__update_progress(5, "Подготовка параметров для расчета...")
+        self.__update_progress(5, _("Подготовка параметров для расчета..."))
 
         if param_type == CalcParamTypeEnum.FRACT_PERM:
             start_log = np.log10(p1.start_value)
@@ -98,11 +102,14 @@ class MainSolver:
         init_datas: List[InitialData] = []
 
         # Этап 2: Создание наборов данных
-        self.__update_progress(10, "Создание наборов данных...")
+        self.__update_progress(10, _("Создание наборов данных..."))
         for i, user_value in enumerate(orig_values):
             progress = 10 + int((i / len(orig_values)) * 10)  # 10-20%
             self.__update_progress(
-                progress, f"Подготовка данных {i+1}/{len(orig_values)}..."
+                progress,
+                _("Подготовка данных {index}/{count}...").format(
+                    index=i + 1, count=len(orig_values)
+                ),
             )
 
             si_value = param_type.to_si(user_value)
@@ -130,7 +137,12 @@ class MainSolver:
             model.param1_type = p1.param_type
             model.param1_values = orig_values
 
-            self.__update_progress(20, f"Запуск расчета модели {model.name}...")
+            self.__update_progress(
+                20,
+                _("Запуск расчета модели {model_name}...").format(
+                    model_name=model.name
+                ),
+            )
 
             for data_index, init_d in enumerate(init_datas):
                 # Обновляем прогресс для каждой итерации
@@ -141,7 +153,11 @@ class MainSolver:
 
                 self.__update_progress(
                     progress,
-                    f"Модель {model.name}: точка {data_index+1}/{len(init_datas)}",
+                    _("Model {model_name}: point {point_index}/{point_count}").format(
+                        model_name=model.name,
+                        point_index=data_index + 1,
+                        point_count=len(init_datas),
+                    ),
                 )
 
                 self.__result.initial_data = init_d
@@ -154,14 +170,16 @@ class MainSolver:
 
             self.__logs.append(
                 make_log(
-                    f"{model.name} calculated in {calc_time:.2f} sec",
-                    LogLevel.INFO,
+                    _("{model_name} calculated in {calc_time:.2f} sec").format(
+                        model_name=model.name, calc_time=calc_time
+                    ),
+                    MessageLevel.INFO,
                     LogCategory.CALCULATION,
                     True,
                 )
             )
 
-        self.__update_progress(100, "Параметрический расчет завершен")
+        self.__update_progress(100, _("Parametric calculation completed"))
 
     def __calc_model_q(self, model_type: ModelsEnum) -> float:
         setts = CalculatorSettings()
@@ -179,7 +197,7 @@ class MainSolver:
             case ModelsEnum.POTASHEV_2024:
                 calculator = Potashev2024Calculator()
             case _:
-                Exception("calc model rate with unknown model type")
+                Exception(_("calc model rate with unknown model type"))
 
         q_dim_m3_sec = calculator.calc_q(self.__result.initial_data, setts, self.__logs)
         q_dim_m3_day = None

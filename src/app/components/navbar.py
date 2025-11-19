@@ -1,10 +1,13 @@
 from dash import html
 import dash_bootstrap_components as dbc
 
+from src.app.i18n import _, get_current_language
 from src.app._version import SOFTWARE_TITLE
 
 
 def create_navbar():
+    lang = get_current_language()
+
     return dbc.Navbar(
         [
             # Left side: Software name
@@ -30,6 +33,7 @@ def create_navbar():
                                                 style={"fontSize": "1.2rem"},
                                             ),
                                             dbc.Tooltip(
+                                                _("Github"),
                                                 id="github-tooltip",
                                                 target="github-icon",
                                                 placement="left",
@@ -42,23 +46,28 @@ def create_navbar():
                                     html.Div(
                                         [
                                             dbc.DropdownMenu(
-                                                [
-                                                    # dbc.DropdownMenuItem(
-                                                    #     "Русский", id="lang-ru"
-                                                    # ),
+                                                children=[
                                                     dbc.DropdownMenuItem(
-                                                        "English", id="lang-en"
+                                                        ("✓ " if lang == "ru" else "")
+                                                        + "Русский",
+                                                        id="lang-ru",
+                                                    ),
+                                                    dbc.DropdownMenuItem(
+                                                        ("✓ " if lang == "en" else "")
+                                                        + "English",
+                                                        id="lang-en",
                                                     ),
                                                 ],
                                                 label=html.I(
                                                     className="fas fa-language",
                                                     id="language-icon",
-                                                ),  # Default flag icon
+                                                ),
                                                 nav=True,
                                                 id="language-dropdown",
                                                 align_end=True,
                                             ),
                                             dbc.Tooltip(
+                                                _("Language"),
                                                 id="language-tooltip",
                                                 target="language-icon",
                                                 placement="left",
@@ -81,6 +90,7 @@ def create_navbar():
                                                 id="guide-navlink",
                                             ),
                                             dbc.Tooltip(
+                                                _("Guide"),
                                                 id="guide-tooltip",
                                                 target="guide-icon",
                                                 placement="left",
@@ -101,6 +111,7 @@ def create_navbar():
                                                 style={"fontSize": "1.2rem"},
                                             ),
                                             dbc.Tooltip(
+                                                _("About"),
                                                 id="about-tooltip",
                                                 target="about-icon",
                                                 placement="left",
