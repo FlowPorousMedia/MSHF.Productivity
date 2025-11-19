@@ -1,11 +1,13 @@
 from dash import html
 import dash_bootstrap_components as dbc
 
-from src.app.i18n import _
+from src.app.i18n import _, get_current_language
 from src.app._version import SOFTWARE_TITLE
 
 
 def create_navbar():
+    lang = get_current_language()
+
     return dbc.Navbar(
         [
             # Left side: Software name
@@ -44,12 +46,24 @@ def create_navbar():
                                     html.Div(
                                         [
                                             dbc.DropdownMenu(
-                                                [
+                                                # [
+                                                #     dbc.DropdownMenuItem(
+                                                #         "Русский", id="lang-ru"
+                                                #     ),
+                                                #     dbc.DropdownMenuItem(
+                                                #         "English", id="lang-en"
+                                                #     ),
+                                                # ],
+                                                children=[
                                                     dbc.DropdownMenuItem(
-                                                        "Русский", id="lang-ru"
+                                                        ("✓ " if lang == "ru" else "")
+                                                        + "Русский",
+                                                        id="lang-ru",
                                                     ),
                                                     dbc.DropdownMenuItem(
-                                                        "English", id="lang-en"
+                                                        ("✓ " if lang == "en" else "")
+                                                        + "English",
+                                                        id="lang-en",
                                                     ),
                                                 ],
                                                 label=html.I(

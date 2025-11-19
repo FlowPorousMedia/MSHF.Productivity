@@ -16,6 +16,7 @@ def register(app):
         prevent_initial_call=True,
     )
     def update_language(ru_clicks, en_clicks):
+        print('update lang')
         trigger = ctx.triggered_id
         if trigger == "lang-ru":
             return "ru"
@@ -68,16 +69,17 @@ def register(app):
             _("About"),
         )
 
-    @app.callback(
-        Output("language-dropdown", "children"),
-        Input("language-store", "data"),
-    )
-    def update_language_menu(lang):
-        return [
-            dbc.DropdownMenuItem(
-                ("✓ " if lang == "ru" else "") + "Русский", id="lang-ru"
-            ),
-            dbc.DropdownMenuItem(
-                ("✓ " if lang == "en" else "") + "English", id="lang-en"
-            ),
-        ]
+    # @app.callback(
+    #     Output("language-dropdown", "children"),
+    #     Input("language-store", "data"),
+    # )
+    # def update_language_menu(lang):
+    #     print('update lang menu')
+    #     return [
+    #         dbc.DropdownMenuItem(
+    #             ("✓ " if lang == "ru" else "") + "Русский", id="lang-ru"
+    #         ),
+    #         dbc.DropdownMenuItem(
+    #             ("✓ " if lang == "en" else "") + "English", id="lang-en"
+    #         ),
+    #     ]
