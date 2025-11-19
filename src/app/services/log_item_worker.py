@@ -78,7 +78,7 @@ def render_log_item(log, search_text=None):
                     title=_("Copy to clipboard"),
                     style={"visibility": "hidden", "position": "absolute"},
                 ),
-                # 1️⃣ Тултип-подсказка (hover)
+                # 1. Тултип-подсказка (hover)
                 dbc.Tooltip(
                     _("Copy to clipboard"),
                     target=copy_id,

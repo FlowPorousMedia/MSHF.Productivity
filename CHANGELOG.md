@@ -18,6 +18,7 @@
 - Progress bar, status bar
 - Log Viewer
 - Russian and English Languages
+- Makefile
 ### Fixed
 - Selecting russian was not working
 - Sidebar width change

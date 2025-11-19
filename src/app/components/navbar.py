@@ -46,14 +46,6 @@ def create_navbar():
                                     html.Div(
                                         [
                                             dbc.DropdownMenu(
-                                                # [
-                                                #     dbc.DropdownMenuItem(
-                                                #         "Русский", id="lang-ru"
-                                                #     ),
-                                                #     dbc.DropdownMenuItem(
-                                                #         "English", id="lang-en"
-                                                #     ),
-                                                # ],
                                                 children=[
                                                     dbc.DropdownMenuItem(
                                                         ("✓ " if lang == "ru" else "")
