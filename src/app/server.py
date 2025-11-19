@@ -20,5 +20,6 @@ def create_app():
         external_stylesheets=[dbc.themes.BOOTSTRAP],
         suppress_callback_exceptions=True,
         background_callback_manager=manager,
+        show_undo_redo=False,
     )
     return app

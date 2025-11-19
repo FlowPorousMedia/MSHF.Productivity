@@ -1,4 +1,7 @@
 from dash import html, dcc
+import dash_bootstrap_components as dbc
+
+
 from src.app.i18n import _, set_language
 from src.app.components.about_modal import create_about_modal
 from src.app.components.log_viewer import create_log_viewer
@@ -85,9 +88,25 @@ def serve_layout():
             dcc.Store(id="language-store", data=None, storage_type="local"),
             html.Div(
                 id="loader",
-                children=html.H2(
-                    "Loading...", style={"textAlign": "center", "marginTop": "40vh"}
-                ),
+                style={
+                    "position": "fixed",
+                    "top": "0",
+                    "left": "0",
+                    "width": "100%",
+                    "height": "100%",
+                    "backgroundColor": "white",
+                    "zIndex": "9999",
+                    "display": "flex",
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                    "alignItems": "center",
+                },
+                children=[
+                    dbc.Spinner(color="primary", type="grow", size="lg"),
+                    html.Div(
+                        "Loading...", style={"marginTop": "15px", "fontSize": "22px"}
+                    ),
+                ],
             ),
             html.Div(id="main-ui"),
         ]
