@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-14 00:27+0300\n"
+"POT-Creation-Date: 2025-11-20 01:39+0300\n"
 "PO-Revision-Date: 2025-11-10 19:47+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
@@ -18,25 +18,6 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.17.0\n"
-
-#: src/app/server.py:65
-msgid "Message"
-msgstr "Сообщение"
-
-#: src/app/server.py:66
-msgid "Default"
-msgstr "По умолчанию"
-
-#: src/app/callbacks/calculate_button_callbacks.py:201
-#: src/app/callbacks/fracture_table_callbacks.py:76
-#: src/app/callbacks/fracture_table_callbacks.py:88
-#: src/app/callbacks/fracture_table_callbacks.py:108
-#: src/app/callbacks/fracture_table_callbacks.py:117
-#: src/app/callbacks/fracture_table_callbacks.py:126
-#: src/app/callbacks/fracture_table_callbacks.py:137
-#: src/app/components/message_dialog.py:13 src/app/server.py:68
-msgid "OK"
-msgstr "OK"
 
 #: src/app/callbacks/calculate_button_callbacks.py:67
 msgid "Preparing for calculation..."
@@ -81,6 +62,17 @@ msgstr "Не выбраны модели"
 #: src/app/callbacks/calculate_button_callbacks.py:198
 msgid "Please select at least one model before starting the calculation."
 msgstr "Пожалуйста, выберите хотя бы одну модель перед запуском расчета."
+
+#: src/app/callbacks/calculate_button_callbacks.py:201
+#: src/app/callbacks/fracture_table_callbacks.py:76
+#: src/app/callbacks/fracture_table_callbacks.py:88
+#: src/app/callbacks/fracture_table_callbacks.py:108
+#: src/app/callbacks/fracture_table_callbacks.py:117
+#: src/app/callbacks/fracture_table_callbacks.py:126
+#: src/app/callbacks/fracture_table_callbacks.py:137
+#: src/app/components/message_dialog.py:13 src/app/services/layout_helper.py:48
+msgid "OK"
+msgstr "OK"
 
 #: src/app/callbacks/calculate_button_callbacks.py:207
 msgid "Warning: no models selected"
@@ -309,20 +301,20 @@ msgstr "Показано 0 сообщений"
 msgid "Showing {filtered} of {logs} messages"
 msgstr "Показано {filtered} из {logs} сообщений"
 
-#: src/app/callbacks/navbar_callbacks.py:65 src/app/components/navbar.py:34
+#: src/app/callbacks/navbar_callbacks.py:65 src/app/components/navbar.py:36
 msgid "Github"
 msgstr "Github"
 
-#: src/app/callbacks/navbar_callbacks.py:66 src/app/components/navbar.py:64
+#: src/app/callbacks/navbar_callbacks.py:66 src/app/components/navbar.py:70
 msgid "Language"
 msgstr "Язык"
 
-#: src/app/callbacks/navbar_callbacks.py:67 src/app/components/navbar.py:87
+#: src/app/callbacks/navbar_callbacks.py:67 src/app/components/navbar.py:93
 msgid "Guide"
 msgstr "Руководство"
 
 #: src/app/callbacks/navbar_callbacks.py:68
-#: src/app/components/about_modal.py:11 src/app/components/navbar.py:108
+#: src/app/components/about_modal.py:11 src/app/components/navbar.py:114
 msgid "About"
 msgstr "О программе"
 
@@ -689,6 +681,14 @@ msgstr ""
 "Пожалуйста, задайте корректное значение для трещины {index}:\n"
 " {message}"
 
+#: src/app/services/layout_helper.py:45
+msgid "Message"
+msgstr "Сообщение"
+
+#: src/app/services/layout_helper.py:46
+msgid "Default"
+msgstr "По умолчанию"
+
 #: src/app/services/log_item_worker.py:69
 #: src/app/services/log_item_worker.py:78
 #: src/app/services/log_item_worker.py:83
@@ -791,7 +791,7 @@ msgstr "Высота пласта, (м)"
 msgid "Well length, (m)"
 msgstr "Длина ГС, (м)"
 
-#: src/core/models/init_data/fract_initial_data.py:109
+#: src/core/models/init_data/fract_initial_data.py:110
 #, python-brace-format
 msgid ""
 "Fracture permeability ({fract_perm} D) is less than reservoir "
